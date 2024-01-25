@@ -8,34 +8,34 @@ import { ProductService } from "../../../../service/ProductService";
 import DeferredDemo from "@/components/demo/DeferredDemo";
 
 export function RowSelectEventsDoc(props) {
-	const [products, setProducts] = useState([]);
-	const [selectedProduct, setSelectedProduct] = useState(null);
-	const toast = useRef(null);
+    const [products, setProducts] = useState([]);
+    const [selectedProduct, setSelectedProduct] = useState(null);
+    const toast = useRef(null);
 
-	const onRowSelect = (event) => {
-		toast.current.show({
-			severity: "info",
-			summary: "Product Selected",
-			detail: `Name: ${event.data.name}`,
-			life: 3000,
-		});
-	};
+    const onRowSelect = (event) => {
+        toast.current.show({
+            severity: "info",
+            summary: "Product Selected",
+            detail: `Name: ${event.data.name}`,
+            life: 3000,
+        });
+    };
 
-	const onRowUnselect = (event) => {
-		toast.current.show({
-			severity: "warn",
-			summary: "Product Unselected",
-			detail: `Name: ${event.data.name}`,
-			life: 3000,
-		});
-	};
+    const onRowUnselect = (event) => {
+        toast.current.show({
+            severity: "warn",
+            summary: "Product Unselected",
+            detail: `Name: ${event.data.name}`,
+            life: 3000,
+        });
+    };
 
-	const loadDemoData = () => {
-		ProductService.getProductsMini().then((data) => setProducts(data));
-	};
+    const loadDemoData = () => {
+        ProductService.getProductsMini().then((data) => setProducts(data));
+    };
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <DataTable value={products} selectionMode="single" selection={selectedProduct} onSelectionChange={(e) => setSelectedProduct(e.value)} dataKey="id"
         onRowSelect={onRowSelect} onRowUnselect={onRowUnselect} metaKeySelection={false} tableStyle={{ minWidth: '50rem' }}>
     <Column field="code" header="Code"></Column>
@@ -44,7 +44,7 @@ export function RowSelectEventsDoc(props) {
     <Column field="quantity" header="Quantity"></Column>
 </DataTable>
         `,
-		javascript: `
+        javascript: `
 import React, { useState, useRef, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -82,7 +82,7 @@ export default function RowSelectEventsDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState, useRef, useEffect } from 'react';
 import { DataTable, DataTableSelectionChangeEvent, DataTableSelectEvent, DataTableUnselectEvent } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -133,7 +133,7 @@ export default function RowSelectEventsDemo() {
     );
 }
         `,
-		data: `
+        data: `
 {
     id: '1000',
     code: 'f230fh0g3',
@@ -148,38 +148,38 @@ export default function RowSelectEventsDemo() {
 },
 ...
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					DataTable provides <i>onRowSelect</i> and <i>onRowUnselect</i> events
-					to listen selection events.
-				</p>
-			</DocSectionText>
-			<Toast ref={toast} />
-			<DeferredDemo onLoad={loadDemoData}>
-				<div className="card">
-					<DataTable
-						value={products}
-						selectionMode="single"
-						selection={selectedProduct}
-						onSelectionChange={(e) => setSelectedProduct(e.value)}
-						dataKey="id"
-						onRowSelect={onRowSelect}
-						onRowUnselect={onRowUnselect}
-						metaKeySelection={false}
-						tableStyle={{ minWidth: "50rem" }}
-					>
-						<Column field="code" header="Code"></Column>
-						<Column field="name" header="Name"></Column>
-						<Column field="category" header="Category"></Column>
-						<Column field="quantity" header="Quantity"></Column>
-					</DataTable>
-				</div>
-			</DeferredDemo>
-			<DocSectionCode code={code} service={["ProductService"]} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    DataTable provides <i>onRowSelect</i> and{" "}
+                    <i>onRowUnselect</i> events to listen selection events.
+                </p>
+            </DocSectionText>
+            <Toast ref={toast} />
+            <DeferredDemo onLoad={loadDemoData}>
+                <div className="card">
+                    <DataTable
+                        value={products}
+                        selectionMode="single"
+                        selection={selectedProduct}
+                        onSelectionChange={(e) => setSelectedProduct(e.value)}
+                        dataKey="id"
+                        onRowSelect={onRowSelect}
+                        onRowUnselect={onRowUnselect}
+                        metaKeySelection={false}
+                        tableStyle={{ minWidth: "50rem" }}
+                    >
+                        <Column field="code" header="Code"></Column>
+                        <Column field="name" header="Name"></Column>
+                        <Column field="category" header="Category"></Column>
+                        <Column field="quantity" header="Quantity"></Column>
+                    </DataTable>
+                </div>
+            </DeferredDemo>
+            <DocSectionCode code={code} service={["ProductService"]} />
+        </>
+    );
 }

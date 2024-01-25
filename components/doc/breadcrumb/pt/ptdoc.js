@@ -3,17 +3,17 @@ import { DocSectionText } from "@/components/doc/common/docsectiontext";
 import { BreadCrumb } from "@/components/lib/breadcrumb/BreadCrumb";
 
 export function PTDoc(props) {
-	const items = [
-		{ label: "Computer" },
-		{ label: "Notebook" },
-		{ label: "Accessories" },
-		{ label: "Backpacks" },
-		{ label: "Item" },
-	];
-	const home = { icon: "pi pi-home", url: "https://primereact.org" };
+    const items = [
+        { label: "Computer" },
+        { label: "Notebook" },
+        { label: "Accessories" },
+        { label: "Backpacks" },
+        { label: "Item" },
+    ];
+    const home = { icon: "pi pi-home", url: "https://primereact.org" };
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <BreadCrumb 
     model={items}
     home={home}
@@ -25,7 +25,7 @@ export function PTDoc(props) {
     }}
 />
         `,
-		javascript: `
+        javascript: `
 import React from 'react';
 import { BreadCrumb } from 'primereact/breadcrumb';
 
@@ -49,7 +49,7 @@ export default function PTDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React from 'react';
 import { BreadCrumb } from 'primereact/breadcrumb';
 import { MenuItem } from 'primereact/menuitem';
@@ -74,25 +74,27 @@ export default function PTDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}></DocSectionText>
-			<div className="card flex justify-content-center">
-				<BreadCrumb
-					pt={{
-						root: { className: "surface-ground" },
-						label: ({ props }) => ({
-							className:
-								props.index === items.length - 1 ? "font-italic" : undefined,
-						}),
-					}}
-					model={items}
-					home={home}
-				/>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}></DocSectionText>
+            <div className="card flex justify-content-center">
+                <BreadCrumb
+                    pt={{
+                        root: { className: "surface-ground" },
+                        label: ({ props }) => ({
+                            className:
+                                props.index === items.length - 1
+                                    ? "font-italic"
+                                    : undefined,
+                        }),
+                    }}
+                    model={items}
+                    home={home}
+                />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

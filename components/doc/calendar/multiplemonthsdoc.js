@@ -4,13 +4,13 @@ import { Calendar } from "@/components/lib/calendar/Calendar";
 import { useState } from "react";
 
 export function MultipleMonthsDoc(props) {
-	const [date, setDate] = useState(null);
+    const [date, setDate] = useState(null);
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Calendar value={date} onChange={(e) => setDate(e.value)} numberOfMonths={2} />
         `,
-		javascript: `
+        javascript: `
 import React, { useState } from "react";
 import { Calendar } from 'primereact/calendar';
 
@@ -24,7 +24,7 @@ export default function MultipleMonthsDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from "react";
 import { Calendar } from 'primereact/calendar';
 import { Nullable } from "primereact/ts-helpers";
@@ -39,24 +39,24 @@ export default function MultipleMonthsDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Number of months to display is configured with the{" "}
-					<i>numberOfMonths</i> property.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<Calendar
-					value={date}
-					onChange={(e) => setDate(e.value)}
-					numberOfMonths={2}
-				/>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Number of months to display is configured with the{" "}
+                    <i>numberOfMonths</i> property.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <Calendar
+                    value={date}
+                    onChange={(e) => setDate(e.value)}
+                    numberOfMonths={2}
+                />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

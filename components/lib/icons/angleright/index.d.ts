@@ -17,6 +17,6 @@ export interface AngleRightIconProps extends IconBaseProps {}
  * @group Component
  */
 export declare class AngleRightIcon extends React.Component<
-	AngleRightIconProps,
-	any
+    AngleRightIconProps,
+    any
 > {}

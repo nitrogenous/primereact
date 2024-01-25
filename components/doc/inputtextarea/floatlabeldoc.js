@@ -4,16 +4,16 @@ import { InputTextarea } from "@/components/lib/inputtextarea/InputTextarea";
 import { useState } from "react";
 
 export function FloatLabelDoc(props) {
-	const [value, setValue] = useState("");
+    const [value, setValue] = useState("");
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <span className="p-float-label">
     <InputTextarea id="username" value={value} onChange={(e) => setValue(e.target.value)} rows={5} cols={30} />
     <label htmlFor="username">Username</label>
 </span>
         `,
-		javascript: `
+        javascript: `
 import React, { useState } from "react";
 import { InputTextarea } from "primereact/inputtextarea";
 
@@ -30,7 +30,7 @@ export default function FloatLabelDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from "react";
 import { InputTextarea } from "primereact/inputtextarea";
 
@@ -47,26 +47,29 @@ export default function FloatLabelDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>A floating label appears on top of the input field when focused.</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<span className="p-float-label">
-					<InputTextarea
-						id="description"
-						value={value}
-						onChange={(e) => setValue(e.target.value)}
-						rows={5}
-						cols={30}
-					/>
-					<label htmlFor="description">Description</label>
-				</span>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    A floating label appears on top of the input field when
+                    focused.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <span className="p-float-label">
+                    <InputTextarea
+                        id="description"
+                        value={value}
+                        onChange={(e) => setValue(e.target.value)}
+                        rows={5}
+                        cols={30}
+                    />
+                    <label htmlFor="description">Description</label>
+                </span>
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

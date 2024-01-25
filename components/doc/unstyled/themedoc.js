@@ -2,8 +2,8 @@ import { DocSectionCode } from "@/components/doc/common/docsectioncode";
 import { DocSectionText } from "@/components/doc/common/docsectiontext";
 
 export function ThemeDoc(props) {
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 import { PrimeReactProvider } from "primereact/api";
 ...
 return(
@@ -28,26 +28,27 @@ return(
     </PrimeReactProvider>
 );
     `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					An unstyled theme is basically a global <i>pt</i> configuration so
-					that it can be defined only once from a single location, still a
-					particular component can override a global configuration since the{" "}
-					<i>pt</i> props of a component and the global setting is merged with
-					component having higher precedencee.
-				</p>
-			</DocSectionText>
-			<DocSectionCode
-				code={code}
-				hideToggleCode
-				import
-				hideCodeSandbox
-				hideStackBlitz
-			/>
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    An unstyled theme is basically a global <i>pt</i>{" "}
+                    configuration so that it can be defined only once from a
+                    single location, still a particular component can override a
+                    global configuration since the <i>pt</i> props of a
+                    component and the global setting is merged with component
+                    having higher precedencee.
+                </p>
+            </DocSectionText>
+            <DocSectionCode
+                code={code}
+                hideToggleCode
+                import
+                hideCodeSandbox
+                hideStackBlitz
+            />
+        </>
+    );
 }

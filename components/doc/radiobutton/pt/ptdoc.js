@@ -4,16 +4,16 @@ import { RadioButton } from "@/components/lib/radiobutton/RadioButton";
 import { useState } from "react";
 
 export function PTDoc(props) {
-	const categories = [
-		{ name: "Accounting", key: "A" },
-		{ name: "Marketing", key: "M" },
-		{ name: "Production", key: "P" },
-		{ name: "Research", key: "R" },
-	];
-	const [selectedCategory, setSelectedCategory] = useState(categories[1]);
+    const categories = [
+        { name: "Accounting", key: "A" },
+        { name: "Marketing", key: "M" },
+        { name: "Production", key: "P" },
+        { name: "Research", key: "R" },
+    ];
+    const [selectedCategory, setSelectedCategory] = useState(categories[1]);
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <RadioButton
     inputId={category.key}
     name="category"
@@ -27,7 +27,7 @@ export function PTDoc(props) {
     }}
 />
         `,
-		javascript: `
+        javascript: `
 import React from 'react'; 
 import { RadioButton } from "primereact/radiobutton";
 
@@ -70,7 +70,7 @@ export default function PTDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React from 'react'; 
 import { RadioButton } from "primereact/radiobutton";
 import { RadioButton, RadioButtonChangeEvent } from "primereact/radiobutton";
@@ -119,40 +119,48 @@ export default function PTDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}></DocSectionText>
-			<div className="card flex justify-content-center">
-				<div className="flex flex-column gap-3">
-					{categories.map((category) => {
-						return (
-							<div key={category.key} className="flex align-items-center">
-								<RadioButton
-									inputId={category.key}
-									name="category"
-									value={category}
-									onChange={(e) => setSelectedCategory(e.value)}
-									checked={selectedCategory.key === category.key}
-									pt={{
-										input: {
-											className:
-												selectedCategory.key === category.key
-													? "bg-orange-500 border-orange-500"
-													: undefined,
-										},
-									}}
-								/>
-								<label htmlFor={category.key} className="ml-2">
-									{category.name}
-								</label>
-							</div>
-						);
-					})}
-				</div>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}></DocSectionText>
+            <div className="card flex justify-content-center">
+                <div className="flex flex-column gap-3">
+                    {categories.map((category) => {
+                        return (
+                            <div
+                                key={category.key}
+                                className="flex align-items-center"
+                            >
+                                <RadioButton
+                                    inputId={category.key}
+                                    name="category"
+                                    value={category}
+                                    onChange={(e) =>
+                                        setSelectedCategory(e.value)
+                                    }
+                                    checked={
+                                        selectedCategory.key === category.key
+                                    }
+                                    pt={{
+                                        input: {
+                                            className:
+                                                selectedCategory.key ===
+                                                category.key
+                                                    ? "bg-orange-500 border-orange-500"
+                                                    : undefined,
+                                        },
+                                    }}
+                                />
+                                <label htmlFor={category.key} className="ml-2">
+                                    {category.name}
+                                </label>
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

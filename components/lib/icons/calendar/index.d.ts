@@ -17,6 +17,6 @@ export interface CalendarIconProps extends IconBaseProps {}
  * @group Component
  */
 export declare class CalendarIcon extends React.Component<
-	CalendarIconProps,
-	any
+    CalendarIconProps,
+    any
 > {}

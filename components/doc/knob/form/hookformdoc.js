@@ -7,44 +7,44 @@ import { useRef } from "react";
 import { Controller, useForm } from "react-hook-form";
 
 export function HookFormDoc(props) {
-	const toast = useRef(null);
+    const toast = useRef(null);
 
-	const show = () => {
-		toast.current.show({
-			severity: "success",
-			summary: "Form Submitted",
-			detail: getValues("value"),
-		});
-	};
+    const show = () => {
+        toast.current.show({
+            severity: "success",
+            summary: "Form Submitted",
+            detail: getValues("value"),
+        });
+    };
 
-	const defaultValues = {
-		value: "",
-	};
+    const defaultValues = {
+        value: "",
+    };
 
-	const {
-		control,
-		formState: { errors },
-		handleSubmit,
-		getValues,
-		reset,
-	} = useForm({ defaultValues });
+    const {
+        control,
+        formState: { errors },
+        handleSubmit,
+        getValues,
+        reset,
+    } = useForm({ defaultValues });
 
-	const onSubmit = (data) => {
-		data.value && show();
+    const onSubmit = (data) => {
+        data.value && show();
 
-		reset();
-	};
+        reset();
+    };
 
-	const getFormErrorMessage = (name) => {
-		return errors[name] ? (
-			<small className="p-error">{errors[name].message}</small>
-		) : (
-			<small className="p-error">&nbsp;</small>
-		);
-	};
+    const getFormErrorMessage = (name) => {
+        return errors[name] ? (
+            <small className="p-error">{errors[name].message}</small>
+        ) : (
+            <small className="p-error">&nbsp;</small>
+        );
+    };
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Toast ref={toast} />
 <Controller
     name="value"
@@ -57,7 +57,7 @@ export function HookFormDoc(props) {
     />
 <Button type="submit" label="Submit" className="mt-2" />
         `,
-		javascript: `
+        javascript: `
 import React, { useRef } from "react";
 import { useForm, Controller } from 'react-hook-form';
 import { Knob } from 'primereact/knob';
@@ -113,7 +113,7 @@ export default function HookFormDoc() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useRef } from "react";
 import { useForm, Controller } from 'react-hook-form';
 import { Knob } from 'primereact/knob';
@@ -169,41 +169,44 @@ export default function HookFormDoc() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				{/* TO DO: Add demo content. */}
-				<p></p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<form onSubmit={handleSubmit(onSubmit)}>
-					<Toast ref={toast} />
-					<div className="flex flex-column align-items-center">
-						<Controller
-							name="value"
-							control={control}
-							rules={{ required: "The value must be greater than zero." }}
-							render={({ field }) => (
-								<Knob
-									id={field.name}
-									name="value"
-									value={field.value || "0"}
-									onChange={(e) => field.onChange(e.value)}
-								/>
-							)}
-						/>
+    return (
+        <>
+            <DocSectionText {...props}>
+                {/* TO DO: Add demo content. */}
+                <p></p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <Toast ref={toast} />
+                    <div className="flex flex-column align-items-center">
+                        <Controller
+                            name="value"
+                            control={control}
+                            rules={{
+                                required:
+                                    "The value must be greater than zero.",
+                            }}
+                            render={({ field }) => (
+                                <Knob
+                                    id={field.name}
+                                    name="value"
+                                    value={field.value || "0"}
+                                    onChange={(e) => field.onChange(e.value)}
+                                />
+                            )}
+                        />
 
-						{getFormErrorMessage("value")}
-						<Button type="submit" label="Submit" className="mt-2" />
-					</div>
-				</form>
-			</div>
-			<DocSectionCode
-				code={code}
-				dependencies={{ "react-hook-form": "^7.39.4" }}
-			/>
-		</>
-	);
+                        {getFormErrorMessage("value")}
+                        <Button type="submit" label="Submit" className="mt-2" />
+                    </div>
+                </form>
+            </div>
+            <DocSectionCode
+                code={code}
+                dependencies={{ "react-hook-form": "^7.39.4" }}
+            />
+        </>
+    );
 }

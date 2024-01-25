@@ -80,93 +80,98 @@ const styles = `
 `;
 
 const classes = {
-	root: ({ props, visible }) =>
-		classNames(`p-speeddial p-component p-speeddial-${props.type}`, {
-			[`p-speeddial-direction-${props.direction}`]: props.type !== "circle",
-			"p-speeddial-opened": visible,
-			"p-disabled": props.disabled,
-		}),
-	button: ({ props }) =>
-		classNames("p-speeddial-button p-button-rounded", {
-			"p-speeddial-rotate": props.rotateAnimation && !props.hideIcon,
-		}),
-	mask: ({ visible }) =>
-		classNames("p-speeddial-mask", {
-			"p-speeddial-mask-visible": visible,
-		}),
-	action: ({ disabled }) =>
-		classNames("p-speeddial-action", { "p-disabled": disabled }),
-	actionIcon: ({ _icon }) => classNames("p-speeddial-action-icon", _icon),
-	menu: "p-speeddial-list",
-	menuitem: ({ active }) =>
-		classNames("p-speeddial-item", { "p-focus": active }),
+    root: ({ props, visible }) =>
+        classNames(`p-speeddial p-component p-speeddial-${props.type}`, {
+            [`p-speeddial-direction-${props.direction}`]:
+                props.type !== "circle",
+            "p-speeddial-opened": visible,
+            "p-disabled": props.disabled,
+        }),
+    button: ({ props }) =>
+        classNames("p-speeddial-button p-button-rounded", {
+            "p-speeddial-rotate": props.rotateAnimation && !props.hideIcon,
+        }),
+    mask: ({ visible }) =>
+        classNames("p-speeddial-mask", {
+            "p-speeddial-mask-visible": visible,
+        }),
+    action: ({ disabled }) =>
+        classNames("p-speeddial-action", { "p-disabled": disabled }),
+    actionIcon: ({ _icon }) => classNames("p-speeddial-action-icon", _icon),
+    menu: "p-speeddial-list",
+    menuitem: ({ active }) =>
+        classNames("p-speeddial-item", { "p-focus": active }),
 };
 
 const inlineStyles = {
-	root: ({ props }) => ({
-		alignItems:
-			props.direction === "up" || props.direction === "down" ? "center" : "",
-		justifyContent:
-			props.direction === "left" || props.direction === "right" ? "center" : "",
-		flexDirection:
-			props.direction === "up"
-				? "column-reverse"
-				: props.direction === "down"
-				  ? "column"
-				  : props.direction === "left"
-					  ? "row-reverse"
-					  : props.direction === "right"
-						  ? "row"
-						  : null,
-	}),
-	menu: ({ props }) => ({
-		flexDirection:
-			props.direction === "up"
-				? "column-reverse"
-				: props.direction === "down"
-				  ? "column"
-				  : props.direction === "left"
-					  ? "row-reverse"
-					  : props.direction === "right"
-						  ? "row"
-						  : null,
-	}),
+    root: ({ props }) => ({
+        alignItems:
+            props.direction === "up" || props.direction === "down"
+                ? "center"
+                : "",
+        justifyContent:
+            props.direction === "left" || props.direction === "right"
+                ? "center"
+                : "",
+        flexDirection:
+            props.direction === "up"
+                ? "column-reverse"
+                : props.direction === "down"
+                  ? "column"
+                  : props.direction === "left"
+                      ? "row-reverse"
+                      : props.direction === "right"
+                          ? "row"
+                          : null,
+    }),
+    menu: ({ props }) => ({
+        flexDirection:
+            props.direction === "up"
+                ? "column-reverse"
+                : props.direction === "down"
+                  ? "column"
+                  : props.direction === "left"
+                      ? "row-reverse"
+                      : props.direction === "right"
+                          ? "row"
+                          : null,
+    }),
 };
 
 export const SpeedDialBase = ComponentBase.extend({
-	defaultProps: {
-		__TYPE: "SpeedDial",
-		id: null,
-		model: null,
-		visible: false,
-		style: null,
-		className: null,
-		direction: "up",
-		transitionDelay: 30,
-		type: "linear",
-		radius: 0,
-		mask: false,
-		disabled: false,
-		hideOnClickOutside: true,
-		buttonStyle: null,
-		buttonClassName: null,
-		buttonTemplate: null,
-		"aria-label": null,
-		ariaLabelledby: null,
-		maskStyle: null,
-		maskClassName: null,
-		showIcon: null,
-		hideIcon: null,
-		rotateAnimation: true,
-		onVisibleChange: null,
-		onClick: null,
-		onShow: null,
-		onHide: null,
-		children: undefined,
-	},
-	css: {
-		classes,
-		styles,
-		inlineStyles,
-	},
+    defaultProps: {
+        __TYPE: "SpeedDial",
+        id: null,
+        model: null,
+        visible: false,
+        style: null,
+        className: null,
+        direction: "up",
+        transitionDelay: 30,
+        type: "linear",
+        radius: 0,
+        mask: false,
+        disabled: false,
+        hideOnClickOutside: true,
+        buttonStyle: null,
+        buttonClassName: null,
+        buttonTemplate: null,
+        "aria-label": null,
+        ariaLabelledby: null,
+        maskStyle: null,
+        maskClassName: null,
+        showIcon: null,
+        hideIcon: null,
+        rotateAnimation: true,
+        onVisibleChange: null,
+        onClick: null,
+        onShow: null,
+        onHide: null,
+        children: undefined,
+    },
+    css: {
+        classes,
+        styles,
+        inlineStyles,
+    },
 });

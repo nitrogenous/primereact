@@ -17,6 +17,6 @@ export interface DownloadIconProps extends IconBaseProps {}
  * @group Component
  */
 export declare class DownloadIcon extends React.Component<
-	DownloadIconProps,
-	any
+    DownloadIconProps,
+    any
 > {}

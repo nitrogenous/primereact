@@ -4,18 +4,18 @@ import { SelectButton } from "@/components/lib/selectbutton/SelectButton";
 import { useState } from "react";
 
 export function MultipleDoc(props) {
-	const [value, setValue] = useState(null);
-	const items = [
-		{ name: "Option 1", value: 1 },
-		{ name: "Option 2", value: 2 },
-		{ name: "Option 3", value: 3 },
-	];
+    const [value, setValue] = useState(null);
+    const items = [
+        { name: "Option 1", value: 1 },
+        { name: "Option 2", value: 2 },
+        { name: "Option 3", value: 3 },
+    ];
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <SelectButton value={value} onChange={(e) => setValue(e.value)} optionLabel="name" options={items} multiple />
         `,
-		javascript: `
+        javascript: `
 import React, { useState } from "react";
 import { SelectButton } from 'primereact/selectbutton';
 
@@ -34,7 +34,7 @@ export default function MultipleDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from "react";
 import { SelectButton, SelectButtonChangeEvent } from 'primereact/selectbutton';
 
@@ -58,27 +58,28 @@ export default function MultipleDemo() {
     );
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					SelectButton allows selecting only one item by default and enabling{" "}
-					<i>multiple</i> allows choosing more. In multiple case, model property
-					should be an array instead of a single value.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<SelectButton
-					value={value}
-					onChange={(e) => setValue(e.value)}
-					optionLabel="name"
-					options={items}
-					multiple
-				/>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    SelectButton allows selecting only one item by default and
+                    enabling <i>multiple</i> allows choosing more. In multiple
+                    case, model property should be an array instead of a single
+                    value.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <SelectButton
+                    value={value}
+                    onChange={(e) => setValue(e.value)}
+                    optionLabel="name"
+                    options={items}
+                    multiple
+                />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

@@ -2,28 +2,28 @@ import { ComponentBase } from "../componentbase/ComponentBase";
 import { classNames } from "../utils/Utils";
 
 const classes = {
-	start: "p-menubar-start",
-	end: "p-menubar-end",
-	button: "p-menubar-button",
-	root: ({ mobileActiveState }) =>
-		classNames("p-menubar p-component", {
-			"p-menubar-mobile-active": mobileActiveState,
-		}),
-	separator: "p-menuitem-separator",
-	icon: "p-menuitem-icon",
-	label: "p-menuitem-text",
-	submenuIcon: "p-submenu-icon",
-	menuitem: ({ active, focused, disabled }) =>
-		classNames("p-menuitem", {
-			"p-menuitem-active p-highlight": active,
-			"p-focus": focused,
-			"p-disabled": disabled,
-		}),
-	menu: "p-menubar-root-list",
-	content: "p-menuitem-content",
-	submenu: "p-submenu-list",
-	action: ({ disabled }) =>
-		classNames("p-menuitem-link", { "p-disabled": disabled }),
+    start: "p-menubar-start",
+    end: "p-menubar-end",
+    button: "p-menubar-button",
+    root: ({ mobileActiveState }) =>
+        classNames("p-menubar p-component", {
+            "p-menubar-mobile-active": mobileActiveState,
+        }),
+    separator: "p-menuitem-separator",
+    icon: "p-menuitem-icon",
+    label: "p-menuitem-text",
+    submenuIcon: "p-submenu-icon",
+    menuitem: ({ active, focused, disabled }) =>
+        classNames("p-menuitem", {
+            "p-menuitem-active p-highlight": active,
+            "p-focus": focused,
+            "p-disabled": disabled,
+        }),
+    menu: "p-menubar-root-list",
+    content: "p-menuitem-content",
+    submenu: "p-submenu-list",
+    action: ({ disabled }) =>
+        classNames("p-menuitem-link", { "p-disabled": disabled }),
 };
 
 const styles = `
@@ -103,24 +103,24 @@ const styles = `
 `;
 
 export const MenubarBase = ComponentBase.extend({
-	defaultProps: {
-		__TYPE: "Menubar",
-		id: null,
-		model: null,
-		style: null,
-		className: null,
-		start: null,
-		ariaLabel: null,
-		ariaLabelledBy: null,
-		onFocus: null,
-		onBlur: null,
-		submenuIcon: null,
-		menuIcon: null,
-		end: null,
-		children: undefined,
-	},
-	css: {
-		classes,
-		styles,
-	},
+    defaultProps: {
+        __TYPE: "Menubar",
+        id: null,
+        model: null,
+        style: null,
+        className: null,
+        start: null,
+        ariaLabel: null,
+        ariaLabelledBy: null,
+        onFocus: null,
+        onBlur: null,
+        submenuIcon: null,
+        menuIcon: null,
+        end: null,
+        children: undefined,
+    },
+    css: {
+        classes,
+        styles,
+    },
 });

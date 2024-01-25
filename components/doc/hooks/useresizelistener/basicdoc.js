@@ -4,32 +4,32 @@ import { useResizeListener } from "@/components/lib/hooks/Hooks";
 import { useEffect, useState } from "react";
 
 export function BasicDoc(props) {
-	const [eventData, setEventData] = useState({ width: 0, height: 0 });
+    const [eventData, setEventData] = useState({ width: 0, height: 0 });
 
-	const [bindWindowResizeListener, unbindWindowResizeListener] =
-		useResizeListener({
-			listener: (event) => {
-				setEventData({
-					width: event.currentTarget.innerWidth,
-					height: event.currentTarget.innerHeight,
-				});
-			},
-		});
+    const [bindWindowResizeListener, unbindWindowResizeListener] =
+        useResizeListener({
+            listener: (event) => {
+                setEventData({
+                    width: event.currentTarget.innerWidth,
+                    height: event.currentTarget.innerHeight,
+                });
+            },
+        });
 
-	useEffect(() => {
-		setEventData({ width: window.innerWidth, height: window.innerHeight });
-	}, []);
+    useEffect(() => {
+        setEventData({ width: window.innerWidth, height: window.innerHeight });
+    }, []);
 
-	useEffect(() => {
-		bindWindowResizeListener();
+    useEffect(() => {
+        bindWindowResizeListener();
 
-		return () => {
-			unbindWindowResizeListener();
-		};
-	}, [bindWindowResizeListener, unbindWindowResizeListener]);
+        return () => {
+            unbindWindowResizeListener();
+        };
+    }, [bindWindowResizeListener, unbindWindowResizeListener]);
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 const [bindWindowResizeListener, unbindWindowResizeListener] = useResizeListener({
     listener: (event) => {
         setEventData({
@@ -39,7 +39,7 @@ const [bindWindowResizeListener, unbindWindowResizeListener] = useResizeListener
     }
 });
         `,
-		javascript: `
+        javascript: `
 import React, { useState, useEffect } from 'react';
 import { useResizeListener } from 'primereact/hooks';
 
@@ -79,7 +79,7 @@ export default function BasicDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState, useEffect } from 'react';
 import { useResizeListener } from 'primereact/hooks';
 
@@ -119,24 +119,25 @@ export default function BasicDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Resize the browser window to view information about the resize event.
-				</p>
-			</DocSectionText>
-			<div className="card flex flex-wrap justify-content-center gap-3 text-xl">
-				<span>
-					Width: <strong>{eventData.width}</strong>
-				</span>
-				<span>
-					Height: <strong>{eventData.height}</strong>
-				</span>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Resize the browser window to view information about the
+                    resize event.
+                </p>
+            </DocSectionText>
+            <div className="card flex flex-wrap justify-content-center gap-3 text-xl">
+                <span>
+                    Width: <strong>{eventData.width}</strong>
+                </span>
+                <span>
+                    Height: <strong>{eventData.height}</strong>
+                </span>
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

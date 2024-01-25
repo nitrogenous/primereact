@@ -3,8 +3,8 @@ import { DocSectionText } from "@/components/doc/common/docsectiontext";
 import { Button } from "@/components/lib/button/Button";
 
 export function OutlinedDoc(props) {
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Button label="Primary" outlined />
 <Button label="Secondary" severity="secondary" outlined />
 <Button label="Success" severity="success" outlined />
@@ -13,7 +13,7 @@ export function OutlinedDoc(props) {
 <Button label="Help" severity="help" outlined />
 <Button label="Danger" severity="danger" outlined />
         `,
-		javascript: `
+        javascript: `
 import React from 'react'; 
 import { Button } from 'primereact/button';
 
@@ -31,7 +31,7 @@ export default function OutlinedDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React from 'react'; 
 import { Button } from 'primereact/button';
 
@@ -49,23 +49,26 @@ export default function OutlinedDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>Outlined buttons display a border without a background initially.</p>
-			</DocSectionText>
-			<div className="card flex flex-wrap justify-content-center gap-3">
-				<Button label="Primary" outlined />
-				<Button label="Secondary" severity="secondary" outlined />
-				<Button label="Success" severity="success" outlined />
-				<Button label="Info" severity="info" outlined />
-				<Button label="Warning" severity="warning" outlined />
-				<Button label="Help" severity="help" outlined />
-				<Button label="Danger" severity="danger" outlined />
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Outlined buttons display a border without a background
+                    initially.
+                </p>
+            </DocSectionText>
+            <div className="card flex flex-wrap justify-content-center gap-3">
+                <Button label="Primary" outlined />
+                <Button label="Secondary" severity="secondary" outlined />
+                <Button label="Success" severity="success" outlined />
+                <Button label="Info" severity="info" outlined />
+                <Button label="Warning" severity="warning" outlined />
+                <Button label="Help" severity="help" outlined />
+                <Button label="Danger" severity="danger" outlined />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

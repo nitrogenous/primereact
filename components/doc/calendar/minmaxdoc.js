@@ -4,31 +4,31 @@ import { Calendar } from "@/components/lib/calendar/Calendar";
 import { useState } from "react";
 
 export function MinMaxDoc(props) {
-	const today = new Date();
-	const month = today.getMonth();
-	const year = today.getFullYear();
-	const prevMonth = month === 0 ? 11 : month - 1;
-	const prevYear = prevMonth === 11 ? year - 1 : year;
-	const nextMonth = month === 11 ? 0 : month + 1;
-	const nextYear = nextMonth === 0 ? year + 1 : year;
+    const today = new Date();
+    const month = today.getMonth();
+    const year = today.getFullYear();
+    const prevMonth = month === 0 ? 11 : month - 1;
+    const prevYear = prevMonth === 11 ? year - 1 : year;
+    const nextMonth = month === 11 ? 0 : month + 1;
+    const nextYear = nextMonth === 0 ? year + 1 : year;
 
-	const [date, setDate] = useState(null);
+    const [date, setDate] = useState(null);
 
-	const minDate = new Date();
+    const minDate = new Date();
 
-	minDate.setMonth(prevMonth);
-	minDate.setFullYear(prevYear);
+    minDate.setMonth(prevMonth);
+    minDate.setFullYear(prevYear);
 
-	const maxDate = new Date();
+    const maxDate = new Date();
 
-	maxDate.setMonth(nextMonth);
-	maxDate.setFullYear(nextYear);
+    maxDate.setMonth(nextMonth);
+    maxDate.setFullYear(nextYear);
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Calendar id="minmax" value={date} onChange={(e) => setDate(e.value)} minDate={minDate} maxDate={maxDate} readOnlyInput />
         `,
-		javascript: `
+        javascript: `
 import React, { useState } from "react";
 import { Calendar } from 'primereact/calendar';
 
@@ -60,7 +60,7 @@ export default function MinMaxDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from "react";
 import { Calendar } from 'primereact/calendar';
 import { Nullable } from "primereact/ts-helpers";
@@ -93,26 +93,26 @@ export default function MinMaxDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Boundaries for the permitted dates that can be entered are defined
-					with <i>minDate</i> and <i>maxDate</i> properties.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<Calendar
-					value={date}
-					onChange={(e) => setDate(e.value)}
-					minDate={minDate}
-					maxDate={maxDate}
-					readOnlyInput
-				/>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Boundaries for the permitted dates that can be entered are
+                    defined with <i>minDate</i> and <i>maxDate</i> properties.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <Calendar
+                    value={date}
+                    onChange={(e) => setDate(e.value)}
+                    minDate={minDate}
+                    maxDate={maxDate}
+                    readOnlyInput
+                />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

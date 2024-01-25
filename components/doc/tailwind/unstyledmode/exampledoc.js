@@ -2,8 +2,8 @@ import { DocSectionCode } from "@/components/doc/common/docsectioncode";
 import { DocSectionText } from "@/components/doc/common/docsectiontext";
 
 export function ExampleDoc(props) {
-	const code = {
-		javascript: `
+    const code = {
+        javascript: `
 import React from 'react'; 
 import { Panel } from 'primereact/panel';
 
@@ -63,17 +63,17 @@ export default function TailwindDemo() {
     )
 }
     `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					This example covers how to enable the default Tailwind based PrimeOne
-					Design implementation and the customization options
-				</p>
-			</DocSectionText>
-			<DocSectionCode code={code} embedded />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    This example covers how to enable the default Tailwind based
+                    PrimeOne Design implementation and the customization options
+                </p>
+            </DocSectionText>
+            <DocSectionCode code={code} embedded />
+        </>
+    );
 }

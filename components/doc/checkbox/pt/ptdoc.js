@@ -4,10 +4,10 @@ import { Checkbox } from "@/components/lib/checkbox/Checkbox";
 import { useState } from "react";
 
 export function PTDoc(props) {
-	const [checked, setChecked] = useState(false);
+    const [checked, setChecked] = useState(false);
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Checkbox
     checked={checked}
     onChange={(e) => setChecked(e.checked)}
@@ -18,7 +18,7 @@ export function PTDoc(props) {
     }}
 ></Checkbox>
         `,
-		javascript: `
+        javascript: `
 import React, { useState } from "react";
 import { Checkbox } from "primereact/checkbox";
 
@@ -40,7 +40,7 @@ export default function PTDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from "react";
 import { Checkbox } from "primereact/checkbox";
 
@@ -62,23 +62,25 @@ export default function PTDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}></DocSectionText>
-			<div className="card flex justify-content-center">
-				<Checkbox
-					checked={checked}
-					onChange={(e) => setChecked(e.checked)}
-					pt={{
-						input: ({ state }) => ({
-							className: state.focused ? "border-orange-400" : undefined,
-						}),
-					}}
-				></Checkbox>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}></DocSectionText>
+            <div className="card flex justify-content-center">
+                <Checkbox
+                    checked={checked}
+                    onChange={(e) => setChecked(e.checked)}
+                    pt={{
+                        input: ({ state }) => ({
+                            className: state.focused
+                                ? "border-orange-400"
+                                : undefined,
+                        }),
+                    }}
+                ></Checkbox>
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

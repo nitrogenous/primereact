@@ -6,43 +6,43 @@ import { useRouter } from "next/router";
 import { useRef } from "react";
 
 export function GroupDoc(props) {
-	const toast = useRef(null);
-	const router = useRouter();
-	const items = [
-		{
-			label: "Documents",
-			items: [
-				{
-					label: "New",
-					icon: "pi pi-plus",
-				},
-				{
-					label: "Search",
-					icon: "pi pi-search",
-				},
-			],
-		},
-		{
-			label: "Profile",
-			items: [
-				{
-					label: "Settings",
-					icon: "pi pi-cog",
-				},
-				{
-					label: "Logout",
-					icon: "pi pi-sign-out",
-				},
-			],
-		},
-	];
+    const toast = useRef(null);
+    const router = useRouter();
+    const items = [
+        {
+            label: "Documents",
+            items: [
+                {
+                    label: "New",
+                    icon: "pi pi-plus",
+                },
+                {
+                    label: "Search",
+                    icon: "pi pi-search",
+                },
+            ],
+        },
+        {
+            label: "Profile",
+            items: [
+                {
+                    label: "Settings",
+                    icon: "pi pi-cog",
+                },
+                {
+                    label: "Logout",
+                    icon: "pi pi-sign-out",
+                },
+            ],
+        },
+    ];
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Toast ref={toast} />
 <Menu model={items} />
 `,
-		javascript: `
+        javascript: `
 import React, { useRef } from 'react';
 import { useRouter } from 'next/router';
 import { Menu } from 'primereact/menu';
@@ -88,7 +88,7 @@ export default function GroupDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useRef } from 'react';
 import { useRouter } from 'next/router';
 import { Menu } from 'primereact/menu';
@@ -135,16 +135,16 @@ export default function GroupDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}></DocSectionText>
-			<div className="card flex justify-content-center">
-				<Toast ref={toast} />
-				<Menu model={items} />
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}></DocSectionText>
+            <div className="card flex justify-content-center">
+                <Toast ref={toast} />
+                <Menu model={items} />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

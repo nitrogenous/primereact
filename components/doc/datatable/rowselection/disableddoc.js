@@ -7,22 +7,22 @@ import { ProductService } from "../../../../service/ProductService";
 import DeferredDemo from "@/components/demo/DeferredDemo";
 
 export function DisabledRowSelectionDoc(props) {
-	const [products, setProducts] = useState([]);
-	const [selectedProduct, setSelectedProduct] = useState(null);
+    const [products, setProducts] = useState([]);
+    const [selectedProduct, setSelectedProduct] = useState(null);
 
-	const isSelectable = (data) => data.quantity >= 10;
+    const isSelectable = (data) => data.quantity >= 10;
 
-	const isRowSelectable = (event) =>
-		event.data ? isSelectable(event.data) : true;
+    const isRowSelectable = (event) =>
+        event.data ? isSelectable(event.data) : true;
 
-	const rowClassName = (data) => (isSelectable(data) ? "" : "p-disabled");
+    const rowClassName = (data) => (isSelectable(data) ? "" : "p-disabled");
 
-	const loadDemoData = () => {
-		ProductService.getProductsMini().then((data) => setProducts(data));
-	};
+    const loadDemoData = () => {
+        ProductService.getProductsMini().then((data) => setProducts(data));
+    };
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <DataTable value={products} selectionMode="single" selection={selectedProduct} onSelectionChange={(e) => setSelectedProduct(e.value)} dataKey="id"
         isDataSelectable={isRowSelectable} rowClassName={rowClassName} tableStyle={{ minWidth: '50rem' }}>
     <Column field="code" header="Code"></Column>
@@ -31,7 +31,7 @@ export function DisabledRowSelectionDoc(props) {
     <Column field="quantity" header="Quantity"></Column>
 </DataTable>
         `,
-		javascript: `
+        javascript: `
 import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -64,7 +64,7 @@ export default function DisabledRowSelectionDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState, useEffect } from 'react';
 import { DataTable, DataTableSelectionChangeEvent, DataTableDataSelectableEvent } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -110,7 +110,7 @@ export default function DisabledRowSelectionDemo() {
     );
 }
         `,
-		data: `
+        data: `
 {
     id: '1000',
     code: 'f230fh0g3',
@@ -125,36 +125,36 @@ export default function DisabledRowSelectionDemo() {
 },
 ...
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Certain rows can be excluded from selection if <i>isDataSelectable</i>{" "}
-					returns false.
-				</p>
-			</DocSectionText>
-			<DeferredDemo onLoad={loadDemoData}>
-				<div className="card">
-					<DataTable
-						value={products}
-						selectionMode="single"
-						selection={selectedProduct}
-						onSelectionChange={(e) => setSelectedProduct(e.value)}
-						dataKey="id"
-						isDataSelectable={isRowSelectable}
-						rowClassName={rowClassName}
-						tableStyle={{ minWidth: "50rem" }}
-					>
-						<Column field="code" header="Code"></Column>
-						<Column field="name" header="Name"></Column>
-						<Column field="category" header="Category"></Column>
-						<Column field="quantity" header="Quantity"></Column>
-					</DataTable>
-				</div>
-			</DeferredDemo>
-			<DocSectionCode code={code} service={["ProductService"]} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Certain rows can be excluded from selection if{" "}
+                    <i>isDataSelectable</i> returns false.
+                </p>
+            </DocSectionText>
+            <DeferredDemo onLoad={loadDemoData}>
+                <div className="card">
+                    <DataTable
+                        value={products}
+                        selectionMode="single"
+                        selection={selectedProduct}
+                        onSelectionChange={(e) => setSelectedProduct(e.value)}
+                        dataKey="id"
+                        isDataSelectable={isRowSelectable}
+                        rowClassName={rowClassName}
+                        tableStyle={{ minWidth: "50rem" }}
+                    >
+                        <Column field="code" header="Code"></Column>
+                        <Column field="name" header="Name"></Column>
+                        <Column field="category" header="Category"></Column>
+                        <Column field="quantity" header="Quantity"></Column>
+                    </DataTable>
+                </div>
+            </DeferredDemo>
+            <DocSectionCode code={code} service={["ProductService"]} />
+        </>
+    );
 }

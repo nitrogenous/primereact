@@ -4,13 +4,13 @@ import { Knob } from "@/components/lib/knob/Knob";
 import { useState } from "react";
 
 export function TemplateDoc(props) {
-	const [value, setValue] = useState(60);
+    const [value, setValue] = useState(60);
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Knob value={value} onChange={(e) => setValue(e.value)} valueTemplate={'{value}%'} />
         `,
-		javascript: `
+        javascript: `
 import React, { useState } from 'react';
 import { Knob } from 'primereact/knob';
 
@@ -24,7 +24,7 @@ export default function TemplateDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from 'react';
 import { Knob, KnobChangeEvent } from 'primereact/knob';
 
@@ -38,25 +38,25 @@ export default function TemplateDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Label is a string template that can be customized with the{" "}
-					<i>valueTemplate</i> property having <i>{value}</i> as the placeholder
-					.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<Knob
-					value={value}
-					onChange={(e) => setValue(e.value)}
-					valueTemplate={"{value}%"}
-				/>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Label is a string template that can be customized with the{" "}
+                    <i>valueTemplate</i> property having <i>{value}</i> as the
+                    placeholder .
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <Knob
+                    value={value}
+                    onChange={(e) => setValue(e.value)}
+                    valueTemplate={"{value}%"}
+                />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

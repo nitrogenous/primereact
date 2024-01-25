@@ -4,13 +4,13 @@ import { ToggleButton } from "@/components/lib/togglebutton/ToggleButton";
 import { useState } from "react";
 
 export function BasicDoc(props) {
-	const [checked, setChecked] = useState(false);
+    const [checked, setChecked] = useState(false);
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <ToggleButton checked={checked} onChange={(e) => setChecked(e.value)} />
         `,
-		javascript: `
+        javascript: `
 import React, { useState } from "react";
 import { ToggleButton } from 'primereact/togglebutton';
 
@@ -24,7 +24,7 @@ export default function BasicDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from "react";
 import { ToggleButton, ToggleButtonChangeEvent } from 'primereact/togglebutton';
 
@@ -38,24 +38,24 @@ export default function BasicDemo() {
     );
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					ToggleButton is used a controlled input component with <i>value</i>{" "}
-					and <i>onChange</i> properties.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<ToggleButton
-					checked={checked}
-					onChange={(e) => setChecked(e.value)}
-					className="w-8rem"
-				/>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    ToggleButton is used a controlled input component with{" "}
+                    <i>value</i> and <i>onChange</i> properties.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <ToggleButton
+                    checked={checked}
+                    onChange={(e) => setChecked(e.value)}
+                    className="w-8rem"
+                />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

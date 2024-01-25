@@ -7,12 +7,12 @@ import * as React from "react";
  * @returns the hook
  */
 export const useMountEffect = (fn) => {
-	const mounted = React.useRef(false);
-	return React.useEffect(() => {
-		if (!mounted.current) {
-			mounted.current = true;
-			return fn && fn();
-		}
-	}, []);
+    const mounted = React.useRef(false);
+    return React.useEffect(() => {
+        if (!mounted.current) {
+            mounted.current = true;
+            return fn && fn();
+        }
+    }, []);
 };
 /* eslint-enable */

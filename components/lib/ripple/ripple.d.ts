@@ -14,16 +14,16 @@ import * as React from "react";
  * @group Properties
  */
 export interface RippleProps {
-	/**
-	 * Used to get the child elements of the component.
-	 * @readonly
-	 */
-	children?: React.ReactNode | undefined;
-	/**
-	 * When enabled, it removes component related styles in the core.
-	 * @defaultValue false
-	 */
-	unstyled?: boolean;
+    /**
+     * Used to get the child elements of the component.
+     * @readonly
+     */
+    children?: React.ReactNode | undefined;
+    /**
+     * When enabled, it removes component related styles in the core.
+     * @defaultValue false
+     */
+    unstyled?: boolean;
 }
 
 /**

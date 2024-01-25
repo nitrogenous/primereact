@@ -8,48 +8,48 @@ import { useFormik } from "formik";
 import { useRef } from "react";
 
 export function FormikDoc(props) {
-	const toast = useRef(null);
+    const toast = useRef(null);
 
-	const show = () => {
-		toast.current.show({
-			severity: "success",
-			summary: "Form Submitted",
-			detail: formik.values.description,
-		});
-	};
+    const show = () => {
+        toast.current.show({
+            severity: "success",
+            summary: "Form Submitted",
+            detail: formik.values.description,
+        });
+    };
 
-	const formik = useFormik({
-		initialValues: {
-			description: "",
-		},
-		validate: (data) => {
-			const errors = {};
+    const formik = useFormik({
+        initialValues: {
+            description: "",
+        },
+        validate: (data) => {
+            const errors = {};
 
-			if (!data.description) {
-				errors.description = "Description is required.";
-			}
+            if (!data.description) {
+                errors.description = "Description is required.";
+            }
 
-			return errors;
-		},
-		onSubmit: (data) => {
-			data && show();
-			formik.resetForm();
-		},
-	});
+            return errors;
+        },
+        onSubmit: (data) => {
+            data && show();
+            formik.resetForm();
+        },
+    });
 
-	const isFormFieldInvalid = (name) =>
-		!!(formik.touched[name] && formik.errors[name]);
+    const isFormFieldInvalid = (name) =>
+        !!(formik.touched[name] && formik.errors[name]);
 
-	const getFormErrorMessage = (name) => {
-		return isFormFieldInvalid(name) ? (
-			<small className="p-error">{formik.errors[name]}</small>
-		) : (
-			<small className="p-error">&nbsp;</small>
-		);
-	};
+    const getFormErrorMessage = (name) => {
+        return isFormFieldInvalid(name) ? (
+            <small className="p-error">{formik.errors[name]}</small>
+        ) : (
+            <small className="p-error">&nbsp;</small>
+        );
+    };
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 Toast ref={toast} />
 <InputTextarea
     inputid="description"
@@ -65,7 +65,7 @@ Toast ref={toast} />
 {getFormErrorMessage('description')}
 <Button label="Submit" type="submit" icon="pi pi-check" />
         `,
-		javascript: `
+        javascript: `
 import React, { useRef } from "react";
 import { useFormik } from 'formik';
 import { InputTextarea } from 'primereact/inputtextarea';
@@ -128,7 +128,7 @@ export default function FormikDoc() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useRef } from "react";
 import { useFormik } from 'formik';
 import { InputTextarea } from 'primereact/inputtextarea';
@@ -191,38 +191,41 @@ export default function FormikDoc() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					<a href="https://formik.org/">Formik</a> is a popular library for
-					handling forms in React.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<form onSubmit={formik.handleSubmit} className="flex flex-column gap-2">
-					<label htmlFor="description">Description</label>
-					<Toast ref={toast} />
-					<InputTextarea
-						inputid="description"
-						name="description"
-						rows={4}
-						cols={30}
-						className={classNames({
-							"p-invalid": isFormFieldInvalid("description"),
-						})}
-						value={formik.values.description}
-						onChange={(e) => {
-							formik.setFieldValue("description", e.target.value);
-						}}
-					/>
-					{getFormErrorMessage("description")}
-					<Button label="Submit" type="submit" icon="pi pi-check" />
-				</form>
-			</div>
-			<DocSectionCode code={code} dependencies={{ formik: "^2.2.6" }} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    <a href="https://formik.org/">Formik</a> is a popular
+                    library for handling forms in React.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <form
+                    onSubmit={formik.handleSubmit}
+                    className="flex flex-column gap-2"
+                >
+                    <label htmlFor="description">Description</label>
+                    <Toast ref={toast} />
+                    <InputTextarea
+                        inputid="description"
+                        name="description"
+                        rows={4}
+                        cols={30}
+                        className={classNames({
+                            "p-invalid": isFormFieldInvalid("description"),
+                        })}
+                        value={formik.values.description}
+                        onChange={(e) => {
+                            formik.setFieldValue("description", e.target.value);
+                        }}
+                    />
+                    {getFormErrorMessage("description")}
+                    <Button label="Submit" type="submit" icon="pi pi-check" />
+                </form>
+            </div>
+            <DocSectionCode code={code} dependencies={{ formik: "^2.2.6" }} />
+        </>
+    );
 }

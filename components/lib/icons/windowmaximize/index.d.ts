@@ -17,6 +17,6 @@ export interface WindowMaximizeIconProps extends IconBaseProps {}
  * @group Component
  */
 export declare class WindowMaximizeIcon extends React.Component<
-	WindowMaximizeIconProps,
-	any
+    WindowMaximizeIconProps,
+    any
 > {}

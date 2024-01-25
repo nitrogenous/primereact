@@ -7,14 +7,14 @@ import { CustomerService } from "../../../../service/CustomerService";
 import DeferredDemo from "@/components/demo/DeferredDemo";
 
 export function PaginatorBasicDoc(props) {
-	const [customers, setCustomers] = useState([]);
+    const [customers, setCustomers] = useState([]);
 
-	const loadDemoData = () => {
-		CustomerService.getCustomersMedium().then((data) => setCustomers(data));
-	};
+    const loadDemoData = () => {
+        CustomerService.getCustomersMedium().then((data) => setCustomers(data));
+    };
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <DataTable value={customers} paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} tableStyle={{ minWidth: '50rem' }}>
     <Column field="name" header="Name" style={{ width: '25%' }}></Column>
     <Column field="country.name" header="Country" style={{ width: '25%' }}></Column>
@@ -22,7 +22,7 @@ export function PaginatorBasicDoc(props) {
     <Column field="representative.name" header="Representative" style={{ width: '25%' }}></Column>
 </DataTable>
         `,
-		javascript: `
+        javascript: `
 import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -47,7 +47,7 @@ export default function PaginatorBasicDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -95,7 +95,7 @@ export default function PaginatorBasicDemo() {
     );
 }
         `,
-		data: `
+        data: `
 {
     id: 1000,
     name: 'James Butt',
@@ -116,49 +116,49 @@ export default function PaginatorBasicDemo() {
 },
 ...
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Pagination is enabled by adding <i>paginator</i> property and defining{" "}
-					<i>rows</i> per page.
-				</p>
-			</DocSectionText>
-			<DeferredDemo onLoad={loadDemoData}>
-				<div className="card">
-					<DataTable
-						value={customers}
-						paginator
-						rows={5}
-						rowsPerPageOptions={[5, 10, 25, 50]}
-						tableStyle={{ minWidth: "50rem" }}
-					>
-						<Column
-							field="name"
-							header="Name"
-							style={{ width: "25%" }}
-						></Column>
-						<Column
-							field="country.name"
-							header="Country"
-							style={{ width: "25%" }}
-						></Column>
-						<Column
-							field="company"
-							header="Company"
-							style={{ width: "25%" }}
-						></Column>
-						<Column
-							field="representative.name"
-							header="Representative"
-							style={{ width: "25%" }}
-						></Column>
-					</DataTable>
-				</div>
-			</DeferredDemo>
-			<DocSectionCode code={code} service={["CustomerService"]} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Pagination is enabled by adding <i>paginator</i> property
+                    and defining <i>rows</i> per page.
+                </p>
+            </DocSectionText>
+            <DeferredDemo onLoad={loadDemoData}>
+                <div className="card">
+                    <DataTable
+                        value={customers}
+                        paginator
+                        rows={5}
+                        rowsPerPageOptions={[5, 10, 25, 50]}
+                        tableStyle={{ minWidth: "50rem" }}
+                    >
+                        <Column
+                            field="name"
+                            header="Name"
+                            style={{ width: "25%" }}
+                        ></Column>
+                        <Column
+                            field="country.name"
+                            header="Country"
+                            style={{ width: "25%" }}
+                        ></Column>
+                        <Column
+                            field="company"
+                            header="Company"
+                            style={{ width: "25%" }}
+                        ></Column>
+                        <Column
+                            field="representative.name"
+                            header="Representative"
+                            style={{ width: "25%" }}
+                        ></Column>
+                    </DataTable>
+                </div>
+            </DeferredDemo>
+            <DocSectionCode code={code} service={["CustomerService"]} />
+        </>
+    );
 }

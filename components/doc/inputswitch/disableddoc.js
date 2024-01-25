@@ -3,11 +3,11 @@ import { DocSectionText } from "@/components/doc/common/docsectiontext";
 import { InputSwitch } from "@/components/lib/inputswitch/InputSwitch";
 
 export function DisabledDoc(props) {
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <InputSwitch disabled />
         `,
-		javascript: `
+        javascript: `
 import React, { useState } from "react";
 import { InputSwitch } from "primereact/inputswitch";
 
@@ -19,7 +19,7 @@ export default function DisabledDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from "react";
 import { InputSwitch } from "primereact/inputswitch";
 
@@ -31,20 +31,20 @@ export default function DisabledDemo() {
     );
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					When <i>disabled</i> is present, the element cannot be edited and
-					focused.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<InputSwitch disabled />
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    When <i>disabled</i> is present, the element cannot be
+                    edited and focused.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <InputSwitch disabled />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

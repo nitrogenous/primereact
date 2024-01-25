@@ -6,15 +6,15 @@ import { Toast } from "@/components/lib/toast/Toast";
 import { useRef, useState } from "react";
 
 export function BasicDoc(props) {
-	const toast = useRef(null);
-	const [value, setValue] = useState("");
+    const toast = useRef(null);
+    const [value, setValue] = useState("");
 
-	useUpdateEffect(() => {
-		toast.current.show({ severity: "info", summary: "Updated" });
-	}, [value]);
+    useUpdateEffect(() => {
+        toast.current.show({ severity: "info", summary: "Updated" });
+    }, [value]);
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 const toast = useRef(null);
 const [value, setValue] = useState('');
 
@@ -22,7 +22,7 @@ useUpdateEffect(() => {
     toast.current.show({ severity: 'info', summary: 'Updated' });
 }, [value]);
         `,
-		javascript: `
+        javascript: `
 import React, { useState } from 'react';
 import { InputText } from 'primereact/inputtext';
 import { Toast } from 'primereact/toast';
@@ -46,7 +46,7 @@ export default function BasicDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from 'react';
 import { InputText } from 'primereact/inputtext';
 import { Toast } from 'primereact/toast';
@@ -70,22 +70,22 @@ export default function BasicDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>Updating the value at blur event triggers a message.</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<Toast ref={toast} />
-				<InputText
-					type="text"
-					defaultValue={value}
-					onBlur={(e) => setValue(e.target.value)}
-				/>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>Updating the value at blur event triggers a message.</p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <Toast ref={toast} />
+                <InputText
+                    type="text"
+                    defaultValue={value}
+                    onBlur={(e) => setValue(e.target.value)}
+                />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

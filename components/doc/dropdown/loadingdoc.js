@@ -3,11 +3,11 @@ import { DocSectionText } from "@/components/doc/common/docsectiontext";
 import { Dropdown } from "@/components/lib/dropdown/Dropdown";
 
 export function LoadingDoc(props) {
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Dropdown loading placeholder="Loading..." className="w-full md:w-14rem" />
         `,
-		javascript: `
+        javascript: `
 import React from "react";
 import { Dropdown } from 'primereact/dropdown';
 
@@ -18,7 +18,7 @@ export default function LoadingDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React from "react";
 import { Dropdown } from 'primereact/dropdown';
 
@@ -31,23 +31,23 @@ export default function LoadingDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Loading state can be used <i>loading</i> property.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<Dropdown
-					loading
-					placeholder="Loading..."
-					className="w-full md:w-14rem"
-				/>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Loading state can be used <i>loading</i> property.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <Dropdown
+                    loading
+                    placeholder="Loading..."
+                    className="w-full md:w-14rem"
+                />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

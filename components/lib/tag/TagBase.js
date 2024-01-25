@@ -2,13 +2,13 @@ import { ComponentBase } from "../componentbase/ComponentBase";
 import { classNames } from "../utils/Utils";
 
 const classes = {
-	value: "p-tag-value",
-	icon: "p-tag-icon",
-	root: ({ props }) =>
-		classNames("p-tag p-component", {
-			[`p-tag-${props.severity}`]: props.severity !== null,
-			"p-tag-rounded": props.rounded,
-		}),
+    value: "p-tag-value",
+    icon: "p-tag-icon",
+    root: ({ props }) =>
+        classNames("p-tag p-component", {
+            [`p-tag-${props.severity}`]: props.severity !== null,
+            "p-tag-rounded": props.rounded,
+        }),
 };
 
 const styles = `
@@ -32,18 +32,18 @@ const styles = `
 `;
 
 export const TagBase = ComponentBase.extend({
-	defaultProps: {
-		__TYPE: "Tag",
-		value: null,
-		severity: null,
-		rounded: false,
-		icon: null,
-		style: null,
-		className: null,
-		children: undefined,
-	},
-	css: {
-		classes,
-		styles,
-	},
+    defaultProps: {
+        __TYPE: "Tag",
+        value: null,
+        severity: null,
+        rounded: false,
+        icon: null,
+        style: null,
+        className: null,
+        children: undefined,
+    },
+    css: {
+        classes,
+        styles,
+    },
 });

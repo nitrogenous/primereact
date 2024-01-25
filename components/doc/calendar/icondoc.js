@@ -4,13 +4,13 @@ import { Calendar } from "@/components/lib/calendar/Calendar";
 import { useState } from "react";
 
 export function IconDoc(props) {
-	const [date, setDate] = useState(null);
+    const [date, setDate] = useState(null);
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Calendar value={date} onChange={(e) => setDate(e.value)} showIcon />
         `,
-		javascript: `
+        javascript: `
 import React, { useState } from "react";
 import { Calendar } from 'primereact/calendar';
 
@@ -43,7 +43,7 @@ export default function IconDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from "react";
 import { Calendar } from 'primereact/calendar';
 import { Nullable } from "primereact/ts-helpers";
@@ -77,50 +77,63 @@ export default function IconDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					An additional icon is displayed next to the input field when{" "}
-					<i>showIcon</i> is present.
-				</p>
-			</DocSectionText>
-			<div className="card flex flex-wrap gap-3 p-fluid">
-				<div className="flex-auto">
-					<label htmlFor="buttondisplay" className="font-bold block mb-2">
-						Button Display
-					</label>
-					<Calendar
-						id="buttondisplay"
-						value={date}
-						onChange={(e) => setDate(e.value)}
-						showIcon
-					/>
-				</div>
-				<div className="flex-auto">
-					<label htmlFor="buttondisplay" className="font-bold block mb-2">
-						Icon Display
-					</label>
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    An additional icon is displayed next to the input field when{" "}
+                    <i>showIcon</i> is present.
+                </p>
+            </DocSectionText>
+            <div className="card flex flex-wrap gap-3 p-fluid">
+                <div className="flex-auto">
+                    <label
+                        htmlFor="buttondisplay"
+                        className="font-bold block mb-2"
+                    >
+                        Button Display
+                    </label>
+                    <Calendar
+                        id="buttondisplay"
+                        value={date}
+                        onChange={(e) => setDate(e.value)}
+                        showIcon
+                    />
+                </div>
+                <div className="flex-auto">
+                    <label
+                        htmlFor="buttondisplay"
+                        className="font-bold block mb-2"
+                    >
+                        Icon Display
+                    </label>
 
-					<Calendar value={date} onChange={(e) => setDate(e.value)} showIcon />
-				</div>
-				<div className="flex-auto">
-					<label htmlFor="buttondisplay" className="font-bold block mb-2">
-						Icon Template
-					</label>
+                    <Calendar
+                        value={date}
+                        onChange={(e) => setDate(e.value)}
+                        showIcon
+                    />
+                </div>
+                <div className="flex-auto">
+                    <label
+                        htmlFor="buttondisplay"
+                        className="font-bold block mb-2"
+                    >
+                        Icon Template
+                    </label>
 
-					<Calendar
-						value={date}
-						onChange={(e) => setDate(e.value)}
-						showIcon
-						timeOnly
-						icon={() => <i className="pi pi-clock" />}
-					/>
-				</div>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+                    <Calendar
+                        value={date}
+                        onChange={(e) => setDate(e.value)}
+                        showIcon
+                        timeOnly
+                        icon={() => <i className="pi pi-clock" />}
+                    />
+                </div>
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

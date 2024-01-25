@@ -15,15 +15,15 @@ import { TooltipOptions } from "../tooltip/tooltipoptions";
 import { IconType, PassThroughType } from "../utils";
 
 export declare type ToggleButtonPassThroughType<T> = PassThroughType<
-	T,
-	ToggleButtonPassThroughMethodOptions
+    T,
+    ToggleButtonPassThroughMethodOptions
 >;
 
 /**
  * Custom passthrough(pt) option method.
  */
 export interface ToggleButtonPassThroughMethodOptions {
-	props: ToggleButtonProps;
+    props: ToggleButtonProps;
 }
 
 /**
@@ -31,47 +31,47 @@ export interface ToggleButtonPassThroughMethodOptions {
  * @see {@link ToggleButtonProps.pt}
  */
 export interface ToggleButtonPassThroughOptions {
-	/**
-	 * Uses to pass attributes to the root's DOM element.
-	 */
-	root?: ToggleButtonPassThroughType<React.HTMLAttributes<HTMLDivElement>>;
-	/**
-	 * Uses to pass attributes to the icon's DOM element.
-	 */
-	icon?: ToggleButtonPassThroughType<
-		React.SVGProps<SVGSVGElement> | React.HTMLAttributes<HTMLSpanElement>
-	>;
-	/**
-	 * Uses to pass attributes to the label's DOM element.
-	 */
-	label?: ToggleButtonPassThroughType<React.HTMLAttributes<HTMLSpanElement>>;
-	/**
-	 * Uses to pass attributes tooltip's DOM element.
-	 * @type {TooltipPassThroughOptions}
-	 */
-	tooltip?: TooltipPassThroughOptions;
-	/**
-	 * Used to manage all lifecycle hooks
-	 * @see {@link ComponentHooks}
-	 */
-	hooks?: ComponentHooks;
+    /**
+     * Uses to pass attributes to the root's DOM element.
+     */
+    root?: ToggleButtonPassThroughType<React.HTMLAttributes<HTMLDivElement>>;
+    /**
+     * Uses to pass attributes to the icon's DOM element.
+     */
+    icon?: ToggleButtonPassThroughType<
+        React.SVGProps<SVGSVGElement> | React.HTMLAttributes<HTMLSpanElement>
+    >;
+    /**
+     * Uses to pass attributes to the label's DOM element.
+     */
+    label?: ToggleButtonPassThroughType<React.HTMLAttributes<HTMLSpanElement>>;
+    /**
+     * Uses to pass attributes tooltip's DOM element.
+     * @type {TooltipPassThroughOptions}
+     */
+    tooltip?: TooltipPassThroughOptions;
+    /**
+     * Used to manage all lifecycle hooks
+     * @see {@link ComponentHooks}
+     */
+    hooks?: ComponentHooks;
 }
 /**
  * Custom toggle button change target options
  */
 interface ToggleButtonChangeTargetOptions {
-	/**
-	 * The name of the element.
-	 */
-	name: string;
-	/**
-	 * Unique identifier of the element.
-	 */
-	id: string;
-	/**
-	 * Collapsed state as a boolean.
-	 */
-	value: boolean;
+    /**
+     * The name of the element.
+     */
+    name: string;
+    /**
+     * Unique identifier of the element.
+     */
+    id: string;
+    /**
+     * Collapsed state as a boolean.
+     */
+    value: boolean;
 }
 
 /**
@@ -80,26 +80,26 @@ interface ToggleButtonChangeTargetOptions {
  * @event
  */
 interface ToggleButtonChangeEvent {
-	/**
-	 * Browser event
-	 */
-	originalEvent: React.SyntheticEvent;
-	/**
-	 * Value as the checked state.
-	 */
-	value: boolean;
-	/**
-	 * Stops the event from propagating.
-	 */
-	stopPropagation(): void;
-	/**
-	 * Prevents the default action of the event.
-	 */
-	preventDefault(): void;
-	/**
-	 * Target element.
-	 */
-	target: ToggleButtonChangeTargetOptions;
+    /**
+     * Browser event
+     */
+    originalEvent: React.SyntheticEvent;
+    /**
+     * Value as the checked state.
+     */
+    value: boolean;
+    /**
+     * Stops the event from propagating.
+     */
+    stopPropagation(): void;
+    /**
+     * Prevents the default action of the event.
+     */
+    preventDefault(): void;
+    /**
+     * Target element.
+     */
+    target: ToggleButtonChangeTargetOptions;
 }
 
 /**
@@ -107,84 +107,84 @@ interface ToggleButtonChangeEvent {
  * @group Properties
  */
 export interface ToggleButtonProps
-	extends Omit<
-		React.DetailedHTMLProps<
-			React.InputHTMLAttributes<HTMLDivElement>,
-			HTMLDivElement
-		>,
-		"onChange" | "ref" | "pt"
-	> {
-	/**
-	 * Specifies the on/off state of the button.
-	 * @defaultValue false
-	 */
-	checked?: boolean | undefined;
-	/**
-	 * Used to get the child elements of the component.
-	 * @readonly
-	 */
-	children?: React.ReactNode | undefined;
-	/**
-	 * Position of the icon, valid values are "left" and "right".
-	 * @defaultValue left
-	 */
-	iconPos?: "left" | "right" | undefined;
-	/**
-	 * Icon for the off state.
-	 */
-	offIcon?: IconType<ToggleButtonProps> | undefined;
-	/**
-	 * Label for the off state.
-	 * @defaultValue no
-	 */
-	offLabel?: string | undefined;
-	/**
-	 * Icon for the on state.
-	 */
-	onIcon?: IconType<ToggleButtonProps> | undefined;
-	/**
-	 * Label for the on state.
-	 * @defaultValue yes
-	 */
-	onLabel?: string | undefined;
-	/**
-	 * Content of the tooltip.
-	 */
-	tooltip?: string | undefined;
-	/**
-	 * Configuration of the tooltip, refer to the tooltip documentation for more information.
-	 */
-	tooltipOptions?: TooltipOptions | undefined;
-	/**
-	 * Callback to invoke when autocomplete loses focus.
-	 * @param {React.FocusEvent<HTMLElement>} event - Browser event.
-	 */
-	onBlur?(event: React.FocusEvent<HTMLElement>): void;
-	/**
-	 * Callback to invoke on value change.
-	 * @param {ToggleButtonChangeEvent} event - Browser event.
-	 */
-	onChange?(event: ToggleButtonChangeEvent): void;
-	/**
-	 * Callback to invoke when autocomplete gets focus.
-	 * @param {React.FocusEvent<HTMLElement>} event - Browser event.
-	 */
-	onFocus?(event: React.FocusEvent<HTMLElement>): void;
-	/**
-	 * Uses to pass attributes to DOM elements inside the component.
-	 * @type {ToggleButtonPassThroughOptions}
-	 */
-	pt?: ToggleButtonPassThroughOptions;
-	/**
-	 * Used to configure passthrough(pt) options of the component.
-	 * @type {PassThroughOptions}
-	 */
-	ptOptions?: PassThroughOptions;
-	/**
-	 * When enabled, it removes component related styles in the core.
-	 * @defaultValue false
-	 */
-	unstyled?: boolean;
+    extends Omit<
+        React.DetailedHTMLProps<
+            React.InputHTMLAttributes<HTMLDivElement>,
+            HTMLDivElement
+        >,
+        "onChange" | "ref" | "pt"
+    > {
+    /**
+     * Specifies the on/off state of the button.
+     * @defaultValue false
+     */
+    checked?: boolean | undefined;
+    /**
+     * Used to get the child elements of the component.
+     * @readonly
+     */
+    children?: React.ReactNode | undefined;
+    /**
+     * Position of the icon, valid values are "left" and "right".
+     * @defaultValue left
+     */
+    iconPos?: "left" | "right" | undefined;
+    /**
+     * Icon for the off state.
+     */
+    offIcon?: IconType<ToggleButtonProps> | undefined;
+    /**
+     * Label for the off state.
+     * @defaultValue no
+     */
+    offLabel?: string | undefined;
+    /**
+     * Icon for the on state.
+     */
+    onIcon?: IconType<ToggleButtonProps> | undefined;
+    /**
+     * Label for the on state.
+     * @defaultValue yes
+     */
+    onLabel?: string | undefined;
+    /**
+     * Content of the tooltip.
+     */
+    tooltip?: string | undefined;
+    /**
+     * Configuration of the tooltip, refer to the tooltip documentation for more information.
+     */
+    tooltipOptions?: TooltipOptions | undefined;
+    /**
+     * Callback to invoke when autocomplete loses focus.
+     * @param {React.FocusEvent<HTMLElement>} event - Browser event.
+     */
+    onBlur?(event: React.FocusEvent<HTMLElement>): void;
+    /**
+     * Callback to invoke on value change.
+     * @param {ToggleButtonChangeEvent} event - Browser event.
+     */
+    onChange?(event: ToggleButtonChangeEvent): void;
+    /**
+     * Callback to invoke when autocomplete gets focus.
+     * @param {React.FocusEvent<HTMLElement>} event - Browser event.
+     */
+    onFocus?(event: React.FocusEvent<HTMLElement>): void;
+    /**
+     * Uses to pass attributes to DOM elements inside the component.
+     * @type {ToggleButtonPassThroughOptions}
+     */
+    pt?: ToggleButtonPassThroughOptions;
+    /**
+     * Used to configure passthrough(pt) options of the component.
+     * @type {PassThroughOptions}
+     */
+    ptOptions?: PassThroughOptions;
+    /**
+     * When enabled, it removes component related styles in the core.
+     * @defaultValue false
+     */
+    unstyled?: boolean;
 }
 
 /**
@@ -199,16 +199,16 @@ export interface ToggleButtonProps
  * @group Component
  */
 export declare class ToggleButton extends React.Component<
-	ToggleButtonProps,
-	any
+    ToggleButtonProps,
+    any
 > {
-	/**
-	 * Used to focus the component.
-	 */
-	public focus(): void;
-	/**
-	 * Used to get container element.
-	 * @return {HTMLDivElement} Container element
-	 */
-	public getElement(): HTMLDivElement;
+    /**
+     * Used to focus the component.
+     */
+    public focus(): void;
+    /**
+     * Used to get container element.
+     * @return {HTMLDivElement} Container element
+     */
+    public getElement(): HTMLDivElement;
 }

@@ -6,55 +6,55 @@ import { IconUtils, classNames } from "../utils/Utils";
 import { TagBase } from "./TagBase";
 
 export const Tag = React.forwardRef((inProps, ref) => {
-	const mergeProps = useMergeProps();
-	const context = React.useContext(PrimeReactContext);
-	const props = TagBase.getProps(inProps, context);
-	const { ptm, cx, isUnstyled } = TagBase.setMetaData({
-		props,
-	});
+    const mergeProps = useMergeProps();
+    const context = React.useContext(PrimeReactContext);
+    const props = TagBase.getProps(inProps, context);
+    const { ptm, cx, isUnstyled } = TagBase.setMetaData({
+        props,
+    });
 
-	useHandleStyle(TagBase.css.styles, isUnstyled, { name: "tag" });
+    useHandleStyle(TagBase.css.styles, isUnstyled, { name: "tag" });
 
-	const elementRef = React.useRef(null);
+    const elementRef = React.useRef(null);
 
-	const iconProps = mergeProps(
-		{
-			className: cx("icon"),
-		},
-		ptm("icon"),
-	);
+    const iconProps = mergeProps(
+        {
+            className: cx("icon"),
+        },
+        ptm("icon"),
+    );
 
-	const icon = IconUtils.getJSXIcon(props.icon, { ...iconProps }, { props });
+    const icon = IconUtils.getJSXIcon(props.icon, { ...iconProps }, { props });
 
-	React.useImperativeHandle(ref, () => ({
-		props,
-		getElement: () => elementRef.current,
-	}));
+    React.useImperativeHandle(ref, () => ({
+        props,
+        getElement: () => elementRef.current,
+    }));
 
-	const rootProps = mergeProps(
-		{
-			ref: elementRef,
-			className: classNames(props.className, cx("root")),
-			style: props.style,
-		},
-		TagBase.getOtherProps(props),
-		ptm("root"),
-	);
+    const rootProps = mergeProps(
+        {
+            ref: elementRef,
+            className: classNames(props.className, cx("root")),
+            style: props.style,
+        },
+        TagBase.getOtherProps(props),
+        ptm("root"),
+    );
 
-	const valueProps = mergeProps(
-		{
-			className: cx("value"),
-		},
-		ptm("value"),
-	);
+    const valueProps = mergeProps(
+        {
+            className: cx("value"),
+        },
+        ptm("value"),
+    );
 
-	return (
-		<span {...rootProps}>
-			{icon}
-			<span {...valueProps}>{props.value}</span>
-			<span>{props.children}</span>
-		</span>
-	);
+    return (
+        <span {...rootProps}>
+            {icon}
+            <span {...valueProps}>{props.value}</span>
+            <span>{props.children}</span>
+        </span>
+    );
 });
 
 Tag.displayName = "Tag";

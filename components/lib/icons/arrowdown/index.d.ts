@@ -17,6 +17,6 @@ export interface ArrowDownIconProps extends IconBaseProps {}
  * @group Component
  */
 export declare class ArrowDownIcon extends React.Component<
-	ArrowDownIconProps,
-	any
+    ArrowDownIconProps,
+    any
 > {}

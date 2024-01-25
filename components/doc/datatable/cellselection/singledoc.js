@@ -8,16 +8,16 @@ import { ProductService } from "../../../../service/ProductService";
 import DeferredDemo from "@/components/demo/DeferredDemo";
 
 export function SingleCellSelectionDoc(props) {
-	const [products, setProducts] = useState([]);
-	const [selectedCell, setSelectedCell] = useState(null);
-	const [metaKey, setMetaKey] = useState(true);
+    const [products, setProducts] = useState([]);
+    const [selectedCell, setSelectedCell] = useState(null);
+    const [metaKey, setMetaKey] = useState(true);
 
-	const loadDemoData = () => {
-		ProductService.getProductsMini().then((data) => setProducts(data));
-	};
+    const loadDemoData = () => {
+        ProductService.getProductsMini().then((data) => setProducts(data));
+    };
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <InputSwitch checked={metaKey} onChange={(e) => setMetaKey(e.value)} />
 
 <DataTable value={products} cellSelection selectionMode="single" selection={selectedCell}
@@ -28,7 +28,7 @@ export function SingleCellSelectionDoc(props) {
     <Column field="quantity" header="Quantity"></Column>
 </DataTable>
         `,
-		javascript: `
+        javascript: `
 import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -61,7 +61,7 @@ export default function SingleCellSelectionDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState, useEffect } from 'react';
 import { DataTable, DataTableSelectionChangeEvent, DataTableCellSelection } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -107,7 +107,7 @@ export default function SingleCellSelectionDemo() {
     );
 }
         `,
-		data: `
+        data: `
 {
     id: '1000',
     code: 'f230fh0g3',
@@ -122,55 +122,57 @@ export default function SingleCellSelectionDemo() {
 },
 ...
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Single cell selection is enabled by adding <i>cellSelection</i>,
-					defining <i>selectionMode</i> as <i>single</i> along with a value
-					binding using <i>selection</i> and <i>onSelectionChange</i>{" "}
-					properties. The type of the selection would be
-					<i>DataTableCellSelection</i> that provides information about the cell
-					such as <i>cellIndex</i> and <i>rowIndex</i>.
-				</p>
-				<p>
-					By default, metaKey press (e.g. <i>⌘</i>) is necessary to unselect a
-					cell however this can be configured with disabling the{" "}
-					<i>metaKeySelection</i> property. In touch enabled devices this option
-					has no effect and behavior is same as setting it to false.
-				</p>
-			</DocSectionText>
-			<DeferredDemo onLoad={loadDemoData}>
-				<div className="card">
-					<div className="flex justify-content-center align-items-center mb-4 gap-2">
-						<InputSwitch
-							inputId="input-metakey"
-							checked={metaKey}
-							onChange={(e) => setMetaKey(e.value)}
-						/>
-						<label htmlFor="input-metakey">MetaKey</label>
-					</div>
-					<DataTable
-						value={products}
-						selectionMode="single"
-						cellSelection
-						selection={selectedCell}
-						onSelectionChange={(e) => {
-							setSelectedCell(e.value);
-						}}
-						metaKeySelection={metaKey}
-						tableStyle={{ minWidth: "50rem" }}
-					>
-						<Column field="code" header="Code"></Column>
-						<Column field="name" header="Name"></Column>
-						<Column field="category" header="Category"></Column>
-						<Column field="quantity" header="Quantity"></Column>
-					</DataTable>
-				</div>
-			</DeferredDemo>
-			<DocSectionCode code={code} service={["ProductService"]} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Single cell selection is enabled by adding{" "}
+                    <i>cellSelection</i>, defining <i>selectionMode</i> as{" "}
+                    <i>single</i> along with a value binding using{" "}
+                    <i>selection</i> and <i>onSelectionChange</i> properties.
+                    The type of the selection would be
+                    <i>DataTableCellSelection</i> that provides information
+                    about the cell such as <i>cellIndex</i> and <i>rowIndex</i>.
+                </p>
+                <p>
+                    By default, metaKey press (e.g. <i>⌘</i>) is necessary to
+                    unselect a cell however this can be configured with
+                    disabling the <i>metaKeySelection</i> property. In touch
+                    enabled devices this option has no effect and behavior is
+                    same as setting it to false.
+                </p>
+            </DocSectionText>
+            <DeferredDemo onLoad={loadDemoData}>
+                <div className="card">
+                    <div className="flex justify-content-center align-items-center mb-4 gap-2">
+                        <InputSwitch
+                            inputId="input-metakey"
+                            checked={metaKey}
+                            onChange={(e) => setMetaKey(e.value)}
+                        />
+                        <label htmlFor="input-metakey">MetaKey</label>
+                    </div>
+                    <DataTable
+                        value={products}
+                        selectionMode="single"
+                        cellSelection
+                        selection={selectedCell}
+                        onSelectionChange={(e) => {
+                            setSelectedCell(e.value);
+                        }}
+                        metaKeySelection={metaKey}
+                        tableStyle={{ minWidth: "50rem" }}
+                    >
+                        <Column field="code" header="Code"></Column>
+                        <Column field="name" header="Name"></Column>
+                        <Column field="category" header="Category"></Column>
+                        <Column field="quantity" header="Quantity"></Column>
+                    </DataTable>
+                </div>
+            </DeferredDemo>
+            <DocSectionCode code={code} service={["ProductService"]} />
+        </>
+    );
 }

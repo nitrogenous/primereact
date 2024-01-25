@@ -4,23 +4,23 @@ import { Dropdown } from "@/components/lib/dropdown/Dropdown";
 import { useState } from "react";
 
 export function FloatLabelDoc(props) {
-	const [selectedCity, setSelectedCity] = useState(null);
-	const cities = [
-		{ name: "New York", code: "NY" },
-		{ name: "Rome", code: "RM" },
-		{ name: "London", code: "LDN" },
-		{ name: "Istanbul", code: "IST" },
-		{ name: "Paris", code: "PRS" },
-	];
+    const [selectedCity, setSelectedCity] = useState(null);
+    const cities = [
+        { name: "New York", code: "NY" },
+        { name: "Rome", code: "RM" },
+        { name: "London", code: "LDN" },
+        { name: "Istanbul", code: "IST" },
+        { name: "Paris", code: "PRS" },
+    ];
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <span className="p-float-label w-full md:w-14rem">
     <Dropdown inputId="dd-city" value={selectedCity} onChange={(e) => setSelectedCity(e.value)} options={cities} optionLabel="name" className="w-full" />
     <label htmlFor="dd-city">Select a City</label>
 </span>
         `,
-		javascript: `
+        javascript: `
 import React, { useState } from "react";
 import { Dropdown } from 'primereact/dropdown';
 
@@ -44,7 +44,7 @@ export default function FloatLabelDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from "react";
 import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
 
@@ -73,27 +73,30 @@ export default function FloatLabelDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>A floating label appears on top of the input field when focused.</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<span className="p-float-label w-full md:w-14rem">
-					<Dropdown
-						inputId="dd-city"
-						value={selectedCity}
-						onChange={(e) => setSelectedCity(e.value)}
-						options={cities}
-						optionLabel="name"
-						className="w-full"
-					/>
-					<label htmlFor="dd-city">Select a City</label>
-				</span>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    A floating label appears on top of the input field when
+                    focused.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <span className="p-float-label w-full md:w-14rem">
+                    <Dropdown
+                        inputId="dd-city"
+                        value={selectedCity}
+                        onChange={(e) => setSelectedCity(e.value)}
+                        options={cities}
+                        optionLabel="name"
+                        className="w-full"
+                    />
+                    <label htmlFor="dd-city">Select a City</label>
+                </span>
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

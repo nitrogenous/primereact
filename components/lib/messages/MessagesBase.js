@@ -53,35 +53,35 @@ const styles = `
 `;
 
 const classes = {
-	uimessage: {
-		root: ({ severity }) =>
-			classNames("p-message p-component", {
-				[`p-message-${severity}`]: severity,
-			}),
-		wrapper: "p-message-wrapper",
-		detail: "p-message-detail",
-		summary: "p-message-summary",
-		icon: "p-message-icon",
-		buttonicon: "p-message-close-icon",
-		button: "p-message-close p-link",
-		transition: "p-message",
-	},
+    uimessage: {
+        root: ({ severity }) =>
+            classNames("p-message p-component", {
+                [`p-message-${severity}`]: severity,
+            }),
+        wrapper: "p-message-wrapper",
+        detail: "p-message-detail",
+        summary: "p-message-summary",
+        icon: "p-message-icon",
+        buttonicon: "p-message-close-icon",
+        button: "p-message-close p-link",
+        transition: "p-message",
+    },
 };
 
 export const MessagesBase = ComponentBase.extend({
-	defaultProps: {
-		__TYPE: "Messages",
-		__parentMetadata: null,
-		id: null,
-		className: null,
-		style: null,
-		transitionOptions: null,
-		onRemove: null,
-		onClick: null,
-		children: undefined,
-	},
-	css: {
-		classes,
-		styles,
-	},
+    defaultProps: {
+        __TYPE: "Messages",
+        __parentMetadata: null,
+        id: null,
+        className: null,
+        style: null,
+        transitionOptions: null,
+        onRemove: null,
+        onClick: null,
+        children: undefined,
+    },
+    css: {
+        classes,
+        styles,
+    },
 });

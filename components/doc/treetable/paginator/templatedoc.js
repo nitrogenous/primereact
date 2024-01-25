@@ -7,42 +7,42 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export function PaginatorTemplateDoc(props) {
-	const [nodes, setNodes] = useState([]);
+    const [nodes, setNodes] = useState([]);
 
-	useEffect(() => {
-		const files = [];
+    useEffect(() => {
+        const files = [];
 
-		for (let i = 0; i < 50; i++) {
-			const node = {
-				key: i,
-				data: {
-					name: "Item " + i,
-					size: Math.floor(Math.random() * 1000) + 1 + "kb",
-					type: "Type " + i,
-				},
-				children: [
-					{
-						key: i + " - 0",
-						data: {
-							name: "Item " + i + " - 0",
-							size: Math.floor(Math.random() * 1000) + 1 + "kb",
-							type: "Type " + i,
-						},
-					},
-				],
-			};
+        for (let i = 0; i < 50; i++) {
+            const node = {
+                key: i,
+                data: {
+                    name: "Item " + i,
+                    size: Math.floor(Math.random() * 1000) + 1 + "kb",
+                    type: "Type " + i,
+                },
+                children: [
+                    {
+                        key: i + " - 0",
+                        data: {
+                            name: "Item " + i + " - 0",
+                            size: Math.floor(Math.random() * 1000) + 1 + "kb",
+                            type: "Type " + i,
+                        },
+                    },
+                ],
+            };
 
-			files.push(node);
-		}
+            files.push(node);
+        }
 
-		setNodes(files);
-	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+        setNodes(files);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-	const paginatorLeft = <Button type="button" icon="pi pi-refresh" text />;
-	const paginatorRight = <Button type="button" icon="pi pi-download" text />;
+    const paginatorLeft = <Button type="button" icon="pi pi-refresh" text />;
+    const paginatorRight = <Button type="button" icon="pi pi-download" text />;
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <TreeTable value={nodes} paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]}
         paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
         currentPageReportTemplate="{first} to {last} of {totalRecords}"
@@ -52,7 +52,7 @@ export function PaginatorTemplateDoc(props) {
     <Column field="type" header="Type"></Column>
 </TreeTable>
         `,
-		javascript: `
+        javascript: `
 import React, { useState, useEffect } from 'react';
 import { Button } from 'primereact/button';
 import { TreeTable } from 'primereact/treetable';
@@ -107,7 +107,7 @@ export default function PaginatorTemplateDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState, useEffect } from 'react';
 import { Button } from 'primereact/button';
 import { TreeTable } from 'primereact/treetable';
@@ -163,37 +163,38 @@ export default function PaginatorTemplateDemo() {
     );
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Paginator UI is customized using the <i>paginatorTemplate</i>{" "}
-					property. Each element can also be customized further with your own UI
-					to replace the default one, refer to the{" "}
-					<Link href="/paginator">Paginator</Link> component for more
-					information about the advanced customization options.
-				</p>
-			</DocSectionText>
-			<div className="card">
-				<TreeTable
-					value={nodes}
-					paginator
-					rows={5}
-					rowsPerPageOptions={[5, 10, 25, 50]}
-					paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-					currentPageReportTemplate="{first} to {last} of {totalRecords}"
-					paginatorLeft={paginatorLeft}
-					paginatorRight={paginatorRight}
-					tableStyle={{ minWidth: "50rem" }}
-				>
-					<Column field="name" header="Name" expander></Column>
-					<Column field="size" header="Size"></Column>
-					<Column field="type" header="Type"></Column>
-				</TreeTable>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Paginator UI is customized using the{" "}
+                    <i>paginatorTemplate</i> property. Each element can also be
+                    customized further with your own UI to replace the default
+                    one, refer to the <Link href="/paginator">Paginator</Link>{" "}
+                    component for more information about the advanced
+                    customization options.
+                </p>
+            </DocSectionText>
+            <div className="card">
+                <TreeTable
+                    value={nodes}
+                    paginator
+                    rows={5}
+                    rowsPerPageOptions={[5, 10, 25, 50]}
+                    paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+                    currentPageReportTemplate="{first} to {last} of {totalRecords}"
+                    paginatorLeft={paginatorLeft}
+                    paginatorRight={paginatorRight}
+                    tableStyle={{ minWidth: "50rem" }}
+                >
+                    <Column field="name" header="Name" expander></Column>
+                    <Column field="size" header="Size"></Column>
+                    <Column field="type" header="Type"></Column>
+                </TreeTable>
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

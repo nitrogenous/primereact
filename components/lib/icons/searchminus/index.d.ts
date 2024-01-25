@@ -17,6 +17,6 @@ export interface SearchMinusIconProps extends IconBaseProps {}
  * @group Component
  */
 export declare class SearchMinusIcon extends React.Component<
-	SearchMinusIconProps,
-	any
+    SearchMinusIconProps,
+    any
 > {}

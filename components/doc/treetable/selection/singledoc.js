@@ -7,16 +7,16 @@ import { useEffect, useState } from "react";
 import { NodeService } from "../../../../service/NodeService";
 
 export function SingleRowSelectionDoc(props) {
-	const [nodes, setNodes] = useState([]);
-	const [selectedNodeKey, setSelectedNodeKey] = useState(null);
-	const [metaKey, setMetaKey] = useState(true);
+    const [nodes, setNodes] = useState([]);
+    const [selectedNodeKey, setSelectedNodeKey] = useState(null);
+    const [metaKey, setMetaKey] = useState(true);
 
-	useEffect(() => {
-		NodeService.getTreeTableNodes().then((data) => setNodes(data));
-	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(() => {
+        NodeService.getTreeTableNodes().then((data) => setNodes(data));
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <InputSwitch checked={metaKey} onChange={(e) => setMetaKey(e.value)} />
 
 <TreeTable value={nodes} selectionMode="single" selectionKeys={selectedNodeKey}
@@ -26,7 +26,7 @@ export function SingleRowSelectionDoc(props) {
     <Column field="type" header="Type"></Column>
 </TreeTable>
         `,
-		javascript: `
+        javascript: `
 import React, { useState, useEffect } from 'react';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
@@ -57,7 +57,7 @@ export default function SingleRowSelectionDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState, useEffect } from 'react';
 import { TreeTable, TreeTableSelectionEvent } from 'primereact/treetable';
 import { Column } from 'primereact/column';
@@ -89,7 +89,7 @@ export default function SingleRowSelectionDemo() {
     )
 }
         `,
-		data: `
+        data: `
 {
     key: '0',
     label: 'Documents',
@@ -117,47 +117,48 @@ export default function SingleRowSelectionDemo() {
 },
 ...
 `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Single node selection is configured by setting <i>selectionMode</i> as{" "}
-					<i>single</i> along with <i>selectionKeys</i> and{" "}
-					<i>onSelectionChange</i> properties to manage the selection value
-					binding.
-				</p>
-				<p>
-					By default, metaKey press (e.g. <i>⌘</i>) is necessary to unselect a
-					node however this can be configured with disabling the{" "}
-					<i>metaKeySelection</i> property. In touch enabled devices this option
-					has no effect and behavior is same as setting it to false.
-				</p>
-			</DocSectionText>
-			<div className="card">
-				<div className="flex justify-content-center align-items-center mb-4 gap-2">
-					<InputSwitch
-						inputId="input-metakey"
-						checked={metaKey}
-						onChange={(e) => setMetaKey(e.value)}
-					/>
-					<label htmlFor="input-metakey">MetaKey</label>
-				</div>
-				<TreeTable
-					value={nodes}
-					selectionMode="single"
-					selectionKeys={selectedNodeKey}
-					onSelectionChange={(e) => setSelectedNodeKey(e.value)}
-					metaKeySelection={metaKey}
-					tableStyle={{ minWidth: "50rem" }}
-				>
-					<Column field="name" header="Name" expander></Column>
-					<Column field="size" header="Size"></Column>
-					<Column field="type" header="Type"></Column>
-				</TreeTable>
-			</div>
-			<DocSectionCode code={code} service={["NodeService"]} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Single node selection is configured by setting{" "}
+                    <i>selectionMode</i> as <i>single</i> along with{" "}
+                    <i>selectionKeys</i> and <i>onSelectionChange</i> properties
+                    to manage the selection value binding.
+                </p>
+                <p>
+                    By default, metaKey press (e.g. <i>⌘</i>) is necessary to
+                    unselect a node however this can be configured with
+                    disabling the <i>metaKeySelection</i> property. In touch
+                    enabled devices this option has no effect and behavior is
+                    same as setting it to false.
+                </p>
+            </DocSectionText>
+            <div className="card">
+                <div className="flex justify-content-center align-items-center mb-4 gap-2">
+                    <InputSwitch
+                        inputId="input-metakey"
+                        checked={metaKey}
+                        onChange={(e) => setMetaKey(e.value)}
+                    />
+                    <label htmlFor="input-metakey">MetaKey</label>
+                </div>
+                <TreeTable
+                    value={nodes}
+                    selectionMode="single"
+                    selectionKeys={selectedNodeKey}
+                    onSelectionChange={(e) => setSelectedNodeKey(e.value)}
+                    metaKeySelection={metaKey}
+                    tableStyle={{ minWidth: "50rem" }}
+                >
+                    <Column field="name" header="Name" expander></Column>
+                    <Column field="size" header="Size"></Column>
+                    <Column field="type" header="Type"></Column>
+                </TreeTable>
+            </div>
+            <DocSectionCode code={code} service={["NodeService"]} />
+        </>
+    );
 }

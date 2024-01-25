@@ -17,6 +17,6 @@ export interface RefreshIconProps extends IconBaseProps {}
  * @group Component
  */
 export declare class RefreshIcon extends React.Component<
-	RefreshIconProps,
-	any
+    RefreshIconProps,
+    any
 > {}

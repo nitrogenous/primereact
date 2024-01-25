@@ -7,43 +7,47 @@ import { InputText } from "@/components/lib/inputtext/InputText";
 import React from "react";
 
 export function BasicDoc(props) {
-	const items = [
-		{
-			label: "Update",
-			icon: "pi pi-refresh",
-		},
-		{
-			label: "Delete",
-			icon: "pi pi-times",
-		},
-	];
+    const items = [
+        {
+            label: "Update",
+            icon: "pi pi-refresh",
+        },
+        {
+            label: "Delete",
+            icon: "pi pi-times",
+        },
+    ];
 
-	const startContent = (
-		<React.Fragment>
-			<Button icon="pi pi-plus" className="mr-2" />
-			<Button icon="pi pi-print" className="mr-2" />
-			<Button icon="pi pi-upload" />
-		</React.Fragment>
-	);
+    const startContent = (
+        <React.Fragment>
+            <Button icon="pi pi-plus" className="mr-2" />
+            <Button icon="pi pi-print" className="mr-2" />
+            <Button icon="pi pi-upload" />
+        </React.Fragment>
+    );
 
-	const centerContent = (
-		<span classclassName="p-input-icon-left">
-			<i classclassName="pi pi-search" />
-			<InputText placeholder="Search" />
-		</span>
-	);
+    const centerContent = (
+        <span classclassName="p-input-icon-left">
+            <i classclassName="pi pi-search" />
+            <InputText placeholder="Search" />
+        </span>
+    );
 
-	const endContent = (
-		<React.Fragment>
-			<SplitButton label="Save" model={items} icon="pi pi-check"></SplitButton>
-		</React.Fragment>
-	);
+    const endContent = (
+        <React.Fragment>
+            <SplitButton
+                label="Save"
+                model={items}
+                icon="pi pi-check"
+            ></SplitButton>
+        </React.Fragment>
+    );
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Toolbar start={startContent} end={endContent} />
         `,
-		javascript: `
+        javascript: `
 import React from 'react';
 import { Toolbar } from 'primereact/toolbar';
 import { Button } from 'primereact/button';
@@ -90,7 +94,7 @@ export default function BasicDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React from 'react';
 import { Toolbar } from 'primereact/toolbar';
 import { Button } from 'primereact/button';
@@ -138,20 +142,24 @@ export default function BasicDemo() {
     );
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Toolbar provides <i>start</i>, <i>center</i> and <i>end</i> properties
-					to place content at these sections.
-				</p>
-			</DocSectionText>
-			<div className="card">
-				<Toolbar start={startContent} center={centerContent} end={endContent} />
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Toolbar provides <i>start</i>, <i>center</i> and <i>end</i>{" "}
+                    properties to place content at these sections.
+                </p>
+            </DocSectionText>
+            <div className="card">
+                <Toolbar
+                    start={startContent}
+                    center={centerContent}
+                    end={endContent}
+                />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

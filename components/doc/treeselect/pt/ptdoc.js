@@ -5,15 +5,15 @@ import { useEffect, useState } from "react";
 import { NodeService } from "../../../../service/NodeService";
 
 export function PTDoc(props) {
-	const [nodes, setNodes] = useState(null);
-	const [selectedNodeKey, setSelectedNodeKey] = useState(null);
+    const [nodes, setNodes] = useState(null);
+    const [selectedNodeKey, setSelectedNodeKey] = useState(null);
 
-	useEffect(() => {
-		NodeService.getTreeNodes().then((data) => setNodes(data));
-	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(() => {
+        NodeService.getTreeNodes().then((data) => setNodes(data));
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <TreeSelect
     value={selectedNodeKey}
     onChange={(e) => setSelectedNodeKey(e.value)}
@@ -29,7 +29,7 @@ export function PTDoc(props) {
     }}
 ></TreeSelect>
         `,
-		javascript: `
+        javascript: `
 import React, { useState, useEffect } from "react";
 import { TreeSelect } from 'primereact/treeselect';
 import { NodeService } from './service/NodeService';
@@ -62,7 +62,7 @@ export default function PTDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState, useEffect } from "react";
 import { TreeSelect, TreeSelectChangeEvent } from 'primereact/treeselect';
 import { TreeNode } from 'primereact/treenode';
@@ -96,7 +96,7 @@ export default function PTDemo() {
     );
 }
         `,
-		data: `
+        data: `
 /* NodeService */
 {
     key: '0',
@@ -125,28 +125,30 @@ export default function PTDemo() {
 },
 ...
 `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}></DocSectionText>
-			<div className="card flex justify-content-center">
-				<TreeSelect
-					value={selectedNodeKey}
-					onChange={(e) => setSelectedNodeKey(e.value)}
-					options={nodes}
-					placeholder="Select Item"
-					pt={{
-						root: { className: "w-full md:w-30rem" },
-						tree: {
-							content: ({ context }) => ({
-								className: context.expanded ? "bg-blue-100" : "undefined",
-							}),
-						},
-					}}
-				></TreeSelect>
-			</div>
-			<DocSectionCode code={code} service={["NodeService"]} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}></DocSectionText>
+            <div className="card flex justify-content-center">
+                <TreeSelect
+                    value={selectedNodeKey}
+                    onChange={(e) => setSelectedNodeKey(e.value)}
+                    options={nodes}
+                    placeholder="Select Item"
+                    pt={{
+                        root: { className: "w-full md:w-30rem" },
+                        tree: {
+                            content: ({ context }) => ({
+                                className: context.expanded
+                                    ? "bg-blue-100"
+                                    : "undefined",
+                            }),
+                        },
+                    }}
+                ></TreeSelect>
+            </div>
+            <DocSectionCode code={code} service={["NodeService"]} />
+        </>
+    );
 }

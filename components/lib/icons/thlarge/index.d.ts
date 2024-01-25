@@ -17,6 +17,6 @@ export interface ThLargeIconProps extends IconBaseProps {}
  * @group Component
  */
 export declare class ThLargeIcon extends React.Component<
-	ThLargeIconProps,
-	any
+    ThLargeIconProps,
+    any
 > {}

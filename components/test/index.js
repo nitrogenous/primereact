@@ -3,30 +3,30 @@ import { render } from "@testing-library/react";
 
 // Set the userAgent inside the navigator
 Object.defineProperty(
-	window.navigator,
-	"userAgent",
-	((value) => ({
-		get() {
-			return value;
-		},
-		set(v) {
-			value = v;
-		},
-	}))(window.navigator.userAgent),
+    window.navigator,
+    "userAgent",
+    ((value) => ({
+        get() {
+            return value;
+        },
+        set(v) {
+            value = v;
+        },
+    }))(window.navigator.userAgent),
 );
 
 // Set the maxTouchPoints inside the navigator for touch devices
 Object.defineProperty(
-	window.navigator,
-	"maxTouchPoints",
-	((value) => ({
-		get() {
-			return value;
-		},
-		set(v) {
-			value = v;
-		},
-	}))(window.navigator.maxTouchPoints),
+    window.navigator,
+    "maxTouchPoints",
+    ((value) => ({
+        get() {
+            return value;
+        },
+        set(v) {
+            value = v;
+        },
+    }))(window.navigator.maxTouchPoints),
 );
 
 /**
@@ -36,9 +36,9 @@ Object.defineProperty(
  * @param {*} name the name of the test
  */
 export function snapshot(element, name) {
-	test(name, () => {
-		expect(render(element).container).toMatchSnapshot();
-	});
+    test(name, () => {
+        expect(render(element).container).toMatchSnapshot();
+    });
 }
 
 /**
@@ -48,9 +48,9 @@ export function snapshot(element, name) {
  * @param {*} name the name of the test
  */
 export function snapshotParent(element, name) {
-	test(name, () => {
-		expect(render(element).container.parentElement).toMatchSnapshot();
-	});
+    test(name, () => {
+        expect(render(element).container.parentElement).toMatchSnapshot();
+    });
 }
 
 /**
@@ -59,10 +59,10 @@ export function snapshotParent(element, name) {
  * @param {*} name the name of the user agent.
  */
 export function userAgent(name) {
-	// Set the userAgent that you wanna test on your function
-	global.navigator.userAgent = name;
+    // Set the userAgent that you wanna test on your function
+    global.navigator.userAgent = name;
 
-	if (name.match(/iPhone|iPad|iPod/i)) {
-		global.navigator.maxTouchPoints = 2;
-	}
+    if (name.match(/iPhone|iPad|iPod/i)) {
+        global.navigator.maxTouchPoints = 2;
+    }
 }

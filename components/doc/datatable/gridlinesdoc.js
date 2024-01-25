@@ -7,14 +7,14 @@ import { ProductService } from "../../../service/ProductService";
 import DeferredDemo from "@/components/demo/DeferredDemo";
 
 export function GridLinesDoc(props) {
-	const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState([]);
 
-	const loadDemoData = () => {
-		ProductService.getProductsMini().then((data) => setProducts(data));
-	};
+    const loadDemoData = () => {
+        ProductService.getProductsMini().then((data) => setProducts(data));
+    };
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <DataTable value={products} showGridlines tableStyle={{ minWidth: '50rem' }}>
     <Column field="code" header="Code"></Column>
     <Column field="name" header="Name"></Column>
@@ -22,7 +22,7 @@ export function GridLinesDoc(props) {
     <Column field="quantity" header="Quantity"></Column>
 </DataTable>
         `,
-		javascript: `
+        javascript: `
 import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -47,7 +47,7 @@ export default function GridLinesDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -85,7 +85,7 @@ export default function GridLinesDemo() {
     );
 }
         `,
-		data: `
+        data: `
 {
     id: '1000',
     code: 'f230fh0g3',
@@ -100,30 +100,31 @@ export default function GridLinesDemo() {
 },
 ...
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Enabling <i>showGridlines</i> displays borders between cells.
-				</p>
-			</DocSectionText>
-			<DeferredDemo onLoad={loadDemoData}>
-				<div className="card">
-					<DataTable
-						value={products}
-						showGridlines
-						tableStyle={{ minWidth: "50rem" }}
-					>
-						<Column field="code" header="Code"></Column>
-						<Column field="name" header="Name"></Column>
-						<Column field="category" header="Category"></Column>
-						<Column field="quantity" header="Quantity"></Column>
-					</DataTable>
-				</div>
-			</DeferredDemo>
-			<DocSectionCode code={code} service={["ProductService"]} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Enabling <i>showGridlines</i> displays borders between
+                    cells.
+                </p>
+            </DocSectionText>
+            <DeferredDemo onLoad={loadDemoData}>
+                <div className="card">
+                    <DataTable
+                        value={products}
+                        showGridlines
+                        tableStyle={{ minWidth: "50rem" }}
+                    >
+                        <Column field="code" header="Code"></Column>
+                        <Column field="name" header="Name"></Column>
+                        <Column field="category" header="Category"></Column>
+                        <Column field="quantity" header="Quantity"></Column>
+                    </DataTable>
+                </div>
+            </DeferredDemo>
+            <DocSectionCode code={code} service={["ProductService"]} />
+        </>
+    );
 }

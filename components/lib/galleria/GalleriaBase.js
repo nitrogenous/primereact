@@ -3,74 +3,75 @@ import { ComponentBase } from "../componentbase/ComponentBase";
 import { classNames } from "../utils/Utils";
 
 const classes = {
-	header: "p-galleria-header",
-	footer: "p-galleria-footer",
-	closeIcon: "p-galleria-close-icon",
-	closeButton: "p-galleria-close p-link",
-	root: ({ props, context, thumbnailsPosClassName, indicatorPosClassName }) =>
-		classNames(
-			"p-galleria p-component",
-			{
-				"p-galleria-fullscreen": props.fullScreen,
-				"p-galleria-indicator-onitem": props.showIndicatorsOnItem,
-				"p-galleria-item-nav-onhover":
-					props.showItemNavigatorsOnHover && !props.fullScreen,
-				"p-input-filled":
-					(context && context.inputStyle === "filled") ||
-					PrimeReact.inputStyle === "filled",
-				"p-ripple-disabled":
-					(context && context.ripple === false) || PrimeReact.ripple === false,
-			},
-			thumbnailsPosClassName,
-			indicatorPosClassName,
-		),
-	content: "p-galleria-content",
-	mask: ({ visibleState }) =>
-		classNames("p-galleria-mask", {
-			"p-galleria-visible": visibleState,
-		}),
-	thumbnailItem: ({ subProps }) =>
-		classNames("p-galleria-thumbnail-item", {
-			"p-galleria-thumbnail-item-current": subProps.current,
-			"p-galleria-thumbnail-item-active": subProps.active,
-			"p-galleria-thumbnail-item-start": subProps.start,
-			"p-galleria-thumbnail-item-end": subProps.end,
-		}),
-	thumbnailItemContent: "p-galleria-thumbnail-item-content",
-	previousThumbnailIcon: "p-galleria-thumbnail-prev-icon",
-	previousThumbnailButton: ({ isDisabled }) =>
-		classNames("p-galleria-thumbnail-prev p-link", {
-			"p-disabled": isDisabled,
-		}),
-	nextThumbnailIcon: "p-galleria-thumbnail-next-icon",
-	nextThumbnailButton: ({ isDisabled }) =>
-		classNames("p-galleria-thumbnail-next p-link", {
-			"p-disabled": isDisabled,
-		}),
-	thumbnailContainer: "p-galleria-thumbnail-container",
-	thumbnailItemsContainer: "p-galleria-thumbnail-items-container",
-	thumbnailItems: "p-galleria-thumbnail-items",
-	thumbnailWrapper: "p-galleria-thumbnail-wrapper",
-	previousItemIcon: "p-galleria-item-prev-icon",
-	previousItemButton: ({ isDisabled }) =>
-		classNames("p-galleria-item-prev p-galleria-item-nav p-link", {
-			"p-disabled": isDisabled,
-		}),
-	nextItemIcon: "p-galleria-item-next-icon",
-	nextItemButton: ({ isDisabled }) =>
-		classNames("p-galleria-item-next p-galleria-item-nav p-link", {
-			"p-disabled": isDisabled,
-		}),
-	caption: "p-galleria-caption",
-	indicator: ({ isActive }) =>
-		classNames("p-galleria-indicator", {
-			"p-highlight": isActive,
-		}),
-	indicators: "p-galleria-indicators p-reset",
-	itemWrapper: "p-galleria-item-wrapper",
-	itemContainer: "p-galleria-item-container",
-	item: "p-galleria-item",
-	transition: "p-galleria",
+    header: "p-galleria-header",
+    footer: "p-galleria-footer",
+    closeIcon: "p-galleria-close-icon",
+    closeButton: "p-galleria-close p-link",
+    root: ({ props, context, thumbnailsPosClassName, indicatorPosClassName }) =>
+        classNames(
+            "p-galleria p-component",
+            {
+                "p-galleria-fullscreen": props.fullScreen,
+                "p-galleria-indicator-onitem": props.showIndicatorsOnItem,
+                "p-galleria-item-nav-onhover":
+                    props.showItemNavigatorsOnHover && !props.fullScreen,
+                "p-input-filled":
+                    (context && context.inputStyle === "filled") ||
+                    PrimeReact.inputStyle === "filled",
+                "p-ripple-disabled":
+                    (context && context.ripple === false) ||
+                    PrimeReact.ripple === false,
+            },
+            thumbnailsPosClassName,
+            indicatorPosClassName,
+        ),
+    content: "p-galleria-content",
+    mask: ({ visibleState }) =>
+        classNames("p-galleria-mask", {
+            "p-galleria-visible": visibleState,
+        }),
+    thumbnailItem: ({ subProps }) =>
+        classNames("p-galleria-thumbnail-item", {
+            "p-galleria-thumbnail-item-current": subProps.current,
+            "p-galleria-thumbnail-item-active": subProps.active,
+            "p-galleria-thumbnail-item-start": subProps.start,
+            "p-galleria-thumbnail-item-end": subProps.end,
+        }),
+    thumbnailItemContent: "p-galleria-thumbnail-item-content",
+    previousThumbnailIcon: "p-galleria-thumbnail-prev-icon",
+    previousThumbnailButton: ({ isDisabled }) =>
+        classNames("p-galleria-thumbnail-prev p-link", {
+            "p-disabled": isDisabled,
+        }),
+    nextThumbnailIcon: "p-galleria-thumbnail-next-icon",
+    nextThumbnailButton: ({ isDisabled }) =>
+        classNames("p-galleria-thumbnail-next p-link", {
+            "p-disabled": isDisabled,
+        }),
+    thumbnailContainer: "p-galleria-thumbnail-container",
+    thumbnailItemsContainer: "p-galleria-thumbnail-items-container",
+    thumbnailItems: "p-galleria-thumbnail-items",
+    thumbnailWrapper: "p-galleria-thumbnail-wrapper",
+    previousItemIcon: "p-galleria-item-prev-icon",
+    previousItemButton: ({ isDisabled }) =>
+        classNames("p-galleria-item-prev p-galleria-item-nav p-link", {
+            "p-disabled": isDisabled,
+        }),
+    nextItemIcon: "p-galleria-item-next-icon",
+    nextItemButton: ({ isDisabled }) =>
+        classNames("p-galleria-item-next p-galleria-item-nav p-link", {
+            "p-disabled": isDisabled,
+        }),
+    caption: "p-galleria-caption",
+    indicator: ({ isActive }) =>
+        classNames("p-galleria-indicator", {
+            "p-highlight": isActive,
+        }),
+    indicators: "p-galleria-indicators p-reset",
+    itemWrapper: "p-galleria-item-wrapper",
+    itemContainer: "p-galleria-item-container",
+    item: "p-galleria-item",
+    transition: "p-galleria",
 };
 
 const styles = `
@@ -378,52 +379,52 @@ const styles = `
 `;
 
 const inlineStyles = {
-	thumbnailItemsContainer: ({ height }) => ({ height }),
+    thumbnailItemsContainer: ({ height }) => ({ height }),
 };
 
 export const GalleriaBase = ComponentBase.extend({
-	defaultProps: {
-		__TYPE: "Galleria",
-		id: null,
-		value: null,
-		activeIndex: 0,
-		fullScreen: false,
-		item: null,
-		thumbnail: null,
-		indicator: null,
-		caption: null,
-		className: null,
-		closeIcon: null,
-		style: null,
-		header: null,
-		footer: null,
-		numVisible: 3,
-		responsiveOptions: null,
-		showItemNavigators: false,
-		showThumbnailNavigators: true,
-		showItemNavigatorsOnHover: false,
-		changeItemOnIndicatorHover: false,
-		circular: false,
-		autoPlay: false,
-		transitionInterval: 4000,
-		showThumbnails: true,
-		itemNextIcon: null,
-		itemPrevIcon: null,
-		nextThumbnailIcon: null,
-		prevThumbnailIcon: null,
-		thumbnailsPosition: "bottom",
-		verticalThumbnailViewPortHeight: "300px",
-		showIndicators: false,
-		showIndicatorsOnItem: false,
-		indicatorsPosition: "bottom",
-		baseZIndex: 0,
-		transitionOptions: null,
-		onItemChange: null,
-		children: undefined,
-	},
-	css: {
-		classes,
-		styles,
-		inlineStyles,
-	},
+    defaultProps: {
+        __TYPE: "Galleria",
+        id: null,
+        value: null,
+        activeIndex: 0,
+        fullScreen: false,
+        item: null,
+        thumbnail: null,
+        indicator: null,
+        caption: null,
+        className: null,
+        closeIcon: null,
+        style: null,
+        header: null,
+        footer: null,
+        numVisible: 3,
+        responsiveOptions: null,
+        showItemNavigators: false,
+        showThumbnailNavigators: true,
+        showItemNavigatorsOnHover: false,
+        changeItemOnIndicatorHover: false,
+        circular: false,
+        autoPlay: false,
+        transitionInterval: 4000,
+        showThumbnails: true,
+        itemNextIcon: null,
+        itemPrevIcon: null,
+        nextThumbnailIcon: null,
+        prevThumbnailIcon: null,
+        thumbnailsPosition: "bottom",
+        verticalThumbnailViewPortHeight: "300px",
+        showIndicators: false,
+        showIndicatorsOnItem: false,
+        indicatorsPosition: "bottom",
+        baseZIndex: 0,
+        transitionOptions: null,
+        onItemChange: null,
+        children: undefined,
+    },
+    css: {
+        classes,
+        styles,
+        inlineStyles,
+    },
 });

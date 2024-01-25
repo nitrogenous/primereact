@@ -13,15 +13,15 @@ import { PassThroughOptions } from "../passthrough";
 import { PassThroughType } from "../utils/utils";
 
 export declare type SkeletonPassThroughType<T> = PassThroughType<
-	T,
-	SkeletonPassThroughMethodOptions
+    T,
+    SkeletonPassThroughMethodOptions
 >;
 
 /**
  * Custom passthrough(pt) option method.
  */
 export interface SkeletonPassThroughMethodOptions {
-	props: SkeletonProps;
+    props: SkeletonProps;
 }
 
 /**
@@ -29,15 +29,15 @@ export interface SkeletonPassThroughMethodOptions {
  * @see {@link SkeletonProps.pt}
  */
 export interface SkeletonPassThroughOptions {
-	/**
-	 * Uses to pass attributes to the root's DOM element.
-	 */
-	root?: SkeletonPassThroughType<React.HTMLAttributes<HTMLDivElement>>;
-	/**
-	 * Used to manage all lifecycle hooks
-	 * @see {@link ComponentHooks}
-	 */
-	hooks?: ComponentHooks;
+    /**
+     * Uses to pass attributes to the root's DOM element.
+     */
+    root?: SkeletonPassThroughType<React.HTMLAttributes<HTMLDivElement>>;
+    /**
+     * Used to manage all lifecycle hooks
+     * @see {@link ComponentHooks}
+     */
+    hooks?: ComponentHooks;
 }
 
 /**
@@ -45,61 +45,61 @@ export interface SkeletonPassThroughOptions {
  * @group Properties
  */
 export interface SkeletonProps
-	extends Omit<
-		React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLDivElement>,
-			HTMLDivElement
-		>,
-		"ref"
-	> {
-	/**
-	 * It specifies an alternate text for an image, if the image cannot be displayed.
-	 * @defaultValue rectangle
-	 */
-	shape?: "rectangle" | "circle" | undefined;
-	/**
-	 * Size of the Circle or Square.
-	 */
-	size?: string | undefined;
-	/**
-	 * Width of the element.
-	 * @defaultValue 100%
-	 */
-	width?: string | undefined;
-	/**
-	 * Height of the element.
-	 * @defaultValue 1rem
-	 */
-	height?: string | undefined;
-	/**
-	 * Border radius of the element, defaults to value from theme.
-	 */
-	borderRadius?: string | undefined;
-	/**
-	 * Type of the animation, valid options are "wave" and "none".
-	 * @defaultValue wave
-	 */
-	animation?: "wave" | "none" | undefined;
-	/**
-	 * Used to get the child elements of the component.
-	 * @readonly
-	 */
-	children?: React.ReactNode | undefined;
-	/**
-	 * Uses to pass attributes to DOM elements inside the component.
-	 * @type {SkeletonPassThroughOptions}
-	 */
-	pt?: SkeletonPassThroughOptions;
-	/**
-	 * Used to configure passthrough(pt) options of the component.
-	 * @type {PassThroughOptions}
-	 */
-	ptOptions?: PassThroughOptions;
-	/**
-	 * When enabled, it removes component related styles in the core.
-	 * @defaultValue false
-	 */
-	unstyled?: boolean;
+    extends Omit<
+        React.DetailedHTMLProps<
+            React.HTMLAttributes<HTMLDivElement>,
+            HTMLDivElement
+        >,
+        "ref"
+    > {
+    /**
+     * It specifies an alternate text for an image, if the image cannot be displayed.
+     * @defaultValue rectangle
+     */
+    shape?: "rectangle" | "circle" | undefined;
+    /**
+     * Size of the Circle or Square.
+     */
+    size?: string | undefined;
+    /**
+     * Width of the element.
+     * @defaultValue 100%
+     */
+    width?: string | undefined;
+    /**
+     * Height of the element.
+     * @defaultValue 1rem
+     */
+    height?: string | undefined;
+    /**
+     * Border radius of the element, defaults to value from theme.
+     */
+    borderRadius?: string | undefined;
+    /**
+     * Type of the animation, valid options are "wave" and "none".
+     * @defaultValue wave
+     */
+    animation?: "wave" | "none" | undefined;
+    /**
+     * Used to get the child elements of the component.
+     * @readonly
+     */
+    children?: React.ReactNode | undefined;
+    /**
+     * Uses to pass attributes to DOM elements inside the component.
+     * @type {SkeletonPassThroughOptions}
+     */
+    pt?: SkeletonPassThroughOptions;
+    /**
+     * Used to configure passthrough(pt) options of the component.
+     * @type {PassThroughOptions}
+     */
+    ptOptions?: PassThroughOptions;
+    /**
+     * When enabled, it removes component related styles in the core.
+     * @defaultValue false
+     */
+    unstyled?: boolean;
 }
 
 /**
@@ -114,9 +114,9 @@ export interface SkeletonProps
  * @group Component
  */
 export declare class Skeleton extends React.Component<SkeletonProps, any> {
-	/**
-	 * Used to get container element.
-	 * @return {HTMLDivElement} Container element
-	 */
-	public getElement(): HTMLDivElement;
+    /**
+     * Used to get container element.
+     * @return {HTMLDivElement} Container element
+     */
+    public getElement(): HTMLDivElement;
 }

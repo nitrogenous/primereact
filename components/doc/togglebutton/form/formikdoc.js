@@ -8,48 +8,48 @@ import { useFormik } from "formik";
 import { useRef } from "react";
 
 export function FormikDoc(props) {
-	const toast = useRef(null);
+    const toast = useRef(null);
 
-	const show = () => {
-		toast.current.show({
-			severity: "success",
-			summary: "Form Submitted",
-			detail: formik.values.item.toString(),
-		});
-	};
+    const show = () => {
+        toast.current.show({
+            severity: "success",
+            summary: "Form Submitted",
+            detail: formik.values.item.toString(),
+        });
+    };
 
-	const formik = useFormik({
-		initialValues: {
-			item: false,
-		},
-		validate: (data) => {
-			const errors = {};
+    const formik = useFormik({
+        initialValues: {
+            item: false,
+        },
+        validate: (data) => {
+            const errors = {};
 
-			if (!data.item) {
-				errors.item = "Checked is required.";
-			}
+            if (!data.item) {
+                errors.item = "Checked is required.";
+            }
 
-			return errors;
-		},
-		onSubmit: (data) => {
-			data.item && show();
-			formik.resetForm();
-		},
-	});
+            return errors;
+        },
+        onSubmit: (data) => {
+            data.item && show();
+            formik.resetForm();
+        },
+    });
 
-	const isFormFieldInvalid = (name) =>
-		!!(formik.touched[name] && formik.errors[name]);
+    const isFormFieldInvalid = (name) =>
+        !!(formik.touched[name] && formik.errors[name]);
 
-	const getFormErrorMessage = (name) => {
-		return isFormFieldInvalid(name) ? (
-			<small className="p-error">{formik.errors[name]}</small>
-		) : (
-			<small className="p-error">&nbsp;</small>
-		);
-	};
+    const getFormErrorMessage = (name) => {
+        return isFormFieldInvalid(name) ? (
+            <small className="p-error">{formik.errors[name]}</small>
+        ) : (
+            <small className="p-error">&nbsp;</small>
+        );
+    };
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <ToggleButton id="item"
     name="item"
     checked={formik.values.item}
@@ -61,7 +61,7 @@ export function FormikDoc(props) {
 {getFormErrorMessage('item')}
 <Button label="Submit" type="submit" icon="pi pi-check" />
         `,
-		javascript: `
+        javascript: `
 import React, { useRef } from "react";
 import { useFormik } from 'formik';
 import { ToggleButton } from 'primereact/togglebutton';
@@ -122,7 +122,7 @@ export default function FormikDoc() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useRef } from "react";
 import { useFormik } from 'formik';
 import { ToggleButton } from 'primereact/togglebutton';
@@ -182,43 +182,43 @@ export default function FormikDoc() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					<a href="https://formik.org/">Formik</a> is a popular library for
-					handling forms in React.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<form
-					onSubmit={formik.handleSubmit}
-					className="flex flex-column align-items-center gap-2"
-				>
-					<Toast ref={toast} />
-					<ToggleButton
-						id="item"
-						name="item"
-						checked={formik.values.item}
-						onChange={(e) => {
-							formik.setFieldValue("item", e.value);
-						}}
-						className={classNames("w-6rem", {
-							"p-invalid": formik.errors.item,
-						})}
-					/>
-					{getFormErrorMessage("item")}
-					<Button
-						label="Submit"
-						type="submit"
-						icon="pi pi-check"
-						className="p-button-outlined"
-					/>
-				</form>
-			</div>
-			<DocSectionCode code={code} dependencies={{ formik: "^2.2.6" }} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    <a href="https://formik.org/">Formik</a> is a popular
+                    library for handling forms in React.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <form
+                    onSubmit={formik.handleSubmit}
+                    className="flex flex-column align-items-center gap-2"
+                >
+                    <Toast ref={toast} />
+                    <ToggleButton
+                        id="item"
+                        name="item"
+                        checked={formik.values.item}
+                        onChange={(e) => {
+                            formik.setFieldValue("item", e.value);
+                        }}
+                        className={classNames("w-6rem", {
+                            "p-invalid": formik.errors.item,
+                        })}
+                    />
+                    {getFormErrorMessage("item")}
+                    <Button
+                        label="Submit"
+                        type="submit"
+                        icon="pi pi-check"
+                        className="p-button-outlined"
+                    />
+                </form>
+            </div>
+            <DocSectionCode code={code} dependencies={{ formik: "^2.2.6" }} />
+        </>
+    );
 }

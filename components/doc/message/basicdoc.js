@@ -3,11 +3,11 @@ import { DocSectionText } from "@/components/doc/common/docsectiontext";
 import { Message } from "@/components/lib/message/Message";
 
 export function BasicDoc(props) {
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Message text="Username is required" />
         `,
-		javascript: `
+        javascript: `
 import React from 'react'; 
 import { Message } from 'primereact/message';
 
@@ -19,7 +19,7 @@ export default function BasicDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React from 'react'; 
 import { Message } from 'primereact/message';
 
@@ -31,19 +31,19 @@ export default function BasicDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Text to display is defined with the <i>text</i> property.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<Message text="Username is required" />
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Text to display is defined with the <i>text</i> property.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <Message text="Username is required" />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

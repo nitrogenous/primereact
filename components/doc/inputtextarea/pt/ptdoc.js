@@ -4,10 +4,10 @@ import { InputTextarea } from "@/components/lib/inputtextarea/InputTextarea";
 import { useState } from "react";
 
 export function PTDoc(props) {
-	const [value, setValue] = useState("");
+    const [value, setValue] = useState("");
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <InputTextarea
     value={value}
     onChange={(e) => setValue(e.target.value)}
@@ -19,7 +19,7 @@ export function PTDoc(props) {
     }}
 />
         `,
-		javascript: `
+        javascript: `
 import React, { useState } from "react";
 import { InputTextarea } from "primereact/inputtextarea";
 
@@ -42,7 +42,7 @@ export default function PTDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from "react";
 import { InputTextarea } from "primereact/inputtextarea";
 
@@ -65,24 +65,24 @@ export default function PTDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}></DocSectionText>
-			<div className="card flex justify-content-center">
-				<InputTextarea
-					value={value}
-					onChange={(e) => setValue(e.target.value)}
-					pt={{
-						root: {
-							rows: 5,
-							cols: 30,
-						},
-					}}
-				/>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}></DocSectionText>
+            <div className="card flex justify-content-center">
+                <InputTextarea
+                    value={value}
+                    onChange={(e) => setValue(e.target.value)}
+                    pt={{
+                        root: {
+                            rows: 5,
+                            cols: 30,
+                        },
+                    }}
+                />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

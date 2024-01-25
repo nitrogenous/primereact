@@ -5,19 +5,19 @@ import { useEffect, useState } from "react";
 import { NodeService } from "../../../service/NodeService";
 
 export function ClearIconDoc(props) {
-	const [nodes, setNodes] = useState(null);
-	const [selectedNodeKey, setSelectedNodeKey] = useState(null);
+    const [nodes, setNodes] = useState(null);
+    const [selectedNodeKey, setSelectedNodeKey] = useState(null);
 
-	useEffect(() => {
-		NodeService.getTreeNodes().then((data) => setNodes(data));
-	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(() => {
+        NodeService.getTreeNodes().then((data) => setNodes(data));
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <TreeSelect value={selectedNodeKey} onChange={(e) => setSelectedNodeKey(e.value)} options={nodes} 
     className="md:w-20rem w-full" placeholder="Select Item"></TreeSelect>
         `,
-		javascript: `
+        javascript: `
 import React, { useState, useEffect } from "react";
 import { TreeSelect } from 'primereact/treeselect';
 import { NodeService } from './service/NodeService';
@@ -38,7 +38,7 @@ export default function BasicDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState, useEffect } from "react";
 import { TreeSelect, TreeSelectChangeEvent } from 'primereact/treeselect';
 import { TreeNode } from 'primereact/treenode';
@@ -60,7 +60,7 @@ export default function BasicDemo() {
     );
 }
         `,
-		data: `
+        data: `
 /* NodeService */
 {
     key: '0',
@@ -89,27 +89,27 @@ export default function BasicDemo() {
 },
 ...
 `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					When <i>showClear</i> is enabled, a clear icon is added to reset the
-					TreeSelect.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<TreeSelect
-					value={selectedNodeKey}
-					onChange={(e) => setSelectedNodeKey(e.value)}
-					options={nodes}
-					className="md:w-20rem w-full"
-					placeholder="Select Item"
-					showClear
-				></TreeSelect>
-			</div>
-			<DocSectionCode code={code} service={["NodeService"]} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    When <i>showClear</i> is enabled, a clear icon is added to
+                    reset the TreeSelect.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <TreeSelect
+                    value={selectedNodeKey}
+                    onChange={(e) => setSelectedNodeKey(e.value)}
+                    options={nodes}
+                    className="md:w-20rem w-full"
+                    placeholder="Select Item"
+                    showClear
+                ></TreeSelect>
+            </div>
+            <DocSectionCode code={code} service={["NodeService"]} />
+        </>
+    );
 }

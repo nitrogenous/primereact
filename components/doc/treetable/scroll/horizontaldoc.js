@@ -6,14 +6,14 @@ import { useEffect, useState } from "react";
 import { NodeService } from "../../../../service/NodeService";
 
 export function HorizontalScrollDoc(props) {
-	const [nodes, setNodes] = useState([]);
+    const [nodes, setNodes] = useState([]);
 
-	useEffect(() => {
-		NodeService.getTreeTableNodes().then((data) => setNodes(data));
-	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(() => {
+        NodeService.getTreeTableNodes().then((data) => setNodes(data));
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <TreeTable value={nodes} scrollable scrollHeight="200px">
     <Column field="name" header="Name" expander style={{ width: '250px' }}></Column>
     <Column field="size" header="Size" style={{ width: '250px' }}></Column>
@@ -23,7 +23,7 @@ export function HorizontalScrollDoc(props) {
     <Column field="size" header="Size 3" style={{ width: '250px' }}></Column>
 </TreeTable>
         `,
-		javascript: `
+        javascript: `
 import React, { useState, useEffect } from 'react';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
@@ -50,7 +50,7 @@ export default function HorizontalScrollDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState, useEffect } from 'react';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
@@ -78,7 +78,7 @@ export default function HorizontalScrollDemo() {
     );
 }
         `,
-		data: `
+        data: `
 {
     key: '0',
     label: 'Documents',
@@ -106,52 +106,52 @@ export default function HorizontalScrollDemo() {
 },
 ...
 `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Horizontal scrolling is enabled when the total width of columns
-					exceeds table width.
-				</p>
-			</DocSectionText>
-			<div className="card">
-				<TreeTable value={nodes} scrollable scrollHeight="200px">
-					<Column
-						field="name"
-						header="Name"
-						expander
-						style={{ width: "250px" }}
-					></Column>
-					<Column
-						field="size"
-						header="Size"
-						style={{ width: "250px" }}
-					></Column>
-					<Column
-						field="type"
-						header="Type 2"
-						style={{ width: "250px" }}
-					></Column>
-					<Column
-						field="size"
-						header="Size 2"
-						style={{ width: "250px" }}
-					></Column>
-					<Column
-						field="type"
-						header="Type 3"
-						style={{ width: "250px" }}
-					></Column>
-					<Column
-						field="size"
-						header="Size 3"
-						style={{ width: "250px" }}
-					></Column>
-				</TreeTable>
-			</div>
-			<DocSectionCode code={code} service={["NodeService"]} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Horizontal scrolling is enabled when the total width of
+                    columns exceeds table width.
+                </p>
+            </DocSectionText>
+            <div className="card">
+                <TreeTable value={nodes} scrollable scrollHeight="200px">
+                    <Column
+                        field="name"
+                        header="Name"
+                        expander
+                        style={{ width: "250px" }}
+                    ></Column>
+                    <Column
+                        field="size"
+                        header="Size"
+                        style={{ width: "250px" }}
+                    ></Column>
+                    <Column
+                        field="type"
+                        header="Type 2"
+                        style={{ width: "250px" }}
+                    ></Column>
+                    <Column
+                        field="size"
+                        header="Size 2"
+                        style={{ width: "250px" }}
+                    ></Column>
+                    <Column
+                        field="type"
+                        header="Type 3"
+                        style={{ width: "250px" }}
+                    ></Column>
+                    <Column
+                        field="size"
+                        header="Size 3"
+                        style={{ width: "250px" }}
+                    ></Column>
+                </TreeTable>
+            </div>
+            <DocSectionCode code={code} service={["NodeService"]} />
+        </>
+    );
 }

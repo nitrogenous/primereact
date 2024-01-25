@@ -3,39 +3,40 @@ import { ComponentBase } from "../componentbase/ComponentBase";
 import { classNames } from "../utils/Utils";
 
 const classes = {
-	closeButton: "p-sidebar-close p-sidebar-icon p-link",
-	closeIcon: "p-sidebar-close-icon",
-	mask: ({ props, maskVisibleState }) => {
-		const positions = ["left", "right", "top", "bottom"];
-		const pos = positions.find((item) => item === props.position);
+    closeButton: "p-sidebar-close p-sidebar-icon p-link",
+    closeIcon: "p-sidebar-close-icon",
+    mask: ({ props, maskVisibleState }) => {
+        const positions = ["left", "right", "top", "bottom"];
+        const pos = positions.find((item) => item === props.position);
 
-		return classNames(
-			"p-sidebar-mask",
-			pos && !props.fullScreen ? `p-sidebar-${pos}` : "",
-			{
-				"p-component-overlay p-component-overlay-enter": props.modal,
-				"p-sidebar-mask-scrollblocker": props.blockScroll,
-				"p-sidebar-visible": maskVisibleState,
-				"p-sidebar-full": props.fullScreen,
-			},
-			props.maskClassName,
-		);
-	},
-	header: ({ props }) =>
-		classNames("p-sidebar-header", {
-			"p-sidebar-custom-header": props.header,
-		}),
-	content: "p-sidebar-content",
-	icons: "p-sidebar-icons",
-	root: ({ props, context }) =>
-		classNames("p-sidebar p-component", props.className, {
-			"p-input-filled":
-				(context && context.inputStyle === "filled") ||
-				PrimeReact.inputStyle === "filled",
-			"p-ripple-disabled":
-				(context && context.ripple === false) || PrimeReact.ripple === false,
-		}),
-	transition: "p-sidebar",
+        return classNames(
+            "p-sidebar-mask",
+            pos && !props.fullScreen ? `p-sidebar-${pos}` : "",
+            {
+                "p-component-overlay p-component-overlay-enter": props.modal,
+                "p-sidebar-mask-scrollblocker": props.blockScroll,
+                "p-sidebar-visible": maskVisibleState,
+                "p-sidebar-full": props.fullScreen,
+            },
+            props.maskClassName,
+        );
+    },
+    header: ({ props }) =>
+        classNames("p-sidebar-header", {
+            "p-sidebar-custom-header": props.header,
+        }),
+    content: "p-sidebar-content",
+    icons: "p-sidebar-icons",
+    root: ({ props, context }) =>
+        classNames("p-sidebar p-component", props.className, {
+            "p-input-filled":
+                (context && context.inputStyle === "filled") ||
+                PrimeReact.inputStyle === "filled",
+            "p-ripple-disabled":
+                (context && context.ripple === false) ||
+                PrimeReact.ripple === false,
+        }),
+    transition: "p-sidebar",
 };
 
 const styles = `
@@ -249,57 +250,57 @@ const styles = `
 `;
 
 const inlineStyles = {
-	mask: ({ props }) => ({
-		position: "fixed",
-		height: "100%",
-		width: "100%",
-		left: 0,
-		top: 0,
-		display: "flex",
-		justifyContent:
-			props.position === "left"
-				? "flex-start"
-				: props.position === "right"
-				  ? "flex-end"
-				  : "center",
-		alignItems:
-			props.position === "top"
-				? "flex-start"
-				: props.position === "bottom"
-				  ? "flex-end"
-				  : "center",
-	}),
+    mask: ({ props }) => ({
+        position: "fixed",
+        height: "100%",
+        width: "100%",
+        left: 0,
+        top: 0,
+        display: "flex",
+        justifyContent:
+            props.position === "left"
+                ? "flex-start"
+                : props.position === "right"
+                  ? "flex-end"
+                  : "center",
+        alignItems:
+            props.position === "top"
+                ? "flex-start"
+                : props.position === "bottom"
+                  ? "flex-end"
+                  : "center",
+    }),
 };
 
 export const SidebarBase = ComponentBase.extend({
-	defaultProps: {
-		__TYPE: "Sidebar",
-		id: null,
-		style: null,
-		className: null,
-		maskStyle: null,
-		maskClassName: null,
-		visible: false,
-		position: "left",
-		fullScreen: false,
-		blockScroll: false,
-		baseZIndex: 0,
-		dismissable: true,
-		showCloseIcon: true,
-		closeIcon: null,
-		ariaCloseLabel: null,
-		closeOnEscape: true,
-		icons: null,
-		modal: true,
-		appendTo: null,
-		transitionOptions: null,
-		onShow: null,
-		onHide: null,
-		children: undefined,
-	},
-	css: {
-		classes,
-		styles,
-		inlineStyles,
-	},
+    defaultProps: {
+        __TYPE: "Sidebar",
+        id: null,
+        style: null,
+        className: null,
+        maskStyle: null,
+        maskClassName: null,
+        visible: false,
+        position: "left",
+        fullScreen: false,
+        blockScroll: false,
+        baseZIndex: 0,
+        dismissable: true,
+        showCloseIcon: true,
+        closeIcon: null,
+        ariaCloseLabel: null,
+        closeOnEscape: true,
+        icons: null,
+        modal: true,
+        appendTo: null,
+        transitionOptions: null,
+        onShow: null,
+        onHide: null,
+        children: undefined,
+    },
+    css: {
+        classes,
+        styles,
+        inlineStyles,
+    },
 });

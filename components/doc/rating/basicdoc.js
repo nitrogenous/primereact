@@ -4,13 +4,13 @@ import { Rating } from "@/components/lib/rating/Rating";
 import { useState } from "react";
 
 export function BasicDoc(props) {
-	const [value, setValue] = useState(null);
+    const [value, setValue] = useState(null);
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Rating value={value} onChange={(e) => setValue(e.value)} />
         `,
-		javascript: `
+        javascript: `
 import React, { useState } from "react";
 import { Rating } from "primereact/rating";
 
@@ -24,7 +24,7 @@ export default function BasicDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from "react";
 import { Rating, RatingChangeEvent } from "primereact/rating";
 
@@ -38,20 +38,20 @@ export default function BasicDemo() {
     );
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Rating is used a controlled input component with <i>value</i> and{" "}
-					<i>onChange</i> properties.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<Rating value={value} onChange={(e) => setValue(e.value)} />
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Rating is used a controlled input component with{" "}
+                    <i>value</i> and <i>onChange</i> properties.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <Rating value={value} onChange={(e) => setValue(e.value)} />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

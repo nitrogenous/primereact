@@ -4,15 +4,15 @@ import { MultiStateCheckbox } from "@/components/lib/multistatecheckbox/MultiSta
 import { useState } from "react";
 
 export function PTDoc(props) {
-	const [value, setValue] = useState("public");
-	const options = [
-		{ value: "public", icon: "pi pi-globe" },
-		{ value: "protected", icon: "pi pi-lock-open" },
-		{ value: "private", icon: "pi pi-lock" },
-	];
+    const [value, setValue] = useState("public");
+    const options = [
+        { value: "public", icon: "pi pi-globe" },
+        { value: "protected", icon: "pi pi-lock-open" },
+        { value: "private", icon: "pi pi-lock" },
+    ];
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <MultiStateCheckbox
     value={value}
     onChange={(e) => setValue(e.value)}
@@ -25,7 +25,7 @@ export function PTDoc(props) {
     }}
 />
         `,
-		javascript: `
+        javascript: `
 import React, { useState } from "react";
 import { MultiStateCheckbox } from 'primereact/multistatecheckbox';
 
@@ -55,7 +55,7 @@ export default function PTDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from "react";
 import { MultiStateCheckbox, MultiStateCheckboxChangeEvent } from 'primereact/multistatecheckbox';
 
@@ -90,26 +90,28 @@ export default function PTDemo() {
     );
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}></DocSectionText>
-			<div className="card flex flex-column align-items-center gap-3">
-				<MultiStateCheckbox
-					value={value}
-					onChange={(e) => setValue(e.value)}
-					options={options}
-					optionValue="value"
-					pt={{
-						checkbox: {
-							className: value ? "bg-orange-400 border-orange-400" : undefined,
-						},
-					}}
-				/>
-				<span>{value || "no value"}</span>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}></DocSectionText>
+            <div className="card flex flex-column align-items-center gap-3">
+                <MultiStateCheckbox
+                    value={value}
+                    onChange={(e) => setValue(e.value)}
+                    options={options}
+                    optionValue="value"
+                    pt={{
+                        checkbox: {
+                            className: value
+                                ? "bg-orange-400 border-orange-400"
+                                : undefined,
+                        },
+                    }}
+                />
+                <span>{value || "no value"}</span>
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

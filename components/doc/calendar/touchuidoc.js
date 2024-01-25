@@ -4,13 +4,13 @@ import { Calendar } from "@/components/lib/calendar/Calendar";
 import { useState } from "react";
 
 export function TouchUIDoc(props) {
-	const [date, setDate] = useState(null);
+    const [date, setDate] = useState(null);
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Calendar value={date} onChange={(e) => setDate(e.value)} touchUI />
         `,
-		javascript: `
+        javascript: `
 import React, { useState } from "react";
 import { Calendar } from 'primereact/calendar';
 
@@ -24,7 +24,7 @@ export default function TouchUIDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from "react";
 import { Calendar } from 'primereact/calendar';
 import { Nullable } from "primereact/ts-helpers";
@@ -39,20 +39,24 @@ export default function TouchUIDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					When <i>touchUI</i> is enabled, overlay is displayed as optimized for
-					touch devices.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<Calendar value={date} onChange={(e) => setDate(e.value)} touchUI />
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    When <i>touchUI</i> is enabled, overlay is displayed as
+                    optimized for touch devices.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <Calendar
+                    value={date}
+                    onChange={(e) => setDate(e.value)}
+                    touchUI
+                />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

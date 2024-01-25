@@ -6,19 +6,21 @@ import { classNames } from "@/components/lib/utils/Utils";
 import { useState } from "react";
 
 export function BasicDoc(props) {
-	const [seconds, setSeconds] = useState(0);
-	const [active, setActive] = useState(true);
+    const [seconds, setSeconds] = useState(0);
+    const [active, setActive] = useState(true);
 
-	useInterval(
-		() => {
-			setSeconds((prevSecond) => (prevSecond === 59 ? 0 : prevSecond + 1));
-		},
-		1000,
-		active,
-	);
+    useInterval(
+        () => {
+            setSeconds((prevSecond) =>
+                prevSecond === 59 ? 0 : prevSecond + 1,
+            );
+        },
+        1000,
+        active,
+    );
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 useInterval(
     () => {
         setSeconds((prevSecond) => (prevSecond === 59 ? 0 : prevSecond + 1)); //fn
@@ -27,7 +29,7 @@ useInterval(
     active  //condition (when)
 );
         `,
-		javascript: `
+        javascript: `
 import React from 'react'; 
 import { Button } from 'primereact/button';
 import { useInterval } from 'primereact/hooks';
@@ -54,7 +56,7 @@ export default function BasicDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React from 'react'; 
 import { Button } from 'primereact/button';
 import { useInterval } from 'primereact/hooks';
@@ -81,24 +83,24 @@ export default function BasicDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>Simple timer that is updated every second.</p>
-			</DocSectionText>
-			<div className="card flex flex-column align-items-center">
-				<div className="mb-3 font-bold text-4xl">{seconds}</div>
-				<Button
-					className={classNames("w-8rem p-button-outlined", {
-						"p-button-danger": active,
-					})}
-					onClick={() => setActive(!active)}
-					label={active ? "Stop" : "Resume"}
-				/>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>Simple timer that is updated every second.</p>
+            </DocSectionText>
+            <div className="card flex flex-column align-items-center">
+                <div className="mb-3 font-bold text-4xl">{seconds}</div>
+                <Button
+                    className={classNames("w-8rem p-button-outlined", {
+                        "p-button-danger": active,
+                    })}
+                    onClick={() => setActive(!active)}
+                    label={active ? "Stop" : "Resume"}
+                />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

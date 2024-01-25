@@ -5,71 +5,71 @@ import { useEffect, useState } from "react";
 import { CountryService } from "../../../service/CountryService";
 
 export function TemplateDoc(props) {
-	const [countries, setCountries] = useState([]);
-	const [selectedCountry, setSelectedCountry] = useState(null);
-	const [filteredCountries, setFilteredCountries] = useState(null);
+    const [countries, setCountries] = useState([]);
+    const [selectedCountry, setSelectedCountry] = useState(null);
+    const [filteredCountries, setFilteredCountries] = useState(null);
 
-	const search = (event) => {
-		// Timeout to emulate a network connection
-		setTimeout(() => {
-			let _filteredCountries;
+    const search = (event) => {
+        // Timeout to emulate a network connection
+        setTimeout(() => {
+            let _filteredCountries;
 
-			if (!event.query.trim().length) {
-				_filteredCountries = [...countries];
-			} else {
-				_filteredCountries = countries.filter((country) => {
-					return country.name
-						.toLowerCase()
-						.startsWith(event.query.toLowerCase());
-				});
-			}
+            if (!event.query.trim().length) {
+                _filteredCountries = [...countries];
+            } else {
+                _filteredCountries = countries.filter((country) => {
+                    return country.name
+                        .toLowerCase()
+                        .startsWith(event.query.toLowerCase());
+                });
+            }
 
-			setFilteredCountries(_filteredCountries);
-		}, 250);
-	};
+            setFilteredCountries(_filteredCountries);
+        }, 250);
+    };
 
-	const itemTemplate = (item) => {
-		return (
-			<div className="flex align-items-center">
-				<img
-					alt={item.name}
-					src="https://primefaces.org/cdn/primereact/images/flag/flag_placeholder.png"
-					className={`flag flag-${item.code.toLowerCase()} mr-2`}
-					style={{ width: "18px" }}
-				/>
-				<div>{item.name}</div>
-			</div>
-		);
-	};
+    const itemTemplate = (item) => {
+        return (
+            <div className="flex align-items-center">
+                <img
+                    alt={item.name}
+                    src="https://primefaces.org/cdn/primereact/images/flag/flag_placeholder.png"
+                    className={`flag flag-${item.code.toLowerCase()} mr-2`}
+                    style={{ width: "18px" }}
+                />
+                <div>{item.name}</div>
+            </div>
+        );
+    };
 
-	const panelFooterTemplate = () => {
-		const isCountrySelected = (filteredCountries || []).some(
-			(country) => country["name"] === selectedCountry,
-		);
+    const panelFooterTemplate = () => {
+        const isCountrySelected = (filteredCountries || []).some(
+            (country) => country["name"] === selectedCountry,
+        );
 
-		return (
-			<div className="py-2 px-3">
-				{isCountrySelected ? (
-					<span>
-						<b>{selectedCountry}</b> selected.
-					</span>
-				) : (
-					"No country selected."
-				)}
-			</div>
-		);
-	};
+        return (
+            <div className="py-2 px-3">
+                {isCountrySelected ? (
+                    <span>
+                        <b>{selectedCountry}</b> selected.
+                    </span>
+                ) : (
+                    "No country selected."
+                )}
+            </div>
+        );
+    };
 
-	useEffect(() => {
-		CountryService.getCountries().then((data) => setCountries(data));
-	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(() => {
+        CountryService.getCountries().then((data) => setCountries(data));
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <AutoComplete field="name" value={selectedCountry} suggestions={filteredCountries}  
     completeMethod={search} onChange={(e) => setSelectedCountry(e.value)} itemTemplate={itemTemplate} panelFooterTemplate={panelFooterTemplate} />
         `,
-		javascript: `
+        javascript: `
 import React, { useEffect, useState } from 'react';
 import { AutoComplete } from "primereact/autocomplete";
 import { CountryService } from './service/CountryService';
@@ -138,7 +138,7 @@ export default function TemplateDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useEffect, useState } from 'react';
 import { AutoComplete, AutoCompleteCompleteEvent } from "primereact/autocomplete";
 import { CountryService } from './service/CountryService';
@@ -212,40 +212,40 @@ export default function TemplateDemo() {
     )
 }
         `,
-		data: `
+        data: `
  /* CountryService */
 
 {"name": "United Kingdom", "code": "UK"},
 {"name": "United States", "code": "USA"},
 ...
                 `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Custom content can be displayed as an option using <i>itemTemplate</i>{" "}
-					property that references a function with a suggestion option as a
-					parameter and returns an element. Similarly{" "}
-					<i>selectedItemTemplate</i> property is available to customize the
-					chips in multiple mode using the same approach. Note that{" "}
-					<i>selectedItemTemplate</i> is only available in multiple mode at the
-					moment.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<AutoComplete
-					field="name"
-					value={selectedCountry}
-					suggestions={filteredCountries}
-					completeMethod={search}
-					onChange={(e) => setSelectedCountry(e.value)}
-					itemTemplate={itemTemplate}
-					panelFooterTemplate={panelFooterTemplate}
-				/>
-			</div>
-			<DocSectionCode code={code} service={["CountryService"]} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Custom content can be displayed as an option using{" "}
+                    <i>itemTemplate</i> property that references a function with
+                    a suggestion option as a parameter and returns an element.
+                    Similarly <i>selectedItemTemplate</i> property is available
+                    to customize the chips in multiple mode using the same
+                    approach. Note that <i>selectedItemTemplate</i> is only
+                    available in multiple mode at the moment.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <AutoComplete
+                    field="name"
+                    value={selectedCountry}
+                    suggestions={filteredCountries}
+                    completeMethod={search}
+                    onChange={(e) => setSelectedCountry(e.value)}
+                    itemTemplate={itemTemplate}
+                    panelFooterTemplate={panelFooterTemplate}
+                />
+            </div>
+            <DocSectionCode code={code} service={["CountryService"]} />
+        </>
+    );
 }

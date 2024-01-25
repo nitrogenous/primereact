@@ -1,7 +1,7 @@
 import { ComponentBase } from "../componentbase/ComponentBase";
 
 const classes = {
-	root: "p-avatar-group p-component",
+    root: "p-avatar-group p-component",
 };
 
 const styles = `
@@ -18,14 +18,14 @@ const styles = `
 `;
 
 export const AvatarGroupBase = ComponentBase.extend({
-	defaultProps: {
-		__TYPE: "AvatarGroup",
-		style: null,
-		className: null,
-		children: undefined,
-	},
-	css: {
-		classes,
-		styles,
-	},
+    defaultProps: {
+        __TYPE: "AvatarGroup",
+        style: null,
+        className: null,
+        children: undefined,
+    },
+    css: {
+        classes,
+        styles,
+    },
 });

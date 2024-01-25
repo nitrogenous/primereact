@@ -7,25 +7,25 @@ import { ProductService } from "../../../../service/ProductService";
 import DeferredDemo from "@/components/demo/DeferredDemo";
 
 export function PresortDoc(props) {
-	const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState([]);
 
-	const formatCurrency = (value) => {
-		return value.toLocaleString("en-US", {
-			style: "currency",
-			currency: "USD",
-		});
-	};
+    const formatCurrency = (value) => {
+        return value.toLocaleString("en-US", {
+            style: "currency",
+            currency: "USD",
+        });
+    };
 
-	const priceBodyTemplate = (product) => {
-		return formatCurrency(product.price);
-	};
+    const priceBodyTemplate = (product) => {
+        return formatCurrency(product.price);
+    };
 
-	const loadDemoData = () => {
-		ProductService.getProductsMini().then((data) => setProducts(data));
-	};
+    const loadDemoData = () => {
+        ProductService.getProductsMini().then((data) => setProducts(data));
+    };
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <DataTable value={products} sortField="price" sortOrder={-1} tableStyle={{ minWidth: '50rem' }}>
     <Column field="code" header="Code" sortable style={{ width: '20%' }}></Column>
     <Column field="name" header="Name" sortable style={{ width: '20%' }}></Column>
@@ -34,7 +34,7 @@ export function PresortDoc(props) {
     <Column field="quantity" header="Quantity" sortable style={{ width: '20%' }}></Column>
 </DataTable>
         `,
-		javascript: `
+        javascript: `
 import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -68,7 +68,7 @@ export default function PresortDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -115,7 +115,7 @@ export default function PresortDemo() {
     );
 }
         `,
-		data: `
+        data: `
 {
     id: '1000',
     code: 'f230fh0g3',
@@ -130,62 +130,62 @@ export default function PresortDemo() {
 },
 ...
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Defining a default <i>sortField</i> and <i>sortOrder</i> displays data
-					as sorted initially in single column sorting. In <i>multiple</i> sort
-					mode,
-					<i>multiSortMeta</i> should be used instead by providing an array of{" "}
-					<i>DataTableSortMeta</i> objects.
-				</p>
-			</DocSectionText>
-			<DeferredDemo onLoad={loadDemoData}>
-				<div className="card">
-					<DataTable
-						value={products}
-						sortField="price"
-						sortOrder={-1}
-						tableStyle={{ minWidth: "50rem" }}
-					>
-						<Column
-							field="code"
-							header="Code"
-							sortable
-							style={{ width: "20%" }}
-						></Column>
-						<Column
-							field="name"
-							header="Name"
-							sortable
-							style={{ width: "20%" }}
-						></Column>
-						<Column
-							field="price"
-							header="Price"
-							body={priceBodyTemplate}
-							sortable
-							style={{ width: "20%" }}
-						></Column>
-						<Column
-							field="category"
-							header="Category"
-							sortable
-							style={{ width: "20%" }}
-						></Column>
-						<Column
-							field="quantity"
-							header="Quantity"
-							sortable
-							style={{ width: "20%" }}
-						></Column>
-					</DataTable>
-				</div>
-			</DeferredDemo>
-			<DocSectionCode code={code} service={["ProductService"]} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Defining a default <i>sortField</i> and <i>sortOrder</i>{" "}
+                    displays data as sorted initially in single column sorting.
+                    In <i>multiple</i> sort mode,
+                    <i>multiSortMeta</i> should be used instead by providing an
+                    array of <i>DataTableSortMeta</i> objects.
+                </p>
+            </DocSectionText>
+            <DeferredDemo onLoad={loadDemoData}>
+                <div className="card">
+                    <DataTable
+                        value={products}
+                        sortField="price"
+                        sortOrder={-1}
+                        tableStyle={{ minWidth: "50rem" }}
+                    >
+                        <Column
+                            field="code"
+                            header="Code"
+                            sortable
+                            style={{ width: "20%" }}
+                        ></Column>
+                        <Column
+                            field="name"
+                            header="Name"
+                            sortable
+                            style={{ width: "20%" }}
+                        ></Column>
+                        <Column
+                            field="price"
+                            header="Price"
+                            body={priceBodyTemplate}
+                            sortable
+                            style={{ width: "20%" }}
+                        ></Column>
+                        <Column
+                            field="category"
+                            header="Category"
+                            sortable
+                            style={{ width: "20%" }}
+                        ></Column>
+                        <Column
+                            field="quantity"
+                            header="Quantity"
+                            sortable
+                            style={{ width: "20%" }}
+                        ></Column>
+                    </DataTable>
+                </div>
+            </DeferredDemo>
+            <DocSectionCode code={code} service={["ProductService"]} />
+        </>
+    );
 }

@@ -7,60 +7,63 @@ import { useFormik } from "formik";
 import { useRef } from "react";
 
 export function FormikDoc(props) {
-	const toast = useRef(null);
+    const toast = useRef(null);
 
-	const show = () => {
-		toast.current.show({
-			severity: "success",
-			summary: "Blog Submitted",
-			detail: "The blog is uploaded",
-		});
-	};
+    const show = () => {
+        toast.current.show({
+            severity: "success",
+            summary: "Blog Submitted",
+            detail: "The blog is uploaded",
+        });
+    };
 
-	const renderHeader = () => {
-		return (
-			<span className="ql-formats">
-				<button className="ql-bold" aria-label="Bold"></button>
-				<button className="ql-italic" aria-label="Italic"></button>
-				<button className="ql-underline" aria-label="Underline"></button>
-			</span>
-		);
-	};
+    const renderHeader = () => {
+        return (
+            <span className="ql-formats">
+                <button className="ql-bold" aria-label="Bold"></button>
+                <button className="ql-italic" aria-label="Italic"></button>
+                <button
+                    className="ql-underline"
+                    aria-label="Underline"
+                ></button>
+            </span>
+        );
+    };
 
-	const header = renderHeader();
+    const header = renderHeader();
 
-	const formik = useFormik({
-		initialValues: {
-			blog: "",
-		},
-		validate: (data) => {
-			const errors = {};
+    const formik = useFormik({
+        initialValues: {
+            blog: "",
+        },
+        validate: (data) => {
+            const errors = {};
 
-			if (!data.blog || data.blog === "\n") {
-				errors.blog = "Content is required.";
-			}
+            if (!data.blog || data.blog === "\n") {
+                errors.blog = "Content is required.";
+            }
 
-			return errors;
-		},
-		onSubmit: (data) => {
-			data.blog && show();
-			formik.resetForm();
-		},
-	});
+            return errors;
+        },
+        onSubmit: (data) => {
+            data.blog && show();
+            formik.resetForm();
+        },
+    });
 
-	const isFormFieldInvalid = (name) =>
-		!!(formik.touched[name] && formik.errors[name]);
+    const isFormFieldInvalid = (name) =>
+        !!(formik.touched[name] && formik.errors[name]);
 
-	const getFormErrorMessage = (name) => {
-		return isFormFieldInvalid(name) ? (
-			<small className="p-error">{formik.errors[name]}</small>
-		) : (
-			<small className="p-error">&nbsp;</small>
-		);
-	};
+    const getFormErrorMessage = (name) => {
+        return isFormFieldInvalid(name) ? (
+            <small className="p-error">{formik.errors[name]}</small>
+        ) : (
+            <small className="p-error">&nbsp;</small>
+        );
+    };
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Toast ref={toast} />
 <Editor
     id="blog"
@@ -75,7 +78,7 @@ export function FormikDoc(props) {
 {getFormErrorMessage('blog')}
 <Button type="submit" label="Save" />
         `,
-		javascript: `
+        javascript: `
 import React, { useRef } from "react";
 import { useFormik } from 'formik';
 import { Editor } from 'primereact/editor';
@@ -150,7 +153,7 @@ export default function FormikDoc() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useRef } from "react";
 import { useFormik } from 'formik';
 import { Editor, EditorTextChangeEvent } from 'primereact/editor';
@@ -225,39 +228,39 @@ export default function FormikDoc() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					<a href="https://formik.org/">Formik</a> is a popular library for
-					handling forms in React.
-				</p>
-			</DocSectionText>
-			<div className="card">
-				<form onSubmit={formik.handleSubmit}>
-					<Toast ref={toast} />
-					<Editor
-						id="blog"
-						name="blog"
-						value={formik.values.blog}
-						headerTemplate={header}
-						onTextChange={(e) => {
-							formik.setFieldValue("blog", e.textValue);
-						}}
-						style={{ height: "320px" }}
-					/>
-					<div className="flex flex-wrap justify-content-between align-items-center gap-3 mt-3">
-						{getFormErrorMessage("blog")}
-						<Button type="submit" label="Save" />
-					</div>
-				</form>
-			</div>
-			<DocSectionCode
-				code={code}
-				dependencies={{ formik: "^2.2.6", quill: "1.3.7" }}
-			/>
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    <a href="https://formik.org/">Formik</a> is a popular
+                    library for handling forms in React.
+                </p>
+            </DocSectionText>
+            <div className="card">
+                <form onSubmit={formik.handleSubmit}>
+                    <Toast ref={toast} />
+                    <Editor
+                        id="blog"
+                        name="blog"
+                        value={formik.values.blog}
+                        headerTemplate={header}
+                        onTextChange={(e) => {
+                            formik.setFieldValue("blog", e.textValue);
+                        }}
+                        style={{ height: "320px" }}
+                    />
+                    <div className="flex flex-wrap justify-content-between align-items-center gap-3 mt-3">
+                        {getFormErrorMessage("blog")}
+                        <Button type="submit" label="Save" />
+                    </div>
+                </form>
+            </div>
+            <DocSectionCode
+                code={code}
+                dependencies={{ formik: "^2.2.6", quill: "1.3.7" }}
+            />
+        </>
+    );
 }

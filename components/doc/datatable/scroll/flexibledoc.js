@@ -9,25 +9,25 @@ import { CustomerService } from "../../../../service/CustomerService";
 import DeferredDemo from "@/components/demo/DeferredDemo";
 
 export function FlexibleScrollDoc(props) {
-	const [customers, setCustomers] = useState([]);
-	const [dialogVisible, setDialogVisible] = useState(false);
+    const [customers, setCustomers] = useState([]);
+    const [dialogVisible, setDialogVisible] = useState(false);
 
-	const loadDemoData = () => {
-		CustomerService.getCustomersMedium().then((data) => setCustomers(data));
-	};
+    const loadDemoData = () => {
+        CustomerService.getCustomersMedium().then((data) => setCustomers(data));
+    };
 
-	const dialogFooterTemplate = () => {
-		return (
-			<Button
-				label="Ok"
-				icon="pi pi-check"
-				onClick={() => setDialogVisible(false)}
-			/>
-		);
-	};
+    const dialogFooterTemplate = () => {
+        return (
+            <Button
+                label="Ok"
+                icon="pi pi-check"
+                onClick={() => setDialogVisible(false)}
+            />
+        );
+    };
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Button label="Show" icon="pi pi-external-link" onClick={() => setDialogVisible(true)} />
 <Dialog header="Flex Scroll" visible={dialogVisible} style={{ width: '75vw' }} maximizable
         modal contentStyle={{ height: '300px' }} onHide={() => setDialogVisible(false)} footer={dialogFooterTemplate}>
@@ -39,7 +39,7 @@ export function FlexibleScrollDoc(props) {
     </DataTable>
 </Dialog>
         `,
-		javascript: `
+        javascript: `
 import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -75,7 +75,7 @@ export default function FlexibleScrollDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -124,7 +124,7 @@ export default function FlexibleScrollDemo() {
     );
 }
         `,
-		data: `
+        data: `
 {
     id: 1000,
     name: 'James Butt',
@@ -145,54 +145,57 @@ export default function FlexibleScrollDemo() {
 },
 ...
        `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Flex scroll feature makes the scrollable viewport section dynamic
-					instead of a fixed value so that it can grow or shrink relative to the
-					parent size of the table. Click the button below to display a
-					maximizable Dialog where data viewport adjusts itself according to the
-					size changes.
-				</p>
-			</DocSectionText>
-			<DeferredDemo onLoad={loadDemoData}>
-				<div className="card flex justify-content-center">
-					<Button
-						label="Show"
-						icon="pi pi-external-link"
-						onClick={() => setDialogVisible(true)}
-					/>
-					<Dialog
-						header="Flex Scroll"
-						visible={dialogVisible}
-						style={{ width: "75vw" }}
-						maximizable
-						modal
-						contentStyle={{ height: "300px" }}
-						onHide={() => setDialogVisible(false)}
-						footer={dialogFooterTemplate}
-					>
-						<DataTable
-							value={customers}
-							scrollable
-							scrollHeight="flex"
-							tableStyle={{ minWidth: "50rem" }}
-						>
-							<Column field="name" header="Name"></Column>
-							<Column field="country.name" header="Country"></Column>
-							<Column
-								field="representative.name"
-								header="Representative"
-							></Column>
-							<Column field="company" header="Company"></Column>
-						</DataTable>
-					</Dialog>
-				</div>
-			</DeferredDemo>
-			<DocSectionCode code={code} service={["CustomerService"]} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Flex scroll feature makes the scrollable viewport section
+                    dynamic instead of a fixed value so that it can grow or
+                    shrink relative to the parent size of the table. Click the
+                    button below to display a maximizable Dialog where data
+                    viewport adjusts itself according to the size changes.
+                </p>
+            </DocSectionText>
+            <DeferredDemo onLoad={loadDemoData}>
+                <div className="card flex justify-content-center">
+                    <Button
+                        label="Show"
+                        icon="pi pi-external-link"
+                        onClick={() => setDialogVisible(true)}
+                    />
+                    <Dialog
+                        header="Flex Scroll"
+                        visible={dialogVisible}
+                        style={{ width: "75vw" }}
+                        maximizable
+                        modal
+                        contentStyle={{ height: "300px" }}
+                        onHide={() => setDialogVisible(false)}
+                        footer={dialogFooterTemplate}
+                    >
+                        <DataTable
+                            value={customers}
+                            scrollable
+                            scrollHeight="flex"
+                            tableStyle={{ minWidth: "50rem" }}
+                        >
+                            <Column field="name" header="Name"></Column>
+                            <Column
+                                field="country.name"
+                                header="Country"
+                            ></Column>
+                            <Column
+                                field="representative.name"
+                                header="Representative"
+                            ></Column>
+                            <Column field="company" header="Company"></Column>
+                        </DataTable>
+                    </Dialog>
+                </div>
+            </DeferredDemo>
+            <DocSectionCode code={code} service={["CustomerService"]} />
+        </>
+    );
 }

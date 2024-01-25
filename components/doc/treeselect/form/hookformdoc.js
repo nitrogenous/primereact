@@ -9,40 +9,40 @@ import { Controller, useForm } from "react-hook-form";
 import { NodeService } from "../../../../service/NodeService";
 
 export function HookFormDoc(props) {
-	const [nodes, setNodes] = useState(null);
-	const defaultValues = { value: null };
-	const form = useForm({ defaultValues });
-	const errors = form.formState.errors;
-	const toast = useRef(null);
+    const [nodes, setNodes] = useState(null);
+    const defaultValues = { value: null };
+    const form = useForm({ defaultValues });
+    const errors = form.formState.errors;
+    const toast = useRef(null);
 
-	useEffect(() => {
-		NodeService.getTreeNodes().then((data) => setNodes(data));
-	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(() => {
+        NodeService.getTreeNodes().then((data) => setNodes(data));
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-	const show = () => {
-		toast.current.show({
-			severity: "success",
-			summary: "Form Submitted",
-			detail: "The form is successfully submitted.",
-		});
-	};
+    const show = () => {
+        toast.current.show({
+            severity: "success",
+            summary: "Form Submitted",
+            detail: "The form is successfully submitted.",
+        });
+    };
 
-	const onSubmit = (data) => {
-		data.value && show();
+    const onSubmit = (data) => {
+        data.value && show();
 
-		form.reset();
-	};
+        form.reset();
+    };
 
-	const getFormErrorMessage = (name) => {
-		return errors[name] ? (
-			<small className="p-error">{errors[name].message}</small>
-		) : (
-			<small className="p-error">&nbsp;</small>
-		);
-	};
+    const getFormErrorMessage = (name) => {
+        return errors[name] ? (
+            <small className="p-error">{errors[name].message}</small>
+        ) : (
+            <small className="p-error">&nbsp;</small>
+        );
+    };
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Toast ref={toast} />
 <Controller
     name="value"
@@ -57,7 +57,7 @@ export function HookFormDoc(props) {
 />
 <Button label="Submit" type="submit" icon="pi pi-check" />
         `,
-		javascript: `
+        javascript: `
 import React, { useEffect, useState, useRef } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Button } from 'primereact/button';
@@ -112,7 +112,7 @@ export default function HookFormDoc() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useEffect, useState, useRef } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Button } from 'primereact/button';
@@ -168,7 +168,7 @@ export default function HookFormDoc() {
     )
 }
         `,
-		data: `
+        data: `
 /* NodeService */
 {
     key: '0',
@@ -197,51 +197,51 @@ export default function HookFormDoc() {
 },
 ...
 `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					<a href="https://react-hook-form.com/">React Hook Form</a> is another
-					popular React library to handle forms.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<form
-					onSubmit={form.handleSubmit(onSubmit)}
-					className="flex flex-column align-items-center gap-2"
-				>
-					<Toast ref={toast} />
-					<Controller
-						name="value"
-						control={form.control}
-						rules={{ required: "Value is required." }}
-						render={({ field, fieldState }) => (
-							<>
-								<TreeSelect
-									id={field.name}
-									value={field.value}
-									onChange={field.onChange}
-									inputRef={field.ref}
-									options={nodes}
-									placeholder="Select Item"
-									className={classNames("w-full md:w-20rem", {
-										"p-invalid": fieldState.error,
-									})}
-								/>
-								{getFormErrorMessage(field.name)}
-							</>
-						)}
-					/>
-					<Button label="Submit" type="submit" icon="pi pi-check" />
-				</form>
-			</div>
-			<DocSectionCode
-				code={code}
-				service={["NodeService"]}
-				dependencies={{ "react-hook-form": "^7.39.4" }}
-			/>
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    <a href="https://react-hook-form.com/">React Hook Form</a>{" "}
+                    is another popular React library to handle forms.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="flex flex-column align-items-center gap-2"
+                >
+                    <Toast ref={toast} />
+                    <Controller
+                        name="value"
+                        control={form.control}
+                        rules={{ required: "Value is required." }}
+                        render={({ field, fieldState }) => (
+                            <>
+                                <TreeSelect
+                                    id={field.name}
+                                    value={field.value}
+                                    onChange={field.onChange}
+                                    inputRef={field.ref}
+                                    options={nodes}
+                                    placeholder="Select Item"
+                                    className={classNames("w-full md:w-20rem", {
+                                        "p-invalid": fieldState.error,
+                                    })}
+                                />
+                                {getFormErrorMessage(field.name)}
+                            </>
+                        )}
+                    />
+                    <Button label="Submit" type="submit" icon="pi pi-check" />
+                </form>
+            </div>
+            <DocSectionCode
+                code={code}
+                service={["NodeService"]}
+                dependencies={{ "react-hook-form": "^7.39.4" }}
+            />
+        </>
+    );
 }

@@ -1,5 +1,5 @@
 const services = {
-	CarService: `export const CarService = {
+    CarService: `export const CarService = {
     brands: ['Vapid', 'Carson', 'Kitano', 'Dabver', 'Ibex', 'Morello', 'Akira', 'Titan', 'Dover', 'Norma'],
 
     colors: ['Black', 'White', 'Red', 'Blue', 'Silver', 'Green', 'Yellow'],
@@ -38,7 +38,7 @@ const services = {
     }
 };
     `,
-	CountryService: `export const CountryService = {
+    CountryService: `export const CountryService = {
     getData() {
         return [
             { name: 'Afghanistan', code: 'AF' },
@@ -291,7 +291,7 @@ const services = {
     }
 };
     `,
-	CustomerService: `export const CustomerService = {
+    CustomerService: `export const CustomerService = {
         getData() {
             return [
                 {
@@ -9324,7 +9324,7 @@ const services = {
         }
     };
     `,
-	EventService: `export const EventService = {
+    EventService: `export const EventService = {
         getData() {
             return [
                 { id: 1, title: 'All Day Event', start: '2017-02-01' },
@@ -9347,7 +9347,7 @@ const services = {
         }
     };
     `,
-	NodeService: `export const NodeService = {
+    NodeService: `export const NodeService = {
         getTreeNodesData() {
             return [
                 {
@@ -9779,7 +9779,7 @@ const services = {
         }
     };
     `,
-	PhotoService: `export const PhotoService = {
+    PhotoService: `export const PhotoService = {
         getData() {
             return [
                 {
@@ -9881,7 +9881,7 @@ const services = {
     };
 
     `,
-	ProductService: `export const ProductService = {
+    ProductService: `export const ProductService = {
         getProductsData() {
             return [
                 {

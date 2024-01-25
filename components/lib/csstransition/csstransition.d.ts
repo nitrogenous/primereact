@@ -16,13 +16,13 @@ import { CSSTransitionProps as ReactCSSTransitionProps } from "react-transition-
  * @group Properties
  */
 export type CSSTransitionProps<
-	Ref extends undefined | HTMLElement = undefined,
+    Ref extends undefined | HTMLElement = undefined,
 > = ReactCSSTransitionProps<Ref> & {
-	/**
-	 * When present, it specifies that the component should be disabled.
-	 * @defaultValue false
-	 */
-	disabled?: boolean | undefined;
+    /**
+     * When present, it specifies that the component should be disabled.
+     * @defaultValue false
+     */
+    disabled?: boolean | undefined;
 };
 
 /**
@@ -38,5 +38,5 @@ export type CSSTransitionProps<
  * @group Component
  */
 export declare class CSSTransition<
-	Ref extends undefined | HTMLElement,
+    Ref extends undefined | HTMLElement,
 > extends React.Component<CSSTransitionProps<Ref>, any> {}

@@ -8,44 +8,44 @@ import { useEffect, useRef, useState } from "react";
 import { NodeService } from "../../../service/NodeService";
 
 export function ContextMenuDoc(props) {
-	const [nodes, setNodes] = useState([]);
-	const [expandedKeys, setExpandedKeys] = useState(null);
-	const [selectedNodeKey, setSelectedNodeKey] = useState(null);
-	const toast = useRef(null);
-	const cm = useRef(null);
-	const menu = [
-		{
-			label: "View Key",
-			icon: "pi pi-search",
-			command: () => {
-				toast.current.show({
-					severity: "success",
-					summary: "Node Key",
-					detail: selectedNodeKey,
-				});
-			},
-		},
-		{
-			label: "Toggle",
-			icon: "pi pi-sort",
-			command: () => {
-				const _expandedKeys = { ...expandedKeys };
+    const [nodes, setNodes] = useState([]);
+    const [expandedKeys, setExpandedKeys] = useState(null);
+    const [selectedNodeKey, setSelectedNodeKey] = useState(null);
+    const toast = useRef(null);
+    const cm = useRef(null);
+    const menu = [
+        {
+            label: "View Key",
+            icon: "pi pi-search",
+            command: () => {
+                toast.current.show({
+                    severity: "success",
+                    summary: "Node Key",
+                    detail: selectedNodeKey,
+                });
+            },
+        },
+        {
+            label: "Toggle",
+            icon: "pi pi-sort",
+            command: () => {
+                const _expandedKeys = { ...expandedKeys };
 
-				if (_expandedKeys[selectedNodeKey])
-					delete _expandedKeys[selectedNodeKey];
-				else _expandedKeys[selectedNodeKey] = true;
+                if (_expandedKeys[selectedNodeKey])
+                    delete _expandedKeys[selectedNodeKey];
+                else _expandedKeys[selectedNodeKey] = true;
 
-				setExpandedKeys(_expandedKeys);
-			},
-		},
-	];
+                setExpandedKeys(_expandedKeys);
+            },
+        },
+    ];
 
-	useEffect(() => {
-		NodeService.getTreeTableNodes().then((data) => setNodes(data));
-	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(() => {
+        NodeService.getTreeTableNodes().then((data) => setNodes(data));
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <ContextMenu model={menu} ref={cm} onHide={() => setSelectedNodeKey(null)} />
 <TreeTable value={nodes} expandedKeys={expandedKeys} onToggle={(e) => setExpandedKeys(e.value)} contextMenuSelectionKey={selectedNodeKey}
     onContextMenuSelectionChange={(event) => setSelectedNodeKey(event.value)} onContextMenu={(event) => cm.current.show(event.originalEvent)} tableStyle={{ minWidth: '50rem' }}>
@@ -54,7 +54,7 @@ export function ContextMenuDoc(props) {
     <Column field="type" header="Type"></Column>
 </TreeTable>
         `,
-		javascript: `
+        javascript: `
 import React, { useState, useEffect, useRef } from 'react';
 import { TreeTable } from 'primereact/treetable';
 import { ContextMenu } from 'primereact/contextmenu';
@@ -109,7 +109,7 @@ export default function ContextMenuDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState, useEffect, useRef } from 'react';
 import { TreeTable } from 'primereact/treetable';
 import { ContextMenu } from 'primereact/contextmenu';
@@ -165,7 +165,7 @@ export default function ContextMenuDemo() {
     )
 }
         `,
-		data: `
+        data: `
 {
     key: '0',
     label: 'Documents',
@@ -193,42 +193,46 @@ export default function ContextMenuDemo() {
 },
 ...
 `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					TreeTable has exclusive integration with ContextMenu using the{" "}
-					<i>onContextMenu</i> event to open a menu on right click alont with
-					<i>contextMenuSelection</i> and <i>onContextMenuSelectionChange</i>{" "}
-					properties to control the selection via the menu.
-				</p>
-			</DocSectionText>
-			<div className="card">
-				<Toast ref={toast} />
-				<ContextMenu
-					model={menu}
-					ref={cm}
-					onHide={() => setSelectedNodeKey(null)}
-				/>
-				<TreeTable
-					value={nodes}
-					expandedKeys={expandedKeys}
-					onToggle={(e) => setExpandedKeys(e.value)}
-					contextMenuSelectionKey={selectedNodeKey}
-					onContextMenuSelectionChange={(event) =>
-						setSelectedNodeKey(event.value)
-					}
-					onContextMenu={(event) => cm.current.show(event.originalEvent)}
-					tableStyle={{ minWidth: "50rem" }}
-				>
-					<Column field="name" header="Name" expander></Column>
-					<Column field="size" header="Size"></Column>
-					<Column field="type" header="Type"></Column>
-				</TreeTable>
-			</div>
-			<DocSectionCode code={code} service={["NodeService"]} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    TreeTable has exclusive integration with ContextMenu using
+                    the <i>onContextMenu</i> event to open a menu on right click
+                    alont with
+                    <i>contextMenuSelection</i> and{" "}
+                    <i>onContextMenuSelectionChange</i> properties to control
+                    the selection via the menu.
+                </p>
+            </DocSectionText>
+            <div className="card">
+                <Toast ref={toast} />
+                <ContextMenu
+                    model={menu}
+                    ref={cm}
+                    onHide={() => setSelectedNodeKey(null)}
+                />
+                <TreeTable
+                    value={nodes}
+                    expandedKeys={expandedKeys}
+                    onToggle={(e) => setExpandedKeys(e.value)}
+                    contextMenuSelectionKey={selectedNodeKey}
+                    onContextMenuSelectionChange={(event) =>
+                        setSelectedNodeKey(event.value)
+                    }
+                    onContextMenu={(event) =>
+                        cm.current.show(event.originalEvent)
+                    }
+                    tableStyle={{ minWidth: "50rem" }}
+                >
+                    <Column field="name" header="Name" expander></Column>
+                    <Column field="size" header="Size"></Column>
+                    <Column field="type" header="Type"></Column>
+                </TreeTable>
+            </div>
+            <DocSectionCode code={code} service={["NodeService"]} />
+        </>
+    );
 }

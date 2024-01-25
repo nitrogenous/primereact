@@ -6,32 +6,32 @@ import { useEffect, useState } from "react";
 import { NodeService } from "../../../service/NodeService";
 
 export function ConditionalStyleDoc(props) {
-	const [nodes, setNodes] = useState([]);
+    const [nodes, setNodes] = useState([]);
 
-	useEffect(() => {
-		NodeService.getTreeTableNodes().then((data) => setNodes(data));
-	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(() => {
+        NodeService.getTreeTableNodes().then((data) => setNodes(data));
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-	const sizeTemplate = (node) => {
-		const size = node.data.size;
-		const fontWeight = parseInt(size, 10) > 75 ? "bold" : "normal";
+    const sizeTemplate = (node) => {
+        const size = node.data.size;
+        const fontWeight = parseInt(size, 10) > 75 ? "bold" : "normal";
 
-		return <span style={{ fontWeight: fontWeight }}>{size}</span>;
-	};
+        return <span style={{ fontWeight: fontWeight }}>{size}</span>;
+    };
 
-	const rowClassName = (node) => {
-		return { "p-highlight": node.children && node.children.length === 3 };
-	};
+    const rowClassName = (node) => {
+        return { "p-highlight": node.children && node.children.length === 3 };
+    };
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <TreeTable value={nodes} rowClassName={rowClassName} tableStyle={{ minWidth: '50rem' }}>
     <Column field="name" header="Name" expander></Column>
     <Column field="size" header="Size" body={sizeTemplate}></Column>
     <Column field="type" header="Type"></Column>
 </TreeTable>
         `,
-		javascript: `
+        javascript: `
 import React, { useState, useEffect } from 'react';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
@@ -66,7 +66,7 @@ export default function ConditionalStyleDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState, useEffect } from 'react';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
@@ -102,7 +102,7 @@ export default function ConditionalStyleDemo() {
     );
 }
         `,
-		data: `
+        data: `
 {
     key: '0',
     label: 'Documents',
@@ -130,30 +130,34 @@ export default function ConditionalStyleDemo() {
 },
 ...
 `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Particular rows and cells can be styled based on conditions. The{" "}
-					<i>rowClassName</i> receives a row data as a parameter to return a
-					style class for a row whereas cells are customized using the{" "}
-					<i>body</i> template.
-				</p>
-			</DocSectionText>
-			<div className="card">
-				<TreeTable
-					value={nodes}
-					rowClassName={rowClassName}
-					tableStyle={{ minWidth: "50rem" }}
-				>
-					<Column field="name" header="Name" expander></Column>
-					<Column field="size" header="Size" body={sizeTemplate}></Column>
-					<Column field="type" header="Type"></Column>
-				</TreeTable>
-			</div>
-			<DocSectionCode code={code} service={["NodeService"]} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Particular rows and cells can be styled based on conditions.
+                    The <i>rowClassName</i> receives a row data as a parameter
+                    to return a style class for a row whereas cells are
+                    customized using the <i>body</i> template.
+                </p>
+            </DocSectionText>
+            <div className="card">
+                <TreeTable
+                    value={nodes}
+                    rowClassName={rowClassName}
+                    tableStyle={{ minWidth: "50rem" }}
+                >
+                    <Column field="name" header="Name" expander></Column>
+                    <Column
+                        field="size"
+                        header="Size"
+                        body={sizeTemplate}
+                    ></Column>
+                    <Column field="type" header="Type"></Column>
+                </TreeTable>
+            </div>
+            <DocSectionCode code={code} service={["NodeService"]} />
+        </>
+    );
 }

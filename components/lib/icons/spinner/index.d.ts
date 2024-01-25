@@ -17,6 +17,6 @@ export interface SpinnerIconProps extends IconBaseProps {}
  * @group Component
  */
 export declare class SpinnerIcon extends React.Component<
-	SpinnerIconProps,
-	any
+    SpinnerIconProps,
+    any
 > {}

@@ -4,17 +4,17 @@ import { MultiSelect } from "@/components/lib/multiselect/MultiSelect";
 import { useState } from "react";
 
 export function PTDoc(props) {
-	const [selectedCities, setSelectedCities] = useState(null);
-	const cities = [
-		{ name: "New York", code: "NY" },
-		{ name: "Rome", code: "RM" },
-		{ name: "London", code: "LDN" },
-		{ name: "Istanbul", code: "IST" },
-		{ name: "Paris", code: "PRS" },
-	];
+    const [selectedCities, setSelectedCities] = useState(null);
+    const cities = [
+        { name: "New York", code: "NY" },
+        { name: "Rome", code: "RM" },
+        { name: "London", code: "LDN" },
+        { name: "Istanbul", code: "IST" },
+        { name: "Paris", code: "PRS" },
+    ];
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <MultiSelect
     value={selectedCities}
     onChange={(e) => setSelectedCities(e.value)}
@@ -30,7 +30,7 @@ export function PTDoc(props) {
     }}
 />
         `,
-		javascript: `
+        javascript: `
 import React, { useState } from "react";
 import { MultiSelect } from 'primereact/multiselect';
 
@@ -64,7 +64,7 @@ export default function PTDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from "react";
 import { MultiSelect, MultiSelectChangeEvent } from 'primereact/multiselect';
 
@@ -103,30 +103,32 @@ export default function PTDemo() {
     );
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}></DocSectionText>
-			<div className="card flex justify-content-center">
-				<MultiSelect
-					value={selectedCities}
-					onChange={(e) => setSelectedCities(e.value)}
-					showClear={true}
-					options={cities}
-					optionLabel="name"
-					placeholder="Select Cities"
-					maxSelectedLabels={3}
-					inputId="multiselect"
-					pt={{
-						root: { className: "w-full md:w-14rem" },
-						item: ({ context }) => ({
-							className: context.selected ? "bg-blue-100" : undefined,
-						}),
-					}}
-				/>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}></DocSectionText>
+            <div className="card flex justify-content-center">
+                <MultiSelect
+                    value={selectedCities}
+                    onChange={(e) => setSelectedCities(e.value)}
+                    showClear={true}
+                    options={cities}
+                    optionLabel="name"
+                    placeholder="Select Cities"
+                    maxSelectedLabels={3}
+                    inputId="multiselect"
+                    pt={{
+                        root: { className: "w-full md:w-14rem" },
+                        item: ({ context }) => ({
+                            className: context.selected
+                                ? "bg-blue-100"
+                                : undefined,
+                        }),
+                    }}
+                />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

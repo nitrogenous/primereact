@@ -8,43 +8,43 @@ import { useRef } from "react";
 import { Controller, useForm } from "react-hook-form";
 
 export function HookFormDoc(props) {
-	const toast = useRef(null);
+    const toast = useRef(null);
 
-	const show = (data) => {
-		toast.current.show({
-			severity: "success",
-			summary: "Form Submitted",
-			detail: `#${data.color.toUpperCase()}`,
-		});
-	};
+    const show = (data) => {
+        toast.current.show({
+            severity: "success",
+            summary: "Form Submitted",
+            detail: `#${data.color.toUpperCase()}`,
+        });
+    };
 
-	const defaultValues = {
-		color: "",
-	};
+    const defaultValues = {
+        color: "",
+    };
 
-	const {
-		control,
-		formState: { errors },
-		handleSubmit,
-		reset,
-	} = useForm({ defaultValues });
+    const {
+        control,
+        formState: { errors },
+        handleSubmit,
+        reset,
+    } = useForm({ defaultValues });
 
-	const onSubmit = (data) => {
-		data.color && show(data);
+    const onSubmit = (data) => {
+        data.color && show(data);
 
-		reset();
-	};
+        reset();
+    };
 
-	const getFormErrorMessage = (name) => {
-		return errors[name] ? (
-			<small className="p-error">{errors[name].message}</small>
-		) : (
-			<small className="p-error">&nbsp;</small>
-		);
-	};
+    const getFormErrorMessage = (name) => {
+        return errors[name] ? (
+            <small className="p-error">{errors[name].message}</small>
+        ) : (
+            <small className="p-error">&nbsp;</small>
+        );
+    };
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Toast ref={toast} />
 <Controller
 name="color"
@@ -55,7 +55,7 @@ control={control}
     {getFormErrorMessage('color')}
 <Button type="submit" label="Submit" />
         `,
-		javascript: `
+        javascript: `
 import React, { useRef } from "react";
 import { useForm, Controller } from 'react-hook-form';
 import { ColorPicker } from 'primereact/colorpicker';
@@ -108,7 +108,7 @@ export default function HookFormDoc() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useRef } from "react";
 import { useForm, Controller } from 'react-hook-form';
 import { ColorPicker } from 'primereact/colorpicker';
@@ -161,44 +161,46 @@ export default function HookFormDoc() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					<a href="https://react-hook-form.com/">React Hook Form</a> is another
-					popular React library to handle forms.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<form
-					onSubmit={handleSubmit(onSubmit)}
-					className="flex flex-column align-items-center gap-2"
-				>
-					<Toast ref={toast} />
-					<Controller
-						name="color"
-						control={control}
-						rules={{ required: "Color is required." }}
-						render={({ field, fieldState }) => (
-							<ColorPicker
-								name="color"
-								control={control}
-								value={field.value}
-								className={classNames({ "p-invalid": fieldState.error })}
-								onChange={(e) => field.onChange(e.value)}
-							/>
-						)}
-					/>
-					{getFormErrorMessage("color")}
-					<Button type="submit" label="Submit" />
-				</form>
-			</div>
-			<DocSectionCode
-				code={code}
-				dependencies={{ "react-hook-form": "^7.39.4" }}
-			/>
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    <a href="https://react-hook-form.com/">React Hook Form</a>{" "}
+                    is another popular React library to handle forms.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <form
+                    onSubmit={handleSubmit(onSubmit)}
+                    className="flex flex-column align-items-center gap-2"
+                >
+                    <Toast ref={toast} />
+                    <Controller
+                        name="color"
+                        control={control}
+                        rules={{ required: "Color is required." }}
+                        render={({ field, fieldState }) => (
+                            <ColorPicker
+                                name="color"
+                                control={control}
+                                value={field.value}
+                                className={classNames({
+                                    "p-invalid": fieldState.error,
+                                })}
+                                onChange={(e) => field.onChange(e.value)}
+                            />
+                        )}
+                    />
+                    {getFormErrorMessage("color")}
+                    <Button type="submit" label="Submit" />
+                </form>
+            </div>
+            <DocSectionCode
+                code={code}
+                dependencies={{ "react-hook-form": "^7.39.4" }}
+            />
+        </>
+    );
 }

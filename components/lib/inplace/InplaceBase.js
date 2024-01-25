@@ -2,16 +2,16 @@ import { ComponentBase } from "../componentbase/ComponentBase";
 import { classNames } from "../utils/Utils";
 
 const classes = {
-	display: ({ props }) =>
-		classNames("p-inplace-display", {
-			"p-disabled": props.disabled,
-		}),
-	root: ({ props }) =>
-		classNames("p-inplace p-component", {
-			"p-inplace-closable": props.closable,
-		}),
-	closeButton: "p-inplace-content-close",
-	content: "p-inplace-content",
+    display: ({ props }) =>
+        classNames("p-inplace-display", {
+            "p-disabled": props.disabled,
+        }),
+    root: ({ props }) =>
+        classNames("p-inplace p-component", {
+            "p-inplace-closable": props.closable,
+        }),
+    closeButton: "p-inplace-content-close",
+    content: "p-inplace-content",
 };
 
 const styles = `
@@ -41,37 +41,37 @@ const styles = `
 `;
 
 export const InplaceDisplayBase = ComponentBase.extend({
-	defaultProps: {
-		__TYPE: "InplaceDisplay",
-		children: undefined,
-	},
+    defaultProps: {
+        __TYPE: "InplaceDisplay",
+        children: undefined,
+    },
 });
 
 export const InplaceContentBase = ComponentBase.extend({
-	defaultProps: {
-		__TYPE: "InplaceContent",
-		children: undefined,
-	},
+    defaultProps: {
+        __TYPE: "InplaceContent",
+        children: undefined,
+    },
 });
 
 export const InplaceBase = ComponentBase.extend({
-	defaultProps: {
-		__TYPE: "Inplace",
-		style: null,
-		className: null,
-		active: false,
-		closable: false,
-		closeIcon: null,
-		disabled: false,
-		tabIndex: 0,
-		ariaLabel: null,
-		onOpen: null,
-		onClose: null,
-		onToggle: null,
-		children: undefined,
-	},
-	css: {
-		classes,
-		styles,
-	},
+    defaultProps: {
+        __TYPE: "Inplace",
+        style: null,
+        className: null,
+        active: false,
+        closable: false,
+        closeIcon: null,
+        disabled: false,
+        tabIndex: 0,
+        ariaLabel: null,
+        onOpen: null,
+        onClose: null,
+        onToggle: null,
+        children: undefined,
+    },
+    css: {
+        classes,
+        styles,
+    },
 });

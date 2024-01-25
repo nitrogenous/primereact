@@ -3,14 +3,14 @@ import { DocSectionText } from "@/components/doc/common/docsectiontext";
 import { Ripple } from "@/components/lib/ripple/Ripple";
 
 export function BasicDoc(props) {
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <div className="bg-primary flex select-none justify-content-center align-items-center shadow-2 border-round p-6 font-bold p-ripple">
     Click Me
     <Ripple />
 </div>
         `,
-		javascript: `
+        javascript: `
 import React from 'react';
 import { Ripple } from 'primereact/ripple';
 
@@ -25,7 +25,7 @@ export default function BasicDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React from 'react';
 import { Ripple } from 'primereact/ripple';
 
@@ -40,23 +40,23 @@ export default function BasicDemo() {
     );
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Ripple is enabled by adding the component as a child and applying{" "}
-					<i>p-ripple</i> class to the element.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center align-items-center">
-				<div className="bg-primary flex select-none justify-content-center align-items-center shadow-2 border-round p-6 font-bold p-ripple">
-					Click Me
-					<Ripple />
-				</div>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Ripple is enabled by adding the component as a child and
+                    applying <i>p-ripple</i> class to the element.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center align-items-center">
+                <div className="bg-primary flex select-none justify-content-center align-items-center shadow-2 border-round p-6 font-bold p-ripple">
+                    Click Me
+                    <Ripple />
+                </div>
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

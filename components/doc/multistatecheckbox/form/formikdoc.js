@@ -8,60 +8,60 @@ import { useFormik } from "formik";
 import { useRef } from "react";
 
 export function FormikDoc(props) {
-	const toast = useRef(null);
+    const toast = useRef(null);
 
-	const show = () => {
-		toast.current.show({
-			severity: "success",
-			summary: "Form Submitted",
-			detail: formik.values.item,
-		});
-	};
+    const show = () => {
+        toast.current.show({
+            severity: "success",
+            summary: "Form Submitted",
+            detail: formik.values.item,
+        });
+    };
 
-	const options = [
-		{ value: "public", icon: "pi pi-globe" },
-		{ value: "protected", icon: "pi pi-lock-open" },
-		{ value: "private", icon: "pi pi-lock" },
-	];
+    const options = [
+        { value: "public", icon: "pi pi-globe" },
+        { value: "protected", icon: "pi pi-lock-open" },
+        { value: "private", icon: "pi pi-lock" },
+    ];
 
-	const formik = useFormik({
-		initialValues: {
-			item: "",
-		},
-		validate: (data) => {
-			const errors = {};
+    const formik = useFormik({
+        initialValues: {
+            item: "",
+        },
+        validate: (data) => {
+            const errors = {};
 
-			if (!data.item) {
-				errors.item = "Level is required.";
-			}
+            if (!data.item) {
+                errors.item = "Level is required.";
+            }
 
-			return errors;
-		},
-		onSubmit: (data) => {
-			data && show();
-			formik.resetForm();
-		},
-	});
+            return errors;
+        },
+        onSubmit: (data) => {
+            data && show();
+            formik.resetForm();
+        },
+    });
 
-	const isFormFieldInvalid = (name) =>
-		!!(formik.touched[name] && formik.errors[name]);
+    const isFormFieldInvalid = (name) =>
+        !!(formik.touched[name] && formik.errors[name]);
 
-	const getFormErrorMessage = (name) => {
-		return isFormFieldInvalid(name) ? (
-			<small className="p-error">{formik.errors[name]}</small>
-		) : (
-			<small className="p-error">&nbsp;</small>
-		);
-	};
+    const getFormErrorMessage = (name) => {
+        return isFormFieldInvalid(name) ? (
+            <small className="p-error">{formik.errors[name]}</small>
+        ) : (
+            <small className="p-error">&nbsp;</small>
+        );
+    };
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <label htmlFor="item" className={classNames('mr-2', { 'p-error': formik.errors.item })}>Level</label>
 <MultiStateCheckbox id="item" name="item" value={formik.values.item} onChange={(e) => { formik.setFieldValue('item', e.value) }} options={options} optionValue="value" className={classNames({ 'p-invalid': formik.errors.item })} />
 {getFormErrorMessage('item')}
 <Button label="Submit" type="submit" icon="pi pi-check" />
         `,
-		javascript: `
+        javascript: `
 import React, { useRef } from "react";
 import { useFormik } from 'formik';
 import { MultiStateCheckbox } from 'primereact/multistatecheckbox';
@@ -132,7 +132,7 @@ export default function FormikDoc() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useRef } from "react";
 import { useFormik } from 'formik';
 import { MultiStateCheckbox } from 'primereact/multistatecheckbox';
@@ -208,44 +208,48 @@ export default function FormikDoc() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					<a href="https://formik.org/">Formik</a> is a popular library for
-					handling forms in React.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<form
-					onSubmit={formik.handleSubmit}
-					className="flex flex-column align-items-center gap-2"
-				>
-					<Toast ref={toast} />
-					<label
-						htmlFor="item"
-						className={classNames("mr-2", { "p-error": formik.errors.item })}
-					>
-						Level
-					</label>
-					<MultiStateCheckbox
-						id="item"
-						name="item"
-						value={formik.values.item}
-						onChange={(e) => {
-							formik.setFieldValue("item", e.value);
-						}}
-						options={options}
-						optionValue="value"
-						className={classNames({ "p-invalid": formik.errors.item })}
-					/>
-					{getFormErrorMessage("item")}
-					<Button label="Submit" type="submit" icon="pi pi-check" />
-				</form>
-			</div>
-			<DocSectionCode code={code} dependencies={{ formik: "^2.2.6" }} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    <a href="https://formik.org/">Formik</a> is a popular
+                    library for handling forms in React.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <form
+                    onSubmit={formik.handleSubmit}
+                    className="flex flex-column align-items-center gap-2"
+                >
+                    <Toast ref={toast} />
+                    <label
+                        htmlFor="item"
+                        className={classNames("mr-2", {
+                            "p-error": formik.errors.item,
+                        })}
+                    >
+                        Level
+                    </label>
+                    <MultiStateCheckbox
+                        id="item"
+                        name="item"
+                        value={formik.values.item}
+                        onChange={(e) => {
+                            formik.setFieldValue("item", e.value);
+                        }}
+                        options={options}
+                        optionValue="value"
+                        className={classNames({
+                            "p-invalid": formik.errors.item,
+                        })}
+                    />
+                    {getFormErrorMessage("item")}
+                    <Button label="Submit" type="submit" icon="pi pi-check" />
+                </form>
+            </div>
+            <DocSectionCode code={code} dependencies={{ formik: "^2.2.6" }} />
+        </>
+    );
 }

@@ -6,59 +6,59 @@ import { useRouter } from "next/router";
 import { useRef } from "react";
 
 export function PTDoc(props) {
-	const toast = useRef(null);
-	const router = useRouter();
-	const items = [
-		{
-			label: "Options",
-			items: [
-				{
-					label: "Update",
-					icon: "pi pi-refresh",
-					command: () => {
-						toast.current.show({
-							severity: "success",
-							summary: "Updated",
-							detail: "Data Updated",
-							life: 3000,
-						});
-					},
-				},
-				{
-					label: "Delete",
-					icon: "pi pi-times",
-					command: () => {
-						toast.current.show({
-							severity: "warn",
-							summary: "Delete",
-							detail: "Data Deleted",
-							life: 3000,
-						});
-					},
-				},
-			],
-		},
-		{
-			label: "Navigate",
-			items: [
-				{
-					label: "React Website",
-					icon: "pi pi-external-link",
-					url: "https://reactjs.org/",
-				},
-				{
-					label: "Router",
-					icon: "pi pi-upload",
-					command: () => {
-						router.push("/fileupload");
-					},
-				},
-			],
-		},
-	];
+    const toast = useRef(null);
+    const router = useRouter();
+    const items = [
+        {
+            label: "Options",
+            items: [
+                {
+                    label: "Update",
+                    icon: "pi pi-refresh",
+                    command: () => {
+                        toast.current.show({
+                            severity: "success",
+                            summary: "Updated",
+                            detail: "Data Updated",
+                            life: 3000,
+                        });
+                    },
+                },
+                {
+                    label: "Delete",
+                    icon: "pi pi-times",
+                    command: () => {
+                        toast.current.show({
+                            severity: "warn",
+                            summary: "Delete",
+                            detail: "Data Deleted",
+                            life: 3000,
+                        });
+                    },
+                },
+            ],
+        },
+        {
+            label: "Navigate",
+            items: [
+                {
+                    label: "React Website",
+                    icon: "pi pi-external-link",
+                    url: "https://reactjs.org/",
+                },
+                {
+                    label: "Router",
+                    icon: "pi pi-upload",
+                    command: () => {
+                        router.push("/fileupload");
+                    },
+                },
+            ],
+        },
+    ];
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Menu
     model={items}
     pt={{
@@ -66,7 +66,7 @@ export function PTDoc(props) {
     }}
 />
 `,
-		javascript: `
+        javascript: `
 import React, { useRef } from 'react';
 import { useRouter } from 'next/router';
 import { Menu } from 'primereact/menu';
@@ -125,7 +125,7 @@ export default function PTDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useRef } from 'react';
 import { useRouter } from 'next/router';
 import { Menu } from 'primereact/menu';
@@ -185,21 +185,21 @@ export default function PTDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}></DocSectionText>
-			<div className="card flex justify-content-center">
-				<Toast ref={toast} />
-				<Menu
-					model={items}
-					pt={{
-						submenuHeader: { className: "text-primary" },
-					}}
-				/>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}></DocSectionText>
+            <div className="card flex justify-content-center">
+                <Toast ref={toast} />
+                <Menu
+                    model={items}
+                    pt={{
+                        submenuHeader: { className: "text-primary" },
+                    }}
+                />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

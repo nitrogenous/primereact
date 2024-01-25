@@ -4,13 +4,13 @@ import { InputSwitch } from "@/components/lib/inputswitch/InputSwitch";
 import { useState } from "react";
 
 export function PreselectionDoc(props) {
-	const [checked, setChecked] = useState(true);
+    const [checked, setChecked] = useState(true);
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <InputSwitch checked={checked} onChange={(e) => setChecked(e.value)} />
         `,
-		javascript: `
+        javascript: `
 import React, { useState } from "react";
 import { InputSwitch } from "primereact/inputswitch";
 
@@ -24,7 +24,7 @@ export default function PreselectionDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from "react";
 import { InputSwitch, InputSwitchChangeEvent } from "primereact/inputswitch";
 
@@ -38,20 +38,23 @@ export default function PreselectionDemo() {
     );
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Enabling <i>checked</i> property displays the component as active
-					initially.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<InputSwitch checked={checked} onChange={(e) => setChecked(e.value)} />
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Enabling <i>checked</i> property displays the component as
+                    active initially.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <InputSwitch
+                    checked={checked}
+                    onChange={(e) => setChecked(e.value)}
+                />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

@@ -49,66 +49,67 @@ const styles = `
 `;
 
 const classes = {
-	root: ({ context }) =>
-		classNames("p-contextmenu p-component", {
-			"p-input-filled":
-				(context && context.inputStyle === "filled") ||
-				PrimeReact.inputStyle === "filled",
-			"p-ripple-disabled":
-				(context && context.ripple === false) || PrimeReact.ripple === false,
-		}),
-	menu: ({ menuProps: props }) =>
-		classNames({
-			" p-contextmenu-root-list": props.root,
-			"p-submenu-list": !props.root,
-		}),
-	menuitem: ({ item, active, focused, disabled }) =>
-		classNames(
-			"p-menuitem",
-			{
-				"p-menuitem-active p-highlight": active,
-				"p-focus": focused,
-				"p-disabled": disabled,
-			},
-			item.className,
-		),
-	action: ({ item }) =>
-		classNames("p-menuitem-link", { "p-disabled": item.disabled }),
-	content: "p-menuitem-content",
-	icon: "p-menuitem-icon",
-	submenuIcon: "p-submenu-icon",
-	label: "p-menuitem-text",
-	separator: "p-menuitem-separator",
-	transition: "p-contextmenu",
-	submenuTransition: "p-contextmenusub",
+    root: ({ context }) =>
+        classNames("p-contextmenu p-component", {
+            "p-input-filled":
+                (context && context.inputStyle === "filled") ||
+                PrimeReact.inputStyle === "filled",
+            "p-ripple-disabled":
+                (context && context.ripple === false) ||
+                PrimeReact.ripple === false,
+        }),
+    menu: ({ menuProps: props }) =>
+        classNames({
+            " p-contextmenu-root-list": props.root,
+            "p-submenu-list": !props.root,
+        }),
+    menuitem: ({ item, active, focused, disabled }) =>
+        classNames(
+            "p-menuitem",
+            {
+                "p-menuitem-active p-highlight": active,
+                "p-focus": focused,
+                "p-disabled": disabled,
+            },
+            item.className,
+        ),
+    action: ({ item }) =>
+        classNames("p-menuitem-link", { "p-disabled": item.disabled }),
+    content: "p-menuitem-content",
+    icon: "p-menuitem-icon",
+    submenuIcon: "p-submenu-icon",
+    label: "p-menuitem-text",
+    separator: "p-menuitem-separator",
+    transition: "p-contextmenu",
+    submenuTransition: "p-contextmenusub",
 };
 
 export const ContextMenuBase = ComponentBase.extend({
-	defaultProps: {
-		__TYPE: "ContextMenu",
-		id: null,
-		ariaLabel: null,
-		ariaLabelledby: null,
-		model: null,
-		style: null,
-		className: null,
-		global: false,
-		autoZIndex: true,
-		baseZIndex: 0,
-		tabIndex: 0,
-		breakpoint: undefined,
-		scrollHeight: "400px",
-		appendTo: null,
-		transitionOptions: null,
-		onFocus: null,
-		onBlur: null,
-		onShow: null,
-		onHide: null,
-		submenuIcon: null,
-		children: undefined,
-	},
-	css: {
-		classes,
-		styles,
-	},
+    defaultProps: {
+        __TYPE: "ContextMenu",
+        id: null,
+        ariaLabel: null,
+        ariaLabelledby: null,
+        model: null,
+        style: null,
+        className: null,
+        global: false,
+        autoZIndex: true,
+        baseZIndex: 0,
+        tabIndex: 0,
+        breakpoint: undefined,
+        scrollHeight: "400px",
+        appendTo: null,
+        transitionOptions: null,
+        onFocus: null,
+        onBlur: null,
+        onShow: null,
+        onHide: null,
+        submenuIcon: null,
+        children: undefined,
+    },
+    css: {
+        classes,
+        styles,
+    },
 });

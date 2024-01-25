@@ -7,55 +7,55 @@ import { useFormik } from "formik";
 import { useRef } from "react";
 
 export function FormikDoc(props) {
-	const toast = useRef(null);
-	const cities = [
-		{ name: "New York", code: "NY" },
-		{ name: "Rome", code: "RM" },
-		{ name: "London", code: "LDN" },
-		{ name: "Istanbul", code: "IST" },
-		{ name: "Paris", code: "PRS" },
-	];
+    const toast = useRef(null);
+    const cities = [
+        { name: "New York", code: "NY" },
+        { name: "Rome", code: "RM" },
+        { name: "London", code: "LDN" },
+        { name: "Istanbul", code: "IST" },
+        { name: "Paris", code: "PRS" },
+    ];
 
-	const show = () => {
-		toast.current.show({
-			severity: "success",
-			summary: "Form Submitted",
-			detail: formik.values.item.name,
-		});
-	};
+    const show = () => {
+        toast.current.show({
+            severity: "success",
+            summary: "Form Submitted",
+            detail: formik.values.item.name,
+        });
+    };
 
-	const formik = useFormik({
-		initialValues: {
-			item: "",
-		},
-		validate: (data) => {
-			const errors = {};
+    const formik = useFormik({
+        initialValues: {
+            item: "",
+        },
+        validate: (data) => {
+            const errors = {};
 
-			if (!data.item) {
-				errors.item = "City is required.";
-			}
+            if (!data.item) {
+                errors.item = "City is required.";
+            }
 
-			return errors;
-		},
-		onSubmit: (data) => {
-			data.item && show(data);
-			formik.resetForm();
-		},
-	});
+            return errors;
+        },
+        onSubmit: (data) => {
+            data.item && show(data);
+            formik.resetForm();
+        },
+    });
 
-	const isFormFieldInvalid = (name) =>
-		!!(formik.touched[name] && formik.errors[name]);
+    const isFormFieldInvalid = (name) =>
+        !!(formik.touched[name] && formik.errors[name]);
 
-	const getFormErrorMessage = (name) => {
-		return isFormFieldInvalid(name) ? (
-			<small className="p-error">{formik.errors[name]}</small>
-		) : (
-			<small className="p-error">&nbsp;</small>
-		);
-	};
+    const getFormErrorMessage = (name) => {
+        return isFormFieldInvalid(name) ? (
+            <small className="p-error">{formik.errors[name]}</small>
+        ) : (
+            <small className="p-error">&nbsp;</small>
+        );
+    };
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Toast ref={toast} />
 <ListBox
     id="item"
@@ -70,7 +70,7 @@ export function FormikDoc(props) {
     style={{ width: '15rem' }}
 />
         `,
-		javascript: `
+        javascript: `
 import React, { useRef } from "react";
 import { useFormik } from 'formik';
 import { ListBox } from 'primereact/listbox';
@@ -139,7 +139,7 @@ export default function FormikDoc() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useRef } from "react";
 import { useFormik } from 'formik';
 import { ListBox, ListBoxChangeEvent } from 'primereact/listbox';
@@ -213,39 +213,39 @@ export default function FormikDoc() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					<a href="https://formik.org/">Formik</a> is a popular library for
-					handling forms in React.
-				</p>
-			</DocSectionText>
-			<div className="card flex flex-column align-items-center justify-content-center">
-				<form
-					onSubmit={formik.handleSubmit}
-					className="flex flex-column align-items-center gap-2"
-				>
-					<Toast ref={toast} />
-					<ListBox
-						id="item"
-						name="item"
-						value={formik.values.item}
-						options={cities}
-						optionLabel="name"
-						placeholder="Select a City"
-						onChange={(e) => {
-							formik.setFieldValue("item", e.value);
-						}}
-						style={{ width: "15rem" }}
-					/>
-					{getFormErrorMessage("item")}
-					<Button type="submit" label="Submit" className="mt-2" />
-				</form>
-			</div>
-			<DocSectionCode code={code} dependencies={{ formik: "^2.2.6" }} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    <a href="https://formik.org/">Formik</a> is a popular
+                    library for handling forms in React.
+                </p>
+            </DocSectionText>
+            <div className="card flex flex-column align-items-center justify-content-center">
+                <form
+                    onSubmit={formik.handleSubmit}
+                    className="flex flex-column align-items-center gap-2"
+                >
+                    <Toast ref={toast} />
+                    <ListBox
+                        id="item"
+                        name="item"
+                        value={formik.values.item}
+                        options={cities}
+                        optionLabel="name"
+                        placeholder="Select a City"
+                        onChange={(e) => {
+                            formik.setFieldValue("item", e.value);
+                        }}
+                        style={{ width: "15rem" }}
+                    />
+                    {getFormErrorMessage("item")}
+                    <Button type="submit" label="Submit" className="mt-2" />
+                </form>
+            </div>
+            <DocSectionCode code={code} dependencies={{ formik: "^2.2.6" }} />
+        </>
+    );
 }

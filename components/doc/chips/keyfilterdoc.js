@@ -5,13 +5,13 @@ import Link from "next/link";
 import { useState } from "react";
 
 export function KeyFilterDoc(props) {
-	const [value, setValue] = useState([]);
+    const [value, setValue] = useState([]);
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Chips value={value} onChange={(e) => setValue(e.value)} keyfilter="int" />
         `,
-		javascript: `
+        javascript: `
 import React, { useState } from "react";
 import { Chips } from "primereact/chips";
 
@@ -25,7 +25,7 @@ export default function KeyFilterDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from "react";
 import { Chips, ChipsChangeEvent } from "primereact/chips";
 
@@ -39,24 +39,25 @@ export default function KeyFilterDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Chips has built-in key filtering support to block certain keys, refer
-					to <Link href="/keyfilter">keyfilter</Link> page for more information.
-				</p>
-			</DocSectionText>
-			<div className="card p-fluid">
-				<Chips
-					value={value}
-					onChange={(e) => setValue(e.value)}
-					keyfilter="int"
-				/>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Chips has built-in key filtering support to block certain
+                    keys, refer to <Link href="/keyfilter">keyfilter</Link> page
+                    for more information.
+                </p>
+            </DocSectionText>
+            <div className="card p-fluid">
+                <Chips
+                    value={value}
+                    onChange={(e) => setValue(e.value)}
+                    keyfilter="int"
+                />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

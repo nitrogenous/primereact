@@ -4,11 +4,11 @@ import { InputText } from "@/components/lib/inputtext/InputText";
 import Link from "next/link";
 
 export function KeyFilterDoc(props) {
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <InputText keyfilter="int" placeholder="Integers" />
         `,
-		javascript: `
+        javascript: `
 import React from 'react'; 
 import { InputText } from "primereact/inputtext";
 
@@ -20,7 +20,7 @@ export default function KeyFilterDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React from 'react'; 
 import { InputText } from "primereact/inputtext";
 
@@ -32,21 +32,22 @@ export default function KeyFilterDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					InputText has built-in key filtering support to block certain keys,
-					refer to <Link href="/keyfilter">keyfilter</Link> page for more
-					information.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<InputText keyfilter="int" placeholder="Integers" />
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    InputText has built-in key filtering support to block
+                    certain keys, refer to{" "}
+                    <Link href="/keyfilter">keyfilter</Link> page for more
+                    information.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <InputText keyfilter="int" placeholder="Integers" />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

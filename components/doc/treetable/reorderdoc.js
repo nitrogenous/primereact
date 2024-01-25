@@ -6,21 +6,21 @@ import { useEffect, useState } from "react";
 import { NodeService } from "../../../service/NodeService";
 
 export function ReorderDoc(props) {
-	const [nodes, setNodes] = useState([]);
+    const [nodes, setNodes] = useState([]);
 
-	useEffect(() => {
-		NodeService.getTreeTableNodes().then((data) => setNodes(data));
-	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(() => {
+        NodeService.getTreeTableNodes().then((data) => setNodes(data));
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <TreeTable value={nodes} reorderableColumns tableStyle={{ minWidth: '50rem' }}>
     <Column field="name" header="Name" expander></Column>
     <Column field="size" header="Size"></Column>
     <Column field="type" header="Type"></Column>
 </TreeTable>
         `,
-		javascript: `
+        javascript: `
 import React, { useState, useEffect } from 'react';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
@@ -44,7 +44,7 @@ export default function ReorderDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState, useEffect } from 'react';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
@@ -69,7 +69,7 @@ export default function ReorderDemo() {
     )
 }
         `,
-		data: `
+        data: `
 {
     key: '0',
     label: 'Documents',
@@ -97,28 +97,28 @@ export default function ReorderDemo() {
 },
 ...
 `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Order of the columns can be changed using drag and drop when{" "}
-					<i>reorderableColumns</i> is present.
-				</p>
-			</DocSectionText>
-			<div className="card">
-				<TreeTable
-					value={nodes}
-					reorderableColumns
-					tableStyle={{ minWidth: "50rem" }}
-				>
-					<Column field="name" header="Name" expander></Column>
-					<Column field="size" header="Size"></Column>
-					<Column field="type" header="Type"></Column>
-				</TreeTable>
-			</div>
-			<DocSectionCode code={code} service={["NodeService"]} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Order of the columns can be changed using drag and drop when{" "}
+                    <i>reorderableColumns</i> is present.
+                </p>
+            </DocSectionText>
+            <div className="card">
+                <TreeTable
+                    value={nodes}
+                    reorderableColumns
+                    tableStyle={{ minWidth: "50rem" }}
+                >
+                    <Column field="name" header="Name" expander></Column>
+                    <Column field="size" header="Size"></Column>
+                    <Column field="type" header="Type"></Column>
+                </TreeTable>
+            </div>
+            <DocSectionCode code={code} service={["NodeService"]} />
+        </>
+    );
 }

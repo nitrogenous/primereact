@@ -5,19 +5,19 @@ import { useEffect, useState } from "react";
 import { NodeService } from "../../../../service/NodeService";
 
 export function SingleSelectionDoc(props) {
-	const [nodes, setNodes] = useState([]);
-	const [selectedKey, setSelectedKey] = useState("");
+    const [nodes, setNodes] = useState([]);
+    const [selectedKey, setSelectedKey] = useState("");
 
-	useEffect(() => {
-		NodeService.getTreeNodes().then((data) => setNodes(data));
-	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(() => {
+        NodeService.getTreeNodes().then((data) => setNodes(data));
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Tree value={nodes} selectionMode="single" selectionKeys={selectedKey} 
     onSelectionChange={(e) => setSelectedKey(e.value)} className="w-full md:w-30rem" />
         `,
-		javascript: `
+        javascript: `
 import React, { useState, useEffect } from 'react';
 import { Tree } from 'primereact/tree';
 import { NodeService } from './service/NodeService';
@@ -37,7 +37,7 @@ export default function SingleSelectionDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState, useEffect } from 'react';
 import { Tree } from 'primereact/tree';
 import { TreeNode } from 'primereact/treenode';
@@ -58,7 +58,7 @@ export default function SingleSelectionDemo() {
     )
 }
         `,
-		data: `
+        data: `
 {
     key: '0',
     label: 'Documents',
@@ -86,28 +86,28 @@ export default function SingleSelectionDemo() {
 },
 ...
 `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Single node selection is configured by setting <i>selectionMode</i> as{" "}
-					<i>single</i> along with <i>selectionKeys</i> and{" "}
-					<i>onSelectionChange</i> properties to manage the selection value
-					binding.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<Tree
-					value={nodes}
-					selectionMode="single"
-					selectionKeys={selectedKey}
-					onSelectionChange={(e) => setSelectedKey(e.value)}
-					className="w-full md:w-30rem"
-				/>
-			</div>
-			<DocSectionCode code={code} service={["NodeService"]} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Single node selection is configured by setting{" "}
+                    <i>selectionMode</i> as <i>single</i> along with{" "}
+                    <i>selectionKeys</i> and <i>onSelectionChange</i> properties
+                    to manage the selection value binding.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <Tree
+                    value={nodes}
+                    selectionMode="single"
+                    selectionKeys={selectedKey}
+                    onSelectionChange={(e) => setSelectedKey(e.value)}
+                    className="w-full md:w-30rem"
+                />
+            </div>
+            <DocSectionCode code={code} service={["NodeService"]} />
+        </>
+    );
 }

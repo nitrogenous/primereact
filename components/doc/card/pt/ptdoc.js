@@ -3,8 +3,8 @@ import { DocSectionText } from "@/components/doc/common/docsectiontext";
 import { Card } from "@/components/lib/card/Card";
 
 export function PTDoc(props) {
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Card
     title="Simple Card"
     pt={{
@@ -17,7 +17,7 @@ export function PTDoc(props) {
     </p>
 </Card>
         `,
-		javascript: `
+        javascript: `
 import React from 'react'; 
 import { Card } from 'primereact/card';
 
@@ -39,7 +39,7 @@ export default function PTDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React from 'react'; 
 import { Card } from 'primereact/card';
 
@@ -61,27 +61,28 @@ export default function PTDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}></DocSectionText>
-			<div className="card">
-				<Card
-					title="Simple Card"
-					pt={{
-						body: { className: "bg-primary border-round-lg" },
-					}}
-				>
-					<p className="m-0">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
-						sed consequuntur error repudiandae numquam deserunt quisquam
-						repellat libero asperiores earum nam nobis, culpa ratione quam
-						perferendis esse, cupiditate neque quas!
-					</p>
-				</Card>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}></DocSectionText>
+            <div className="card">
+                <Card
+                    title="Simple Card"
+                    pt={{
+                        body: { className: "bg-primary border-round-lg" },
+                    }}
+                >
+                    <p className="m-0">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. Inventore sed consequuntur error repudiandae
+                        numquam deserunt quisquam repellat libero asperiores
+                        earum nam nobis, culpa ratione quam perferendis esse,
+                        cupiditate neque quas!
+                    </p>
+                </Card>
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

@@ -2,72 +2,72 @@ import { ComponentBase } from "../componentbase/ComponentBase";
 import { classNames } from "../utils/Utils";
 
 const classes = {
-	root: ({ props, mobileActiveState }) =>
-		classNames("p-megamenu p-component", {
-			"p-megamenu-horizontal": props.orientation === "horizontal",
-			"p-megamenu-vertical": props.orientation === "vertical",
-			"p-megamenu-mobile-active": mobileActiveState,
-		}),
-	content: "p-menuitem-content",
-	separator: "p-menuitem-separator",
-	submenuIcon: "p-submenu-icon",
-	action: ({ item }) =>
-		classNames("p-menuitem-link", { "p-disabled": item.disabled }),
-	submenuItem: ({ focused, disabled, active }) =>
-		classNames("p-menuitem", {
-			"p-menuitem-active": active,
-			"p-focus": focused,
-			"p-disabled": disabled,
-		}),
-	submenuHeader: ({ disabled }) =>
-		classNames("p-megamenu-submenu-header p-submenu-header", {
-			"p-disabled": disabled,
-		}),
-	submenu: "p-submenu-list p-megamenu-submenu",
-	panel: "p-megamenu-panel",
-	grid: "p-megamenu-grid",
-	icon: "p-menuitem-icon",
-	label: "p-menuitem-text",
-	column: ({ category }) => {
-		const length = category.items ? category.items.length : 0;
-		let columnClass;
+    root: ({ props, mobileActiveState }) =>
+        classNames("p-megamenu p-component", {
+            "p-megamenu-horizontal": props.orientation === "horizontal",
+            "p-megamenu-vertical": props.orientation === "vertical",
+            "p-megamenu-mobile-active": mobileActiveState,
+        }),
+    content: "p-menuitem-content",
+    separator: "p-menuitem-separator",
+    submenuIcon: "p-submenu-icon",
+    action: ({ item }) =>
+        classNames("p-menuitem-link", { "p-disabled": item.disabled }),
+    submenuItem: ({ focused, disabled, active }) =>
+        classNames("p-menuitem", {
+            "p-menuitem-active": active,
+            "p-focus": focused,
+            "p-disabled": disabled,
+        }),
+    submenuHeader: ({ disabled }) =>
+        classNames("p-megamenu-submenu-header p-submenu-header", {
+            "p-disabled": disabled,
+        }),
+    submenu: "p-submenu-list p-megamenu-submenu",
+    panel: "p-megamenu-panel",
+    grid: "p-megamenu-grid",
+    icon: "p-menuitem-icon",
+    label: "p-menuitem-text",
+    column: ({ category }) => {
+        const length = category.items ? category.items.length : 0;
+        let columnClass;
 
-		switch (length) {
-			case 2:
-				columnClass = "p-megamenu-col-6";
-				break;
+        switch (length) {
+            case 2:
+                columnClass = "p-megamenu-col-6";
+                break;
 
-			case 3:
-				columnClass = "p-megamenu-col-4";
-				break;
+            case 3:
+                columnClass = "p-megamenu-col-4";
+                break;
 
-			case 4:
-				columnClass = "p-megamenu-col-3";
-				break;
+            case 4:
+                columnClass = "p-megamenu-col-3";
+                break;
 
-			case 6:
-				columnClass = "p-megamenu-col-2";
-				break;
+            case 6:
+                columnClass = "p-megamenu-col-2";
+                break;
 
-			default:
-				columnClass = "p-megamenu-col-12";
-				break;
-		}
+            default:
+                columnClass = "p-megamenu-col-12";
+                break;
+        }
 
-		return columnClass;
-	},
-	menuButton: "p-megamenu-button",
-	menuitem: ({ category, activeItemState, focused, disabled }) =>
-		classNames("p-menuitem", {
-			"p-menuitem-active p-highlight":
-				activeItemState && activeItemState.item === category,
-			"p-focus": focused,
-			"p-disabled": disabled,
-		}),
-	menubar: "p-megamenu-root-list",
-	menu: "p-megamenu-root-list",
-	start: "p-megamenu-start",
-	end: "p-megamenu-end",
+        return columnClass;
+    },
+    menuButton: "p-megamenu-button",
+    menuitem: ({ category, activeItemState, focused, disabled }) =>
+        classNames("p-menuitem", {
+            "p-menuitem-active p-highlight":
+                activeItemState && activeItemState.item === category,
+            "p-focus": focused,
+            "p-disabled": disabled,
+        }),
+    menubar: "p-megamenu-root-list",
+    menu: "p-megamenu-root-list",
+    start: "p-megamenu-start",
+    end: "p-megamenu-end",
 };
 
 const styles = `
@@ -195,26 +195,26 @@ const styles = `
 `;
 
 export const MegaMenuBase = ComponentBase.extend({
-	defaultProps: {
-		__TYPE: "MegaMenu",
-		id: null,
-		model: null,
-		style: null,
-		className: null,
-		orientation: "horizontal",
-		breakpoint: undefined,
-		scrollHeight: "400px",
-		start: null,
-		submenuIcon: null,
-		onFocus: null,
-		onBlur: null,
-		tabIndex: 0,
-		menuIcon: null,
-		end: null,
-		children: undefined,
-	},
-	css: {
-		classes,
-		styles,
-	},
+    defaultProps: {
+        __TYPE: "MegaMenu",
+        id: null,
+        model: null,
+        style: null,
+        className: null,
+        orientation: "horizontal",
+        breakpoint: undefined,
+        scrollHeight: "400px",
+        start: null,
+        submenuIcon: null,
+        onFocus: null,
+        onBlur: null,
+        tabIndex: 0,
+        menuIcon: null,
+        end: null,
+        children: undefined,
+    },
+    css: {
+        classes,
+        styles,
+    },
 });

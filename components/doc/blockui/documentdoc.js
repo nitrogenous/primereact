@@ -5,22 +5,22 @@ import { BlockUI } from "../../../components/lib/blockui/BlockUI";
 import { Button } from "../../../components/lib/button/Button";
 
 export function DocumentDoc(props) {
-	const [blocked, setBlocked] = useState(false);
+    const [blocked, setBlocked] = useState(false);
 
-	useEffect(() => {
-		if (blocked) {
-			setTimeout(() => {
-				setBlocked(false);
-			}, 3000);
-		}
-	}, [blocked]);
+    useEffect(() => {
+        if (blocked) {
+            setTimeout(() => {
+                setBlocked(false);
+            }, 3000);
+        }
+    }, [blocked]);
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <BlockUI blocked={blocked} fullScreen />
 <Button label="Block" onClick={() => setBlocked(true)} />
         `,
-		javascript: `
+        javascript: `
 import React, { useState, useEffect } from 'react';
 import { BlockUI } from 'primereact/blockui';
 import { Panel } from 'primereact/panel';
@@ -45,7 +45,7 @@ export default function DocumentDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState, useEffect } from 'react';
 import { BlockUI } from 'primereact/blockui';
 import { Panel } from 'primereact/panel';
@@ -70,20 +70,20 @@ export default function DocumentDemo() {
     );
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Enabling <i>fullScreen</i> property controls the document.
-				</p>
-			</DocSectionText>
-			<div className="card">
-				<BlockUI blocked={blocked} fullScreen />
-				<Button label="Block" onClick={() => setBlocked(true)} />
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Enabling <i>fullScreen</i> property controls the document.
+                </p>
+            </DocSectionText>
+            <div className="card">
+                <BlockUI blocked={blocked} fullScreen />
+                <Button label="Block" onClick={() => setBlocked(true)} />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

@@ -17,6 +17,6 @@ export interface SortAltIconProps extends IconBaseProps {}
  * @group Component
  */
 export declare class SortAltIcon extends React.Component<
-	SortAltIconProps,
-	any
+    SortAltIconProps,
+    any
 > {}

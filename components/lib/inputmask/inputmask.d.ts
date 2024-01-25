@@ -9,9 +9,9 @@
  */
 import * as React from "react";
 import {
-	InputText,
-	InputTextPassThroughOptions,
-	InputTextProps,
+    InputText,
+    InputTextPassThroughOptions,
+    InputTextProps,
 } from "../inputtext";
 import { TooltipOptions } from "../tooltip/tooltipoptions";
 import { FormEvent } from "../ts-helpers";
@@ -23,14 +23,14 @@ import { PassThroughOptions } from "../passthrough";
  * @event
  */
 interface InputMaskCompleteEvent {
-	/**
-	 * Browser event
-	 */
-	originalEvent: React.SyntheticEvent;
-	/**
-	 * New value of the component
-	 */
-	value: string | undefined | null;
+    /**
+     * Browser event
+     */
+    originalEvent: React.SyntheticEvent;
+    /**
+     * New value of the component
+     */
+    value: string | undefined | null;
 }
 
 /**
@@ -46,90 +46,90 @@ interface InputMaskChangeEvent extends FormEvent<string> {}
  * @group Properties
  */
 export interface InputMaskProps
-	extends Omit<InputTextProps, "onChange" | "pt"> {
-	/**
-	 * Mask pattern.
-	 */
-	mask?: string | undefined;
-	/**
-	 * Placeholder character in mask.
-	 * @defaultValue _
-	 */
-	slotChar?: string | undefined;
-	/**
-	 * Clears the incomplete value on blur.
-	 * @defaultValue true
-	 */
-	autoClear?: boolean | undefined;
-	/**
-	 * Defines if model sets the raw unmasked value to bound value or the formatted mask value.
-	 * @defaultValue false
-	 */
-	unmask?: boolean | undefined;
-	/**
-	 * When present, it specifies that the element value cannot be altered.
-	 * @defaultValue false
-	 */
-	disabled?: boolean | undefined;
-	/**
-	 * When present, it specifies that an input field is read-only.
-	 * @defaultValue false
-	 */
-	readOnly?: boolean | undefined;
-	/**
-	 * When present, it specifies that the element must be filled out before submitting the form.
-	 * @defaultValue false
-	 */
-	required?: boolean | undefined;
-	/**
-	 * Content of the tooltip.
-	 */
-	tooltip?: string | undefined;
-	/**
-	 * Configuration of the tooltip, refer to the tooltip documentation for more information.
-	 * @type {TooltipOptions}
-	 */
-	tooltipOptions?: TooltipOptions | undefined;
-	/**
-	 * Callback to invoke on when user completes the mask pattern.
-	 * @param {InputMaskCompleteEvent} event - Custom complete event
-	 */
-	onComplete?(event: InputMaskCompleteEvent): void;
-	/**
-	 * Callback to invoke on value change.
-	 * @param {InputMaskChangeEvent} event - Custom change event
-	 */
-	onChange?(event: InputMaskChangeEvent): void;
-	/**
-	 * Callback to invoke when input receives focus.
-	 * @param {React.FocusEvent<HTMLInputElement>} event - Browser event
-	 */
-	onFocus?(event: React.FocusEvent<HTMLInputElement>): void;
-	/**
-	 * Callback to invoke when input loses focus.
-	 * @param {React.FocusEvent<HTMLInputElement>} event - Browser event
-	 */
-	onBlur?(event: React.FocusEvent<HTMLInputElement>): void;
-	/**
-	 * Used to get the child elements of the component.
-	 * @readonly
-	 */
-	children?: React.ReactNode | undefined;
-	/**
-	 * Uses to pass attributes to DOM elements inside the component.
-	 * @type {InputTextPassThroughOptions}
-	 */
-	pt?: InputTextPassThroughOptions;
-	/**
-	 * Used to configure passthrough(pt) options of the component.
-	 * @type {PassThroughOptions}
-	 */
-	ptOptions?: PassThroughOptions;
-	/**
-	 * When enabled, it removes component related styles in the core.
-	 * @defaultValue false
-	 */
-	unstyled?: boolean;
+    extends Omit<InputTextProps, "onChange" | "pt"> {
+    /**
+     * Mask pattern.
+     */
+    mask?: string | undefined;
+    /**
+     * Placeholder character in mask.
+     * @defaultValue _
+     */
+    slotChar?: string | undefined;
+    /**
+     * Clears the incomplete value on blur.
+     * @defaultValue true
+     */
+    autoClear?: boolean | undefined;
+    /**
+     * Defines if model sets the raw unmasked value to bound value or the formatted mask value.
+     * @defaultValue false
+     */
+    unmask?: boolean | undefined;
+    /**
+     * When present, it specifies that the element value cannot be altered.
+     * @defaultValue false
+     */
+    disabled?: boolean | undefined;
+    /**
+     * When present, it specifies that an input field is read-only.
+     * @defaultValue false
+     */
+    readOnly?: boolean | undefined;
+    /**
+     * When present, it specifies that the element must be filled out before submitting the form.
+     * @defaultValue false
+     */
+    required?: boolean | undefined;
+    /**
+     * Content of the tooltip.
+     */
+    tooltip?: string | undefined;
+    /**
+     * Configuration of the tooltip, refer to the tooltip documentation for more information.
+     * @type {TooltipOptions}
+     */
+    tooltipOptions?: TooltipOptions | undefined;
+    /**
+     * Callback to invoke on when user completes the mask pattern.
+     * @param {InputMaskCompleteEvent} event - Custom complete event
+     */
+    onComplete?(event: InputMaskCompleteEvent): void;
+    /**
+     * Callback to invoke on value change.
+     * @param {InputMaskChangeEvent} event - Custom change event
+     */
+    onChange?(event: InputMaskChangeEvent): void;
+    /**
+     * Callback to invoke when input receives focus.
+     * @param {React.FocusEvent<HTMLInputElement>} event - Browser event
+     */
+    onFocus?(event: React.FocusEvent<HTMLInputElement>): void;
+    /**
+     * Callback to invoke when input loses focus.
+     * @param {React.FocusEvent<HTMLInputElement>} event - Browser event
+     */
+    onBlur?(event: React.FocusEvent<HTMLInputElement>): void;
+    /**
+     * Used to get the child elements of the component.
+     * @readonly
+     */
+    children?: React.ReactNode | undefined;
+    /**
+     * Uses to pass attributes to DOM elements inside the component.
+     * @type {InputTextPassThroughOptions}
+     */
+    pt?: InputTextPassThroughOptions;
+    /**
+     * Used to configure passthrough(pt) options of the component.
+     * @type {PassThroughOptions}
+     */
+    ptOptions?: PassThroughOptions;
+    /**
+     * When enabled, it removes component related styles in the core.
+     * @defaultValue false
+     */
+    unstyled?: boolean;
 }
 
 /**
@@ -144,13 +144,13 @@ export interface InputMaskProps
  * @group Component
  */
 export declare class InputMask extends React.Component<InputMaskProps, any> {
-	/**
-	 * Used to focus the component.
-	 */
-	public focus(): void;
-	/**
-	 * Used to get container element.
-	 * @return {InputText} Container element
-	 */
-	public getElement(): typeof InputText;
+    /**
+     * Used to focus the component.
+     */
+    public focus(): void;
+    /**
+     * Used to get container element.
+     * @return {InputText} Container element
+     */
+    public getElement(): typeof InputText;
 }

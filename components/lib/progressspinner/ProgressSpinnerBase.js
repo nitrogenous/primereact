@@ -1,9 +1,9 @@
 import { ComponentBase } from "../componentbase/ComponentBase";
 
 const classes = {
-	root: "p-progress-spinner",
-	spinner: "p-progress-spinner-svg",
-	circle: "p-progress-spinner-circle",
+    root: "p-progress-spinner",
+    spinner: "p-progress-spinner-svg",
+    circle: "p-progress-spinner-circle",
 };
 const styles = `
 @layer primereact {
@@ -83,23 +83,23 @@ const styles = `
 `;
 
 const inlineStyles = {
-	spinner: ({ props }) => ({ animationDuration: props.animationDuration }),
+    spinner: ({ props }) => ({ animationDuration: props.animationDuration }),
 };
 
 export const ProgressSpinnerBase = ComponentBase.extend({
-	defaultProps: {
-		__TYPE: "ProgressSpinner",
-		id: null,
-		style: null,
-		className: null,
-		strokeWidth: "2",
-		fill: "none",
-		animationDuration: "2s",
-		children: undefined,
-	},
-	css: {
-		classes,
-		styles,
-		inlineStyles,
-	},
+    defaultProps: {
+        __TYPE: "ProgressSpinner",
+        id: null,
+        style: null,
+        className: null,
+        strokeWidth: "2",
+        fill: "none",
+        animationDuration: "2s",
+        children: undefined,
+    },
+    css: {
+        classes,
+        styles,
+        inlineStyles,
+    },
 });

@@ -2,8 +2,8 @@ import { DocSectionCode } from "@/components/doc/common/docsectioncode";
 import { DocSectionText } from "@/components/doc/common/docsectiontext";
 
 export function SVGDoc(props) {
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Dropdown dropdownIcon={(options) => 
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...options.iconProps}>
         <g id="chevron-down">
@@ -11,20 +11,20 @@ export function SVGDoc(props) {
         </g>
     </svg>} />
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>Inline SVGs are embedded inside the DOM.</p>
-			</DocSectionText>
-			<DocSectionCode
-				code={code}
-				hideToggleCode
-				import
-				hideCodeSandbox
-				hideStackBlitz
-			/>
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>Inline SVGs are embedded inside the DOM.</p>
+            </DocSectionText>
+            <DocSectionCode
+                code={code}
+                hideToggleCode
+                import
+                hideCodeSandbox
+                hideStackBlitz
+            />
+        </>
+    );
 }

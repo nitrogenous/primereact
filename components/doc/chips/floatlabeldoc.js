@@ -4,16 +4,16 @@ import { Chips } from "@/components/lib/chips/Chips";
 import { useState } from "react";
 
 export function FloatLabelDoc(props) {
-	const [value, setValue] = useState([]);
+    const [value, setValue] = useState([]);
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <span className="p-float-label">
     <Chips id="username" value={value} onChange={(e) => setValue(e.value)} />
     <label htmlFor="username">Username</label>
 </span>
         `,
-		javascript: `
+        javascript: `
 import React, { useState } from "react";
 import { Chips } from "primereact/chips";
 
@@ -30,7 +30,7 @@ export default function FloatLabelDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from "react";
 import { Chips, ChipsChangeEvent } from "primereact/chips";
 
@@ -47,24 +47,27 @@ export default function FloatLabelDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>A floating label appears on top of the input field when focused.</p>
-			</DocSectionText>
-			<div className="card p-fluid">
-				<span className="p-float-label">
-					<Chips
-						id="username"
-						value={value}
-						onChange={(e) => setValue(e.value)}
-					/>
-					<label htmlFor="username">Username</label>
-				</span>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    A floating label appears on top of the input field when
+                    focused.
+                </p>
+            </DocSectionText>
+            <div className="card p-fluid">
+                <span className="p-float-label">
+                    <Chips
+                        id="username"
+                        value={value}
+                        onChange={(e) => setValue(e.value)}
+                    />
+                    <label htmlFor="username">Username</label>
+                </span>
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

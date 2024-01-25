@@ -2,8 +2,8 @@ import { DocSectionCode } from "@/components/doc/common/docsectioncode";
 import { DocSectionText } from "@/components/doc/common/docsectiontext";
 
 export function CustomCSSDoc(props) {
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 // _app.js        
 import { PrimeReactProvider } from "primereact/api";
 
@@ -46,26 +46,27 @@ export default function CustomCSSDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					The <i>global</i> property has a <i>css</i> option to define custom
-					css that belongs to a global <i>pt</i> configuration. Common use case
-					of this feature is defining global styles and animations related to
-					the pass through props configuration.
-				</p>
-			</DocSectionText>
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    The <i>global</i> property has a <i>css</i> option to define
+                    custom css that belongs to a global <i>pt</i> configuration.
+                    Common use case of this feature is defining global styles
+                    and animations related to the pass through props
+                    configuration.
+                </p>
+            </DocSectionText>
 
-			<DocSectionCode
-				code={code}
-				hideToggleCode
-				import
-				hideCodeSandbox
-				hideStackBlitz
-			/>
-		</>
-	);
+            <DocSectionCode
+                code={code}
+                hideToggleCode
+                import
+                hideCodeSandbox
+                hideStackBlitz
+            />
+        </>
+    );
 }

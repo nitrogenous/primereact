@@ -2,14 +2,14 @@ import { ComponentBase } from "../componentbase/ComponentBase";
 import { classNames } from "../utils/Utils";
 
 const classes = {
-	header: "p-datascroller-header",
-	footer: "p-datascroller-footer",
-	content: "p-datascroller-content",
-	list: "p-datascroller-list",
-	root: ({ props }) =>
-		classNames("p-datascroller p-component", {
-			"p-datascroller-inline": props.inline,
-		}),
+    header: "p-datascroller-header",
+    footer: "p-datascroller-footer",
+    content: "p-datascroller-content",
+    list: "p-datascroller-list",
+    root: ({ props }) =>
+        classNames("p-datascroller p-component", {
+            "p-datascroller-inline": props.inline,
+        }),
 };
 
 const styles = `
@@ -43,34 +43,34 @@ const styles = `
 `;
 
 const inlineStyles = {
-	content: ({ props }) => ({
-		maxHeight: props.scrollHeight,
-	}),
+    content: ({ props }) => ({
+        maxHeight: props.scrollHeight,
+    }),
 };
 
 export const DataScrollerBase = ComponentBase.extend({
-	defaultProps: {
-		__TYPE: "DataScroller",
-		id: null,
-		value: null,
-		rows: 0,
-		inline: false,
-		scrollHeight: null,
-		loader: false,
-		buffer: 0.9,
-		style: null,
-		className: null,
-		onLazyLoad: null,
-		emptyMessage: null,
-		itemTemplate: null,
-		header: null,
-		footer: null,
-		lazy: false,
-		children: undefined,
-	},
-	css: {
-		classes,
-		styles,
-		inlineStyles,
-	},
+    defaultProps: {
+        __TYPE: "DataScroller",
+        id: null,
+        value: null,
+        rows: 0,
+        inline: false,
+        scrollHeight: null,
+        loader: false,
+        buffer: 0.9,
+        style: null,
+        className: null,
+        onLazyLoad: null,
+        emptyMessage: null,
+        itemTemplate: null,
+        header: null,
+        footer: null,
+        lazy: false,
+        children: undefined,
+    },
+    css: {
+        classes,
+        styles,
+        inlineStyles,
+    },
 });

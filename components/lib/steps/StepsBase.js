@@ -2,23 +2,23 @@ import { ComponentBase } from "../componentbase/ComponentBase";
 import { classNames } from "../utils/Utils";
 
 const classes = {
-	icon: ({ item }) => classNames("p-menuitem-icon", item.icon),
-	label: "p-steps-title",
-	step: "p-steps-number",
-	action: "p-menuitem-link",
-	menuitem: ({ active, disabled, item }) =>
-		classNames("p-steps-item", item.className, {
-			"p-highlight p-steps-current": active,
-			"p-disabled": disabled,
-		}),
-	root: ({ props }) =>
-		classNames(
-			"p-steps p-component",
-			{
-				"p-readonly": props.readOnly,
-			},
-			props.className,
-		),
+    icon: ({ item }) => classNames("p-menuitem-icon", item.icon),
+    label: "p-steps-title",
+    step: "p-steps-number",
+    action: "p-menuitem-link",
+    menuitem: ({ active, disabled, item }) =>
+        classNames("p-steps-item", item.className, {
+            "p-highlight p-steps-current": active,
+            "p-disabled": disabled,
+        }),
+    root: ({ props }) =>
+        classNames(
+            "p-steps p-component",
+            {
+                "p-readonly": props.readOnly,
+            },
+            props.className,
+        ),
 };
 
 const styles = `
@@ -74,19 +74,19 @@ const styles = `
 `;
 
 export const StepsBase = ComponentBase.extend({
-	defaultProps: {
-		__TYPE: "Steps",
-		id: null,
-		model: null,
-		activeIndex: 0,
-		readOnly: true,
-		style: null,
-		className: null,
-		onSelect: null,
-		children: undefined,
-	},
-	css: {
-		classes,
-		styles,
-	},
+    defaultProps: {
+        __TYPE: "Steps",
+        id: null,
+        model: null,
+        activeIndex: 0,
+        readOnly: true,
+        style: null,
+        className: null,
+        onSelect: null,
+        children: undefined,
+    },
+    css: {
+        classes,
+        styles,
+    },
 });

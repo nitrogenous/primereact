@@ -17,6 +17,6 @@ export interface TimesCircleIconProps extends IconBaseProps {}
  * @group Component
  */
 export declare class TimesCircleIcon extends React.Component<
-	TimesCircleIconProps,
-	any
+    TimesCircleIconProps,
+    any
 > {}

@@ -2,19 +2,19 @@ import { ComponentBase } from "../componentbase/ComponentBase";
 import { classNames } from "../utils/Utils";
 
 const classes = {
-	handle: ({ index, handleIndex }) =>
-		classNames("p-slider-handle", {
-			"p-slider-handle-start": index === 0,
-			"p-slider-handle-end": index === 1,
-			"p-slider-handle-active": handleIndex.current === index,
-		}),
-	range: "p-slider-range",
-	root: ({ props, vertical, horizontal }) =>
-		classNames("p-slider p-component", props.className, {
-			"p-disabled": props.disabled,
-			"p-slider-horizontal": horizontal,
-			"p-slider-vertical": vertical,
-		}),
+    handle: ({ index, handleIndex }) =>
+        classNames("p-slider-handle", {
+            "p-slider-handle-start": index === 0,
+            "p-slider-handle-end": index === 1,
+            "p-slider-handle-active": handleIndex.current === index,
+        }),
+    range: "p-slider-range",
+    root: ({ props, vertical, horizontal }) =>
+        classNames("p-slider p-component", props.className, {
+            "p-disabled": props.disabled,
+            "p-slider-horizontal": horizontal,
+            "p-slider-vertical": vertical,
+        }),
 };
 
 const styles = `
@@ -67,31 +67,31 @@ const styles = `
 `;
 
 const inlineStyles = {
-	handle: { position: "absolute" },
-	range: { position: "absolute" },
+    handle: { position: "absolute" },
+    range: { position: "absolute" },
 };
 
 export const SliderBase = ComponentBase.extend({
-	defaultProps: {
-		__TYPE: "Slider",
-		id: null,
-		value: null,
-		min: 0,
-		max: 100,
-		orientation: "horizontal",
-		step: null,
-		range: false,
-		style: null,
-		className: null,
-		disabled: false,
-		tabIndex: 0,
-		onChange: null,
-		onSlideEnd: null,
-		children: undefined,
-	},
-	css: {
-		classes,
-		styles,
-		inlineStyles,
-	},
+    defaultProps: {
+        __TYPE: "Slider",
+        id: null,
+        value: null,
+        min: 0,
+        max: 100,
+        orientation: "horizontal",
+        step: null,
+        range: false,
+        style: null,
+        className: null,
+        disabled: false,
+        tabIndex: 0,
+        onChange: null,
+        onSlideEnd: null,
+        children: undefined,
+    },
+    css: {
+        classes,
+        styles,
+        inlineStyles,
+    },
 });

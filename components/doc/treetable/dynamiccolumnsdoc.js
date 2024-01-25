@@ -6,26 +6,26 @@ import { useEffect, useState } from "react";
 import { NodeService } from "../../../service/NodeService";
 
 export function DynamicColumnsDoc(props) {
-	const [nodes, setNodes] = useState([]);
-	const columns = [
-		{ field: "name", header: "Name", expander: true },
-		{ field: "size", header: "Type" },
-		{ field: "type", header: "Size" },
-	];
+    const [nodes, setNodes] = useState([]);
+    const columns = [
+        { field: "name", header: "Name", expander: true },
+        { field: "size", header: "Type" },
+        { field: "type", header: "Size" },
+    ];
 
-	useEffect(() => {
-		NodeService.getTreeTableNodes().then((data) => setNodes(data));
-	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(() => {
+        NodeService.getTreeTableNodes().then((data) => setNodes(data));
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <TreeTable value={nodes} tableStyle={{ minWidth: '50rem' }}>
     {columns.map((col, i) => (
         <Column key={col.field} field={col.field} header={col.header} expander={col.expander} />
     ))}
 </TreeTable>
         `,
-		javascript: `
+        javascript: `
 import React, { useState, useEffect } from 'react';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
@@ -54,7 +54,7 @@ export default function DynamicColumnsDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState, useEffect } from 'react';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
@@ -89,7 +89,7 @@ export default function DynamicColumnsDemo() {
     );
 }
         `,
-		data: `
+        data: `
 {
     key: '0',
     label: 'Documents',
@@ -117,26 +117,26 @@ export default function DynamicColumnsDemo() {
 },
 ...
 `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>Columns can be created programmatically.</p>
-			</DocSectionText>
-			<div className="card">
-				<TreeTable value={nodes} tableStyle={{ minWidth: "50rem" }}>
-					{columns.map((col, i) => (
-						<Column
-							key={col.field}
-							field={col.field}
-							header={col.header}
-							expander={col.expander}
-						/>
-					))}
-				</TreeTable>
-			</div>
-			<DocSectionCode code={code} service={["NodeService"]} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>Columns can be created programmatically.</p>
+            </DocSectionText>
+            <div className="card">
+                <TreeTable value={nodes} tableStyle={{ minWidth: "50rem" }}>
+                    {columns.map((col, i) => (
+                        <Column
+                            key={col.field}
+                            field={col.field}
+                            header={col.header}
+                            expander={col.expander}
+                        />
+                    ))}
+                </TreeTable>
+            </div>
+            <DocSectionCode code={code} service={["NodeService"]} />
+        </>
+    );
 }

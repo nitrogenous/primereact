@@ -3,12 +3,12 @@ import { DocSectionText } from "@/components/doc/common/docsectiontext";
 import { TabPanel, TabView } from "@/components/lib/tabview/TabView";
 
 export function ScrollableDoc(props) {
-	const tabs = Array.from({ length: 50 }, (_, i) => ({
-		title: `Tab ${i + 1}`,
-		content: `Tab ${i + 1} Content`,
-	}));
-	const code = {
-		basic: `
+    const tabs = Array.from({ length: 50 }, (_, i) => ({
+        title: `Tab ${i + 1}`,
+        content: `Tab ${i + 1} Content`,
+    }));
+    const code = {
+        basic: `
 <TabView scrollable>
     {tabs.map((tab) => {
         return (
@@ -19,7 +19,7 @@ export function ScrollableDoc(props) {
     })}
 </TabView>
         `,
-		javascript: `
+        javascript: `
 import React, { useState } from 'react';
 import { TabView, TabPanel } from 'primereact/tabview';
 
@@ -41,7 +41,7 @@ export default function ScrollableDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from 'react';
 import { TabView, TabPanel } from 'primereact/tabview';
 
@@ -63,28 +63,28 @@ export default function ScrollableDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Adding <i>scrollable</i> property displays navigational buttons at
-					each side to scroll between tabs.
-				</p>
-			</DocSectionText>
-			<div className="card">
-				<TabView scrollable>
-					{tabs.map((tab) => {
-						return (
-							<TabPanel key={tab.title} header={tab.title}>
-								<p className="m-0">{tab.content}</p>
-							</TabPanel>
-						);
-					})}
-				</TabView>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Adding <i>scrollable</i> property displays navigational
+                    buttons at each side to scroll between tabs.
+                </p>
+            </DocSectionText>
+            <div className="card">
+                <TabView scrollable>
+                    {tabs.map((tab) => {
+                        return (
+                            <TabPanel key={tab.title} header={tab.title}>
+                                <p className="m-0">{tab.content}</p>
+                            </TabPanel>
+                        );
+                    })}
+                </TabView>
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

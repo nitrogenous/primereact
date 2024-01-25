@@ -5,18 +5,18 @@ import { useEffect, useState } from "react";
 import { NodeService } from "../../../service/NodeService";
 
 export function DisabledDoc(props) {
-	const [nodes, setNodes] = useState(null);
-	const [selectedNodeKey, setSelectedNodeKey] = useState(null);
+    const [nodes, setNodes] = useState(null);
+    const [selectedNodeKey, setSelectedNodeKey] = useState(null);
 
-	useEffect(() => {
-		NodeService.getTreeNodes().then((data) => setNodes(data));
-	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(() => {
+        NodeService.getTreeNodes().then((data) => setNodes(data));
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <TreeSelect disabled placeholder="Select Item" className="md:w-20rem w-full" />
         `,
-		javascript: `
+        javascript: `
 import React from "react";
 
 export default function DisabledDemo() {
@@ -27,7 +27,7 @@ export default function DisabledDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React from "react";
 
 export default function DisabledDemo() {
@@ -38,24 +38,24 @@ export default function DisabledDemo() {
     );
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					When <i>disabled</i> is present, the element cannot be edited and
-					focused.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<TreeSelect
-					disabled
-					placeholder="Select Item"
-					className="md:w-20rem w-full"
-				/>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    When <i>disabled</i> is present, the element cannot be
+                    edited and focused.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <TreeSelect
+                    disabled
+                    placeholder="Select Item"
+                    className="md:w-20rem w-full"
+                />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

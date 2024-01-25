@@ -4,13 +4,13 @@ import { Knob } from "@/components/lib/knob/Knob";
 import { useState } from "react";
 
 export function StrokeDoc(props) {
-	const [value, setValue] = useState(40);
+    const [value, setValue] = useState(40);
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Knob value={value} onChange={(e) => setValue(e.value)} strokeWidth={5} />
         `,
-		javascript: `
+        javascript: `
 import React, { useState } from 'react';
 import { Knob } from 'primereact/knob';
 
@@ -24,7 +24,7 @@ export default function StrokeDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from 'react';
 import { Knob, KnobChangeEvent } from 'primereact/knob';
 
@@ -39,24 +39,24 @@ export default function StrokeDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					The border size is specified with the <i>stroke</i> property as a
-					number in pixels.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<Knob
-					value={value}
-					onChange={(e) => setValue(e.value)}
-					strokeWidth={5}
-				/>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    The border size is specified with the <i>stroke</i> property
+                    as a number in pixels.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <Knob
+                    value={value}
+                    onChange={(e) => setValue(e.value)}
+                    strokeWidth={5}
+                />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

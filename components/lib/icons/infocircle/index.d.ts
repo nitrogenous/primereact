@@ -17,6 +17,6 @@ export interface InfoCircleIconProps extends IconBaseProps {}
  * @group Component
  */
 export declare class InfoCircleIcon extends React.Component<
-	InfoCircleIconProps,
-	any
+    InfoCircleIconProps,
+    any
 > {}

@@ -17,6 +17,6 @@ export interface ChevronDownIconProps extends IconBaseProps {}
  * @group Component
  */
 export declare class ChevronDownIcon extends React.Component<
-	ChevronDownIconProps,
-	any
+    ChevronDownIconProps,
+    any
 > {}

@@ -5,14 +5,14 @@ import { Slider } from "@/components/lib/slider/Slider";
 import { useState } from "react";
 
 export function InputDoc(props) {
-	const [value, setValue] = useState(50);
+    const [value, setValue] = useState(50);
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <InputText value={value} onChange={(e) => setValue(e.target.value)} />
 <Slider value={value} onChange={(e) => setValue(e.value)} />
         `,
-		javascript: `
+        javascript: `
 import React, { useState } from "react";
 import { Slider } from "primereact/slider";
 import { InputText } from "primereact/inputtext";
@@ -30,7 +30,7 @@ export default function InputDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from "react";
 import { Slider, SliderChangeEvent } from "primereact/slider";
 import { InputText } from "primereact/inputtext";
@@ -48,28 +48,30 @@ export default function InputDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>Slider is connected to an input field using two-way binding.</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<div className="w-14rem">
-					<InputText
-						value={value}
-						onChange={(e) => setValue(e.target.value)}
-						className="w-full"
-					/>
-					<Slider
-						value={value}
-						onChange={(e) => setValue(e.value)}
-						className="w-full"
-					/>
-				</div>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Slider is connected to an input field using two-way binding.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <div className="w-14rem">
+                    <InputText
+                        value={value}
+                        onChange={(e) => setValue(e.target.value)}
+                        className="w-full"
+                    />
+                    <Slider
+                        value={value}
+                        onChange={(e) => setValue(e.value)}
+                        className="w-full"
+                    />
+                </div>
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

@@ -4,14 +4,14 @@ import { SelectButton } from "@/components/lib/selectbutton/SelectButton";
 import { useState } from "react";
 
 export function InvalidDoc(props) {
-	const options = ["Off", "On"];
-	const [value, setValue] = useState(options[0]);
+    const options = ["Off", "On"];
+    const [value, setValue] = useState(options[0]);
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <SelectButton value={value} onChange={(e) => setValue(e.value)} options={options} className="p-invalid" />
         `,
-		javascript: `
+        javascript: `
 import React, { useState } from "react";
 import { SelectButton } from 'primereact/selectbutton';
 
@@ -26,7 +26,7 @@ export default function InvalidDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from "react";
 import { SelectButton, SelectButtonChangeEvent } from 'primereact/selectbutton';
 
@@ -41,25 +41,25 @@ export default function InvalidDemo() {
     );
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Invalid state style is added using the <i>p-invalid</i> class to
-					indicate a failed validation.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<SelectButton
-					value={value}
-					onChange={(e) => setValue(e.value)}
-					options={options}
-					className="p-invalid"
-				/>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Invalid state style is added using the <i>p-invalid</i>{" "}
+                    class to indicate a failed validation.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <SelectButton
+                    value={value}
+                    onChange={(e) => setValue(e.value)}
+                    options={options}
+                    className="p-invalid"
+                />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

@@ -4,21 +4,21 @@ import { Dropdown } from "@/components/lib/dropdown/Dropdown";
 import { useState } from "react";
 
 export function EditableDoc(props) {
-	const [selectedCity, setSelectedCity] = useState(null);
-	const cities = [
-		{ name: "New York", code: "NY" },
-		{ name: "Rome", code: "RM" },
-		{ name: "London", code: "LDN" },
-		{ name: "Istanbul", code: "IST" },
-		{ name: "Paris", code: "PRS" },
-	];
+    const [selectedCity, setSelectedCity] = useState(null);
+    const cities = [
+        { name: "New York", code: "NY" },
+        { name: "Rome", code: "RM" },
+        { name: "London", code: "LDN" },
+        { name: "Istanbul", code: "IST" },
+        { name: "Paris", code: "PRS" },
+    ];
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Dropdown value={selectedCity} onChange={(e) => setSelectedCity(e.value)} options={cities} optionLabel="name" 
     editable placeholder="Select a City" className="w-full md:w-14rem" />
         `,
-		javascript: `
+        javascript: `
 import React, { useState } from "react";
 import { Dropdown } from 'primereact/dropdown';
 
@@ -40,7 +40,7 @@ export default function EditableDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from "react";
 import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
 
@@ -67,28 +67,28 @@ export default function EditableDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					When <i>editable</i> is present, the input can also be entered with
-					typing.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<Dropdown
-					value={selectedCity}
-					onChange={(e) => setSelectedCity(e.value)}
-					options={cities}
-					optionLabel="name"
-					editable
-					placeholder="Select a City"
-					className="w-full md:w-14rem"
-				/>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    When <i>editable</i> is present, the input can also be
+                    entered with typing.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <Dropdown
+                    value={selectedCity}
+                    onChange={(e) => setSelectedCity(e.value)}
+                    options={cities}
+                    optionLabel="name"
+                    editable
+                    placeholder="Select a City"
+                    className="w-full md:w-14rem"
+                />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

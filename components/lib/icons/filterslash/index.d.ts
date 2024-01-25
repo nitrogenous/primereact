@@ -17,6 +17,6 @@ export interface FilterSlashIconProps extends IconBaseProps {}
  * @group Component
  */
 export declare class FilterSlashIcon extends React.Component<
-	FilterSlashIconProps,
-	any
+    FilterSlashIconProps,
+    any
 > {}

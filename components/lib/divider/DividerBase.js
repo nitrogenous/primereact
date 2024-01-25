@@ -2,22 +2,22 @@ import { ComponentBase } from "../componentbase/ComponentBase";
 import { classNames } from "../utils/Utils";
 
 const classes = {
-	root: ({ props, horizontal, vertical }) =>
-		classNames(
-			`p-divider p-component p-divider-${props.layout} p-divider-${props.type}`,
-			{
-				"p-divider-left":
-					horizontal && (!props.align || props.align === "left"),
-				"p-divider-right": horizontal && props.align === "right",
-				"p-divider-center":
-					(horizontal && props.align === "center") ||
-					(vertical && (!props.align || props.align === "center")),
-				"p-divider-top": vertical && props.align === "top",
-				"p-divider-bottom": vertical && props.align === "bottom",
-			},
-			props.className,
-		),
-	content: "p-divider-content",
+    root: ({ props, horizontal, vertical }) =>
+        classNames(
+            `p-divider p-component p-divider-${props.layout} p-divider-${props.type}`,
+            {
+                "p-divider-left":
+                    horizontal && (!props.align || props.align === "left"),
+                "p-divider-right": horizontal && props.align === "right",
+                "p-divider-center":
+                    (horizontal && props.align === "center") ||
+                    (vertical && (!props.align || props.align === "center")),
+                "p-divider-top": vertical && props.align === "top",
+                "p-divider-bottom": vertical && props.align === "bottom",
+            },
+            props.className,
+        ),
+    content: "p-divider-content",
 };
 
 const styles = `
@@ -110,43 +110,43 @@ const styles = `
 `;
 
 const inlineStyles = {
-	root: ({ props }) => ({
-		justifyContent:
-			props.layout === "horizontal"
-				? props.align === "center" || props.align === null
-					? "center"
-					: props.align === "left"
-					  ? "flex-start"
-					  : props.align === "right"
-						  ? "flex-end"
-						  : null
-				: null,
-		alignItems:
-			props.layout === "vertical"
-				? props.align === "center" || props.align === null
-					? "center"
-					: props.align === "top"
-					  ? "flex-start"
-					  : props.align === "bottom"
-						  ? "flex-end"
-						  : null
-				: null,
-	}),
+    root: ({ props }) => ({
+        justifyContent:
+            props.layout === "horizontal"
+                ? props.align === "center" || props.align === null
+                    ? "center"
+                    : props.align === "left"
+                      ? "flex-start"
+                      : props.align === "right"
+                          ? "flex-end"
+                          : null
+                : null,
+        alignItems:
+            props.layout === "vertical"
+                ? props.align === "center" || props.align === null
+                    ? "center"
+                    : props.align === "top"
+                      ? "flex-start"
+                      : props.align === "bottom"
+                          ? "flex-end"
+                          : null
+                : null,
+    }),
 };
 
 export const DividerBase = ComponentBase.extend({
-	defaultProps: {
-		__TYPE: "Divider",
-		align: null,
-		layout: "horizontal",
-		type: "solid",
-		style: null,
-		className: null,
-		children: undefined,
-	},
-	css: {
-		classes,
-		styles,
-		inlineStyles,
-	},
+    defaultProps: {
+        __TYPE: "Divider",
+        align: null,
+        layout: "horizontal",
+        type: "solid",
+        style: null,
+        className: null,
+        children: undefined,
+    },
+    css: {
+        classes,
+        styles,
+        inlineStyles,
+    },
 });

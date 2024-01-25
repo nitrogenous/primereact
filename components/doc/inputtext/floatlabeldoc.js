@@ -4,16 +4,16 @@ import { InputText } from "@/components/lib/inputtext/InputText";
 import { useState } from "react";
 
 export function FloatLabelDoc(props) {
-	const [value, setValue] = useState("");
+    const [value, setValue] = useState("");
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <span className="p-float-label">
     <InputText id="username" value={value} onChange={(e) => setValue(e.target.value)} />
     <label htmlFor="username">Username</label>
 </span>
         `,
-		javascript: `
+        javascript: `
 import React, { useState } from "react";
 import { InputText } from "primereact/inputtext";
 
@@ -30,7 +30,7 @@ export default function FloatLabelDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from "react";
 import { InputText } from "primereact/inputtext";
 
@@ -47,24 +47,27 @@ export default function FloatLabelDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>A floating label appears on top of the input field when focused.</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<span className="p-float-label">
-					<InputText
-						id="username"
-						value={value}
-						onChange={(e) => setValue(e.target.value)}
-					/>
-					<label htmlFor="username">Username</label>
-				</span>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    A floating label appears on top of the input field when
+                    focused.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <span className="p-float-label">
+                    <InputText
+                        id="username"
+                        value={value}
+                        onChange={(e) => setValue(e.target.value)}
+                    />
+                    <label htmlFor="username">Username</label>
+                </span>
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

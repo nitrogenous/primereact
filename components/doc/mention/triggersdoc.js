@@ -6,100 +6,105 @@ import { useEffect, useState } from "react";
 import { CustomerService } from "../../../service/CustomerService";
 
 export function TriggersDoc(props) {
-	const [value, setValue] = useState("");
-	const [customers, setCustomers] = useState([]);
-	const [multipleSuggestions, setMultipleSuggestions] = useState([]);
-	const tagSuggestions = ["primereact", "primefaces", "primeng", "primevue"];
+    const [value, setValue] = useState("");
+    const [customers, setCustomers] = useState([]);
+    const [multipleSuggestions, setMultipleSuggestions] = useState([]);
+    const tagSuggestions = ["primereact", "primefaces", "primeng", "primevue"];
 
-	useEffect(() => {
-		CustomerService.getCustomersSmall().then((data) => {
-			data.forEach(
-				(d) =>
-					(d["nickname"] = `${d.name.replace(/\s+/g, "").toLowerCase()}_${
-						d.id
-					}`),
-			);
-			setCustomers(data);
-		});
-	}, []);
+    useEffect(() => {
+        CustomerService.getCustomersSmall().then((data) => {
+            data.forEach(
+                (d) =>
+                    (d["nickname"] = `${d.name
+                        .replace(/\s+/g, "")
+                        .toLowerCase()}_${d.id}`),
+            );
+            setCustomers(data);
+        });
+    }, []);
 
-	const onMultipleSearch = (event) => {
-		const trigger = event.trigger;
+    const onMultipleSearch = (event) => {
+        const trigger = event.trigger;
 
-		if (trigger === "@") {
-			//in a real application, make a request to a remote url with the query and return suggestions, for demo we filter at client side
-			setTimeout(() => {
-				const query = event.query;
-				let suggestions;
+        if (trigger === "@") {
+            //in a real application, make a request to a remote url with the query and return suggestions, for demo we filter at client side
+            setTimeout(() => {
+                const query = event.query;
+                let suggestions;
 
-				if (!query.trim().length) {
-					suggestions = [...customers];
-				} else {
-					suggestions = customers.filter((customer) => {
-						return customer.nickname
-							.toLowerCase()
-							.startsWith(query.toLowerCase());
-					});
-				}
+                if (!query.trim().length) {
+                    suggestions = [...customers];
+                } else {
+                    suggestions = customers.filter((customer) => {
+                        return customer.nickname
+                            .toLowerCase()
+                            .startsWith(query.toLowerCase());
+                    });
+                }
 
-				setMultipleSuggestions(suggestions);
-			}, 250);
-		} else if (trigger === "#") {
-			setTimeout(() => {
-				const query = event.query;
-				let suggestions;
+                setMultipleSuggestions(suggestions);
+            }, 250);
+        } else if (trigger === "#") {
+            setTimeout(() => {
+                const query = event.query;
+                let suggestions;
 
-				if (!query.trim().length) {
-					suggestions = [...tagSuggestions];
-				} else {
-					suggestions = tagSuggestions.filter((tag) => {
-						return tag.toLowerCase().startsWith(query.toLowerCase());
-					});
-				}
+                if (!query.trim().length) {
+                    suggestions = [...tagSuggestions];
+                } else {
+                    suggestions = tagSuggestions.filter((tag) => {
+                        return tag
+                            .toLowerCase()
+                            .startsWith(query.toLowerCase());
+                    });
+                }
 
-				setMultipleSuggestions(suggestions);
-			}, 250);
-		}
-	};
+                setMultipleSuggestions(suggestions);
+            }, 250);
+        }
+    };
 
-	const itemTemplate = (suggestion) => {
-		const src =
-			"https://primefaces.org/cdn/primereact/images/avatar/" +
-			suggestion.representative.image;
+    const itemTemplate = (suggestion) => {
+        const src =
+            "https://primefaces.org/cdn/primereact/images/avatar/" +
+            suggestion.representative.image;
 
-		return (
-			<div className="flex align-items-center">
-				<img alt={suggestion.name} src={src} width="32" />
-				<span className="flex flex-column ml-2">
-					{suggestion.name}
-					<small
-						style={{ fontSize: ".75rem", color: "var(--text-color-secondary)" }}
-					>
-						@{suggestion.nickname}
-					</small>
-				</span>
-			</div>
-		);
-	};
+        return (
+            <div className="flex align-items-center">
+                <img alt={suggestion.name} src={src} width="32" />
+                <span className="flex flex-column ml-2">
+                    {suggestion.name}
+                    <small
+                        style={{
+                            fontSize: ".75rem",
+                            color: "var(--text-color-secondary)",
+                        }}
+                    >
+                        @{suggestion.nickname}
+                    </small>
+                </span>
+            </div>
+        );
+    };
 
-	const multipleItemTemplate = (suggestion, options) => {
-		const trigger = options.trigger;
+    const multipleItemTemplate = (suggestion, options) => {
+        const trigger = options.trigger;
 
-		if (trigger === "@" && suggestion.nickname) {
-			return itemTemplate(suggestion);
-		} else if (trigger === "#" && !suggestion.nickname) {
-			return <span>{suggestion}</span>;
-		}
+        if (trigger === "@" && suggestion.nickname) {
+            return itemTemplate(suggestion);
+        } else if (trigger === "#" && !suggestion.nickname) {
+            return <span>{suggestion}</span>;
+        }
 
-		return null;
-	};
+        return null;
+    };
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Mention value={value} onChange={(e) => setValue(e.target.value)} trigger={['@', '#']} suggestions={multipleSuggestions} onSearch={onMultipleSearch}
     field={['nickname']} placeholder="Enter @ to mention people, # to mention tag" itemTemplate={multipleItemTemplate} rows={5} cols={40} />
         `,
-		javascript: `
+        javascript: `
 import React, { useState, useEffect } from "react";
 import { Mention } from 'primereact/mention';
 import { CustomerService } from './service/CustomerService';
@@ -192,7 +197,7 @@ export default function TriggersDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState, useEffect } from "react";
 import { Mention, MentionSearchEvent, MentionItemTemplateOptions } from 'primereact/mention';
 import { CustomerService } from './service/CustomerService';
@@ -285,7 +290,7 @@ export default function TriggersDemo() {
     )
 }
         `,
-		data: `
+        data: `
 /* CustomerService */ 
 {
     id: 1000,
@@ -307,31 +312,31 @@ export default function TriggersDemo() {
 },
 ...
        `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					It is used to define the expected keyword/s in the input field to
-					mention someone or something.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<Mention
-					value={value}
-					onChange={(e) => setValue(e.target.value)}
-					trigger={["@", "#"]}
-					suggestions={multipleSuggestions}
-					onSearch={onMultipleSearch}
-					field={["nickname"]}
-					placeholder="Enter @ to mention people, # to mention tag"
-					itemTemplate={multipleItemTemplate}
-					rows={5}
-					cols={40}
-				/>
-			</div>
-			<DocSectionCode code={code} service={["CustomerService"]} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    It is used to define the expected keyword/s in the input
+                    field to mention someone or something.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <Mention
+                    value={value}
+                    onChange={(e) => setValue(e.target.value)}
+                    trigger={["@", "#"]}
+                    suggestions={multipleSuggestions}
+                    onSearch={onMultipleSearch}
+                    field={["nickname"]}
+                    placeholder="Enter @ to mention people, # to mention tag"
+                    itemTemplate={multipleItemTemplate}
+                    rows={5}
+                    cols={40}
+                />
+            </div>
+            <DocSectionCode code={code} service={["CustomerService"]} />
+        </>
+    );
 }

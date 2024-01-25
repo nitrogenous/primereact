@@ -17,6 +17,6 @@ export interface SortAmountDownIconProps extends IconBaseProps {}
  * @group Component
  */
 export declare class SortAmountDownIcon extends React.Component<
-	SortAmountDownIconProps,
-	any
+    SortAmountDownIconProps,
+    any
 > {}

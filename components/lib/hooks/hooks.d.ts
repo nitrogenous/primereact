@@ -11,157 +11,157 @@ import * as React from "react";
  * Custom MousePositionOptions
  */
 interface MousePositionOptions {
-	/**
-	 * Position of the mouse for the x-axis.
-	 */
-	x: number;
-	/**
-	 * Position of the mouse for the y-axis.
-	 */
-	y: number;
+    /**
+     * Position of the mouse for the x-axis.
+     */
+    x: number;
+    /**
+     * Position of the mouse for the y-axis.
+     */
+    y: number;
 }
 
 /**
  * Custom UseStyleOptions
  */
 interface UseStyleOptions {
-	document?: Document;
-	immediate: boolean;
-	manual: boolean;
-	name: string;
-	media: string;
+    document?: Document;
+    immediate: boolean;
+    manual: boolean;
+    name: string;
+    media: string;
 }
 
 /**
  * Custom StyleOptions
  */
 interface StyleOptions {
-	/**
-	 * Defines data-pc-name attribute of the style tag.
-	 */
-	name: string;
-	/**
-	 * The css object.
-	 */
-	css: React.RefObject<string>;
-	/**
-	 * This option is used to load the style tag by the name.
-	 * @returns {void}
-	 */
-	load: () => void;
-	/**
-	 * This method is used to remove the style tag from the head.
-	 * @returns {void}
-	 */
-	unload: () => void;
-	/**
-	 * Whether the style is loaded or not.
-	 */
-	isLoaded: boolean;
+    /**
+     * Defines data-pc-name attribute of the style tag.
+     */
+    name: string;
+    /**
+     * The css object.
+     */
+    css: React.RefObject<string>;
+    /**
+     * This option is used to load the style tag by the name.
+     * @returns {void}
+     */
+    load: () => void;
+    /**
+     * This method is used to remove the style tag from the head.
+     * @returns {void}
+     */
+    unload: () => void;
+    /**
+     * Whether the style is loaded or not.
+     */
+    isLoaded: boolean;
 }
 
 /**
  * Custom MouseDataOptions
  */
 declare interface MouseDataOptions extends MousePositionOptions {
-	/**
-	 * Used to reset the mouse position data.
-	 */
-	reset: () => void;
-	/**
-	 * The ref of the element to position.
-	 */
-	ref: React.RefObject<HTMLElement>;
+    /**
+     * Used to reset the mouse position data.
+     */
+    reset: () => void;
+    /**
+     * The ref of the element to position.
+     */
+    ref: React.RefObject<HTMLElement>;
 }
 
 /**
  * Custom MouseMoveOptions
  */
 declare interface MouseMoveOptions extends MouseDataOptions {
-	/**
-	 * Whether the mouse is touching the element or not.
-	 */
-	active: boolean;
+    /**
+     * Whether the mouse is touching the element or not.
+     */
+    active: boolean;
 }
 
 /**
  * Custom event options.
  */
 interface EventOptions {
-	/**
-	 * The target element to listen to.
-	 */
-	target?: "document" | "window" | React.Ref<HTMLElement>;
-	/**
-	 * The event type to listen to.
-	 */
-	type?: string;
-	/**
-	 * The event listener.
-	 */
-	listener?(event: Event): void;
-	/**
-	 * The event options.
-	 */
-	options?: any;
-	/**
-	 * Whether to listen to the event or not.
-	 * @defaultValue true
-	 */
-	when?: boolean;
+    /**
+     * The target element to listen to.
+     */
+    target?: "document" | "window" | React.Ref<HTMLElement>;
+    /**
+     * The event type to listen to.
+     */
+    type?: string;
+    /**
+     * The event listener.
+     */
+    listener?(event: Event): void;
+    /**
+     * The event options.
+     */
+    options?: any;
+    /**
+     * Whether to listen to the event or not.
+     * @defaultValue true
+     */
+    when?: boolean;
 }
 
 /**
  * The options of event listener in OverlayEventOptions
  */
 interface OverlayListenerOptions {
-	/**
-	 * Type of listener.
-	 */
-	type: "scroll" | "outside" | "resize" | "orientationChange";
-	/**
-	 * Whether it is valid.
-	 */
-	valid: boolean;
+    /**
+     * Type of listener.
+     */
+    type: "scroll" | "outside" | "resize" | "orientationChange";
+    /**
+     * Whether it is valid.
+     */
+    valid: boolean;
 }
 
 /**
  * Custom overlay event options.
  */
 interface OverlayEventOptions {
-	/**
-	 * The target element to listen to.
-	 */
-	target?: "document" | "window" | React.Ref<HTMLElement> | undefined;
-	/**
-	 * The overlay element to listen to.
-	 */
-	overlay?: "document" | "window" | React.Ref<HTMLElement> | undefined;
-	/**
-	 * The event listener.
-	 */
-	listener?(event: Event, options?: OverlayListenerOptions): void;
-	/**
-	 * Whether to listen to the event or not.
-	 * @defaultValue true
-	 */
-	when?: boolean;
+    /**
+     * The target element to listen to.
+     */
+    target?: "document" | "window" | React.Ref<HTMLElement> | undefined;
+    /**
+     * The overlay element to listen to.
+     */
+    overlay?: "document" | "window" | React.Ref<HTMLElement> | undefined;
+    /**
+     * The event listener.
+     */
+    listener?(event: Event, options?: OverlayListenerOptions): void;
+    /**
+     * Whether to listen to the event or not.
+     * @defaultValue true
+     */
+    when?: boolean;
 }
 
 /**
  * Custom resize event options.
  */
 interface ResizeEventOptions {
-	/**
-	 * The event listener.
-	 * @param {Event} event - The browser event object.
-	 */
-	listener?(event: Event): void;
-	/**
-	 * Whether to listen to the event or not.
-	 * @defaultValue true
-	 */
-	when?: boolean;
+    /**
+     * The event listener.
+     * @param {Event} event - The browser event object.
+     */
+    listener?(event: Event): void;
+    /**
+     * Whether to listen to the event or not.
+     * @defaultValue true
+     */
+    when?: boolean;
 }
 
 /**
@@ -180,8 +180,8 @@ export declare function useMountEffect(effect: React.EffectCallback): void;
  * @param {React.DependencyList} deps - The dependencies.
  */
 export declare function useUpdateEffect(
-	effect: React.EffectCallback,
-	deps?: React.DependencyList,
+    effect: React.EffectCallback,
+    deps?: React.DependencyList,
 ): void;
 /**
  * Custom hook to run an unmount effect.
@@ -215,9 +215,9 @@ export declare function useResizeListener(options: ResizeEventOptions): any[];
  * @param {boolean} when - Whether to listen to the event or not.
  */
 export declare function useInterval(
-	fn: any,
-	delay?: number,
-	when?: boolean,
+    fn: any,
+    delay?: number,
+    when?: boolean,
 ): any[];
 /**
  * Custom hook to use a timeout.
@@ -226,9 +226,9 @@ export declare function useInterval(
  * @param {boolean} when - Whether to listen to the event or not.
  */
 export declare function useTimeout(
-	fn: any,
-	delay?: number,
-	when?: boolean,
+    fn: any,
+    delay?: number,
+    when?: boolean,
 ): any[];
 /**
  * Custom hook to use storage such as local and session storage.
@@ -237,9 +237,9 @@ export declare function useTimeout(
  * @param {string} storage - The storage type. Valid values are 'local' and 'session'.
  */
 export declare function useStorage<S, K extends string = string>(
-	initialValue: S,
-	key: K,
-	storage?: "local" | "session",
+    initialValue: S,
+    key: K,
+    storage?: "local" | "session",
 ): [S, React.Dispatch<React.SetStateAction<S>>];
 /**
  * Custom hook to use local storage.
@@ -247,16 +247,16 @@ export declare function useStorage<S, K extends string = string>(
  * @param {string} key - The key to store the value in local storage.
  */
 export declare function useLocalStorage<S, K extends string = string>(
-	initialValue: S,
-	key: K,
+    initialValue: S,
+    key: K,
 ): [S, React.Dispatch<React.SetStateAction<S>>];
 /**
  * Custom hook to use session storage.
  * @param {*} initialValue - The initial value.
  * @param {string} key - The key to store the value in session storage. */
 export declare function useSessionStorage<S, K extends string = string>(
-	initialValue: S,
-	key: K,
+    initialValue: S,
+    key: K,
 ): [S, React.Dispatch<React.SetStateAction<S>>];
 /**
  * @todo
@@ -264,8 +264,8 @@ export declare function useSessionStorage<S, K extends string = string>(
  * @param {{ min: number; max: number; step: number }} [options=&#123; step: 1 &#125;]  - The options of the counter.
  */
 export declare function useCounter(
-	initialValue: number,
-	options: { min: number; max: number; step: number },
+    initialValue: number,
+    options: { min: number; max: number; step: number },
 ): any;
 /**
  * Custom hook to use a debounced value.
@@ -273,8 +273,8 @@ export declare function useCounter(
  * @param {number} delay - The delay in milliseconds.
  */
 export declare function useDebounce<S>(
-	initialValue: S,
-	delay: number,
+    initialValue: S,
+    delay: number,
 ): [S, S, React.Dispatch<React.SetStateAction<S>>];
 /**
  * Custom hook to use to get the current mouse position.
@@ -286,8 +286,8 @@ export declare function useMouse(): MouseDataOptions;
  * @param {MousePositionOptions} initialValue - The initial value.
  */
 export declare function useMove(
-	mode: "horizontal" | "vertical" | "both",
-	initialValue: MousePositionOptions,
+    mode: "horizontal" | "vertical" | "both",
+    initialValue: MousePositionOptions,
 ): MouseMoveOptions;
 
 /**
@@ -296,8 +296,8 @@ export declare function useMove(
  * @param {UseStyleOptions} options - The options of the style.
  */
 export declare function useStyle(
-	css: string,
-	options?: UseStyleOptions,
+    css: string,
+    options?: UseStyleOptions,
 ): StyleOptions;
 /**
  * Custom hook to use change the current favicon.
@@ -312,8 +312,8 @@ export declare function useFavicon(newIcon: string, rel: string): void;
  * @return {boolean} Whether the element is intersecting or not.
  */
 export declare function useIntersectionObserver(
-	ref: React.RefObject<Element>,
-	options?: IntersectionObserverInit,
+    ref: React.RefObject<Element>,
+    options?: IntersectionObserverInit,
 ): boolean;
 /**
  * Custom hook to use detect click outside.
@@ -321,8 +321,8 @@ export declare function useIntersectionObserver(
  * @param {*} callback - The callback to run when click outside.
  */
 export declare function useClickOutside(
-	ref: React.RefObject<Element>,
-	callback: any,
+    ref: React.RefObject<Element>,
+    callback: any,
 ): void;
 /**
  * Custom hook to detect if window size matches or not.
@@ -334,9 +334,9 @@ export declare function useMatchMedia(query: string, when?: boolean): boolean;
  * Custom hook to use detect global escape button click.
  */
 export declare function useGlobalOnEscapeKey(props: {
-	callback: (event: KeyboardEvent) => void;
-	when: boolean;
-	priority: [number, number];
+    callback: (event: KeyboardEvent) => void;
+    when: boolean;
+    priority: [number, number];
 }): void;
 /**
  * Custom hook to use display order of component of one and the same group
@@ -344,13 +344,13 @@ export declare function useGlobalOnEscapeKey(props: {
  * @param {boolean} [isVisible]
  */
 export declare function useDisplayOrder(
-	group: string,
-	isVisible?: boolean,
+    group: string,
+    isVisible?: boolean,
 ): number | undefined;
 /**
  * Custom hook to return a function for merging properties.
  */
 export declare function useMergeProps(): (
-	args: object[],
-	options?: any,
+    args: object[],
+    options?: any,
 ) => object | undefined;

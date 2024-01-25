@@ -2,17 +2,17 @@ import { ComponentBase } from "../componentbase/ComponentBase";
 import { ObjectUtils, classNames } from "../utils/Utils";
 
 const classes = {
-	root: ({ props, state }) =>
-		classNames("p-avatar p-component", {
-			"p-avatar-image":
-				ObjectUtils.isNotEmpty(props.image) && !state.imageFailed,
-			"p-avatar-circle": props.shape === "circle",
-			"p-avatar-lg": props.size === "large",
-			"p-avatar-xl": props.size === "xlarge",
-			"p-avatar-clickable": !!props.onClick,
-		}),
-	label: "p-avatar-text",
-	icon: "p-avatar-icon",
+    root: ({ props, state }) =>
+        classNames("p-avatar p-component", {
+            "p-avatar-image":
+                ObjectUtils.isNotEmpty(props.image) && !state.imageFailed,
+            "p-avatar-circle": props.shape === "circle",
+            "p-avatar-lg": props.size === "large",
+            "p-avatar-xl": props.size === "xlarge",
+            "p-avatar-clickable": !!props.onClick,
+        }),
+    label: "p-avatar-text",
+    icon: "p-avatar-icon",
 };
 
 const styles = `
@@ -54,23 +54,23 @@ const styles = `
 `;
 
 export const AvatarBase = ComponentBase.extend({
-	defaultProps: {
-		__TYPE: "Avatar",
-		className: null,
-		icon: null,
-		image: null,
-		imageAlt: "avatar",
-		imageFallback: "default",
-		label: null,
-		onImageError: null,
-		shape: "square",
-		size: "normal",
-		style: null,
-		template: null,
-		children: undefined,
-	},
-	css: {
-		classes,
-		styles,
-	},
+    defaultProps: {
+        __TYPE: "Avatar",
+        className: null,
+        icon: null,
+        image: null,
+        imageAlt: "avatar",
+        imageFallback: "default",
+        label: null,
+        onImageError: null,
+        shape: "square",
+        size: "normal",
+        style: null,
+        template: null,
+        children: undefined,
+    },
+    css: {
+        classes,
+        styles,
+    },
 });

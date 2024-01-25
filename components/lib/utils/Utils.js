@@ -9,14 +9,14 @@ import UniqueComponentId from "./UniqueComponentId";
 import { ZIndexUtils } from "./ZIndexUtils";
 
 export {
-	DomHandler,
-	EventBus,
-	IconUtils,
-	ObjectUtils,
-	UniqueComponentId,
-	ZIndexUtils,
-	_mergeProps,
-	classNames,
-	mask,
-	mergeProps,
+    DomHandler,
+    EventBus,
+    IconUtils,
+    ObjectUtils,
+    UniqueComponentId,
+    ZIndexUtils,
+    _mergeProps,
+    classNames,
+    mask,
+    mergeProps,
 };

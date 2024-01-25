@@ -15,20 +15,20 @@ import { PassThroughOptions } from "../passthrough";
 import { IconType, PassThroughType } from "../utils/utils";
 
 export declare type FieldsetPassThroughType<T> = PassThroughType<
-	T,
-	FieldsetPassThroughMethodOptions
+    T,
+    FieldsetPassThroughMethodOptions
 >;
 export declare type FieldsetPassThroughTransitionType =
-	| ReactCSSTransitionProps
-	| ((options: FieldsetPassThroughMethodOptions) => ReactCSSTransitionProps)
-	| undefined;
+    | ReactCSSTransitionProps
+    | ((options: FieldsetPassThroughMethodOptions) => ReactCSSTransitionProps)
+    | undefined;
 
 /**
  * Custom passthrough(pt) option method.
  */
 export interface FieldsetPassThroughMethodOptions {
-	props: FieldsetProps;
-	state: FieldsetState;
+    props: FieldsetProps;
+    state: FieldsetState;
 }
 
 /**
@@ -36,14 +36,14 @@ export interface FieldsetPassThroughMethodOptions {
  * @see {@link FieldsetEmits.toggle}
  */
 export interface FieldsetToggleEvent {
-	/**
-	 * Browser event.
-	 */
-	originalEvent: React.MouseEvent<HTMLElement>;
-	/**
-	 * Collapsed state as a boolean
-	 */
-	value: boolean;
+    /**
+     * Browser event.
+     */
+    originalEvent: React.MouseEvent<HTMLElement>;
+    /**
+     * Collapsed state as a boolean
+     */
+    value: boolean;
 }
 
 /**
@@ -51,56 +51,58 @@ export interface FieldsetToggleEvent {
  * @see {@link FieldsetProps.pt}
  */
 export interface FieldsetPassThroughOptions {
-	/**
-	 * Uses to pass attributes to the root's DOM element.
-	 */
-	root?: FieldsetPassThroughType<React.HTMLAttributes<HTMLFieldSetElement>>;
-	/**
-	 * Uses to pass attributes to the legend's DOM element.
-	 */
-	legend?: FieldsetPassThroughType<React.HTMLAttributes<HTMLLegendElement>>;
-	/**
-	 * Uses to pass attributes to the toggler's DOM element.
-	 */
-	toggler?: FieldsetPassThroughType<React.HTMLAttributes<HTMLAnchorElement>>;
-	/**
-	 * Uses to pass attributes to the toggler icon's DOM element.
-	 */
-	togglerIcon?: FieldsetPassThroughType<React.HTMLAttributes<HTMLDivElement>>;
-	/**
-	 * Uses to pass attributes to the legend title's DOM element.
-	 */
-	legendTitle?: FieldsetPassThroughType<React.HTMLAttributes<HTMLSpanElement>>;
-	/**
-	 * Uses to pass attributes to the toggleable content's DOM element.
-	 */
-	toggleableContent?: FieldsetPassThroughType<
-		React.HTMLAttributes<HTMLDivElement>
-	>;
-	/**
-	 * Uses to pass attributes to the content's DOM element.
-	 */
-	content?: FieldsetPassThroughType<React.HTMLAttributes<HTMLDivElement>>;
-	/**
-	 * Used to manage all lifecycle hooks
-	 * @see {@link ComponentHooks}
-	 */
-	hooks?: ComponentHooks;
-	/**
-	 * Used to control React Transition API.
-	 */
-	transition?: FieldsetPassThroughTransitionType;
+    /**
+     * Uses to pass attributes to the root's DOM element.
+     */
+    root?: FieldsetPassThroughType<React.HTMLAttributes<HTMLFieldSetElement>>;
+    /**
+     * Uses to pass attributes to the legend's DOM element.
+     */
+    legend?: FieldsetPassThroughType<React.HTMLAttributes<HTMLLegendElement>>;
+    /**
+     * Uses to pass attributes to the toggler's DOM element.
+     */
+    toggler?: FieldsetPassThroughType<React.HTMLAttributes<HTMLAnchorElement>>;
+    /**
+     * Uses to pass attributes to the toggler icon's DOM element.
+     */
+    togglerIcon?: FieldsetPassThroughType<React.HTMLAttributes<HTMLDivElement>>;
+    /**
+     * Uses to pass attributes to the legend title's DOM element.
+     */
+    legendTitle?: FieldsetPassThroughType<
+        React.HTMLAttributes<HTMLSpanElement>
+    >;
+    /**
+     * Uses to pass attributes to the toggleable content's DOM element.
+     */
+    toggleableContent?: FieldsetPassThroughType<
+        React.HTMLAttributes<HTMLDivElement>
+    >;
+    /**
+     * Uses to pass attributes to the content's DOM element.
+     */
+    content?: FieldsetPassThroughType<React.HTMLAttributes<HTMLDivElement>>;
+    /**
+     * Used to manage all lifecycle hooks
+     * @see {@link ComponentHooks}
+     */
+    hooks?: ComponentHooks;
+    /**
+     * Used to control React Transition API.
+     */
+    transition?: FieldsetPassThroughTransitionType;
 }
 
 /**
  * Defines current inline state in Fieldset component.
  */
 export interface FieldsetState {
-	/**
-	 * Current collapsed state as a boolean.
-	 * @defaultValue false
-	 */
-	collapse: boolean;
+    /**
+     * Current collapsed state as a boolean.
+     * @defaultValue false
+     */
+    collapse: boolean;
 }
 
 /**
@@ -109,14 +111,14 @@ export interface FieldsetState {
  * @event
  */
 interface FieldsetToggleEvent {
-	/**
-	 * Browser mouse event.
-	 */
-	originalEvent: React.MouseEvent<HTMLElement>;
-	/**
-	 * Collapsed state as a boolean.
-	 */
-	value: boolean;
+    /**
+     * Browser mouse event.
+     */
+    originalEvent: React.MouseEvent<HTMLElement>;
+    /**
+     * Collapsed state as a boolean.
+     */
+    value: boolean;
 }
 
 /**
@@ -124,80 +126,80 @@ interface FieldsetToggleEvent {
  * @group Properties
  */
 export interface FieldsetProps
-	extends Omit<
-		React.DetailedHTMLProps<
-			React.HTMLAttributes<HTMLFieldSetElement>,
-			HTMLFieldSetElement
-		>,
-		"ref"
-	> {
-	/**
-	 * Header text of the fieldset.
-	 */
-	legend?: React.ReactNode | undefined;
-	/**
-	 * When specified, content can toggled by clicking the legend.
-	 * @defaultValue false
-	 */
-	toggleable?: boolean | undefined;
-	/**
-	 * Defines the default visibility state of the content.
-	 * @defaultValue false
-	 */
-	collapsed?: boolean | undefined;
-	/**
-	 * Icon of an expanded tab.
-	 */
-	collapseIcon?: IconType<FieldsetProps> | undefined;
-	/**
-	 * The properties of CSSTransition can be customized, except for "nodeRef" and "in" properties.
-	 * @type {CSSTransitionProps}
-	 */
-	transitionOptions?: CSSTransitionProps | undefined;
-	/**
-	 * Icon of an collapsed tab.
-	 */
-	expandIcon?: IconType<FieldsetProps> | undefined;
-	/**
-	 * Callback to invoke when a tab gets expanded.
-	 * @param {React.MouseEvent<HTMLElement>} event - Browser event.
-	 */
-	onExpand?(event: React.MouseEvent<HTMLElement>): void;
-	/**
-	 * Callback to invoke when an active tab is collapsed by clicking on the header.
-	 * @param {React.MouseEvent<HTMLElement>} event - Browser event.
-	 */
-	onCollapse?(event: React.MouseEvent<HTMLElement>): void;
-	/**
-	 * Callback to invoke when a tab gets expanded.
-	 * @param {FieldsetToggleEvent} event - Custom toggle event.
-	 */
-	onToggle?(event: FieldsetToggleEvent): void;
-	/**
-	 * Callback to invoke when fieldset is clicked.
-	 * @param {React.MouseEvent<HTMLElement>} event - Browser event.
-	 */
-	onClick?(event: React.MouseEvent<HTMLElement>): void;
-	/**
-	 * Used to get the child elements of the component.
-	 * @readonly
-	 */
-	children?: React.ReactNode | undefined;
-	/**
-	 * Uses to pass attributes to DOM elements inside the component.
-	 * @type {FieldsetPassThroughOptions}
-	 */
-	pt?: FieldsetPassThroughOptions;
-	/**
-	 * Used to configure passthrough(pt) options of the component.
-	 * @type {PassThroughOptions}
-	 */
-	ptOptions?: PassThroughOptions;
-	/**
-	 * When enabled, it removes component related styles in the core.
-	 * @defaultValue false
-	 */
-	unstyled?: boolean;
+    extends Omit<
+        React.DetailedHTMLProps<
+            React.HTMLAttributes<HTMLFieldSetElement>,
+            HTMLFieldSetElement
+        >,
+        "ref"
+    > {
+    /**
+     * Header text of the fieldset.
+     */
+    legend?: React.ReactNode | undefined;
+    /**
+     * When specified, content can toggled by clicking the legend.
+     * @defaultValue false
+     */
+    toggleable?: boolean | undefined;
+    /**
+     * Defines the default visibility state of the content.
+     * @defaultValue false
+     */
+    collapsed?: boolean | undefined;
+    /**
+     * Icon of an expanded tab.
+     */
+    collapseIcon?: IconType<FieldsetProps> | undefined;
+    /**
+     * The properties of CSSTransition can be customized, except for "nodeRef" and "in" properties.
+     * @type {CSSTransitionProps}
+     */
+    transitionOptions?: CSSTransitionProps | undefined;
+    /**
+     * Icon of an collapsed tab.
+     */
+    expandIcon?: IconType<FieldsetProps> | undefined;
+    /**
+     * Callback to invoke when a tab gets expanded.
+     * @param {React.MouseEvent<HTMLElement>} event - Browser event.
+     */
+    onExpand?(event: React.MouseEvent<HTMLElement>): void;
+    /**
+     * Callback to invoke when an active tab is collapsed by clicking on the header.
+     * @param {React.MouseEvent<HTMLElement>} event - Browser event.
+     */
+    onCollapse?(event: React.MouseEvent<HTMLElement>): void;
+    /**
+     * Callback to invoke when a tab gets expanded.
+     * @param {FieldsetToggleEvent} event - Custom toggle event.
+     */
+    onToggle?(event: FieldsetToggleEvent): void;
+    /**
+     * Callback to invoke when fieldset is clicked.
+     * @param {React.MouseEvent<HTMLElement>} event - Browser event.
+     */
+    onClick?(event: React.MouseEvent<HTMLElement>): void;
+    /**
+     * Used to get the child elements of the component.
+     * @readonly
+     */
+    children?: React.ReactNode | undefined;
+    /**
+     * Uses to pass attributes to DOM elements inside the component.
+     * @type {FieldsetPassThroughOptions}
+     */
+    pt?: FieldsetPassThroughOptions;
+    /**
+     * Used to configure passthrough(pt) options of the component.
+     * @type {PassThroughOptions}
+     */
+    ptOptions?: PassThroughOptions;
+    /**
+     * When enabled, it removes component related styles in the core.
+     * @defaultValue false
+     */
+    unstyled?: boolean;
 }
 
 /**
@@ -212,14 +214,14 @@ export interface FieldsetProps
  * @group Component
  */
 export declare class Fieldset extends React.Component<FieldsetProps, any> {
-	/**
-	 * Used to get container element.
-	 * @return {HTMLFieldSetElement} Container element
-	 */
-	public getElement(): HTMLFieldSetElement;
-	/**
-	 * Used to get the content element of the fieldset.
-	 * @return {HTMLDivElement} Content element
-	 */
-	public getContent(): HTMLDivElement;
+    /**
+     * Used to get container element.
+     * @return {HTMLFieldSetElement} Container element
+     */
+    public getElement(): HTMLFieldSetElement;
+    /**
+     * Used to get the content element of the fieldset.
+     * @return {HTMLDivElement} Content element
+     */
+    public getContent(): HTMLDivElement;
 }

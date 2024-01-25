@@ -6,23 +6,23 @@ import { useEffect, useState } from "react";
 import { NodeService } from "../../../../service/NodeService";
 
 export function SingleColumnDoc(props) {
-	const [nodes, setNodes] = useState([]);
+    const [nodes, setNodes] = useState([]);
 
-	useEffect(() => {
-		NodeService.getTreeTableNodes().then((data) => {
-			setNodes(data);
-		});
-	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(() => {
+        NodeService.getTreeTableNodes().then((data) => {
+            setNodes(data);
+        });
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <TreeTable value={nodes} tableStyle={{ minWidth: '50rem' }}>
     <Column field="name" header="Name" expander sortable></Column>
     <Column field="size" header="Size" sortable></Column>
     <Column field="type" header="Type" sortable></Column>
 </TreeTable>
         `,
-		javascript: `
+        javascript: `
 import React, { useState, useEffect } from 'react';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
@@ -48,7 +48,7 @@ export default function SingleColumnDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState, useEffect } from 'react';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
@@ -75,7 +75,7 @@ export default function SingleColumnDemo() {
     );
 }
         `,
-		data: `
+        data: `
 {
     key: '0',
     label: 'Documents',
@@ -103,23 +103,29 @@ export default function SingleColumnDemo() {
 },
 ...
 `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Sorting on a column is enabled by adding the <i>sortable</i> property.
-				</p>
-			</DocSectionText>
-			<div className="card">
-				<TreeTable value={nodes} tableStyle={{ minWidth: "50rem" }}>
-					<Column field="name" header="Name" expander sortable></Column>
-					<Column field="size" header="Size" sortable></Column>
-					<Column field="type" header="Type" sortable></Column>
-				</TreeTable>
-			</div>
-			<DocSectionCode code={code} service={["NodeService"]} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Sorting on a column is enabled by adding the <i>sortable</i>{" "}
+                    property.
+                </p>
+            </DocSectionText>
+            <div className="card">
+                <TreeTable value={nodes} tableStyle={{ minWidth: "50rem" }}>
+                    <Column
+                        field="name"
+                        header="Name"
+                        expander
+                        sortable
+                    ></Column>
+                    <Column field="size" header="Size" sortable></Column>
+                    <Column field="type" header="Type" sortable></Column>
+                </TreeTable>
+            </div>
+            <DocSectionCode code={code} service={["NodeService"]} />
+        </>
+    );
 }

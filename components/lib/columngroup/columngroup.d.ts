@@ -15,16 +15,16 @@ import { PassThroughOptions } from "../passthrough";
 import { PassThroughType } from "../utils/utils";
 
 export declare type ColumnGroupPassThroughType<T> = PassThroughType<
-	T,
-	ColumnGroupPassThroughMethodOptions
+    T,
+    ColumnGroupPassThroughMethodOptions
 >;
 
 /**
  * Custom passthrough(pt) option method.
  */
 export interface ColumnGroupPassThroughMethodOptions {
-	props: ColumnGroupProps;
-	parent: DataTablePassThroughOptions;
+    props: ColumnGroupProps;
+    parent: DataTablePassThroughOptions;
 }
 
 /**
@@ -32,15 +32,15 @@ export interface ColumnGroupPassThroughMethodOptions {
  * @see {@link ColumnGroupProps.pt}
  */
 export interface ColumnGroupPassThroughOptions {
-	/**
-	 * Uses to pass attributes to the root's DOM element.
-	 */
-	root?: ColumnGroupPassThroughType<React.HTMLAttributes<HTMLDivElement>>;
-	/**
-	 * Used to manage all lifecycle hooks
-	 * @see {@link ComponentHooks}
-	 */
-	hooks?: ComponentHooks;
+    /**
+     * Uses to pass attributes to the root's DOM element.
+     */
+    root?: ColumnGroupPassThroughType<React.HTMLAttributes<HTMLDivElement>>;
+    /**
+     * Used to manage all lifecycle hooks
+     * @see {@link ComponentHooks}
+     */
+    hooks?: ComponentHooks;
 }
 
 /**
@@ -49,26 +49,26 @@ export interface ColumnGroupPassThroughOptions {
  */
 // tslint:disable-next-line:no-empty-interface
 export interface ColumnGroupProps {
-	/**
-	 * Used to get the child elements of the component.
-	 * @readonly
-	 */
-	children?: React.ReactNode | undefined;
-	/**
-	 * Uses to pass attributes to DOM elements inside the component.
-	 * @type {ColumnGroupPassThroughOptions}
-	 */
-	pt?: ColumnGroupPassThroughOptions;
-	/**
-	 * Used to configure passthrough(pt) options of the component.
-	 * @type {PassThroughOptions}
-	 */
-	ptOptions?: PassThroughOptions;
-	/**
-	 * When enabled, it removes component related styles in the core.
-	 * @defaultValue false
-	 */
-	unstyled?: boolean;
+    /**
+     * Used to get the child elements of the component.
+     * @readonly
+     */
+    children?: React.ReactNode | undefined;
+    /**
+     * Uses to pass attributes to DOM elements inside the component.
+     * @type {ColumnGroupPassThroughOptions}
+     */
+    pt?: ColumnGroupPassThroughOptions;
+    /**
+     * Used to configure passthrough(pt) options of the component.
+     * @type {PassThroughOptions}
+     */
+    ptOptions?: PassThroughOptions;
+    /**
+     * When enabled, it removes component related styles in the core.
+     * @defaultValue false
+     */
+    unstyled?: boolean;
 }
 
 /**
@@ -83,6 +83,6 @@ export interface ColumnGroupProps {
  * @group Component
  */
 export declare class ColumnGroup extends React.Component<
-	ColumnGroupProps,
-	any
+    ColumnGroupProps,
+    any
 > {}

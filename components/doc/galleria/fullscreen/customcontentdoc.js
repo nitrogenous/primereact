@@ -5,36 +5,36 @@ import { useEffect, useRef, useState } from "react";
 import { PhotoService } from "../../../../service/PhotoService";
 
 export function CustomContentDoc(props) {
-	const [images, setImages] = useState(null);
-	const [activeIndex, setActiveIndex] = useState(0);
-	const galleria = useRef(null);
+    const [images, setImages] = useState(null);
+    const [activeIndex, setActiveIndex] = useState(0);
+    const galleria = useRef(null);
 
-	useEffect(() => {
-		PhotoService.getImages().then((data) => setImages(data));
-	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(() => {
+        PhotoService.getImages().then((data) => setImages(data));
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-	const itemTemplate = (item) => {
-		return (
-			<img
-				src={item.itemImageSrc}
-				alt={item.alt}
-				style={{ width: "100%", display: "block" }}
-			/>
-		);
-	};
+    const itemTemplate = (item) => {
+        return (
+            <img
+                src={item.itemImageSrc}
+                alt={item.alt}
+                style={{ width: "100%", display: "block" }}
+            />
+        );
+    };
 
-	const thumbnailTemplate = (item) => {
-		return (
-			<img
-				src={item.thumbnailImageSrc}
-				alt={item.alt}
-				style={{ display: "block" }}
-			/>
-		);
-	};
+    const thumbnailTemplate = (item) => {
+        return (
+            <img
+                src={item.thumbnailImageSrc}
+                alt={item.alt}
+                style={{ display: "block" }}
+            />
+        );
+    };
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Galleria ref={galleria} value={images} numVisible={7} style={{ maxWidth: '850px' }}
     activeIndex={activeIndex} onItemChange={(e) => setActiveIndex(e.index)}
     circular fullScreen showItemNavigators showThumbnails={false} item={itemTemplate} thumbnail={thumbnailTemplate} />
@@ -54,7 +54,7 @@ export function CustomContentDoc(props) {
     }
 </div>
         `,
-		javascript: `
+        javascript: `
 import React, { useState, useEffect, useRef } from 'react';
 import { Galleria } from 'primereact/galleria';
 import { PhotoService } from './service/PhotoService';
@@ -99,7 +99,7 @@ export default function CustomContentDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState, useEffect, useRef } from 'react';
 import { Galleria } from 'primereact/galleria';
 import { PhotoService } from './service/PhotoService';
@@ -144,7 +144,7 @@ export default function CustomContentDemo() {
     )
 }
         `,
-		data: `
+        data: `
 /* PhotoService */
 {
     itemImageSrc: 'https://primefaces.org/cdn/primereact/images/galleria/galleria1.jpg',
@@ -154,51 +154,51 @@ export default function CustomContentDemo() {
 },
 ...
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Using <i>activeIndex</i>, Galleria is displayed with a specific
-					initial image.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<Galleria
-					ref={galleria}
-					value={images}
-					numVisible={7}
-					style={{ maxWidth: "850px" }}
-					activeIndex={activeIndex}
-					onItemChange={(e) => setActiveIndex(e.index)}
-					circular
-					fullScreen
-					showItemNavigators
-					showThumbnails={false}
-					item={itemTemplate}
-					thumbnail={thumbnailTemplate}
-				/>
-				<div className="grid" style={{ maxWidth: "400px" }}>
-					{images &&
-						images.map((image, index) => {
-							return (
-								<div className="col-4" key={index}>
-									<img
-										src={image.thumbnailImageSrc}
-										alt={image.alt}
-										style={{ cursor: "pointer" }}
-										onClick={() => {
-											setActiveIndex(index);
-											galleria.current.show();
-										}}
-									/>
-								</div>
-							);
-						})}
-				</div>
-			</div>
-			<DocSectionCode code={code} service={["PhotoService"]} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Using <i>activeIndex</i>, Galleria is displayed with a
+                    specific initial image.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <Galleria
+                    ref={galleria}
+                    value={images}
+                    numVisible={7}
+                    style={{ maxWidth: "850px" }}
+                    activeIndex={activeIndex}
+                    onItemChange={(e) => setActiveIndex(e.index)}
+                    circular
+                    fullScreen
+                    showItemNavigators
+                    showThumbnails={false}
+                    item={itemTemplate}
+                    thumbnail={thumbnailTemplate}
+                />
+                <div className="grid" style={{ maxWidth: "400px" }}>
+                    {images &&
+                        images.map((image, index) => {
+                            return (
+                                <div className="col-4" key={index}>
+                                    <img
+                                        src={image.thumbnailImageSrc}
+                                        alt={image.alt}
+                                        style={{ cursor: "pointer" }}
+                                        onClick={() => {
+                                            setActiveIndex(index);
+                                            galleria.current.show();
+                                        }}
+                                    />
+                                </div>
+                            );
+                        })}
+                </div>
+            </div>
+            <DocSectionCode code={code} service={["PhotoService"]} />
+        </>
+    );
 }

@@ -33,61 +33,62 @@ const styles = `
 `;
 
 const classes = {
-	root: ({ props, context }) =>
-		classNames("p-menu p-component", {
-			"p-menu-overlay": props.popup,
-			"p-input-filled":
-				(context && context.inputStyle === "filled") ||
-				PrimeReact.inputStyle === "filled",
-			"p-ripple-disabled":
-				(context && context.ripple === false) || PrimeReact.ripple === false,
-		}),
-	menu: "p-menu-list p-reset",
-	content: "p-menuitem-content",
-	action: ({ item }) =>
-		classNames("p-menuitem-link", { "p-disabled": item.disabled }),
-	menuitem: ({ focused }) => classNames("p-menuitem", { "p-focus": focused }),
-	submenuHeader: ({ submenu }) =>
-		classNames("p-submenu-header", {
-			"p-disabled": submenu.disabled,
-		}),
-	separator: "p-menu-separator",
-	label: "p-menuitem-text",
-	icon: "p-menuitem-icon",
-	transition: "p-connected-overlay",
+    root: ({ props, context }) =>
+        classNames("p-menu p-component", {
+            "p-menu-overlay": props.popup,
+            "p-input-filled":
+                (context && context.inputStyle === "filled") ||
+                PrimeReact.inputStyle === "filled",
+            "p-ripple-disabled":
+                (context && context.ripple === false) ||
+                PrimeReact.ripple === false,
+        }),
+    menu: "p-menu-list p-reset",
+    content: "p-menuitem-content",
+    action: ({ item }) =>
+        classNames("p-menuitem-link", { "p-disabled": item.disabled }),
+    menuitem: ({ focused }) => classNames("p-menuitem", { "p-focus": focused }),
+    submenuHeader: ({ submenu }) =>
+        classNames("p-submenu-header", {
+            "p-disabled": submenu.disabled,
+        }),
+    separator: "p-menu-separator",
+    label: "p-menuitem-text",
+    icon: "p-menuitem-icon",
+    transition: "p-connected-overlay",
 };
 
 const inlineStyles = {
-	submenuHeader: ({ submenu }) => submenu.style,
-	menuitem: ({ item }) => item.style,
+    submenuHeader: ({ submenu }) => submenu.style,
+    menuitem: ({ item }) => item.style,
 };
 
 export const MenuBase = ComponentBase.extend({
-	defaultProps: {
-		__TYPE: "Menu",
-		id: null,
-		ariaLabel: null,
-		ariaLabelledBy: null,
-		tabIndex: 0,
-		model: null,
-		popup: false,
-		popupAlignment: "left",
-		style: null,
-		className: null,
-		autoZIndex: true,
-		baseZIndex: 0,
-		appendTo: null,
-		onFocus: null,
-		onBlur: null,
-		transitionOptions: null,
-		onShow: null,
-		onHide: null,
-		children: undefined,
-		closeOnEscape: true,
-	},
-	css: {
-		classes,
-		styles,
-		inlineStyles,
-	},
+    defaultProps: {
+        __TYPE: "Menu",
+        id: null,
+        ariaLabel: null,
+        ariaLabelledBy: null,
+        tabIndex: 0,
+        model: null,
+        popup: false,
+        popupAlignment: "left",
+        style: null,
+        className: null,
+        autoZIndex: true,
+        baseZIndex: 0,
+        appendTo: null,
+        onFocus: null,
+        onBlur: null,
+        transitionOptions: null,
+        onShow: null,
+        onHide: null,
+        children: undefined,
+        closeOnEscape: true,
+    },
+    css: {
+        classes,
+        styles,
+        inlineStyles,
+    },
 });

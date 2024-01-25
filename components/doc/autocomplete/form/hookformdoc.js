@@ -8,39 +8,39 @@ import { useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 
 export function HookFormDoc(props) {
-	const toast = useRef(null);
-	const [items, setItems] = useState([]);
-	const defaultValues = { value: "" };
-	const form = useForm({ defaultValues });
-	const errors = form.formState.errors;
+    const toast = useRef(null);
+    const [items, setItems] = useState([]);
+    const defaultValues = { value: "" };
+    const form = useForm({ defaultValues });
+    const errors = form.formState.errors;
 
-	const show = () => {
-		toast.current.show({
-			severity: "success",
-			summary: "Form Submitted",
-			detail: form.getValues("value"),
-		});
-	};
+    const show = () => {
+        toast.current.show({
+            severity: "success",
+            summary: "Form Submitted",
+            detail: form.getValues("value"),
+        });
+    };
 
-	const search = (event) => {
-		setItems([...Array(10).keys()].map((item) => event.query + "-" + item));
-	};
+    const search = (event) => {
+        setItems([...Array(10).keys()].map((item) => event.query + "-" + item));
+    };
 
-	const onSubmit = (data) => {
-		data.value && show();
-		form.reset();
-	};
+    const onSubmit = (data) => {
+        data.value && show();
+        form.reset();
+    };
 
-	const getFormErrorMessage = (name) => {
-		return errors[name] ? (
-			<small className="p-error">{errors[name].message}</small>
-		) : (
-			<small className="p-error">&nbsp;</small>
-		);
-	};
+    const getFormErrorMessage = (name) => {
+        return errors[name] ? (
+            <small className="p-error">{errors[name].message}</small>
+        ) : (
+            <small className="p-error">&nbsp;</small>
+        );
+    };
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-column gap-2">
     <Toast ref={toast} />
     <Controller
@@ -60,7 +60,7 @@ export function HookFormDoc(props) {
     <Button label="Submit" type="submit" icon="pi pi-check" />
 </form>
         `,
-		javascript: `
+        javascript: `
 import React, {useRef, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Button } from 'primereact/button';
@@ -116,7 +116,7 @@ export default function HookFormDoc() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, {useRef, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Button } from 'primereact/button';
@@ -172,49 +172,51 @@ export default function HookFormDoc() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					<a href="https://react-hook-form.com/">React Hook Form</a> is another
-					popular React library to handle forms.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<form
-					onSubmit={form.handleSubmit(onSubmit)}
-					className="flex flex-column gap-2"
-				>
-					<Toast ref={toast} />
-					<Controller
-						name="value"
-						control={form.control}
-						rules={{ required: "Value is required." }}
-						render={({ field, fieldState }) => (
-							<>
-								<label htmlFor={field.name}>Value</label>
-								<AutoComplete
-									inputId={field.name}
-									value={field.value}
-									onChange={field.onChange}
-									inputRef={field.ref}
-									suggestions={items}
-									completeMethod={search}
-									className={classNames({ "p-invalid": fieldState.error })}
-								/>
-								{getFormErrorMessage(field.name)}
-							</>
-						)}
-					/>
-					<Button label="Submit" type="submit" icon="pi pi-check" />
-				</form>
-			</div>
-			<DocSectionCode
-				code={code}
-				dependencies={{ "react-hook-form": "^7.39.4" }}
-			/>
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    <a href="https://react-hook-form.com/">React Hook Form</a>{" "}
+                    is another popular React library to handle forms.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="flex flex-column gap-2"
+                >
+                    <Toast ref={toast} />
+                    <Controller
+                        name="value"
+                        control={form.control}
+                        rules={{ required: "Value is required." }}
+                        render={({ field, fieldState }) => (
+                            <>
+                                <label htmlFor={field.name}>Value</label>
+                                <AutoComplete
+                                    inputId={field.name}
+                                    value={field.value}
+                                    onChange={field.onChange}
+                                    inputRef={field.ref}
+                                    suggestions={items}
+                                    completeMethod={search}
+                                    className={classNames({
+                                        "p-invalid": fieldState.error,
+                                    })}
+                                />
+                                {getFormErrorMessage(field.name)}
+                            </>
+                        )}
+                    />
+                    <Button label="Submit" type="submit" icon="pi pi-check" />
+                </form>
+            </div>
+            <DocSectionCode
+                code={code}
+                dependencies={{ "react-hook-form": "^7.39.4" }}
+            />
+        </>
+    );
 }

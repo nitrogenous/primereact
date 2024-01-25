@@ -5,49 +5,53 @@ import MenuData from "./menu.json";
 import MenuItem from "./menuitem";
 
 const Menu = memo((props) => {
-	const router = useRouter();
-	const menu = MenuData.data.map((data) => {
-		const rootItem = { ...data };
+    const router = useRouter();
+    const menu = MenuData.data.map((data) => {
+        const rootItem = { ...data };
 
-		rootItem.expanded =
-			rootItem.children &&
-			rootItem.children.some(
-				(item) =>
-					item.to === router.pathname ||
-					(item.children &&
-						item.children.some((it) => it.to === router.pathname)),
-			);
+        rootItem.expanded =
+            rootItem.children &&
+            rootItem.children.some(
+                (item) =>
+                    item.to === router.pathname ||
+                    (item.children &&
+                        item.children.some((it) => it.to === router.pathname)),
+            );
 
-		return rootItem;
-	});
+        return rootItem;
+    });
 
-	const scrollToActiveItem = () => {
-		const activeItem = document.querySelector(".router-link-active");
+    const scrollToActiveItem = () => {
+        const activeItem = document.querySelector(".router-link-active");
 
-		if (activeItem) {
-			activeItem.scrollIntoView({ block: "center" });
-		}
-	};
+        if (activeItem) {
+            activeItem.scrollIntoView({ block: "center" });
+        }
+    };
 
-	useEffect(() => {
-		scrollToActiveItem();
-	}, []);
+    useEffect(() => {
+        scrollToActiveItem();
+    }, []);
 
-	const sidebarClassName = classNames("layout-sidebar", {
-		active: props.active,
-	});
+    const sidebarClassName = classNames("layout-sidebar", {
+        active: props.active,
+    });
 
-	return (
-		<aside className={sidebarClassName}>
-			<nav>
-				<ol className="layout-menu">
-					{menu.map((item, index) => (
-						<MenuItem menuItem={item} root={true} key={`_root${index}`} />
-					))}
-				</ol>
-			</nav>
-		</aside>
-	);
+    return (
+        <aside className={sidebarClassName}>
+            <nav>
+                <ol className="layout-menu">
+                    {menu.map((item, index) => (
+                        <MenuItem
+                            menuItem={item}
+                            root={true}
+                            key={`_root${index}`}
+                        />
+                    ))}
+                </ol>
+            </nav>
+        </aside>
+    );
 });
 
 export default Menu;

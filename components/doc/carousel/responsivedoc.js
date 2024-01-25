@@ -7,86 +7,89 @@ import { useEffect, useState } from "react";
 import { ProductService } from "../../../service/ProductService";
 
 export function ResponsiveDoc(props) {
-	const [products, setProducts] = useState([]);
-	const responsiveOptions = [
-		{
-			breakpoint: "1400px",
-			numVisible: 2,
-			numScroll: 1,
-		},
-		{
-			breakpoint: "1199px",
-			numVisible: 3,
-			numScroll: 1,
-		},
-		{
-			breakpoint: "767px",
-			numVisible: 2,
-			numScroll: 1,
-		},
-		{
-			breakpoint: "575px",
-			numVisible: 1,
-			numScroll: 1,
-		},
-	];
+    const [products, setProducts] = useState([]);
+    const responsiveOptions = [
+        {
+            breakpoint: "1400px",
+            numVisible: 2,
+            numScroll: 1,
+        },
+        {
+            breakpoint: "1199px",
+            numVisible: 3,
+            numScroll: 1,
+        },
+        {
+            breakpoint: "767px",
+            numVisible: 2,
+            numScroll: 1,
+        },
+        {
+            breakpoint: "575px",
+            numVisible: 1,
+            numScroll: 1,
+        },
+    ];
 
-	const getSeverity = (product) => {
-		switch (product.inventoryStatus) {
-			case "INSTOCK":
-				return "success";
+    const getSeverity = (product) => {
+        switch (product.inventoryStatus) {
+            case "INSTOCK":
+                return "success";
 
-			case "LOWSTOCK":
-				return "warning";
+            case "LOWSTOCK":
+                return "warning";
 
-			case "OUTOFSTOCK":
-				return "danger";
+            case "OUTOFSTOCK":
+                return "danger";
 
-			default:
-				return null;
-		}
-	};
+            default:
+                return null;
+        }
+    };
 
-	useEffect(() => {
-		ProductService.getProductsSmall().then((data) =>
-			setProducts(data.slice(0, 9)),
-		);
-	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(() => {
+        ProductService.getProductsSmall().then((data) =>
+            setProducts(data.slice(0, 9)),
+        );
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-	const productTemplate = (product) => {
-		return (
-			<div className="border-1 surface-border border-round m-2 text-center py-5 px-3">
-				<div className="mb-3">
-					<img
-						src={`https://primefaces.org/cdn/primereact/images/product/${product.image}`}
-						alt={product.name}
-						className="w-6 shadow-2"
-					/>
-				</div>
-				<div>
-					<h4 className="mb-1">{product.name}</h4>
-					<h6 className="mt-0 mb-3">${product.price}</h6>
-					<Tag
-						value={product.inventoryStatus}
-						severity={getSeverity(product)}
-					></Tag>
-					<div className="mt-5 flex flex-wrap gap-2 justify-content-center">
-						<Button icon="pi pi-search" className="p-button p-button-rounded" />
-						<Button
-							icon="pi pi-star-fill"
-							className="p-button-success p-button-rounded"
-						/>
-					</div>
-				</div>
-			</div>
-		);
-	};
+    const productTemplate = (product) => {
+        return (
+            <div className="border-1 surface-border border-round m-2 text-center py-5 px-3">
+                <div className="mb-3">
+                    <img
+                        src={`https://primefaces.org/cdn/primereact/images/product/${product.image}`}
+                        alt={product.name}
+                        className="w-6 shadow-2"
+                    />
+                </div>
+                <div>
+                    <h4 className="mb-1">{product.name}</h4>
+                    <h6 className="mt-0 mb-3">${product.price}</h6>
+                    <Tag
+                        value={product.inventoryStatus}
+                        severity={getSeverity(product)}
+                    ></Tag>
+                    <div className="mt-5 flex flex-wrap gap-2 justify-content-center">
+                        <Button
+                            icon="pi pi-search"
+                            className="p-button p-button-rounded"
+                        />
+                        <Button
+                            icon="pi pi-star-fill"
+                            className="p-button-success p-button-rounded"
+                        />
+                    </div>
+                </div>
+            </div>
+        );
+    };
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Carousel value={products} numScroll={1} numVisible={3} responsiveOptions={responsiveOptions} itemTemplate={productTemplate} />
         `,
-		javascript: `
+        javascript: `
 import React, { useState, useEffect } from 'react';
 import { Button } from 'primereact/button';
 import { Carousel } from 'primereact/carousel';
@@ -164,7 +167,7 @@ export default function ResponsiveDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState, useEffect } from 'react';
 import { Button } from 'primereact/button';
 import { Carousel, CarouselResponsiveOption } from 'primereact/carousel';
@@ -255,7 +258,7 @@ export default function ResponsiveDemo() {
     )
 }
         `,
-		data: `
+        data: `
 /* ProductService */        
 {
     id: '1000',
@@ -271,31 +274,33 @@ export default function ResponsiveDemo() {
 },
 ...
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Carousel supports specific configuration per screen size with the{" "}
-					<i>responsiveOptions</i> property that takes an array of objects where
-					each object defines the max-width <i>breakpoint</i>, <i>numVisible</i>{" "}
-					for the number of items items per page and <i>numScroll</i> for number
-					of items to scroll. When <i>responsiveOptions</i> is defined, the{" "}
-					<i>numScroll</i> and <i>numVisible</i> properties of the Carousel are
-					used as default when there is breakpoint that applies.
-				</p>
-			</DocSectionText>
-			<div className="card">
-				<Carousel
-					value={products}
-					numScroll={1}
-					numVisible={3}
-					responsiveOptions={responsiveOptions}
-					itemTemplate={productTemplate}
-				/>
-			</div>
-			<DocSectionCode code={code} service={["ProductService"]} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Carousel supports specific configuration per screen size
+                    with the <i>responsiveOptions</i> property that takes an
+                    array of objects where each object defines the max-width{" "}
+                    <i>breakpoint</i>, <i>numVisible</i> for the number of items
+                    items per page and <i>numScroll</i> for number of items to
+                    scroll. When <i>responsiveOptions</i> is defined, the{" "}
+                    <i>numScroll</i> and <i>numVisible</i> properties of the
+                    Carousel are used as default when there is breakpoint that
+                    applies.
+                </p>
+            </DocSectionText>
+            <div className="card">
+                <Carousel
+                    value={products}
+                    numScroll={1}
+                    numVisible={3}
+                    responsiveOptions={responsiveOptions}
+                    itemTemplate={productTemplate}
+                />
+            </div>
+            <DocSectionCode code={code} service={["ProductService"]} />
+        </>
+    );
 }

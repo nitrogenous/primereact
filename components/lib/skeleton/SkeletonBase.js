@@ -2,11 +2,11 @@ import { ComponentBase } from "../componentbase/ComponentBase";
 import { classNames } from "../utils/Utils";
 
 const classes = {
-	root: ({ props }) =>
-		classNames("p-skeleton p-component", {
-			"p-skeleton-circle": props.shape === "circle",
-			"p-skeleton-none": props.animation === "none",
-		}),
+    root: ({ props }) =>
+        classNames("p-skeleton p-component", {
+            "p-skeleton-circle": props.shape === "circle",
+            "p-skeleton-none": props.animation === "none",
+        }),
 };
 
 const styles = `
@@ -48,24 +48,24 @@ const styles = `
 `;
 
 const inlineStyles = {
-	root: { position: "relative" },
+    root: { position: "relative" },
 };
 
 export const SkeletonBase = ComponentBase.extend({
-	defaultProps: {
-		__TYPE: "Skeleton",
-		shape: "rectangle",
-		size: null,
-		width: "100%",
-		height: "1rem",
-		borderRadius: null,
-		animation: "wave",
-		style: null,
-		className: null,
-	},
-	css: {
-		classes,
-		inlineStyles,
-		styles,
-	},
+    defaultProps: {
+        __TYPE: "Skeleton",
+        shape: "rectangle",
+        size: null,
+        width: "100%",
+        height: "1rem",
+        borderRadius: null,
+        animation: "wave",
+        style: null,
+        className: null,
+    },
+    css: {
+        classes,
+        inlineStyles,
+        styles,
+    },
 });

@@ -5,34 +5,34 @@ import { useEffect, useState } from "react";
 import { ProductService } from "../../../../service/ProductService";
 
 export function PTDoc(props) {
-	const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState([]);
 
-	useEffect(() => {
-		ProductService.getProductsSmall().then((data) => setProducts(data));
-	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(() => {
+        ProductService.getProductsSmall().then((data) => setProducts(data));
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-	const itemTemplate = (item) => {
-		return (
-			<div className="flex flex-wrap p-2 align-items-center gap-3">
-				<img
-					className="w-4rem shadow-2 flex-shrink-0 border-round"
-					src={`https://primefaces.org/cdn/primereact/images/product/${item.image}`}
-					alt={item.name}
-				/>
-				<div className="flex-1 flex flex-column gap-2 xl:mr-8">
-					<span className="font-bold">{item.name}</span>
-					<div className="flex align-items-center gap-2">
-						<i className="pi pi-tag text-sm"></i>
-						<span>{item.category}</span>
-					</div>
-				</div>
-				<span className="font-bold text-900">${item.price}</span>
-			</div>
-		);
-	};
+    const itemTemplate = (item) => {
+        return (
+            <div className="flex flex-wrap p-2 align-items-center gap-3">
+                <img
+                    className="w-4rem shadow-2 flex-shrink-0 border-round"
+                    src={`https://primefaces.org/cdn/primereact/images/product/${item.image}`}
+                    alt={item.name}
+                />
+                <div className="flex-1 flex flex-column gap-2 xl:mr-8">
+                    <span className="font-bold">{item.name}</span>
+                    <div className="flex align-items-center gap-2">
+                        <i className="pi pi-tag text-sm"></i>
+                        <span>{item.category}</span>
+                    </div>
+                </div>
+                <span className="font-bold text-900">${item.price}</span>
+            </div>
+        );
+    };
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <OrderList
     dataKey="id" 
     value={products}
@@ -48,7 +48,7 @@ export function PTDoc(props) {
     }}
 ></OrderList>
         `,
-		javascript: `
+        javascript: `
 import React, { useState, useEffect } from 'react';
 import { OrderList } from 'primereact/orderlist';
 import { ProductService } from './service/ProductService';
@@ -96,7 +96,7 @@ export default function PTDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState, useEffect } from 'react';
 import { OrderList } from 'primereact/orderlist';
 import { ProductService } from './service/ProductService';
@@ -157,7 +157,7 @@ export default function PTDemo() {
     )
 }
         `,
-		data: `
+        data: `
 /* ProductService */        
 {
     id: '1000',
@@ -173,30 +173,32 @@ export default function PTDemo() {
 },
 ...
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}></DocSectionText>
-			<div className="card xl:flex xl:justify-content-center">
-				<OrderList
-					dataKey="id"
-					value={products}
-					onChange={(e) => setProducts(e.value)}
-					itemTemplate={itemTemplate}
-					header="Products"
-					pt={{
-						list: { style: { height: "auto" } },
-						moveUpButton: {
-							root: { className: "bg-teal-400 border-teal-400" },
-						},
-						item: ({ context }) => ({
-							className: context.selected ? "bg-blue-100" : undefined,
-						}),
-					}}
-				></OrderList>
-			</div>
-			<DocSectionCode code={code} service={["ProductService"]} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}></DocSectionText>
+            <div className="card xl:flex xl:justify-content-center">
+                <OrderList
+                    dataKey="id"
+                    value={products}
+                    onChange={(e) => setProducts(e.value)}
+                    itemTemplate={itemTemplate}
+                    header="Products"
+                    pt={{
+                        list: { style: { height: "auto" } },
+                        moveUpButton: {
+                            root: { className: "bg-teal-400 border-teal-400" },
+                        },
+                        item: ({ context }) => ({
+                            className: context.selected
+                                ? "bg-blue-100"
+                                : undefined,
+                        }),
+                    }}
+                ></OrderList>
+            </div>
+            <DocSectionCode code={code} service={["ProductService"]} />
+        </>
+    );
 }

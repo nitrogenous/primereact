@@ -2,35 +2,35 @@ import { ComponentBase } from "../componentbase/ComponentBase";
 import { classNames } from "../utils/Utils";
 
 const classes = {
-	itemGroup: "p-listbox-item-group",
-	emptyMessage: "p-listbox-empty-message",
-	list: ({ props, options }) =>
-		props.virtualScrollerOptions
-			? classNames("p-listbox-list", options.className)
-			: "p-listbox-list",
-	wrapper: ({ props }) =>
-		classNames("p-listbox-list-wrapper", props.listClassName),
-	root: ({ props }) =>
-		classNames(
-			"p-listbox p-component",
-			{
-				"p-disabled": props.disabled,
-			},
-			props.className,
-		),
-	item: ({ props }) =>
-		classNames(
-			"p-listbox-item",
-			{
-				"p-highlight": props.selected,
-				"p-disabled": props.disabled,
-			},
-			props.option.className,
-		),
-	filterContainer: "p-listbox-filter-container",
-	filterIcon: "p-listbox-filter-icon",
-	filterInput: "p-listbox-filter",
-	header: "p-listbox-header",
+    itemGroup: "p-listbox-item-group",
+    emptyMessage: "p-listbox-empty-message",
+    list: ({ props, options }) =>
+        props.virtualScrollerOptions
+            ? classNames("p-listbox-list", options.className)
+            : "p-listbox-list",
+    wrapper: ({ props }) =>
+        classNames("p-listbox-list-wrapper", props.listClassName),
+    root: ({ props }) =>
+        classNames(
+            "p-listbox p-component",
+            {
+                "p-disabled": props.disabled,
+            },
+            props.className,
+        ),
+    item: ({ props }) =>
+        classNames(
+            "p-listbox-item",
+            {
+                "p-highlight": props.selected,
+                "p-disabled": props.disabled,
+            },
+            props.option.className,
+        ),
+    filterContainer: "p-listbox-filter-container",
+    filterIcon: "p-listbox-filter-icon",
+    filterInput: "p-listbox-filter",
+    header: "p-listbox-header",
 };
 
 const styles = `
@@ -68,56 +68,58 @@ const styles = `
 `;
 
 const inlineStyles = {
-	itemGroup: ({ scrollerOptions }) => ({
-		height: scrollerOptions.props ? scrollerOptions.props.itemSize : undefined,
-	}),
-	list: ({ options, props }) =>
-		props.virtualScrollerOptions ? options.style : undefined,
+    itemGroup: ({ scrollerOptions }) => ({
+        height: scrollerOptions.props
+            ? scrollerOptions.props.itemSize
+            : undefined,
+    }),
+    list: ({ options, props }) =>
+        props.virtualScrollerOptions ? options.style : undefined,
 };
 
 export const ListBoxBase = ComponentBase.extend({
-	defaultProps: {
-		__TYPE: "ListBox",
-		className: null,
-		dataKey: null,
-		disabled: null,
-		emptyFilterMessage: null,
-		emptyMessage: null,
-		filter: false,
-		filterIcon: null,
-		filterBy: null,
-		filterInputProps: null,
-		filterLocale: undefined,
-		filterMatchMode: "contains",
-		filterPlaceholder: null,
-		filterTemplate: null,
-		filterValue: null,
-		id: null,
-		itemTemplate: null,
-		listClassName: null,
-		listStyle: null,
-		metaKeySelection: false,
-		multiple: false,
-		onChange: null,
-		onFilterValueChange: null,
-		optionDisabled: null,
-		optionGroupChildren: null,
-		optionGroupLabel: null,
-		optionGroupTemplate: null,
-		optionLabel: null,
-		optionValue: null,
-		options: null,
-		style: null,
-		tabIndex: 0,
-		tooltip: null,
-		tooltipOptions: null,
-		value: null,
-		virtualScrollerOptions: null,
-		children: undefined,
-	},
-	css: {
-		classes,
-		styles,
-		inlineStyles,
-	},
+    defaultProps: {
+        __TYPE: "ListBox",
+        className: null,
+        dataKey: null,
+        disabled: null,
+        emptyFilterMessage: null,
+        emptyMessage: null,
+        filter: false,
+        filterIcon: null,
+        filterBy: null,
+        filterInputProps: null,
+        filterLocale: undefined,
+        filterMatchMode: "contains",
+        filterPlaceholder: null,
+        filterTemplate: null,
+        filterValue: null,
+        id: null,
+        itemTemplate: null,
+        listClassName: null,
+        listStyle: null,
+        metaKeySelection: false,
+        multiple: false,
+        onChange: null,
+        onFilterValueChange: null,
+        optionDisabled: null,
+        optionGroupChildren: null,
+        optionGroupLabel: null,
+        optionGroupTemplate: null,
+        optionLabel: null,
+        optionValue: null,
+        options: null,
+        style: null,
+        tabIndex: 0,
+        tooltip: null,
+        tooltipOptions: null,
+        value: null,
+        virtualScrollerOptions: null,
+        children: undefined,
+    },
+    css: {
+        classes,
+        styles,
+        inlineStyles,
+    },
 });

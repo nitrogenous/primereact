@@ -3,14 +3,14 @@ import { DocSectionText } from "@/components/doc/common/docsectiontext";
 import { Chip } from "../../../components/lib/chip/Chip";
 
 export function IconDoc(props) {
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Chip label="Apple" icon="pi pi-apple" />
 <Chip label="Facebook" icon="pi pi-facebook" />
 <Chip label="Google" icon="pi pi-google" />
 <Chip label="Microsoft" icon="pi pi-microsoft" removable />
         `,
-		javascript: `
+        javascript: `
 import React from 'react';
 import { Chip } from 'primereact/chip';
 
@@ -25,7 +25,7 @@ export default function IconDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React from 'react';
 import { Chip } from 'primereact/chip';
 
@@ -40,23 +40,23 @@ export default function IconDemo() {
     );
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					A font icon next to the label can be displayed with the <i>icon</i>{" "}
-					property.
-				</p>
-			</DocSectionText>
-			<div className="card flex flex-wrap gap-2">
-				<Chip label="Apple" icon="pi pi-apple" />
-				<Chip label="Facebook" icon="pi pi-facebook" />
-				<Chip label="Google" icon="pi pi-google" />
-				<Chip label="Microsoft" icon="pi pi-microsoft" removable />
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    A font icon next to the label can be displayed with the{" "}
+                    <i>icon</i> property.
+                </p>
+            </DocSectionText>
+            <div className="card flex flex-wrap gap-2">
+                <Chip label="Apple" icon="pi pi-apple" />
+                <Chip label="Facebook" icon="pi pi-facebook" />
+                <Chip label="Google" icon="pi pi-google" />
+                <Chip label="Microsoft" icon="pi pi-microsoft" removable />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

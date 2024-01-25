@@ -4,12 +4,12 @@ import { MultiSelect } from "@/components/lib/multiselect/MultiSelect";
 import { useState } from "react";
 
 export function LoadingDoc(props) {
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <MultiSelect value={selectedCities} onChange={(e) => setSelectedCities(e.value)} options={cities} optionLabel="name" 
     placeholder="Select Cities" maxSelectedLabels={3} className="w-full md:w-20rem" />
         `,
-		javascript: `
+        javascript: `
 import React, { useState } from "react";
 import { MultiSelect } from 'primereact/multiselect';
 
@@ -31,7 +31,7 @@ export default function BasicDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from "react";
 import { MultiSelect, MultiSelectChangeEvent } from 'primereact/multiselect';
 
@@ -58,23 +58,23 @@ export default function BasicDemo() {
     );
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Loading state can be used <i>loading</i> property.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<MultiSelect
-					loading
-					placeholder="Loading..."
-					className="w-full md:w-20rem"
-				/>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Loading state can be used <i>loading</i> property.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <MultiSelect
+                    loading
+                    placeholder="Loading..."
+                    className="w-full md:w-20rem"
+                />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

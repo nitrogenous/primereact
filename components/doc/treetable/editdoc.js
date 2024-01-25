@@ -7,69 +7,69 @@ import { useEffect, useState } from "react";
 import { NodeService } from "../../../service/NodeService";
 
 export function EditDoc(props) {
-	const [nodes, setNodes] = useState([]);
+    const [nodes, setNodes] = useState([]);
 
-	useEffect(() => {
-		NodeService.getTreeTableNodes().then((data) => setNodes(data));
-	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(() => {
+        NodeService.getTreeTableNodes().then((data) => setNodes(data));
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-	const onEditorValueChange = (options, value) => {
-		const newNodes = JSON.parse(JSON.stringify(nodes));
-		const editedNode = findNodeByKey(newNodes, options.node.key);
+    const onEditorValueChange = (options, value) => {
+        const newNodes = JSON.parse(JSON.stringify(nodes));
+        const editedNode = findNodeByKey(newNodes, options.node.key);
 
-		editedNode.data[options.field] = value;
+        editedNode.data[options.field] = value;
 
-		setNodes(newNodes);
-	};
+        setNodes(newNodes);
+    };
 
-	const findNodeByKey = (nodes, key) => {
-		const path = key.split("-");
-		let node;
+    const findNodeByKey = (nodes, key) => {
+        const path = key.split("-");
+        let node;
 
-		while (path.length) {
-			const list = node ? node.children : nodes;
+        while (path.length) {
+            const list = node ? node.children : nodes;
 
-			node = list[parseInt(path[0], 10)];
-			path.shift();
-		}
+            node = list[parseInt(path[0], 10)];
+            path.shift();
+        }
 
-		return node;
-	};
+        return node;
+    };
 
-	const inputTextEditor = (options) => {
-		return (
-			<InputText
-				type="text"
-				value={options.rowData[options.field]}
-				onChange={(e) => onEditorValueChange(options, e.target.value)}
-			/>
-		);
-	};
+    const inputTextEditor = (options) => {
+        return (
+            <InputText
+                type="text"
+                value={options.rowData[options.field]}
+                onChange={(e) => onEditorValueChange(options, e.target.value)}
+            />
+        );
+    };
 
-	const sizeEditor = (options) => {
-		return inputTextEditor(options);
-	};
+    const sizeEditor = (options) => {
+        return inputTextEditor(options);
+    };
 
-	const typeEditor = (options) => {
-		return inputTextEditor(options);
-	};
+    const typeEditor = (options) => {
+        return inputTextEditor(options);
+    };
 
-	const requiredValidator = (e) => {
-		const props = e.columnProps;
-		const value = props.node.data[props.field];
+    const requiredValidator = (e) => {
+        const props = e.columnProps;
+        const value = props.node.data[props.field];
 
-		return value && value.length > 0;
-	};
+        return value && value.length > 0;
+    };
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <TreeTable value={nodes} tableStyle={{ minWidth: '50rem' }}>
     <Column field="name" header="Name" expander style={{ height: '3.5rem' }}></Column>
     <Column field="size" header="Size" editor={sizeEditor} cellEditValidator={requiredValidator} style={{ height: '3.5rem' }}></Column>
     <Column field="type" header="Type" editor={typeEditor} style={{ height: '3.5rem' }}></Column>
 </TreeTable>
         `,
-		javascript: `
+        javascript: `
 import React, { useState, useEffect } from 'react';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
@@ -136,7 +136,7 @@ export default function EditDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState, useEffect } from 'react';
 import { TreeTable } from 'primereact/treetable';
 import { Column, ColumnEditorOptions, ColumnEvent } from 'primereact/column';
@@ -204,7 +204,7 @@ export default function EditDemo() {
     );
 }
         `,
-		data: `
+        data: `
 {
     key: '0',
     label: 'Documents',
@@ -232,40 +232,40 @@ export default function EditDemo() {
 },
 ...
 `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Incell editing is enabled by defining input elements with{" "}
-					<i>editor</i> property of a Column.
-				</p>
-			</DocSectionText>
-			<div className="card">
-				<TreeTable value={nodes} tableStyle={{ minWidth: "50rem" }}>
-					<Column
-						field="name"
-						header="Name"
-						expander
-						style={{ height: "3.5rem" }}
-					></Column>
-					<Column
-						field="size"
-						header="Size"
-						editor={sizeEditor}
-						cellEditValidator={requiredValidator}
-						style={{ height: "3.5rem" }}
-					></Column>
-					<Column
-						field="type"
-						header="Type"
-						editor={typeEditor}
-						style={{ height: "3.5rem" }}
-					></Column>
-				</TreeTable>
-			</div>
-			<DocSectionCode code={code} service={["NodeService"]} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Incell editing is enabled by defining input elements with{" "}
+                    <i>editor</i> property of a Column.
+                </p>
+            </DocSectionText>
+            <div className="card">
+                <TreeTable value={nodes} tableStyle={{ minWidth: "50rem" }}>
+                    <Column
+                        field="name"
+                        header="Name"
+                        expander
+                        style={{ height: "3.5rem" }}
+                    ></Column>
+                    <Column
+                        field="size"
+                        header="Size"
+                        editor={sizeEditor}
+                        cellEditValidator={requiredValidator}
+                        style={{ height: "3.5rem" }}
+                    ></Column>
+                    <Column
+                        field="type"
+                        header="Type"
+                        editor={typeEditor}
+                        style={{ height: "3.5rem" }}
+                    ></Column>
+                </TreeTable>
+            </div>
+            <DocSectionCode code={code} service={["NodeService"]} />
+        </>
+    );
 }

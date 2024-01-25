@@ -17,6 +17,6 @@ export interface SearchPlusIconProps extends IconBaseProps {}
  * @group Component
  */
 export declare class SearchPlusIcon extends React.Component<
-	SearchPlusIconProps,
-	any
+    SearchPlusIconProps,
+    any
 > {}

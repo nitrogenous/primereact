@@ -7,12 +7,15 @@
  * @module avatargroup
  *
  */
-import * as React from 'react';
-import { ComponentHooks } from '../componentbase/componentbase';
-import { PassThroughOptions } from '../passthrough';
-import { PassThroughType } from '../utils/utils';
+import * as React from "react";
+import { ComponentHooks } from "../componentbase/componentbase";
+import { PassThroughOptions } from "../passthrough";
+import { PassThroughType } from "../utils/utils";
 
-export declare type AvatarGroupPassThroughType<T> = PassThroughType<T, AvatarGroupPassThroughMethodOptions>;
+export declare type AvatarGroupPassThroughType<T> = PassThroughType<
+    T,
+    AvatarGroupPassThroughMethodOptions
+>;
 
 /**
  * Custom passthrough(pt) option method.
@@ -39,7 +42,14 @@ export interface AvatarGroupPassThroughOptions {
  * Defines valid properties in Avatar component. In addition to these, all properties of HTMLDivElement can be used in this component.
  * @group Properties
  */
-export interface AvatarGroupProps extends Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, 'ref'> {
+export interface AvatarGroupProps
+    extends Omit<
+        React.DetailedHTMLProps<
+            React.HTMLAttributes<HTMLDivElement>,
+            HTMLDivElement
+        >,
+        "ref"
+    > {
     /**
      * Used to get the child elements of the component.
      * @readonly
@@ -73,7 +83,10 @@ export interface AvatarGroupProps extends Omit<React.DetailedHTMLProps<React.HTM
  *
  * @group Component
  */
-export declare class AvatarGroup extends React.Component<AvatarGroupProps, any> {
+export declare class AvatarGroup extends React.Component<
+    AvatarGroupProps,
+    any
+> {
     /**
      * Used to get container element.
      * @return {HTMLDivElement} Container element

@@ -17,6 +17,6 @@ export interface ExclamationTriangleIconProps extends IconBaseProps {}
  * @group Component
  */
 export declare class ExclamationTriangleIcon extends React.Component<
-	ExclamationTriangleIconProps,
-	any
+    ExclamationTriangleIconProps,
+    any
 > {}

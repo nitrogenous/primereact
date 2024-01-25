@@ -3,23 +3,23 @@ import { DocSectionText } from "@/components/doc/common/docsectiontext";
 import { Steps } from "@/components/lib/steps/Steps";
 
 export function PTDoc(props) {
-	const items = [
-		{
-			label: "Personal",
-		},
-		{
-			label: "Seat",
-		},
-		{
-			label: "Payment",
-		},
-		{
-			label: "Confirmation",
-		},
-	];
+    const items = [
+        {
+            label: "Personal",
+        },
+        {
+            label: "Seat",
+        },
+        {
+            label: "Payment",
+        },
+        {
+            label: "Confirmation",
+        },
+    ];
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Steps
     model={items}
     pt={{
@@ -27,7 +27,7 @@ export function PTDoc(props) {
     }}
 />
         `,
-		javascript: `
+        javascript: `
 import React from 'react'; 
 import { Steps } from 'primereact/steps';
 
@@ -59,7 +59,7 @@ export default function PTDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React from 'react'; 
 import { Steps } from 'primereact/steps';
 import { MenuItem } from 'primereact/menuitem';
@@ -92,20 +92,20 @@ export default function PTDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}></DocSectionText>
-			<div className="card flex justify-content-center">
-				<Steps
-					model={items}
-					pt={{
-						root: { className: "w-30rem" },
-					}}
-				/>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}></DocSectionText>
+            <div className="card flex justify-content-center">
+                <Steps
+                    model={items}
+                    pt={{
+                        root: { className: "w-30rem" },
+                    }}
+                />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

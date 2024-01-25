@@ -8,34 +8,34 @@ import { ProductService } from "../../../service/ProductService";
 import DeferredDemo from "@/components/demo/DeferredDemo";
 
 export function ConditionalStyleDoc(props) {
-	const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState([]);
 
-	const loadDemoData = () => {
-		ProductService.getProductsSmall().then((data) => setProducts(data));
-	};
+    const loadDemoData = () => {
+        ProductService.getProductsSmall().then((data) => setProducts(data));
+    };
 
-	const rowClass = (data) => {
-		return {
-			"bg-primary": data.category === "Fitness",
-		};
-	};
+    const rowClass = (data) => {
+        return {
+            "bg-primary": data.category === "Fitness",
+        };
+    };
 
-	const stockBodyTemplate = (rowData) => {
-		const stockClassName = classNames(
-			"border-circle w-2rem h-2rem inline-flex font-bold justify-content-center align-items-center text-sm",
-			{
-				"bg-red-100 text-red-900": rowData.quantity === 0,
-				"bg-blue-100 text-blue-900":
-					rowData.quantity > 0 && rowData.quantity < 10,
-				"bg-teal-100 text-teal-900": rowData.quantity > 10,
-			},
-		);
+    const stockBodyTemplate = (rowData) => {
+        const stockClassName = classNames(
+            "border-circle w-2rem h-2rem inline-flex font-bold justify-content-center align-items-center text-sm",
+            {
+                "bg-red-100 text-red-900": rowData.quantity === 0,
+                "bg-blue-100 text-blue-900":
+                    rowData.quantity > 0 && rowData.quantity < 10,
+                "bg-teal-100 text-teal-900": rowData.quantity > 10,
+            },
+        );
 
-		return <div className={stockClassName}>{rowData.quantity}</div>;
-	};
+        return <div className={stockClassName}>{rowData.quantity}</div>;
+    };
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <DataTable value={products} rowClassName={rowClass} tableStyle={{ minWidth: '50rem' }}>
     <Column field="code" header="Code"></Column>
     <Column field="name" header="Name"></Column>
@@ -43,7 +43,7 @@ export function ConditionalStyleDoc(props) {
     <Column field="quantity" header="Quantity" body={stockBodyTemplate}></Column>
 </DataTable>
         `,
-		javascript: `
+        javascript: `
 import React, { useState, useEffect } from 'react';
 import { classNames } from 'primereact/utils';
 import { DataTable } from 'primereact/datatable';
@@ -83,7 +83,7 @@ export default function ConditionalStyleDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState, useEffect } from 'react';
 import { classNames } from 'primereact/utils';
 import { DataTable } from 'primereact/datatable';
@@ -136,7 +136,7 @@ export default function ConditionalStyleDemo() {
     );
 }
         `,
-		data: `
+        data: `
       {
     id: '1000',
     code: 'f230fh0g3',
@@ -151,37 +151,37 @@ export default function ConditionalStyleDemo() {
 },
 ...
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Particular rows and cells can be styled based on conditions. The{" "}
-					<i>rowClassName</i> receives a row data as a parameter to return a
-					style class for a row whereas cells are customized using the{" "}
-					<i>body</i> template.
-				</p>
-			</DocSectionText>
-			<DeferredDemo onLoad={loadDemoData}>
-				<div className="card">
-					<DataTable
-						value={products}
-						rowClassName={rowClass}
-						tableStyle={{ minWidth: "50rem" }}
-					>
-						<Column field="code" header="Code"></Column>
-						<Column field="name" header="Name"></Column>
-						<Column field="category" header="Category"></Column>
-						<Column
-							field="quantity"
-							header="Quantity"
-							body={stockBodyTemplate}
-						></Column>
-					</DataTable>
-				</div>
-			</DeferredDemo>
-			<DocSectionCode code={code} service={["ProductService"]} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Particular rows and cells can be styled based on conditions.
+                    The <i>rowClassName</i> receives a row data as a parameter
+                    to return a style class for a row whereas cells are
+                    customized using the <i>body</i> template.
+                </p>
+            </DocSectionText>
+            <DeferredDemo onLoad={loadDemoData}>
+                <div className="card">
+                    <DataTable
+                        value={products}
+                        rowClassName={rowClass}
+                        tableStyle={{ minWidth: "50rem" }}
+                    >
+                        <Column field="code" header="Code"></Column>
+                        <Column field="name" header="Name"></Column>
+                        <Column field="category" header="Category"></Column>
+                        <Column
+                            field="quantity"
+                            header="Quantity"
+                            body={stockBodyTemplate}
+                        ></Column>
+                    </DataTable>
+                </div>
+            </DeferredDemo>
+            <DocSectionCode code={code} service={["ProductService"]} />
+        </>
+    );
 }

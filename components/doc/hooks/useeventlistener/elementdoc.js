@@ -4,42 +4,46 @@ import { useEventListener } from "@/components/lib/hooks/Hooks";
 import { useEffect, useRef, useState } from "react";
 
 export function ElementDoc(props) {
-	const [hover, setHover] = useState(false);
-	const elementRef = useRef(null);
+    const [hover, setHover] = useState(false);
+    const elementRef = useRef(null);
 
-	const [bindMouseEnterListener, unbindMouseEnterListener] = useEventListener({
-		target: elementRef,
-		type: "mouseenter",
-		listener: () => {
-			setHover(true);
-		},
-	});
+    const [bindMouseEnterListener, unbindMouseEnterListener] = useEventListener(
+        {
+            target: elementRef,
+            type: "mouseenter",
+            listener: () => {
+                setHover(true);
+            },
+        },
+    );
 
-	const [bindMouseLeaveListener, unbindMouseLeaveListener] = useEventListener({
-		target: elementRef,
-		type: "mouseleave",
-		listener: () => {
-			setHover(false);
-		},
-	});
+    const [bindMouseLeaveListener, unbindMouseLeaveListener] = useEventListener(
+        {
+            target: elementRef,
+            type: "mouseleave",
+            listener: () => {
+                setHover(false);
+            },
+        },
+    );
 
-	useEffect(() => {
-		bindMouseEnterListener();
-		bindMouseLeaveListener();
+    useEffect(() => {
+        bindMouseEnterListener();
+        bindMouseLeaveListener();
 
-		return () => {
-			unbindMouseEnterListener();
-			unbindMouseLeaveListener();
-		};
-	}, [
-		bindMouseEnterListener,
-		bindMouseLeaveListener,
-		unbindMouseEnterListener,
-		unbindMouseLeaveListener,
-	]);
+        return () => {
+            unbindMouseEnterListener();
+            unbindMouseLeaveListener();
+        };
+    }, [
+        bindMouseEnterListener,
+        bindMouseLeaveListener,
+        unbindMouseEnterListener,
+        unbindMouseLeaveListener,
+    ]);
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 const [hover, setHover] = useState(false);
 const elementRef = useRef(null);
 
@@ -59,7 +63,7 @@ const [bindMouseLeaveListener, unbindMouseLeaveListener] = useEventListener({
     }
 });
         `,
-		javascript: `
+        javascript: `
 import React, { useState, useEffect, useRef } from 'react';
 import { useEventListener } from 'primereact/hooks';
 
@@ -102,7 +106,7 @@ export default function ElementDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState, useEffect, useRef } from 'react';
 import { useEventListener } from 'primereact/hooks';
 
@@ -145,25 +149,25 @@ export default function ElementDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					The element to bind and unbind the events is defined with the{" "}
-					<i>target</i> option.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<div
-					ref={elementRef}
-					className="border-round border-2 border-dashed surface-border text-xl p-5 w-15rem text-center"
-				>
-					{hover ? "Hovered" : "Hover Me"}
-				</div>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    The element to bind and unbind the events is defined with
+                    the <i>target</i> option.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <div
+                    ref={elementRef}
+                    className="border-round border-2 border-dashed surface-border text-xl p-5 w-15rem text-center"
+                >
+                    {hover ? "Hovered" : "Hover Me"}
+                </div>
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

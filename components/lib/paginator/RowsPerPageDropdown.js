@@ -7,52 +7,52 @@ import { RowsPerPageDropdownBase } from "./PaginatorBase";
 import { ariaLabel } from "../api/Locale";
 
 export const RowsPerPageDropdown = React.memo((inProps) => {
-	const mergeProps = useMergeProps();
-	const context = React.useContext(PrimeReactContext);
-	const props = RowsPerPageDropdownBase.getProps(inProps, context);
+    const mergeProps = useMergeProps();
+    const context = React.useContext(PrimeReactContext);
+    const props = RowsPerPageDropdownBase.getProps(inProps, context);
 
-	const hasOptions = props.options && props.options.length > 0;
-	const options = hasOptions
-		? props.options.map((opt) => ({ label: String(opt), value: opt }))
-		: [];
-	const placeholderValue = localeOption("choose");
-	const ariaLabelValue = ariaLabel("rowsPerPage");
-	const element = hasOptions ? (
-		<>
-			<Dropdown
-				value={props.value}
-				options={options}
-				onChange={props.onChange}
-				appendTo={props.appendTo}
-				disabled={props.disabled}
-				placeholder={placeholderValue}
-				aria-label={ariaLabelValue}
-				pt={props.ptm("RPPDropdown")}
-				unstyled={props.unstyled}
-				__parentMetadata={{ parent: props.metaData }}
-			/>
-		</>
-	) : null;
+    const hasOptions = props.options && props.options.length > 0;
+    const options = hasOptions
+        ? props.options.map((opt) => ({ label: String(opt), value: opt }))
+        : [];
+    const placeholderValue = localeOption("choose");
+    const ariaLabelValue = ariaLabel("rowsPerPage");
+    const element = hasOptions ? (
+        <>
+            <Dropdown
+                value={props.value}
+                options={options}
+                onChange={props.onChange}
+                appendTo={props.appendTo}
+                disabled={props.disabled}
+                placeholder={placeholderValue}
+                aria-label={ariaLabelValue}
+                pt={props.ptm("RPPDropdown")}
+                unstyled={props.unstyled}
+                __parentMetadata={{ parent: props.metaData }}
+            />
+        </>
+    ) : null;
 
-	if (props.template) {
-		const defaultOptions = {
-			value: props.value,
-			options,
-			onChange: props.onChange,
-			appendTo: props.appendTo,
-			currentPage: props.page,
-			totalPages: props.pageCount,
-			totalRecords: props.totalRecords,
-			disabled: props.disabled,
-			ariaLabel: ariaLabelValue,
-			element,
-			props,
-		};
+    if (props.template) {
+        const defaultOptions = {
+            value: props.value,
+            options,
+            onChange: props.onChange,
+            appendTo: props.appendTo,
+            currentPage: props.page,
+            totalPages: props.pageCount,
+            totalRecords: props.totalRecords,
+            disabled: props.disabled,
+            ariaLabel: ariaLabelValue,
+            element,
+            props,
+        };
 
-		return ObjectUtils.getJSXElement(props.template, defaultOptions);
-	}
+        return ObjectUtils.getJSXElement(props.template, defaultOptions);
+    }
 
-	return element;
+    return element;
 });
 
 RowsPerPageDropdown.displayName = "RowsPerPageDropdown";

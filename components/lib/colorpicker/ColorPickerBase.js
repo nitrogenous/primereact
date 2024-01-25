@@ -3,35 +3,36 @@ import { ComponentBase } from "../componentbase/ComponentBase";
 import { classNames } from "../utils/Utils";
 
 const classes = {
-	root: ({ props }) =>
-		classNames(
-			"p-colorpicker p-component",
-			{
-				"p-colorpicker-overlay": !props.inline,
-			},
-			props.className,
-		),
-	input: ({ props }) =>
-		classNames("p-colorpicker-preview p-inputtext", props.inputClassName, {
-			"p-disabled": props.disabled,
-		}),
-	panel: ({ panelProps, context }) =>
-		classNames("p-colorpicker-panel", panelProps.panelClassName, {
-			"p-colorpicker-overlay-panel": !panelProps.inline,
-			"p-disabled": panelProps.disabled,
-			"p-input-filled":
-				(context && context.inputStyle === "filled") ||
-				PrimeReact.inputStyle === "filled",
-			"p-ripple-disabled":
-				(context && context.ripple === false) || PrimeReact.ripple === false,
-		}),
-	content: "p-colorpicker-content",
-	hueHandle: "p-colorpicker-hue-handle",
-	hue: "p-colorpicker-hue",
-	colorHandle: "p-colorpicker-color-handle",
-	color: "p-colorpicker-color",
-	selector: "p-colorpicker-color-selector",
-	transition: "p-connected-overlay",
+    root: ({ props }) =>
+        classNames(
+            "p-colorpicker p-component",
+            {
+                "p-colorpicker-overlay": !props.inline,
+            },
+            props.className,
+        ),
+    input: ({ props }) =>
+        classNames("p-colorpicker-preview p-inputtext", props.inputClassName, {
+            "p-disabled": props.disabled,
+        }),
+    panel: ({ panelProps, context }) =>
+        classNames("p-colorpicker-panel", panelProps.panelClassName, {
+            "p-colorpicker-overlay-panel": !panelProps.inline,
+            "p-disabled": panelProps.disabled,
+            "p-input-filled":
+                (context && context.inputStyle === "filled") ||
+                PrimeReact.inputStyle === "filled",
+            "p-ripple-disabled":
+                (context && context.ripple === false) ||
+                PrimeReact.ripple === false,
+        }),
+    content: "p-colorpicker-content",
+    hueHandle: "p-colorpicker-hue-handle",
+    hue: "p-colorpicker-hue",
+    colorHandle: "p-colorpicker-color-handle",
+    color: "p-colorpicker-color",
+    selector: "p-colorpicker-color-selector",
+    transition: "p-connected-overlay",
 };
 
 const styles = `
@@ -128,35 +129,35 @@ const styles = `
 `;
 
 export const ColorPickerBase = ComponentBase.extend({
-	defaultProps: {
-		__TYPE: "ColorPicker",
-		appendTo: null,
-		autoFocus: false,
-		children: undefined,
-		className: null,
-		defaultColor: "ff0000",
-		disabled: false,
-		format: "hex",
-		id: null,
-		inline: false,
-		inputClassName: null,
-		inputId: null,
-		inputRef: null,
-		inputStyle: null,
-		onChange: null,
-		onHide: null,
-		onShow: null,
-		panelClassName: null,
-		panelStyle: null,
-		style: null,
-		tabIndex: null,
-		tooltip: null,
-		tooltipOptions: null,
-		transitionOptions: null,
-		value: null,
-	},
-	css: {
-		classes,
-		styles,
-	},
+    defaultProps: {
+        __TYPE: "ColorPicker",
+        appendTo: null,
+        autoFocus: false,
+        children: undefined,
+        className: null,
+        defaultColor: "ff0000",
+        disabled: false,
+        format: "hex",
+        id: null,
+        inline: false,
+        inputClassName: null,
+        inputId: null,
+        inputRef: null,
+        inputStyle: null,
+        onChange: null,
+        onHide: null,
+        onShow: null,
+        panelClassName: null,
+        panelStyle: null,
+        style: null,
+        tabIndex: null,
+        tooltip: null,
+        tooltipOptions: null,
+        transitionOptions: null,
+        value: null,
+    },
+    css: {
+        classes,
+        styles,
+    },
 });

@@ -5,39 +5,42 @@ import { VirtualScroller } from "@/components/lib/virtualscroller/VirtualScrolle
 import { useState } from "react";
 
 export function GridDoc(props) {
-	const [items] = useState(
-		Array.from({ length: 1000 }).map((_, i) =>
-			Array.from({ length: 1000 }).map((_j, j) => `Item #${i}_${j}`),
-		),
-	);
+    const [items] = useState(
+        Array.from({ length: 1000 }).map((_, i) =>
+            Array.from({ length: 1000 }).map((_j, j) => `Item #${i}_${j}`),
+        ),
+    );
 
-	const itemTemplate = (items, options) => {
-		const className = classNames("flex align-items-center p-2", {
-			"surface-hover": options.odd,
-		});
+    const itemTemplate = (items, options) => {
+        const className = classNames("flex align-items-center p-2", {
+            "surface-hover": options.odd,
+        });
 
-		return (
-			<div
-				className={className}
-				style={{ height: options.props.itemSize[0] + "px" }}
-			>
-				{items.map((item, i) => {
-					return (
-						<div key={i} style={{ width: options.props.itemSize[1] + "px" }}>
-							{item}
-						</div>
-					);
-				})}
-			</div>
-		);
-	};
+        return (
+            <div
+                className={className}
+                style={{ height: options.props.itemSize[0] + "px" }}
+            >
+                {items.map((item, i) => {
+                    return (
+                        <div
+                            key={i}
+                            style={{ width: options.props.itemSize[1] + "px" }}
+                        >
+                            {item}
+                        </div>
+                    );
+                })}
+            </div>
+        );
+    };
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <VirtualScroller items={items} itemSize={[50, 100]} itemTemplate={itemTemplate} orientation="both" 
     className="border-1 surface-border border-round" style={{ width: '200px', height: '200px' }} />
         `,
-		javascript: `
+        javascript: `
 import React, { useState } from 'react';
 import { VirtualScroller } from 'primereact/virtualscroller';
 import { classNames } from 'primereact/utils';
@@ -70,7 +73,7 @@ export default function GridDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from 'react';
 import { VirtualScroller, VirtualScrollerTemplateOptions } from 'primereact/virtualscroller';
 import { classNames } from 'primereact/utils';
@@ -103,29 +106,29 @@ export default function GridDemo() {
     );
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Scrolling can be enabled vertically and horizontally when{" "}
-					<i>orientation</i> is set as <i>both</i>. In this mode,{" "}
-					<i>itemSize</i> should be an array where first value is the height of
-					an item and second is the width.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<VirtualScroller
-					items={items}
-					itemSize={[50, 100]}
-					itemTemplate={itemTemplate}
-					orientation="both"
-					className="border-1 surface-border border-round"
-					style={{ width: "200px", height: "200px" }}
-				/>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Scrolling can be enabled vertically and horizontally when{" "}
+                    <i>orientation</i> is set as <i>both</i>. In this mode,{" "}
+                    <i>itemSize</i> should be an array where first value is the
+                    height of an item and second is the width.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <VirtualScroller
+                    items={items}
+                    itemSize={[50, 100]}
+                    itemTemplate={itemTemplate}
+                    orientation="both"
+                    className="border-1 surface-border border-round"
+                    style={{ width: "200px", height: "200px" }}
+                />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

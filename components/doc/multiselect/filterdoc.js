@@ -4,21 +4,21 @@ import { MultiSelect } from "@/components/lib/multiselect/MultiSelect";
 import { useState } from "react";
 
 export function FilterDoc(props) {
-	const [selectedCities, setSelectedCities] = useState(null);
-	const cities = [
-		{ name: "New York", code: "NY" },
-		{ name: "Rome", code: "RM" },
-		{ name: "London", code: "LDN" },
-		{ name: "Istanbul", code: "IST" },
-		{ name: "Paris", code: "PRS" },
-	];
+    const [selectedCities, setSelectedCities] = useState(null);
+    const cities = [
+        { name: "New York", code: "NY" },
+        { name: "Rome", code: "RM" },
+        { name: "London", code: "LDN" },
+        { name: "Istanbul", code: "IST" },
+        { name: "Paris", code: "PRS" },
+    ];
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <MultiSelect value={selectedCities} onChange={(e) => setSelectedCities(e.value)} options={cities} optionLabel="name" 
     filter placeholder="Select Cities" maxSelectedLabels={3} className="w-full md:w-20rem" />
         `,
-		javascript: `
+        javascript: `
 import React, { useState } from "react";
 import { MultiSelect } from 'primereact/multiselect';
 
@@ -40,7 +40,7 @@ export default function FilterDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from "react";
 import { MultiSelect, MultiSelectChangeEvent } from 'primereact/multiselect';
 
@@ -67,29 +67,29 @@ export default function FilterDemo() {
     );
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					MultiSelect provides built-in filtering that is enabled by adding the{" "}
-					<i>filter</i> property.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<MultiSelect
-					value={selectedCities}
-					onChange={(e) => setSelectedCities(e.value)}
-					options={cities}
-					optionLabel="name"
-					filter
-					placeholder="Select Cities"
-					maxSelectedLabels={3}
-					className="w-full md:w-20rem"
-				/>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    MultiSelect provides built-in filtering that is enabled by
+                    adding the <i>filter</i> property.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <MultiSelect
+                    value={selectedCities}
+                    onChange={(e) => setSelectedCities(e.value)}
+                    options={cities}
+                    optionLabel="name"
+                    filter
+                    placeholder="Select Cities"
+                    maxSelectedLabels={3}
+                    className="w-full md:w-20rem"
+                />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

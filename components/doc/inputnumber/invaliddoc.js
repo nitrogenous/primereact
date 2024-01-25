@@ -4,13 +4,13 @@ import { InputNumber } from "@/components/lib/inputnumber/InputNumber";
 import { useState } from "react";
 
 export function InvalidDoc(props) {
-	const [value, setValue] = useState(null);
+    const [value, setValue] = useState(null);
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <InputNumber className="p-invalid" value={value} onValueChange={(e) => setValue(e.value)} mode="decimal" minFractionDigits={2} />
 `,
-		javascript: `
+        javascript: `
 import React, { useState } from "react";
 import { InputNumber } from 'primereact/inputnumber';
 
@@ -24,7 +24,7 @@ export default function InvalidDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from "react";
 import { InputNumber, InputNumberValueChangeEvent } from 'primereact/inputnumber';
 
@@ -38,25 +38,25 @@ export default function InvalidDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Invalid state style is added using the <i>p-invalid</i> class to
-					indicate a failed validation.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<InputNumber
-					className="p-invalid"
-					value={value}
-					onValueChange={(e) => setValue(e.value)}
-					minFractionDigits={2}
-				/>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Invalid state style is added using the <i>p-invalid</i>{" "}
+                    class to indicate a failed validation.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <InputNumber
+                    className="p-invalid"
+                    value={value}
+                    onValueChange={(e) => setValue(e.value)}
+                    minFractionDigits={2}
+                />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

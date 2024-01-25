@@ -5,23 +5,25 @@ import { Toast } from "@/components/lib/toast/Toast";
 import { useRef } from "react";
 
 export function PTDoc(props) {
-	const toast = useRef(null);
+    const toast = useRef(null);
 
-	const show = () => {
-		toast.current.show({
-			severity: "info",
-			summary: "Info",
-			detail: "Message Content",
-			pt: {
-				root: ({ index }) => ({
-					className: `bg-yellow-${((index > 5 && 5) || index || 1) * 100}`,
-				}),
-			},
-		});
-	};
+    const show = () => {
+        toast.current.show({
+            severity: "info",
+            summary: "Info",
+            detail: "Message Content",
+            pt: {
+                root: ({ index }) => ({
+                    className: `bg-yellow-${
+                        ((index > 5 && 5) || index || 1) * 100
+                    }`,
+                }),
+            },
+        });
+    };
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Toast 
     ref={toast} 
     pt={{ 
@@ -30,7 +32,7 @@ export function PTDoc(props) {
     />
 <Button onClick={show} label="Show" />
         `,
-		javascript: `
+        javascript: `
 import React, { useRef } from 'react';
 import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
@@ -55,7 +57,7 @@ export default function PTDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useRef } from 'react';
 import { Button } from 'primereact/button';
 import { Toast } from 'primereact/toast';
@@ -80,23 +82,25 @@ export default function PTDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}></DocSectionText>
-			<div className="card flex justify-content-center">
-				<Toast
-					ref={toast}
-					pt={{
-						message: ({ index }) => ({
-							className: `bg-yellow-${((index > 5 && 5) || index || 1) * 100}`,
-						}),
-					}}
-				/>
-				<Button onClick={show} label="Show" />
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}></DocSectionText>
+            <div className="card flex justify-content-center">
+                <Toast
+                    ref={toast}
+                    pt={{
+                        message: ({ index }) => ({
+                            className: `bg-yellow-${
+                                ((index > 5 && 5) || index || 1) * 100
+                            }`,
+                        }),
+                    }}
+                />
+                <Button onClick={show} label="Show" />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

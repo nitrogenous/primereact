@@ -5,22 +5,22 @@ import { useEffect, useState } from "react";
 import { NodeService } from "../../../service/NodeService";
 
 export function FloatLabelDoc(props) {
-	const [nodes, setNodes] = useState(null);
-	const [selectedNodeKey, setSelectedNodeKey] = useState(null);
+    const [nodes, setNodes] = useState(null);
+    const [selectedNodeKey, setSelectedNodeKey] = useState(null);
 
-	useEffect(() => {
-		NodeService.getTreeNodes().then((data) => setNodes(data));
-	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(() => {
+        NodeService.getTreeNodes().then((data) => setNodes(data));
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <span className="p-float-label w-full md:w-20rem">
     <TreeSelect inputId="treeselect" value={selectedNodeKey} onChange={(e) => setSelectedNodeKey(e.value)} options={nodes} 
         className="w-full"></TreeSelect>
     <label htmlFor="treeselect">TreeSelect</label>
 </span>
         `,
-		javascript: `
+        javascript: `
 import React, { useState, useEffect } from "react";
 import { TreeSelect } from 'primereact/treeselect';
 import { NodeService } from './service/NodeService';
@@ -44,7 +44,7 @@ export default function FloatLabelDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState, useEffect } from "react";
 import { TreeSelect, TreeSelectChangeEvent } from 'primereact/treeselect';
 import { TreeNode } from 'primereact/treenode';
@@ -69,7 +69,7 @@ export default function FloatLabelDemo() {
     );
 }
         `,
-		data: `
+        data: `
 /* NodeService */
 {
     key: '0',
@@ -98,26 +98,29 @@ export default function FloatLabelDemo() {
 },
 ...
 `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>A floating label appears on top of the input field when focused.</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<span className=" p-float-label w-full md:w-20rem">
-					<TreeSelect
-						inputId="treeselect"
-						value={selectedNodeKey}
-						onChange={(e) => setSelectedNodeKey(e.value)}
-						options={nodes}
-						className="w-full"
-					></TreeSelect>
-					<label htmlFor="treeselect">TreeSelect</label>
-				</span>
-			</div>
-			<DocSectionCode code={code} service={["NodeService"]} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    A floating label appears on top of the input field when
+                    focused.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <span className=" p-float-label w-full md:w-20rem">
+                    <TreeSelect
+                        inputId="treeselect"
+                        value={selectedNodeKey}
+                        onChange={(e) => setSelectedNodeKey(e.value)}
+                        options={nodes}
+                        className="w-full"
+                    ></TreeSelect>
+                    <label htmlFor="treeselect">TreeSelect</label>
+                </span>
+            </div>
+            <DocSectionCode code={code} service={["NodeService"]} />
+        </>
+    );
 }

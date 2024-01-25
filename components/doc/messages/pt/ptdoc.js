@@ -5,23 +5,23 @@ import { Messages } from "@/components/lib/messages/Messages";
 import { useRef } from "react";
 
 export function PTDoc(props) {
-	const msgs = useRef(null);
+    const msgs = useRef(null);
 
-	useMountEffect(() => {
-		msgs.current &&
-			msgs.current.show([
-				{
-					sticky: true,
-					severity: "info",
-					summary: "Info",
-					detail: "Message Content",
-					closable: false,
-				},
-			]);
-	});
+    useMountEffect(() => {
+        msgs.current &&
+            msgs.current.show([
+                {
+                    sticky: true,
+                    severity: "info",
+                    summary: "Info",
+                    detail: "Message Content",
+                    closable: false,
+                },
+            ]);
+    });
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Messages
     ref={msgs}
     pt={{
@@ -29,7 +29,7 @@ export function PTDoc(props) {
     }}
 />
         `,
-		javascript: `
+        javascript: `
 import React, { useEffect, useRef } from 'react'; 
 import { useMountEffect } from 'primereact/hooks';
 import { Messages } from 'primereact/messages';
@@ -55,7 +55,7 @@ export default function PTDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useEffect, useRef } from 'react'; 
 import { useMountEffect } from 'primereact/hooks';
 import { Messages } from 'primereact/messages';
@@ -81,20 +81,20 @@ export default function PTDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}></DocSectionText>
-			<div className="card">
-				<Messages
-					ref={msgs}
-					pt={{
-						wrapper: { className: "bg-yellow-100" },
-					}}
-				/>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}></DocSectionText>
+            <div className="card">
+                <Messages
+                    ref={msgs}
+                    pt={{
+                        wrapper: { className: "bg-yellow-100" },
+                    }}
+                />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

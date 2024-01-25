@@ -4,22 +4,22 @@ import { Chips } from "@/components/lib/chips/Chips";
 import { useState } from "react";
 
 export function TemplateDoc(props) {
-	const [value, setValue] = useState([]);
+    const [value, setValue] = useState([]);
 
-	const customChip = (item) => {
-		return (
-			<div>
-				<span>{item} - (active)</span>
-				<i className="pi pi-user-plus"></i>
-			</div>
-		);
-	};
+    const customChip = (item) => {
+        return (
+            <div>
+                <span>{item} - (active)</span>
+                <i className="pi pi-user-plus"></i>
+            </div>
+        );
+    };
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Chips value={value} onChange={(e) => setValue(e.value)} itemTemplate={customChip} />
         `,
-		javascript: `
+        javascript: `
 import React, { useState } from "react";
 import { Chips } from "primereact/chips";
 
@@ -41,7 +41,7 @@ export default function TemplateDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from "react";
 import { Chips, ChipsChangeEvent } from "primereact/chips";
 
@@ -63,24 +63,24 @@ export default function TemplateDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Chip content is customized using <i>itemTemplate</i> function that
-					receives a single chip value as a parameter.
-				</p>
-			</DocSectionText>
-			<div className="card p-fluid">
-				<Chips
-					value={value}
-					onChange={(e) => setValue(e.value)}
-					itemTemplate={customChip}
-				/>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Chip content is customized using <i>itemTemplate</i>{" "}
+                    function that receives a single chip value as a parameter.
+                </p>
+            </DocSectionText>
+            <div className="card p-fluid">
+                <Chips
+                    value={value}
+                    onChange={(e) => setValue(e.value)}
+                    itemTemplate={customChip}
+                />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

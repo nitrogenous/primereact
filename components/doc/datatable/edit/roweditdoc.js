@@ -11,96 +11,101 @@ import { ProductService } from "../../../../service/ProductService";
 import DeferredDemo from "@/components/demo/DeferredDemo";
 
 export function RowEditDoc(props) {
-	const [products, setProducts] = useState(null);
-	const [statuses] = useState(["INSTOCK", "LOWSTOCK", "OUTOFSTOCK"]);
+    const [products, setProducts] = useState(null);
+    const [statuses] = useState(["INSTOCK", "LOWSTOCK", "OUTOFSTOCK"]);
 
-	const loadDemoData = () => {
-		ProductService.getProductsMini().then((data) => setProducts(data));
-	};
+    const loadDemoData = () => {
+        ProductService.getProductsMini().then((data) => setProducts(data));
+    };
 
-	const getSeverity = (value) => {
-		switch (value) {
-			case "INSTOCK":
-				return "success";
+    const getSeverity = (value) => {
+        switch (value) {
+            case "INSTOCK":
+                return "success";
 
-			case "LOWSTOCK":
-				return "warning";
+            case "LOWSTOCK":
+                return "warning";
 
-			case "OUTOFSTOCK":
-				return "danger";
+            case "OUTOFSTOCK":
+                return "danger";
 
-			default:
-				return null;
-		}
-	};
+            default:
+                return null;
+        }
+    };
 
-	const onRowEditComplete = (e) => {
-		const _products = [...products];
-		const { newData, index } = e;
+    const onRowEditComplete = (e) => {
+        const _products = [...products];
+        const { newData, index } = e;
 
-		_products[index] = newData;
+        _products[index] = newData;
 
-		setProducts(_products);
-	};
+        setProducts(_products);
+    };
 
-	const textEditor = (options) => {
-		return (
-			<InputText
-				type="text"
-				value={options.value}
-				onChange={(e) => options.editorCallback(e.target.value)}
-			/>
-		);
-	};
+    const textEditor = (options) => {
+        return (
+            <InputText
+                type="text"
+                value={options.value}
+                onChange={(e) => options.editorCallback(e.target.value)}
+            />
+        );
+    };
 
-	const statusEditor = (options) => {
-		return (
-			<Dropdown
-				value={options.value}
-				options={statuses}
-				onChange={(e) => options.editorCallback(e.value)}
-				placeholder="Select a Status"
-				itemTemplate={(option) => {
-					return <Tag value={option} severity={getSeverity(option)}></Tag>;
-				}}
-			/>
-		);
-	};
+    const statusEditor = (options) => {
+        return (
+            <Dropdown
+                value={options.value}
+                options={statuses}
+                onChange={(e) => options.editorCallback(e.value)}
+                placeholder="Select a Status"
+                itemTemplate={(option) => {
+                    return (
+                        <Tag
+                            value={option}
+                            severity={getSeverity(option)}
+                        ></Tag>
+                    );
+                }}
+            />
+        );
+    };
 
-	const priceEditor = (options) => {
-		return (
-			<InputNumber
-				value={options.value}
-				onValueChange={(e) => options.editorCallback(e.value)}
-				mode="currency"
-				currency="USD"
-				locale="en-US"
-			/>
-		);
-	};
+    const priceEditor = (options) => {
+        return (
+            <InputNumber
+                value={options.value}
+                onValueChange={(e) => options.editorCallback(e.value)}
+                mode="currency"
+                currency="USD"
+                locale="en-US"
+            />
+        );
+    };
 
-	const statusBodyTemplate = (rowData) => {
-		return (
-			<Tag
-				value={rowData.inventoryStatus}
-				severity={getSeverity(rowData.inventoryStatus)}
-			></Tag>
-		);
-	};
+    const statusBodyTemplate = (rowData) => {
+        return (
+            <Tag
+                value={rowData.inventoryStatus}
+                severity={getSeverity(rowData.inventoryStatus)}
+            ></Tag>
+        );
+    };
 
-	const priceBodyTemplate = (rowData) => {
-		return new Intl.NumberFormat("en-US", {
-			style: "currency",
-			currency: "USD",
-		}).format(rowData.price);
-	};
+    const priceBodyTemplate = (rowData) => {
+        return new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+        }).format(rowData.price);
+    };
 
-	const allowEdit = (rowData) => {
-		return rowData.name !== "Blue Band";
-	};
+    const allowEdit = (rowData) => {
+        return rowData.name !== "Blue Band";
+    };
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <DataTable value={products} editMode="row" dataKey="id" onRowEditComplete={onRowEditComplete} tableStyle={{ minWidth: '50rem' }}>
     <Column field="code" header="Code" editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
     <Column field="name" header="Name" editor={(options) => textEditor(options)} style={{ width: '20%' }}></Column>
@@ -109,7 +114,7 @@ export function RowEditDoc(props) {
     <Column rowEditor={allowEdit} headerStyle={{ width: '10%', minWidth: '8rem' }} bodyStyle={{ textAlign: 'center' }}></Column>
 </DataTable>
         `,
-		javascript: `
+        javascript: `
 import React, { useEffect, useState } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -199,7 +204,7 @@ export default function RowEditingDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useEffect, useState } from 'react';
 import { DataTable, DataTableRowEditCompleteEvent } from 'primereact/datatable';
 import { Column, ColumnEditorOptions } from 'primereact/column';
@@ -302,7 +307,7 @@ export default function RowEditingDemo() {
     );
 }
         `,
-		data: `
+        data: `
 {
     id: '1000',
     code: 'f230fh0g3',
@@ -317,64 +322,64 @@ export default function RowEditingDemo() {
 },
 ...
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Row editing is configured with setting <i>editMode</i> as <i>row</i>.
-					Similarly with cell edit mode, defining input elements with{" "}
-					<i>editor</i> property of a Column and implementing{" "}
-					<i>onRowEditComplete</i> are necessary to update the state. The column
-					to control the editing state should have <i>rowEditor</i> property
-					applied.
-				</p>
-			</DocSectionText>
-			<DeferredDemo onLoad={loadDemoData}>
-				<div className="card p-fluid">
-					<DataTable
-						value={products}
-						editMode="row"
-						dataKey="id"
-						onRowEditComplete={onRowEditComplete}
-						tableStyle={{ minWidth: "50rem" }}
-					>
-						<Column
-							field="code"
-							header="Code"
-							editor={(options) => textEditor(options)}
-							style={{ width: "20%" }}
-						></Column>
-						<Column
-							field="name"
-							header="Name"
-							editor={(options) => textEditor(options)}
-							style={{ width: "20%" }}
-						></Column>
-						<Column
-							field="inventoryStatus"
-							header="Status"
-							body={statusBodyTemplate}
-							editor={(options) => statusEditor(options)}
-							style={{ width: "20%" }}
-						></Column>
-						<Column
-							field="price"
-							header="Price"
-							body={priceBodyTemplate}
-							editor={(options) => priceEditor(options)}
-							style={{ width: "20%" }}
-						></Column>
-						<Column
-							rowEditor={allowEdit}
-							headerStyle={{ width: "10%", minWidth: "8rem" }}
-							bodyStyle={{ textAlign: "center" }}
-						></Column>
-					</DataTable>
-				</div>
-			</DeferredDemo>
-			<DocSectionCode code={code} service={["ProductService"]} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Row editing is configured with setting <i>editMode</i> as{" "}
+                    <i>row</i>. Similarly with cell edit mode, defining input
+                    elements with <i>editor</i> property of a Column and
+                    implementing <i>onRowEditComplete</i> are necessary to
+                    update the state. The column to control the editing state
+                    should have <i>rowEditor</i> property applied.
+                </p>
+            </DocSectionText>
+            <DeferredDemo onLoad={loadDemoData}>
+                <div className="card p-fluid">
+                    <DataTable
+                        value={products}
+                        editMode="row"
+                        dataKey="id"
+                        onRowEditComplete={onRowEditComplete}
+                        tableStyle={{ minWidth: "50rem" }}
+                    >
+                        <Column
+                            field="code"
+                            header="Code"
+                            editor={(options) => textEditor(options)}
+                            style={{ width: "20%" }}
+                        ></Column>
+                        <Column
+                            field="name"
+                            header="Name"
+                            editor={(options) => textEditor(options)}
+                            style={{ width: "20%" }}
+                        ></Column>
+                        <Column
+                            field="inventoryStatus"
+                            header="Status"
+                            body={statusBodyTemplate}
+                            editor={(options) => statusEditor(options)}
+                            style={{ width: "20%" }}
+                        ></Column>
+                        <Column
+                            field="price"
+                            header="Price"
+                            body={priceBodyTemplate}
+                            editor={(options) => priceEditor(options)}
+                            style={{ width: "20%" }}
+                        ></Column>
+                        <Column
+                            rowEditor={allowEdit}
+                            headerStyle={{ width: "10%", minWidth: "8rem" }}
+                            bodyStyle={{ textAlign: "center" }}
+                        ></Column>
+                    </DataTable>
+                </div>
+            </DeferredDemo>
+            <DocSectionCode code={code} service={["ProductService"]} />
+        </>
+    );
 }

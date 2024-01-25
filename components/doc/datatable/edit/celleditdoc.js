@@ -9,87 +9,87 @@ import { ProductService } from "../../../../service/ProductService";
 import DeferredDemo from "@/components/demo/DeferredDemo";
 
 export function CellEditDoc(props) {
-	const [products, setProducts] = useState(null);
+    const [products, setProducts] = useState(null);
 
-	const columns = [
-		{ field: "code", header: "Code" },
-		{ field: "name", header: "Name" },
-		{ field: "quantity", header: "Quantity" },
-		{ field: "price", header: "Price" },
-	];
+    const columns = [
+        { field: "code", header: "Code" },
+        { field: "name", header: "Name" },
+        { field: "quantity", header: "Quantity" },
+        { field: "price", header: "Price" },
+    ];
 
-	const loadDemoData = () => {
-		ProductService.getProductsMini().then((data) => setProducts(data));
-	};
+    const loadDemoData = () => {
+        ProductService.getProductsMini().then((data) => setProducts(data));
+    };
 
-	const isPositiveInteger = (val) => {
-		let str = String(val);
+    const isPositiveInteger = (val) => {
+        let str = String(val);
 
-		str = str.trim();
+        str = str.trim();
 
-		if (!str) {
-			return false;
-		}
+        if (!str) {
+            return false;
+        }
 
-		str = str.replace(/^0+/, "") || "0";
-		const n = Math.floor(Number(str));
+        str = str.replace(/^0+/, "") || "0";
+        const n = Math.floor(Number(str));
 
-		return n !== Infinity && String(n) === str && n >= 0;
-	};
+        return n !== Infinity && String(n) === str && n >= 0;
+    };
 
-	const onCellEditComplete = (e) => {
-		const { rowData, newValue, field, originalEvent: event } = e;
+    const onCellEditComplete = (e) => {
+        const { rowData, newValue, field, originalEvent: event } = e;
 
-		switch (field) {
-			case "quantity":
-			case "price":
-				if (isPositiveInteger(newValue)) rowData[field] = newValue;
-				else event.preventDefault();
-				break;
+        switch (field) {
+            case "quantity":
+            case "price":
+                if (isPositiveInteger(newValue)) rowData[field] = newValue;
+                else event.preventDefault();
+                break;
 
-			default:
-				if (newValue.trim().length > 0) rowData[field] = newValue;
-				else event.preventDefault();
-				break;
-		}
-	};
+            default:
+                if (newValue.trim().length > 0) rowData[field] = newValue;
+                else event.preventDefault();
+                break;
+        }
+    };
 
-	const cellEditor = (options) => {
-		if (options.field === "price") return priceEditor(options);
-		else return textEditor(options);
-	};
+    const cellEditor = (options) => {
+        if (options.field === "price") return priceEditor(options);
+        else return textEditor(options);
+    };
 
-	const textEditor = (options) => {
-		return (
-			<InputText
-				type="text"
-				value={options.value}
-				onChange={(e) => options.editorCallback(e.target.value)}
-			/>
-		);
-	};
+    const textEditor = (options) => {
+        return (
+            <InputText
+                type="text"
+                value={options.value}
+                onChange={(e) => options.editorCallback(e.target.value)}
+            />
+        );
+    };
 
-	const priceEditor = (options) => {
-		return (
-			<InputNumber
-				value={options.value}
-				onValueChange={(e) => options.editorCallback(e.value)}
-				mode="currency"
-				currency="USD"
-				locale="en-US"
-			/>
-		);
-	};
+    const priceEditor = (options) => {
+        return (
+            <InputNumber
+                value={options.value}
+                onValueChange={(e) => options.editorCallback(e.value)}
+                mode="currency"
+                currency="USD"
+                locale="en-US"
+            />
+        );
+    };
 
-	const priceBodyTemplate = (rowData) => {
-		return new Intl.NumberFormat("en-US", {
-			style: "currency",
-			currency: "USD",
-		}).format(rowData.price);
-	};
+    const priceBodyTemplate = (rowData) => {
+        return new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+        }).format(rowData.price);
+    };
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <DataTable value={products} editMode="cell" tableStyle={{ minWidth: '50rem' }}>
     {columns.map(({ field, header }) => {
         return <Column key={field} field={field} header={header}
@@ -98,7 +98,7 @@ export function CellEditDoc(props) {
     })}
 </DataTable>
         `,
-		javascript: `
+        javascript: `
 import React, { useEffect, useState } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -180,7 +180,7 @@ export default function CellEditingDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useEffect, useState } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column, ColumnEvent, ColumnEditorOptions } from 'primereact/column';
@@ -280,7 +280,7 @@ export default function CellEditingDemo() {
     );
 }
         `,
-		data: `
+        data: `
 {
     id: '1000',
     code: 'f230fh0g3',
@@ -295,41 +295,44 @@ export default function CellEditingDemo() {
 },
 ...
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Cell editing is enabled by setting <i>editMode</i> as <i>cell</i>,
-					defining input elements with <i>editor</i> property of a Column and
-					implementing <i>onCellEditComplete</i> to update the state.
-				</p>
-			</DocSectionText>
-			<DeferredDemo onLoad={loadDemoData}>
-				<div className="card p-fluid">
-					<DataTable
-						value={products}
-						editMode="cell"
-						tableStyle={{ minWidth: "50rem" }}
-					>
-						{columns.map(({ field, header }) => {
-							return (
-								<Column
-									key={field}
-									field={field}
-									header={header}
-									style={{ width: "25%" }}
-									body={field === "price" && priceBodyTemplate}
-									editor={(options) => cellEditor(options)}
-									onCellEditComplete={onCellEditComplete}
-								/>
-							);
-						})}
-					</DataTable>
-				</div>
-			</DeferredDemo>
-			<DocSectionCode code={code} service={["ProductService"]} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Cell editing is enabled by setting <i>editMode</i> as{" "}
+                    <i>cell</i>, defining input elements with <i>editor</i>{" "}
+                    property of a Column and implementing{" "}
+                    <i>onCellEditComplete</i> to update the state.
+                </p>
+            </DocSectionText>
+            <DeferredDemo onLoad={loadDemoData}>
+                <div className="card p-fluid">
+                    <DataTable
+                        value={products}
+                        editMode="cell"
+                        tableStyle={{ minWidth: "50rem" }}
+                    >
+                        {columns.map(({ field, header }) => {
+                            return (
+                                <Column
+                                    key={field}
+                                    field={field}
+                                    header={header}
+                                    style={{ width: "25%" }}
+                                    body={
+                                        field === "price" && priceBodyTemplate
+                                    }
+                                    editor={(options) => cellEditor(options)}
+                                    onCellEditComplete={onCellEditComplete}
+                                />
+                            );
+                        })}
+                    </DataTable>
+                </div>
+            </DeferredDemo>
+            <DocSectionCode code={code} service={["ProductService"]} />
+        </>
+    );
 }

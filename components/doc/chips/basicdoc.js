@@ -4,13 +4,13 @@ import { Chips } from "@/components/lib/chips/Chips";
 import { useState } from "react";
 
 export function BasicDoc(props) {
-	const [value, setValue] = useState([]);
+    const [value, setValue] = useState([]);
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Chips value={value} onChange={(e) => setValue(e.value)} />
         `,
-		javascript: `
+        javascript: `
 import React, { useState } from "react";
 import { Chips } from "primereact/chips";
 
@@ -24,7 +24,7 @@ export default function BasicDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from "react";
 import { Chips, ChipsChangeEvent } from "primereact/chips";
 
@@ -38,20 +38,21 @@ export default function BasicDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Chips is used as a controlled input with <i>value</i> and{" "}
-					<i>onChange</i> properties where <i>value</i> should be an array.
-				</p>
-			</DocSectionText>
-			<div className="card p-fluid">
-				<Chips value={value} onChange={(e) => setValue(e.value)} />
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Chips is used as a controlled input with <i>value</i> and{" "}
+                    <i>onChange</i> properties where <i>value</i> should be an
+                    array.
+                </p>
+            </DocSectionText>
+            <div className="card p-fluid">
+                <Chips value={value} onChange={(e) => setValue(e.value)} />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

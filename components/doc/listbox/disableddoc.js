@@ -3,19 +3,19 @@ import { DocSectionText } from "@/components/doc/common/docsectiontext";
 import { ListBox } from "@/components/lib/listbox/ListBox";
 
 export function DisabledDoc(props) {
-	const cities = [
-		{ name: "New York", code: "NY" },
-		{ name: "Rome", code: "RM" },
-		{ name: "London", code: "LDN" },
-		{ name: "Istanbul", code: "IST" },
-		{ name: "Paris", code: "PRS" },
-	];
+    const cities = [
+        { name: "New York", code: "NY" },
+        { name: "Rome", code: "RM" },
+        { name: "London", code: "LDN" },
+        { name: "Istanbul", code: "IST" },
+        { name: "Paris", code: "PRS" },
+    ];
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <ListBox disabled options={cities} optionLabel="name" className="w-full md:w-14rem" />
         `,
-		javascript: `
+        javascript: `
 import React from "react";
 import { ListBox } from 'primereact/listbox';
 
@@ -35,7 +35,7 @@ export default function DisabledDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React from "react";
 import { ListBox } from 'primereact/listbox';
 
@@ -60,25 +60,25 @@ export default function DisabledDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					When <i>disabled</i> is present, the element cannot be edited and
-					focused.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<ListBox
-					disabled
-					options={cities}
-					optionLabel="name"
-					className="w-full md:w-14rem"
-				/>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    When <i>disabled</i> is present, the element cannot be
+                    edited and focused.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <ListBox
+                    disabled
+                    options={cities}
+                    optionLabel="name"
+                    className="w-full md:w-14rem"
+                />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

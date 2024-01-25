@@ -2,13 +2,13 @@ import { ComponentBase } from "../componentbase/ComponentBase";
 import { classNames } from "../utils/Utils";
 
 const classes = {
-	root: ({ props }) =>
-		classNames("p-chip p-component", {
-			"p-chip-image": props.image != null,
-		}),
-	removeIcon: "p-chip-remove-icon",
-	icon: "p-chip-icon",
-	label: "p-chip-text",
+    root: ({ props }) =>
+        classNames("p-chip p-component", {
+            "p-chip-image": props.image != null,
+        }),
+    removeIcon: "p-chip-remove-icon",
+    icon: "p-chip-icon",
+    label: "p-chip-text",
 };
 
 const styles = `
@@ -38,23 +38,23 @@ const styles = `
 `;
 
 export const ChipBase = ComponentBase.extend({
-	defaultProps: {
-		__TYPE: "Chip",
-		label: null,
-		icon: null,
-		image: null,
-		removable: false,
-		removeIcon: null,
-		className: null,
-		style: null,
-		template: null,
-		imageAlt: "chip",
-		onImageError: null,
-		onRemove: null,
-		children: undefined,
-	},
-	css: {
-		classes,
-		styles,
-	},
+    defaultProps: {
+        __TYPE: "Chip",
+        label: null,
+        icon: null,
+        image: null,
+        removable: false,
+        removeIcon: null,
+        className: null,
+        style: null,
+        template: null,
+        imageAlt: "chip",
+        onImageError: null,
+        onRemove: null,
+        children: undefined,
+    },
+    css: {
+        classes,
+        styles,
+    },
 });

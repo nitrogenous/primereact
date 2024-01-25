@@ -8,37 +8,37 @@ import { useEffect, useState } from "react";
 import { NodeService } from "../../../service/NodeService";
 
 export function FilterDoc(props) {
-	const [nodes, setNodes] = useState([]);
-	const [globalFilter, setGlobalFilter] = useState("");
-	const [filterMode, setFilterMode] = useState("lenient");
-	const [filterOptions] = useState([
-		{ label: "Lenient", value: "lenient" },
-		{ label: "Strict", value: "strict" },
-	]);
+    const [nodes, setNodes] = useState([]);
+    const [globalFilter, setGlobalFilter] = useState("");
+    const [filterMode, setFilterMode] = useState("lenient");
+    const [filterOptions] = useState([
+        { label: "Lenient", value: "lenient" },
+        { label: "Strict", value: "strict" },
+    ]);
 
-	useEffect(() => {
-		NodeService.getTreeTableNodes().then((data) => setNodes(data));
-	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+    useEffect(() => {
+        NodeService.getTreeTableNodes().then((data) => setNodes(data));
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-	const getHeader = () => {
-		return (
-			<div className="flex justify-content-end">
-				<div className="p-input-icon-left">
-					<i className="pi pi-search"></i>
-					<InputText
-						type="search"
-						onInput={(e) => setGlobalFilter(e.target.value)}
-						placeholder="Global Search"
-					/>
-				</div>
-			</div>
-		);
-	};
+    const getHeader = () => {
+        return (
+            <div className="flex justify-content-end">
+                <div className="p-input-icon-left">
+                    <i className="pi pi-search"></i>
+                    <InputText
+                        type="search"
+                        onInput={(e) => setGlobalFilter(e.target.value)}
+                        placeholder="Global Search"
+                    />
+                </div>
+            </div>
+        );
+    };
 
-	const header = getHeader();
+    const header = getHeader();
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <SelectButton value={filterMode} onChange={(e) => setFilterMode(e.value)} options={filterOptions} />
 
 <TreeTable value={nodes} globalFilter={globalFilter} header={header} filterMode={filterMode} tableStyle={{ minWidth: '50rem' }}>
@@ -47,7 +47,7 @@ export function FilterDoc(props) {
     <Column field="type" header="Type" filter filterPlaceholder="Filter by type"></Column>
 </TreeTable>
         `,
-		javascript: `
+        javascript: `
 import React, { useState, useEffect } from 'react';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
@@ -95,7 +95,7 @@ export default function FilterDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState, useEffect } from 'react';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
@@ -149,7 +149,7 @@ export default function FilterDemo() {
     )
 }
         `,
-		data: `
+        data: `
 {
     key: '0',
     label: 'Documents',
@@ -177,59 +177,60 @@ export default function FilterDemo() {
 },
 ...
 `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Filtering is enabled by adding the <i>filter</i> property to a Column.
-					The <i>filterMode</i> specifies the filtering strategy, in{" "}
-					<i>lenient</i> mode when the query matches a node, children of the
-					node are not searched further as all descendants of the node are
-					included. On the other hand, in <i>strict</i> mode when the query
-					matches a node, filtering continues on all descendants. A general
-					filled called <i>globalFilter</i> is also provided to search all
-					columns that support filtering.
-				</p>
-			</DocSectionText>
-			<div className="card">
-				<div className="flex justify-content-center mb-4">
-					<SelectButton
-						value={filterMode}
-						onChange={(e) => setFilterMode(e.value)}
-						options={filterOptions}
-					/>
-				</div>
-				<TreeTable
-					value={nodes}
-					globalFilter={globalFilter}
-					header={header}
-					filterMode={filterMode}
-					tableStyle={{ minWidth: "50rem" }}
-				>
-					<Column
-						field="name"
-						header="Name"
-						expander
-						filter
-						filterPlaceholder="Filter by name"
-					></Column>
-					<Column
-						field="size"
-						header="Size"
-						filter
-						filterPlaceholder="Filter by size"
-					></Column>
-					<Column
-						field="type"
-						header="Type"
-						filter
-						filterPlaceholder="Filter by type"
-					></Column>
-				</TreeTable>
-			</div>
-			<DocSectionCode code={code} service={["NodeService"]} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Filtering is enabled by adding the <i>filter</i> property to
+                    a Column. The <i>filterMode</i> specifies the filtering
+                    strategy, in <i>lenient</i> mode when the query matches a
+                    node, children of the node are not searched further as all
+                    descendants of the node are included. On the other hand, in{" "}
+                    <i>strict</i> mode when the query matches a node, filtering
+                    continues on all descendants. A general filled called{" "}
+                    <i>globalFilter</i> is also provided to search all columns
+                    that support filtering.
+                </p>
+            </DocSectionText>
+            <div className="card">
+                <div className="flex justify-content-center mb-4">
+                    <SelectButton
+                        value={filterMode}
+                        onChange={(e) => setFilterMode(e.value)}
+                        options={filterOptions}
+                    />
+                </div>
+                <TreeTable
+                    value={nodes}
+                    globalFilter={globalFilter}
+                    header={header}
+                    filterMode={filterMode}
+                    tableStyle={{ minWidth: "50rem" }}
+                >
+                    <Column
+                        field="name"
+                        header="Name"
+                        expander
+                        filter
+                        filterPlaceholder="Filter by name"
+                    ></Column>
+                    <Column
+                        field="size"
+                        header="Size"
+                        filter
+                        filterPlaceholder="Filter by size"
+                    ></Column>
+                    <Column
+                        field="type"
+                        header="Type"
+                        filter
+                        filterPlaceholder="Filter by type"
+                    ></Column>
+                </TreeTable>
+            </div>
+            <DocSectionCode code={code} service={["NodeService"]} />
+        </>
+    );
 }

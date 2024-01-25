@@ -17,6 +17,6 @@ export interface EyeSlashIconProps extends IconBaseProps {}
  * @group Component
  */
 export declare class EyeSlashIcon extends React.Component<
-	EyeSlashIconProps,
-	any
+    EyeSlashIconProps,
+    any
 > {}

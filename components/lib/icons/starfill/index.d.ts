@@ -17,6 +17,6 @@ export interface StarFillIconProps extends IconBaseProps {}
  * @group Component
  */
 export declare class StarFillIcon extends React.Component<
-	StarFillIconProps,
-	any
+    StarFillIconProps,
+    any
 > {}

@@ -17,6 +17,6 @@ export interface WindowMinimizeIconProps extends IconBaseProps {}
  * @group Component
  */
 export declare class WindowMinimizeIcon extends React.Component<
-	WindowMinimizeIconProps,
-	any
+    WindowMinimizeIconProps,
+    any
 > {}

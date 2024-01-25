@@ -2,24 +2,24 @@ import { ComponentBase } from "../componentbase/ComponentBase";
 import { classNames } from "../utils/Utils";
 
 export const ScrollPanelBase = ComponentBase.extend({
-	defaultProps: {
-		__TYPE: "ScrollPanel",
-		id: null,
-		style: null,
-		className: null,
-		children: undefined,
-		step: 5,
-	},
-	css: {
-		classes: {
-			root: ({ props }) =>
-				classNames("p-scrollpanel p-component", props.className),
-			wrapper: "p-scrollpanel-wrapper",
-			content: "p-scrollpanel-content",
-			barx: "p-scrollpanel-bar p-scrollpanel-bar-x",
-			bary: "p-scrollpanel-bar p-scrollpanel-bar-y",
-		},
-		styles: `
+    defaultProps: {
+        __TYPE: "ScrollPanel",
+        id: null,
+        style: null,
+        className: null,
+        children: undefined,
+        step: 5,
+    },
+    css: {
+        classes: {
+            root: ({ props }) =>
+                classNames("p-scrollpanel p-component", props.className),
+            wrapper: "p-scrollpanel-wrapper",
+            content: "p-scrollpanel-content",
+            barx: "p-scrollpanel-bar p-scrollpanel-bar-x",
+            bary: "p-scrollpanel-bar p-scrollpanel-bar-y",
+        },
+        styles: `
         @layer primereact {
             .p-scrollpanel-wrapper {
                 overflow: hidden;
@@ -73,5 +73,5 @@ export const ScrollPanelBase = ComponentBase.extend({
             }
         }
         `,
-	},
+    },
 });

@@ -1,21 +1,21 @@
 import * as React from "react";
 
 export const useIntersectionObserver = (ref, options = {}) => {
-	const [isElementVisible, setIsElementVisible] = React.useState(false);
+    const [isElementVisible, setIsElementVisible] = React.useState(false);
 
-	React.useEffect(() => {
-		if (!ref.current) return;
+    React.useEffect(() => {
+        if (!ref.current) return;
 
-		const observer = new IntersectionObserver(([entry]) => {
-			setIsElementVisible(entry.isIntersecting);
-		}, options);
+        const observer = new IntersectionObserver(([entry]) => {
+            setIsElementVisible(entry.isIntersecting);
+        }, options);
 
-		observer.observe(ref.current);
+        observer.observe(ref.current);
 
-		return () => {
-			observer.disconnect();
-		};
-	}, [options, ref]);
+        return () => {
+            observer.disconnect();
+        };
+    }, [options, ref]);
 
-	return isElementVisible;
+    return isElementVisible;
 };

@@ -6,57 +6,57 @@ import { useRouter } from "next/router";
 import { useRef } from "react";
 
 export function RaisedDoc(props) {
-	const router = useRouter();
-	const toast = useRef(null);
-	const items = [
-		{
-			label: "Update",
-			icon: "pi pi-refresh",
-			command: () => {
-				toast.current.show({
-					severity: "success",
-					summary: "Updated",
-					detail: "Data Updated",
-				});
-			},
-		},
-		{
-			label: "Delete",
-			icon: "pi pi-times",
-			command: () => {
-				toast.current.show({
-					severity: "warn",
-					summary: "Delete",
-					detail: "Data Deleted",
-				});
-			},
-		},
-		{
-			label: "React Website",
-			icon: "pi pi-external-link",
-			command: () => {
-				window.location.href = "https://reactjs.org/";
-			},
-		},
-		{
-			label: "Upload",
-			icon: "pi pi-upload",
-			command: () => {
-				router.push("/fileupload");
-			},
-		},
-	];
+    const router = useRouter();
+    const toast = useRef(null);
+    const items = [
+        {
+            label: "Update",
+            icon: "pi pi-refresh",
+            command: () => {
+                toast.current.show({
+                    severity: "success",
+                    summary: "Updated",
+                    detail: "Data Updated",
+                });
+            },
+        },
+        {
+            label: "Delete",
+            icon: "pi pi-times",
+            command: () => {
+                toast.current.show({
+                    severity: "warn",
+                    summary: "Delete",
+                    detail: "Data Deleted",
+                });
+            },
+        },
+        {
+            label: "React Website",
+            icon: "pi pi-external-link",
+            command: () => {
+                window.location.href = "https://reactjs.org/";
+            },
+        },
+        {
+            label: "Upload",
+            icon: "pi pi-upload",
+            command: () => {
+                router.push("/fileupload");
+            },
+        },
+    ];
 
-	const save = () => {
-		toast.current.show({
-			severity: "success",
-			summary: "Success",
-			detail: "Data Saved",
-		});
-	};
+    const save = () => {
+        toast.current.show({
+            severity: "success",
+            summary: "Success",
+            detail: "Data Saved",
+        });
+    };
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <Toast ref={toast}></Toast>
 <SplitButton label="Save" icon="pi pi-plus" onClick={save} model={items} raised />
 <SplitButton label="Save" icon="pi pi-plus" onClick={save} model={items} severity="secondary" raised />
@@ -66,7 +66,7 @@ export function RaisedDoc(props) {
 <SplitButton label="Save" icon="pi pi-plus" onClick={save} model={items} severity="help" raised />
 <SplitButton label="Save" icon="pi pi-plus" onClick={save} model={items} severity="danger" raised />
         `,
-		javascript: `
+        javascript: `
 import React, { useRef } from 'react';
 //import { useRouter } from 'next/router';
 import { SplitButton } from 'primereact/splitbutton';
@@ -124,7 +124,7 @@ export default function RaisedDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useRef } from 'react';
 //import { useRouter } from 'next/router';
 import { SplitButton } from 'primereact/splitbutton';
@@ -183,72 +183,72 @@ export default function RaisedDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>Raised buttons display a shadow to indicate elevation.</p>
-			</DocSectionText>
-			<div className="card flex flex-wrap justify-content-center gap-3">
-				<Toast ref={toast}></Toast>
-				<SplitButton
-					label="Save"
-					icon="pi pi-plus"
-					onClick={save}
-					model={items}
-					raised
-				/>
-				<SplitButton
-					label="Save"
-					icon="pi pi-plus"
-					onClick={save}
-					model={items}
-					severity="secondary"
-					raised
-				/>
-				<SplitButton
-					label="Save"
-					icon="pi pi-plus"
-					onClick={save}
-					model={items}
-					severity="success"
-					raised
-				/>
-				<SplitButton
-					label="Save"
-					icon="pi pi-plus"
-					onClick={save}
-					model={items}
-					severity="info"
-					raised
-				/>
-				<SplitButton
-					label="Save"
-					icon="pi pi-plus"
-					onClick={save}
-					model={items}
-					severity="warning"
-					raised
-				/>
-				<SplitButton
-					label="Save"
-					icon="pi pi-plus"
-					onClick={save}
-					model={items}
-					severity="help"
-					raised
-				/>
-				<SplitButton
-					label="Save"
-					icon="pi pi-plus"
-					onClick={save}
-					model={items}
-					severity="danger"
-					raised
-				/>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>Raised buttons display a shadow to indicate elevation.</p>
+            </DocSectionText>
+            <div className="card flex flex-wrap justify-content-center gap-3">
+                <Toast ref={toast}></Toast>
+                <SplitButton
+                    label="Save"
+                    icon="pi pi-plus"
+                    onClick={save}
+                    model={items}
+                    raised
+                />
+                <SplitButton
+                    label="Save"
+                    icon="pi pi-plus"
+                    onClick={save}
+                    model={items}
+                    severity="secondary"
+                    raised
+                />
+                <SplitButton
+                    label="Save"
+                    icon="pi pi-plus"
+                    onClick={save}
+                    model={items}
+                    severity="success"
+                    raised
+                />
+                <SplitButton
+                    label="Save"
+                    icon="pi pi-plus"
+                    onClick={save}
+                    model={items}
+                    severity="info"
+                    raised
+                />
+                <SplitButton
+                    label="Save"
+                    icon="pi pi-plus"
+                    onClick={save}
+                    model={items}
+                    severity="warning"
+                    raised
+                />
+                <SplitButton
+                    label="Save"
+                    icon="pi pi-plus"
+                    onClick={save}
+                    model={items}
+                    severity="help"
+                    raised
+                />
+                <SplitButton
+                    label="Save"
+                    icon="pi pi-plus"
+                    onClick={save}
+                    model={items}
+                    severity="danger"
+                    raised
+                />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

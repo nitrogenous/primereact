@@ -7,14 +7,14 @@ import { CustomerService } from "../../../../service/CustomerService";
 import DeferredDemo from "@/components/demo/DeferredDemo";
 
 export function VerticalScrollDoc(props) {
-	const [customers, setCustomers] = useState([]);
+    const [customers, setCustomers] = useState([]);
 
-	const loadDemoData = () => {
-		CustomerService.getCustomersMedium().then((data) => setCustomers(data));
-	};
+    const loadDemoData = () => {
+        CustomerService.getCustomersMedium().then((data) => setCustomers(data));
+    };
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <DataTable value={customers} scrollable scrollHeight="400px" style={{ minWidth: '50rem' }}>
     <Column field="name" header="Name"></Column>
     <Column field="country.name" header="Country"></Column>
@@ -22,7 +22,7 @@ export function VerticalScrollDoc(props) {
     <Column field="company" header="Company"></Column>
 </DataTable>
         `,
-		javascript: `
+        javascript: `
 import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -47,7 +47,7 @@ export default function VerticalScrollDemo() {
     );
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -85,7 +85,7 @@ export default function VerticalScrollDemo() {
     );
 }
         `,
-		data: `
+        data: `
 {
     id: 1000,
     name: 'James Butt',
@@ -106,35 +106,36 @@ export default function VerticalScrollDemo() {
 },
 ...
        `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Adding <i>scrollable</i> property along with a <i>scrollHeight</i> for
-					the data viewport enables vertical scrolling with fixed headers.
-				</p>
-			</DocSectionText>
-			<DeferredDemo onLoad={loadDemoData}>
-				<div className="card">
-					<DataTable
-						value={customers}
-						scrollable
-						scrollHeight="400px"
-						tableStyle={{ minWidth: "50rem" }}
-					>
-						<Column field="name" header="Name"></Column>
-						<Column field="country.name" header="Country"></Column>
-						<Column
-							field="representative.name"
-							header="Representative"
-						></Column>
-						<Column field="company" header="Company"></Column>
-					</DataTable>
-				</div>
-			</DeferredDemo>
-			<DocSectionCode code={code} service={["CustomerService"]} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Adding <i>scrollable</i> property along with a{" "}
+                    <i>scrollHeight</i> for the data viewport enables vertical
+                    scrolling with fixed headers.
+                </p>
+            </DocSectionText>
+            <DeferredDemo onLoad={loadDemoData}>
+                <div className="card">
+                    <DataTable
+                        value={customers}
+                        scrollable
+                        scrollHeight="400px"
+                        tableStyle={{ minWidth: "50rem" }}
+                    >
+                        <Column field="name" header="Name"></Column>
+                        <Column field="country.name" header="Country"></Column>
+                        <Column
+                            field="representative.name"
+                            header="Representative"
+                        ></Column>
+                        <Column field="company" header="Company"></Column>
+                    </DataTable>
+                </div>
+            </DeferredDemo>
+            <DocSectionCode code={code} service={["CustomerService"]} />
+        </>
+    );
 }

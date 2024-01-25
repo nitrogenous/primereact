@@ -4,42 +4,42 @@ import { OrganizationChart } from "@/components/lib/organizationchart/Organizati
 import { useState } from "react";
 
 export function PTDoc(props) {
-	const [selection, setSelection] = useState([]);
-	const [data] = useState([
-		{
-			label: "Argentina",
-			expanded: true,
-			children: [
-				{
-					label: "Argentina",
-					expanded: true,
-					children: [
-						{
-							label: "Argentina",
-						},
-						{
-							label: "Croatia",
-						},
-					],
-				},
-				{
-					label: "France",
-					expanded: true,
-					children: [
-						{
-							label: "France",
-						},
-						{
-							label: "Morocco",
-						},
-					],
-				},
-			],
-		},
-	]);
+    const [selection, setSelection] = useState([]);
+    const [data] = useState([
+        {
+            label: "Argentina",
+            expanded: true,
+            children: [
+                {
+                    label: "Argentina",
+                    expanded: true,
+                    children: [
+                        {
+                            label: "Argentina",
+                        },
+                        {
+                            label: "Croatia",
+                        },
+                    ],
+                },
+                {
+                    label: "France",
+                    expanded: true,
+                    children: [
+                        {
+                            label: "France",
+                        },
+                        {
+                            label: "Morocco",
+                        },
+                    ],
+                },
+            ],
+        },
+    ]);
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <OrganizationChart
     value={data}
     selectionMode="single"
@@ -52,7 +52,7 @@ export function PTDoc(props) {
     }}
 />
         `,
-		javascript: `
+        javascript: `
 import React, { useState } from 'react';
 import { OrganizationChart } from 'primereact/organizationchart';
 
@@ -108,7 +108,7 @@ export default function PTDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from 'react';
 import { OrganizationChart } from 'primereact/organizationchart';
 import { TreeNode } from 'primereact/treenode';
@@ -165,27 +165,27 @@ export default function PTDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}></DocSectionText>
-			<div className="card overflow-x-auto">
-				<OrganizationChart
-					value={data}
-					selectionMode="single"
-					selection={selection}
-					onSelectionChange={(e) => setSelection(e.data)}
-					pt={{
-						node: ({ context }) => ({
-							className: context.selected
-								? "border-orange-400 border-round-sm"
-								: "border-primary-400 border-round-sm",
-						}),
-					}}
-				/>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}></DocSectionText>
+            <div className="card overflow-x-auto">
+                <OrganizationChart
+                    value={data}
+                    selectionMode="single"
+                    selection={selection}
+                    onSelectionChange={(e) => setSelection(e.data)}
+                    pt={{
+                        node: ({ context }) => ({
+                            className: context.selected
+                                ? "border-orange-400 border-round-sm"
+                                : "border-primary-400 border-round-sm",
+                        }),
+                    }}
+                />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }

@@ -2,21 +2,21 @@ import { ComponentBase } from "../componentbase/ComponentBase";
 import { classNames } from "../utils/Utils";
 
 const classes = {
-	icon: ({ _icon }) => classNames("p-menuitem-icon", _icon),
-	label: "p-menuitem-text",
-	action: "p-menuitem-link",
-	menuitem: ({ _className, active, disabled }) =>
-		classNames(
-			"p-tabmenuitem",
-			{
-				"p-highlight": active,
-				"p-disabled": disabled,
-			},
-			_className,
-		),
-	inkbar: "p-tabmenu-ink-bar",
-	menu: "p-tabmenu-nav p-reset",
-	root: ({ props }) => classNames("p-tabmenu p-component", props.className),
+    icon: ({ _icon }) => classNames("p-menuitem-icon", _icon),
+    label: "p-menuitem-text",
+    action: "p-menuitem-link",
+    menuitem: ({ _className, active, disabled }) =>
+        classNames(
+            "p-tabmenuitem",
+            {
+                "p-highlight": active,
+                "p-disabled": disabled,
+            },
+            _className,
+        ),
+    inkbar: "p-tabmenu-ink-bar",
+    menu: "p-tabmenu-nav p-reset",
+    root: ({ props }) => classNames("p-tabmenu p-component", props.className),
 };
 
 const styles = `
@@ -64,20 +64,20 @@ const styles = `
 `;
 
 export const TabMenuBase = ComponentBase.extend({
-	defaultProps: {
-		__TYPE: "TabMenu",
-		id: null,
-		model: null,
-		activeIndex: 0,
-		ariaLabel: null,
-		ariaLabelledBy: null,
-		style: null,
-		className: null,
-		onTabChange: null,
-		children: undefined,
-	},
-	css: {
-		classes,
-		styles,
-	},
+    defaultProps: {
+        __TYPE: "TabMenu",
+        id: null,
+        model: null,
+        activeIndex: 0,
+        ariaLabel: null,
+        ariaLabelledBy: null,
+        style: null,
+        className: null,
+        onTabChange: null,
+        children: undefined,
+    },
+    css: {
+        classes,
+        styles,
+    },
 });

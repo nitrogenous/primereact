@@ -5,35 +5,35 @@ import Link from "next/link";
 import { useState } from "react";
 
 export function VirtualScrollDoc(props) {
-	const [selectedItem, setSelectedItem] = useState(null);
-	const [filteredItems, setFilteredItems] = useState(null);
-	const items = Array.from({ length: 100000 }).map((_, i) => ({
-		label: `Item #${i}`,
-		value: i,
-	}));
+    const [selectedItem, setSelectedItem] = useState(null);
+    const [filteredItems, setFilteredItems] = useState(null);
+    const items = Array.from({ length: 100000 }).map((_, i) => ({
+        label: `Item #${i}`,
+        value: i,
+    }));
 
-	const searchItems = (event) => {
-		//in a real application, make a request to a remote url with the query and return filtered results, for demo purposes we filter at client side
-		const query = event.query;
-		const _filteredItems = [];
+    const searchItems = (event) => {
+        //in a real application, make a request to a remote url with the query and return filtered results, for demo purposes we filter at client side
+        const query = event.query;
+        const _filteredItems = [];
 
-		for (let i = 0; i < items.length; i++) {
-			const item = items[i];
+        for (let i = 0; i < items.length; i++) {
+            const item = items[i];
 
-			if (item.label.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-				_filteredItems.push(item);
-			}
-		}
+            if (item.label.toLowerCase().indexOf(query.toLowerCase()) === 0) {
+                _filteredItems.push(item);
+            }
+        }
 
-		setFilteredItems(_filteredItems);
-	};
+        setFilteredItems(_filteredItems);
+    };
 
-	const code = {
-		basic: `
+    const code = {
+        basic: `
 <AutoComplete value={selectedItem} suggestions={filteredItems} completeMethod={searchItems}
     virtualScrollerOptions={{ itemSize: 38 }} field="label" dropdown onChange={(e) => setSelectedItem(e.value)} />
         `,
-		javascript: `
+        javascript: `
 import React, { useState } from "react";
 import { AutoComplete } from "primereact/autocomplete";
 
@@ -63,7 +63,7 @@ export default function VirtualScrollerDemo() {
     )
 }
         `,
-		typescript: `
+        typescript: `
 import React, { useState } from "react";
 import { AutoComplete, AutoCompleteCompleteEvent } from "primereact/autocomplete";
 
@@ -98,32 +98,34 @@ export default function VirtualScrollerDemo() {
     )
 }
         `,
-	};
+    };
 
-	return (
-		<>
-			<DocSectionText {...props}>
-				<p>
-					Virtual Scrolling is a performant way to render large lists.
-					Configuration of the scroll behavior is defined with{" "}
-					<i>virtualScrollerOptions</i>
-					that requires <i>itemSize</i> as the mandatory value to set the height
-					of an item. Visit <Link href="/virtualscroller">VirtualScroller</Link>{" "}
-					documentation for more information about the configuration API.
-				</p>
-			</DocSectionText>
-			<div className="card flex justify-content-center">
-				<AutoComplete
-					value={selectedItem}
-					suggestions={filteredItems}
-					completeMethod={searchItems}
-					virtualScrollerOptions={{ itemSize: 38 }}
-					field="label"
-					dropdown
-					onChange={(e) => setSelectedItem(e.value)}
-				/>
-			</div>
-			<DocSectionCode code={code} />
-		</>
-	);
+    return (
+        <>
+            <DocSectionText {...props}>
+                <p>
+                    Virtual Scrolling is a performant way to render large lists.
+                    Configuration of the scroll behavior is defined with{" "}
+                    <i>virtualScrollerOptions</i>
+                    that requires <i>itemSize</i> as the mandatory value to set
+                    the height of an item. Visit{" "}
+                    <Link href="/virtualscroller">VirtualScroller</Link>{" "}
+                    documentation for more information about the configuration
+                    API.
+                </p>
+            </DocSectionText>
+            <div className="card flex justify-content-center">
+                <AutoComplete
+                    value={selectedItem}
+                    suggestions={filteredItems}
+                    completeMethod={searchItems}
+                    virtualScrollerOptions={{ itemSize: 38 }}
+                    field="label"
+                    dropdown
+                    onChange={(e) => setSelectedItem(e.value)}
+                />
+            </div>
+            <DocSectionCode code={code} />
+        </>
+    );
 }
