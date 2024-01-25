@@ -103,7 +103,7 @@ export const BodyRow = React.memo((props) => {
     const shouldRenderBodyCell = (value, column, i) => {
         if (getColumnProp(column, "hidden")) {
             return false;
-        } else if (
+        }if (
             props.rowGroupMode &&
             props.rowGroupMode === "rowspan" &&
             isGrouped(column)
@@ -151,9 +151,8 @@ export const BodyRow = React.memo((props) => {
             }
 
             return groupRowSpan === 1 ? null : groupRowSpan;
-        } else {
-            return null;
         }
+            return null;
     };
 
     const onClick = (event) => {
@@ -222,7 +221,7 @@ export const BodyRow = React.memo((props) => {
 
             switch (event.which) {
                 //down arrow
-                case 40:
+                case 40: {
                     const nextRow = findNextSelectableRow(row);
 
                     if (nextRow) {
@@ -232,9 +231,10 @@ export const BodyRow = React.memo((props) => {
 
                     event.preventDefault();
                     break;
+                }
 
                 //up arrow
-                case 38:
+                case 38: {
                     const prevRow = findPrevSelectableRow(row);
 
                     if (prevRow) {
@@ -244,6 +244,7 @@ export const BodyRow = React.memo((props) => {
 
                     event.preventDefault();
                     break;
+                }
 
                 //enter
                 case 13: // @deprecated

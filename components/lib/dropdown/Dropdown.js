@@ -41,11 +41,11 @@ export const Dropdown = React.memo(
         const searchValue = React.useRef(null);
         const currentSearchChar = React.useRef(null);
         const isLazy =
-            props.virtualScrollerOptions && props.virtualScrollerOptions.lazy;
+            props.virtualScrollerOptions?.lazy;
         const hasFilter = ObjectUtils.isNotEmpty(filterState);
         const appendTo =
             props.appendTo ||
-            (context && context.appendTo) ||
+            (context?.appendTo) ||
             PrimeReact.appendTo;
         const { ptm, cx, sx, isUnstyled } = DropdownBase.setMetaData({
             props,
@@ -97,7 +97,7 @@ export const Dropdown = React.memo(
                             props.filterLocale,
                         );
 
-                        if (filteredSubOptions && filteredSubOptions.length) {
+                        if (filteredSubOptions?.length) {
                             filteredGroups.push({
                                 ...optgroup,
                                 ...{
@@ -109,7 +109,7 @@ export const Dropdown = React.memo(
                     }
 
                     return filteredGroups;
-                } else {
+                }
                     return FilterService.filter(
                         props.options,
                         searchFields,
@@ -117,10 +117,8 @@ export const Dropdown = React.memo(
                         props.filterMatchMode,
                         props.filterLocale,
                     );
-                }
-            } else {
-                return props.options;
             }
+                return props.options;
         };
 
         const isClearClicked = (event) => {
@@ -143,7 +141,7 @@ export const Dropdown = React.memo(
                 return;
             }
 
-            props.onClick && props.onClick(event);
+            props.onClick?.(event);
 
             // do not continue if the user defined click wants to prevent it
             if (event.defaultPrevented) {
@@ -152,11 +150,10 @@ export const Dropdown = React.memo(
 
             if (isClearClicked(event) || event.target.tagName === "INPUT") {
                 return;
-            } else if (
+            }if (
                 !overlayRef.current ||
                 !(
-                    overlayRef.current &&
-                    overlayRef.current.contains(event.target)
+                    overlayRef.current?.contains(event.target)
                 )
             ) {
                 DomHandler.focus(focusInputRef.current);
@@ -170,7 +167,7 @@ export const Dropdown = React.memo(
             }
 
             setFocusedState(true);
-            props.onFocus && props.onFocus(event);
+            props.onFocus?.(event);
         };
 
         const onInputBlur = (event) => {
@@ -307,12 +304,12 @@ export const Dropdown = React.memo(
                 );
 
                 if (option) return option;
-                else if (groupIndex + 1 !== visibleOptions.length)
+                if (groupIndex + 1 !== visibleOptions.length)
                     return findNextOption({
                         group: groupIndex + 1,
                         option: -1,
                     });
-                else return null;
+                return null;
             }
 
             return findNextOptionInList(visibleOptions, index);
@@ -344,14 +341,14 @@ export const Dropdown = React.memo(
                 );
 
                 if (option) return option;
-                else if (groupIndex > 0)
+                if (groupIndex > 0)
                     return findPrevOption({
                         group: groupIndex - 1,
                         option: getOptionGroupChildren(
                             visibleOptions[groupIndex - 1],
                         ).length,
                     });
-                else return null;
+                return null;
             }
 
             return findPrevOptionInList(visibleOptions, index);
@@ -505,7 +502,7 @@ export const Dropdown = React.memo(
         const onEditableInputFocus = (event) => {
             setFocusedState(true);
             hide();
-            props.onFocus && props.onFocus(event);
+            props.onFocus?.(event);
         };
 
         const onOptionClick = (event) => {
@@ -538,8 +535,8 @@ export const Dropdown = React.memo(
 
         const resetFilter = (callback) => {
             setFilterState("");
-            props.onFilter && props.onFilter({ filter: "" });
-            callback && callback();
+            props.onFilter?.({ filter: "" });
+            callback?.();
         };
 
         const clear = (event) => {
@@ -648,9 +645,9 @@ export const Dropdown = React.memo(
             ZIndexUtils.set(
                 "overlay",
                 overlayRef.current,
-                (context && context.autoZIndex) || PrimeReact.autoZIndex,
-                (context && context.zIndex["overlay"]) ||
-                    PrimeReact.zIndex["overlay"],
+                (context?.autoZIndex) || PrimeReact.autoZIndex,
+                (context?.zIndex.overlay) ||
+                    PrimeReact.zIndex.overlay,
             );
             DomHandler.addStyles(overlayRef.current, {
                 position: "absolute",
@@ -658,14 +655,14 @@ export const Dropdown = React.memo(
                 left: "0",
             });
             alignOverlay();
-            callback && callback();
+            callback?.();
         };
 
         const onOverlayEntered = (callback) => {
-            callback && callback();
+            callback?.();
             bindOverlayListener();
 
-            props.onShow && props.onShow();
+            props.onShow?.();
         };
 
         const onOverlayExit = () => {
@@ -679,7 +676,7 @@ export const Dropdown = React.memo(
 
             ZIndexUtils.clear(overlayRef.current);
 
-            props.onHide && props.onHide();
+            props.onHide?.();
         };
 
         const alignOverlay = () => {
@@ -687,7 +684,7 @@ export const Dropdown = React.memo(
                 overlayRef.current,
                 inputRef.current.parentElement,
                 props.appendTo ||
-                    (context && context.appendTo) ||
+                    (context?.appendTo) ||
                     PrimeReact.appendTo,
             );
         };
@@ -698,7 +695,7 @@ export const Dropdown = React.memo(
                 'li[data-p-highlight="true"]',
             );
 
-            if (highlightItem && highlightItem.scrollIntoView) {
+            if (highlightItem?.scrollIntoView) {
                 highlightItem.scrollIntoView({
                     block: "nearest",
                     inline: "nearest",
@@ -717,16 +714,16 @@ export const Dropdown = React.memo(
         const getOptionLabel = (option) => {
             return props.optionLabel
                 ? ObjectUtils.resolveFieldData(option, props.optionLabel)
-                : option && option["label"] !== undefined
-                  ? option["label"]
+                : option && option.label !== undefined
+                  ? option.label
                   : option;
         };
 
         const getOptionValue = (option) => {
             return props.optionValue
                 ? ObjectUtils.resolveFieldData(option, props.optionValue)
-                : option && option["value"] !== undefined
-                  ? option["value"]
+                : option && option.value !== undefined
+                  ? option.value
                   : option;
         };
 
@@ -746,8 +743,8 @@ export const Dropdown = React.memo(
                       );
             }
 
-            return option && option["disabled"] !== undefined
-                ? option["disabled"]
+            return option && option.disabled !== undefined
+                ? option.disabled
                 : false;
         };
 
@@ -958,7 +955,7 @@ export const Dropdown = React.memo(
                 );
 
                 return <input {...inputProps} />;
-            } else {
+            }
                 const content = props.valueTemplate
                     ? ObjectUtils.getJSXElement(
                           props.valueTemplate,
@@ -976,7 +973,6 @@ export const Dropdown = React.memo(
                 );
 
                 return <span {...inputProps}>{content}</span>;
-            }
         };
 
         const createClearIcon = () => {

@@ -139,22 +139,22 @@ export default function PaginatorBasicDemo() {
                             field="name"
                             header="Name"
                             style={{ width: "25%" }}
-                        ></Column>
+                        />
                         <Column
                             field="country.name"
                             header="Country"
                             style={{ width: "25%" }}
-                        ></Column>
+                        />
                         <Column
                             field="company"
                             header="Company"
                             style={{ width: "25%" }}
-                        ></Column>
+                        />
                         <Column
                             field="representative.name"
                             header="Representative"
                             style={{ width: "25%" }}
-                        ></Column>
+                        />
                     </DataTable>
                 </div>
             </DeferredDemo>

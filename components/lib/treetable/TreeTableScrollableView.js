@@ -41,7 +41,7 @@ export const TreeTableScrollableView = React.memo((props) => {
                 const scrollBodyHeight = relativeHeight - staticHeight;
 
                 scrollBodyRef.current.style.height = "auto";
-                scrollBodyRef.current.style.maxHeight = scrollBodyHeight + "px";
+                scrollBodyRef.current.style.maxHeight = `${scrollBodyHeight}px`;
                 scrollBodyRef.current.style.visibility = "visible";
             } else {
                 scrollBodyRef.current.style.maxHeight = props.scrollHeight;
@@ -64,9 +64,8 @@ export const TreeTableScrollableView = React.memo((props) => {
             }
 
             return el;
-        } else {
-            return null;
         }
+            return null;
     };
 
     const onHeaderScroll = () => {
@@ -109,14 +108,14 @@ export const TreeTableScrollableView = React.memo((props) => {
             const scrollBarWidth = DomHandler.calculateScrollbarWidth();
 
             scrollHeaderBoxRef.current.style.marginRight =
-                scrollBarWidth + "px";
+                `${scrollBarWidth}px`;
 
             if (scrollFooterBoxRef.current) {
                 scrollFooterBoxRef.current.style.marginRight =
-                    scrollBarWidth + "px";
+                    `${scrollBarWidth}px`;
             }
         } else {
-            scrollBodyRef.current.style.paddingBottom = scrollBarWidth + "px";
+            scrollBodyRef.current.style.paddingBottom = `${scrollBarWidth}px`;
         }
     });
 
@@ -127,7 +126,7 @@ export const TreeTableScrollableView = React.memo((props) => {
     const createColGroup = () => {
         if (ObjectUtils.isNotEmpty(props.columns)) {
             const cols = props.columns.map((col, i) => (
-                <col key={col.field + "_" + i} />
+                <col key={`${col.field}_${i}`} />
             ));
             const scrollableColgroupProps = mergeProps(
                 {
@@ -137,14 +136,13 @@ export const TreeTableScrollableView = React.memo((props) => {
             );
 
             return <colgroup {...scrollableColgroupProps}>{cols}</colgroup>;
-        } else {
-            return null;
         }
+            return null;
     };
 
     const width = props.frozen
         ? props.frozenWidth
-        : "calc(100% - " + props.frozenWidth + ")";
+        : `calc(100% - ${props.frozenWidth})`;
     const left = props.frozen ? null : props.frozenWidth;
     const colGroup = createColGroup();
     const scrollableProps = mergeProps(

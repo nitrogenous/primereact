@@ -16,17 +16,17 @@ export function PaginatorTemplateDoc(props) {
             const node = {
                 key: i,
                 data: {
-                    name: "Item " + i,
-                    size: Math.floor(Math.random() * 1000) + 1 + "kb",
-                    type: "Type " + i,
+                    name: `Item ${i}`,
+                    size: `${Math.floor(Math.random() * 1000) + 1}kb`,
+                    type: `Type ${i}`,
                 },
                 children: [
                     {
-                        key: i + " - 0",
+                        key: `${i} - 0`,
                         data: {
-                            name: "Item " + i + " - 0",
-                            size: Math.floor(Math.random() * 1000) + 1 + "kb",
-                            type: "Type " + i,
+                            name: `Item ${i} - 0`,
+                            size: `${Math.floor(Math.random() * 1000) + 1}kb`,
+                            type: `Type ${i}`,
                         },
                     },
                 ],
@@ -189,9 +189,9 @@ export default function PaginatorTemplateDemo() {
                     paginatorRight={paginatorRight}
                     tableStyle={{ minWidth: "50rem" }}
                 >
-                    <Column field="name" header="Name" expander></Column>
-                    <Column field="size" header="Size"></Column>
-                    <Column field="type" header="Type"></Column>
+                    <Column field="name" header="Name" expander />
+                    <Column field="size" header="Size" />
+                    <Column field="type" header="Type" />
                 </TreeTable>
             </div>
             <DocSectionCode code={code} />

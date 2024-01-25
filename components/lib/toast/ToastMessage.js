@@ -54,7 +54,7 @@ export const ToastMessage = React.memo(
 
         const onClose = () => {
             clearTimer();
-            props.onClose && props.onClose(messageInfo);
+            props.onClose?.(messageInfo);
         };
 
         const onClick = (event) => {
@@ -70,7 +70,7 @@ export const ToastMessage = React.memo(
         };
 
         const onMouseEnter = (event) => {
-            props.onMouseEnter && props.onMouseEnter(event);
+            props.onMouseEnter?.(event);
 
             // do not continue if the user has canceled the event
             if (event.defaultPrevented) {
@@ -85,7 +85,7 @@ export const ToastMessage = React.memo(
         };
 
         const onMouseLeave = (event) => {
-            props.onMouseLeave && props.onMouseLeave(event);
+            props.onMouseLeave?.(event);
 
             // do not continue if the user has canceled the event
             if (event.defaultPrevented) {

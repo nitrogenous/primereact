@@ -9,9 +9,9 @@ export const OrganizationChartNode = React.memo((props) => {
     const node = props.node;
     const [expandedState, setExpandedState] = React.useState(node.expanded);
     const leaf =
-        node.leaf === false ? false : !(node.children && node.children.length);
+        node.leaf === false ? false : !(node.children?.length);
     const colspan =
-        node.children && node.children.length ? node.children.length * 2 : null;
+        node.children?.length ? node.children.length * 2 : null;
     const selected = props.isSelected(node);
     const visibility = !leaf && expandedState ? "inherit" : "hidden";
     const { ptm, cx, sx } = props;
@@ -79,8 +79,7 @@ export const OrganizationChartNode = React.memo((props) => {
 
         return (
             <tr {...nodesProps}>
-                {node.children &&
-                    node.children.map((child, index) => {
+                {node.children?.map((child, index) => {
                         return (
                             <td key={index} {...nodeCellProps}>
                                 <OrganizationChartNode
@@ -102,7 +101,7 @@ export const OrganizationChartNode = React.memo((props) => {
     };
 
     const createLinesMiddle = () => {
-        const nodeChildLength = node.children && node.children.length;
+        const nodeChildLength = node.children?.length;
         const linesProps = mergeProps(
             {
                 className: cx("lines"),
@@ -127,7 +126,7 @@ export const OrganizationChartNode = React.memo((props) => {
             <tr {...linesProps}>
                 {node.children && node.children.length === 1 && (
                     <td {...lineCellProps}>
-                        <div {...lineDownProps}></div>
+                        <div {...lineDownProps} />
                     </td>
                 )}
                 {node.children &&
@@ -153,10 +152,10 @@ export const OrganizationChartNode = React.memo((props) => {
                         );
 
                         return [
-                            <td key={index + "_lineleft"} {...lineLeftProps}>
+                            <td key={`${index}_lineleft`} {...lineLeftProps}>
                                 &nbsp;
                             </td>,
-                            <td key={index + "_lineright"} {...lineRightProps}>
+                            <td key={`${index}_lineright`} {...lineRightProps}>
                                 &nbsp;
                             </td>,
                         ];
@@ -191,7 +190,7 @@ export const OrganizationChartNode = React.memo((props) => {
         return (
             <tr {...linesProps}>
                 <td {...lineCellProps}>
-                    <div {...lineDownProps}></div>
+                    <div {...lineDownProps} />
                 </td>
             </tr>
         );

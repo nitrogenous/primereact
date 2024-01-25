@@ -162,7 +162,7 @@ export default function TemplateDemo() {
                 </p>
             </DocSectionText>
             <div className="card flex justify-content-center">
-                <Toast ref={toast}></Toast>
+                <Toast ref={toast} />
                 <SplitButton
                     label={<span>Prime React</span>}
                     icon="pi pi-prime"

@@ -37,10 +37,10 @@ export default function Config(props) {
         if (lightOnlyThemes.includes(themeName)) {
             changeTheme(themeName, false);
         } else {
-            let newTheme = themeName + "-" + (darkMode ? "dark" : "light");
+            let newTheme = `${themeName}-${darkMode ? "dark" : "light"}`;
 
             if (color) {
-                newTheme += "-" + color;
+                newTheme += `-${color}`;
             }
 
             if (newTheme.startsWith("md-") && compactMaterial) {
@@ -63,14 +63,14 @@ export default function Config(props) {
         }
 
         if (color) {
-            themeName += "-" + color;
+            themeName += `-${color}`;
         }
 
         return theme === themeName;
     };
 
     useEffect(() => {
-        document.documentElement.style.fontSize = scale + "px";
+        document.documentElement.style.fontSize = `${scale}px`;
     }, [scale]); // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
@@ -202,7 +202,7 @@ export default function Config(props) {
                                     background:
                                         "linear-gradient(180deg, #06b6d4 0%, rgba(6, 182, 212, 0.5) 100%)",
                                 }}
-                            ></span>
+                            />
                         </button>
                         <button
                             className={classNames(
@@ -226,7 +226,7 @@ export default function Config(props) {
                                     background:
                                         "linear-gradient(180deg, #4dac9c 0%, rgba(77, 172, 156, 0.5) 100%)",
                                 }}
-                            ></span>
+                            />
                         </button>
                         <button
                             className={classNames(
@@ -250,7 +250,7 @@ export default function Config(props) {
                                     background:
                                         "linear-gradient(180deg, #4378e6 0%, rgba(67, 120, 230, 0.5) 100%)",
                                 }}
-                            ></span>
+                            />
                         </button>
                         <button
                             className={classNames(
@@ -274,7 +274,7 @@ export default function Config(props) {
                                     background:
                                         "linear-gradient(180deg, #585fe0 0%, rgba(88, 95, 224, 0.5) 100%)",
                                 }}
-                            ></span>
+                            />
                         </button>
                     </div>
                     <div className="flex align-items-center justify-content-between gap-3">
@@ -300,7 +300,7 @@ export default function Config(props) {
                                     background:
                                         "linear-gradient(180deg, #7758e4 0%, rgba(119, 88, 228, 0.5) 100%)",
                                 }}
-                            ></span>
+                            />
                         </button>
                         <button
                             className={classNames(
@@ -324,7 +324,7 @@ export default function Config(props) {
                                     background:
                                         "linear-gradient(180deg, #f59e0b 0%, rgba(245, 158, 11, 0.5) 100%)",
                                 }}
-                            ></span>
+                            />
                         </button>
                         <button
                             className={classNames(
@@ -348,7 +348,7 @@ export default function Config(props) {
                                     background:
                                         "linear-gradient(180deg, #14b8a6 0%, rgba(20, 184, 166, 0.5) 100%)",
                                 }}
-                            ></span>
+                            />
                         </button>
                         <button
                             className={classNames(
@@ -372,7 +372,7 @@ export default function Config(props) {
                                     background:
                                         "linear-gradient(180deg, #ec4899 0%, rgba(236, 72, 153, 0.5) 100%)",
                                 }}
-                            ></span>
+                            />
                         </button>
                     </div>
                 </section>
@@ -424,7 +424,7 @@ export default function Config(props) {
                                     background:
                                         "linear-gradient(180deg, #0565f2 0%, rgba(5, 101, 242, 0.5) 100%)",
                                 }}
-                            ></span>
+                            />
                         </button>
                         <button
                             className={classNames(
@@ -448,10 +448,10 @@ export default function Config(props) {
                                     background:
                                         "linear-gradient(180deg, #702f92 0%, rgba(112, 47, 146, 0.5) 100%)",
                                 }}
-                            ></span>
+                            />
                         </button>
-                        <div className="w-3"></div>
-                        <div className="w-3"></div>
+                        <div className="w-3" />
+                        <div className="w-3" />
                     </div>
                 </section>
 
@@ -488,7 +488,7 @@ export default function Config(props) {
                                     background:
                                         "linear-gradient(180deg, #027bff 0%, rgba(2, 123, 255, 0.5) 100%)",
                                 }}
-                            ></span>
+                            />
                         </button>
                         <button
                             className={classNames(
@@ -512,10 +512,10 @@ export default function Config(props) {
                                     background:
                                         "linear-gradient(180deg, #893cae 0%, rgba(137, 60, 174, 0.5) 100%)",
                                 }}
-                            ></span>
+                            />
                         </button>
-                        <div className="w-3"></div>
-                        <div className="w-3"></div>
+                        <div className="w-3" />
+                        <div className="w-3" />
                     </div>
                 </section>
 
@@ -550,7 +550,7 @@ export default function Config(props) {
                                         background:
                                             "linear-gradient(180deg, #664beb 0%, rgba(102, 75, 235, 0.5) 100%)",
                                     }}
-                                ></span>
+                                />
                             </button>
                         </div>
                         <div className="w-3">
@@ -582,11 +582,11 @@ export default function Config(props) {
                                         background:
                                             "linear-gradient(180deg, #4a67c9 0%, rgba(74, 103, 201, 0.5) 100%)",
                                     }}
-                                ></span>
+                                />
                             </button>
                         </div>
-                        <div className="w-3"></div>
-                        <div className="w-3"></div>
+                        <div className="w-3" />
+                        <div className="w-3" />
                     </div>
                 </section>
 
@@ -622,7 +622,7 @@ export default function Config(props) {
                                         background:
                                             "linear-gradient(180deg, #0078d4 0%, rgba(0, 120, 212, 0.5) 100%)",
                                     }}
-                                ></span>
+                                />
                             </button>
                         </div>
                         <div className="w-3">
@@ -654,7 +654,7 @@ export default function Config(props) {
                                         background:
                                             "linear-gradient(180deg, #81a1c1 0%, rgba(129, 161, 193, 0.5) 100%)",
                                     }}
-                                ></span>
+                                />
                             </button>
                         </div>
                         <div className="w-3">
@@ -686,10 +686,10 @@ export default function Config(props) {
                                         background:
                                             "linear-gradient(180deg, #1469b4 0%, rgba(20, 105, 180, 0.5) 100%)",
                                     }}
-                                ></span>
+                                />
                             </button>
                         </div>
-                        <div className="w-3"></div>
+                        <div className="w-3" />
                     </div>
                 </section>
             </div>

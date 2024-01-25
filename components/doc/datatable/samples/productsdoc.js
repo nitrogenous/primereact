@@ -182,12 +182,12 @@ export function ProductsDoc(props) {
     const onCategoryChange = (e) => {
         const _product = { ...product };
 
-        _product["category"] = e.value;
+        _product.category = e.value;
         setProduct(_product);
     };
 
     const onInputChange = (e, name) => {
-        const val = (e.target && e.target.value) || "";
+        const val = (e.target?.value) || "";
         const _product = { ...product };
 
         _product[`${name}`] = val;
@@ -259,7 +259,7 @@ export function ProductsDoc(props) {
             <Tag
                 value={rowData.inventoryStatus}
                 severity={getSeverity(rowData)}
-            ></Tag>
+            />
         );
     };
 
@@ -1142,7 +1142,7 @@ export default function ProductsDemo() {
                         className="mb-4"
                         left={leftToolbarTemplate}
                         right={rightToolbarTemplate}
-                    ></Toolbar>
+                    />
 
                     <DataTable
                         ref={dt}
@@ -1161,56 +1161,56 @@ export default function ProductsDemo() {
                         <Column
                             selectionMode="multiple"
                             exportable={false}
-                        ></Column>
+                        />
                         <Column
                             field="code"
                             header="Code"
                             sortable
                             style={{ minWidth: "12rem" }}
-                        ></Column>
+                        />
                         <Column
                             field="name"
                             header="Name"
                             sortable
                             style={{ minWidth: "16rem" }}
-                        ></Column>
+                        />
                         <Column
                             field="image"
                             header="Image"
                             body={imageBodyTemplate}
-                        ></Column>
+                        />
                         <Column
                             field="price"
                             header="Price"
                             body={priceBodyTemplate}
                             sortable
                             style={{ minWidth: "8rem" }}
-                        ></Column>
+                        />
                         <Column
                             field="category"
                             header="Category"
                             sortable
                             style={{ minWidth: "10rem" }}
-                        ></Column>
+                        />
                         <Column
                             field="rating"
                             header="Reviews"
                             body={ratingBodyTemplate}
                             sortable
                             style={{ minWidth: "12rem" }}
-                        ></Column>
+                        />
                         <Column
                             field="inventoryStatus"
                             header="Status"
                             body={statusBodyTemplate}
                             sortable
                             style={{ minWidth: "12rem" }}
-                        ></Column>
+                        />
                         <Column
                             body={actionBodyTemplate}
                             exportable={false}
                             style={{ minWidth: "12rem" }}
-                        ></Column>
+                        />
                     </DataTable>
                 </div>
             </DeferredDemo>

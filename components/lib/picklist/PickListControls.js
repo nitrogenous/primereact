@@ -22,7 +22,7 @@ export const PickListControls = React.memo((props) => {
     const moveUp = (event) => {
         const selectedItems = props.selection;
 
-        if (selectedItems && selectedItems.length) {
+        if (selectedItems?.length) {
             const list = [...props.list];
 
             for (let i = 0; i < selectedItems.length; i++) {
@@ -57,7 +57,7 @@ export const PickListControls = React.memo((props) => {
     const moveTop = (event) => {
         const selectedItems = props.selection;
 
-        if (selectedItems && selectedItems.length) {
+        if (selectedItems?.length) {
             const list = [...props.list];
 
             for (let i = 0; i < selectedItems.length; i++) {
@@ -90,7 +90,7 @@ export const PickListControls = React.memo((props) => {
     const moveDown = (event) => {
         const selectedItems = props.selection;
 
-        if (selectedItems && selectedItems.length) {
+        if (selectedItems?.length) {
             const list = [...props.list];
 
             for (let i = selectedItems.length - 1; i >= 0; i--) {
@@ -125,7 +125,7 @@ export const PickListControls = React.memo((props) => {
     const moveBottom = (event) => {
         const selectedItems = props.selection;
 
-        if (selectedItems && selectedItems.length) {
+        if (selectedItems?.length) {
             const list = [...props.list];
 
             for (let i = selectedItems.length - 1; i >= 0; i--) {
@@ -173,7 +173,7 @@ export const PickListControls = React.memo((props) => {
                 unstyled={unstyled}
                 aria-label={ariaLabel("moveUp")}
                 __parentMetadata={{ parent: props.metaData }}
-            ></Button>
+            />
             <Button
                 disabled={moveDisabled}
                 type="button"
@@ -183,7 +183,7 @@ export const PickListControls = React.memo((props) => {
                 unstyled={unstyled}
                 aria-label={ariaLabel("moveTop")}
                 __parentMetadata={{ parent: props.metaData }}
-            ></Button>
+            />
             <Button
                 disabled={moveDisabled}
                 type="button"
@@ -193,7 +193,7 @@ export const PickListControls = React.memo((props) => {
                 unstyled={unstyled}
                 aria-label={ariaLabel("moveDown")}
                 __parentMetadata={{ parent: props.metaData }}
-            ></Button>
+            />
             <Button
                 disabled={moveDisabled}
                 type="button"
@@ -203,7 +203,7 @@ export const PickListControls = React.memo((props) => {
                 unstyled={unstyled}
                 aria-label={ariaLabel("moveBottom")}
                 __parentMetadata={{ parent: props.metaData }}
-            ></Button>
+            />
         </div>
     );
 });

@@ -18,11 +18,11 @@ export function TemplateDoc(props) {
                     <Ripple />
                 </a>
             );
-        } else if (!item.image) {
+        }if (!item.image) {
             return (
                 <a className="flex align-items-center p-3 cursor-pointer mb-2 gap-2 ">
                     <span className="inline-flex align-items-center justify-content-center border-circle bg-primary w-3rem h-3rem">
-                        <i className={`${item.icon} text-lg`}></i>
+                        <i className={`${item.icon} text-lg`} />
                     </span>
                     <span className="inline-flex flex-column gap-1">
                         <span className="font-medium text-lg text-900">
@@ -34,7 +34,7 @@ export function TemplateDoc(props) {
                     </span>
                 </a>
             );
-        } else {
+        }
             return (
                 <div className="flex flex-column align-items-start gap-3">
                     <img
@@ -49,7 +49,6 @@ export function TemplateDoc(props) {
                     />
                 </div>
             );
-        }
     };
 
     const items = [

@@ -58,12 +58,12 @@ export const MultiSelectPanel = React.memo(
                 virtualScrollerRef.current.scrollToIndex(0);
             }
 
-            props.onFilterInputChange && props.onFilterInputChange(event);
+            props.onFilterInputChange?.(event);
         };
 
         const isEmptyFilter = () => {
             return (
-                !(props.visibleOptions && props.visibleOptions.length) &&
+                !(props.visibleOptions?.length) &&
                 props.hasFilter
             );
         };
@@ -116,7 +116,7 @@ export const MultiSelectPanel = React.memo(
 
             return groupChildren.map((option, j) => {
                 const optionLabel = props.getOptionLabel(option);
-                const optionKey = j + "_" + props.getOptionRenderKey(option);
+                const optionKey = `${j}_${props.getOptionRenderKey(option)}`;
                 const disabled = props.isOptionDisabled(option);
                 const tabIndex = disabled ? null : props.tabIndex || 0;
                 const selected = props.isSelected(option);
@@ -189,7 +189,7 @@ export const MultiSelectPanel = React.memo(
                       )
                     : props.getOptionGroupLabel(option);
                 const groupChildrenContent = createGroupChildren(option, style);
-                const key = index + "_" + props.getOptionGroupRenderKey(option);
+                const key = `${index}_${props.getOptionGroupRenderKey(option)}`;
                 const itemGroupProps = mergeProps(
                     {
                         className: cx("itemGroup"),
@@ -204,10 +204,10 @@ export const MultiSelectPanel = React.memo(
                         {groupChildrenContent}
                     </React.Fragment>
                 );
-            } else {
+            }
                 const optionLabel = props.getOptionLabel(option);
                 const optionKey =
-                    index + "_" + props.getOptionRenderKey(option);
+                    `${index}_${props.getOptionRenderKey(option)}`;
                 const disabled = props.isOptionDisabled(option);
                 const tabIndex = disabled ? null : props.tabIndex || 0;
                 const selected = props.isSelected(option);
@@ -231,17 +231,15 @@ export const MultiSelectPanel = React.memo(
                         cx={cx}
                     />
                 );
-            }
         };
 
         const createItems = () => {
             if (ObjectUtils.isNotEmpty(props.visibleOptions)) {
                 return props.visibleOptions.map(createItem);
-            } else {
+            }
                 return props.hasFilter
                     ? createEmptyFilter()
                     : createEmptyContent();
-            }
         };
 
         const createContent = () => {
@@ -301,7 +299,7 @@ export const MultiSelectPanel = React.memo(
                         __parentMetadata={{ parent: props.metaData }}
                     />
                 );
-            } else {
+            }
                 const items = createItems();
 
                 const wrapperProps = mergeProps(
@@ -326,7 +324,6 @@ export const MultiSelectPanel = React.memo(
                         <ul {...listProps}>{items}</ul>
                     </div>
                 );
-            }
         };
 
         const createElement = () => {

@@ -181,13 +181,13 @@ export default function BasicDemo() {
                     onClick={confirm1}
                     icon="pi pi-check"
                     label="Confirm"
-                ></Button>
+                />
                 <Button
                     onClick={confirm2}
                     icon="pi pi-times"
                     label="Delete"
                     className="p-button-danger"
-                ></Button>
+                />
             </div>
             <DocSectionCode code={code} />
         </>

@@ -122,7 +122,7 @@ const inlineStyles = {
         return props.mode === "indeterminate"
             ? { backgroundColor: props.color }
             : {
-                  width: valueWidth + "%",
+                  width: `${valueWidth}%`,
                   display: "flex",
                   backgroundColor: valueColor,
               };

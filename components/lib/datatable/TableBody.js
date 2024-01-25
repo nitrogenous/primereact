@@ -42,8 +42,7 @@ export const TableBody = React.memo(
         const refCallback = React.useCallback(
             (el) => {
                 elementRef.current = el;
-                props.virtualScrollerContentRef &&
-                    props.virtualScrollerContentRef(el);
+                props.virtualScrollerContentRef?.(el);
             },
             [props],
         );
@@ -74,7 +73,7 @@ export const TableBody = React.memo(
                     (data1.field === data2.field ||
                         data1.cellIndex === data2.cellIndex)
                 );
-            else
+            
                 return props.compareSelectionBy === "equals"
                     ? data1 === data2
                     : ObjectUtils.equals(data1, data2, props.dataKey);
@@ -84,8 +83,7 @@ export const TableBody = React.memo(
             return (
                 props.selectionMode ||
                 props.selectionModeInColumn !== null ||
-                (props.columns &&
-                    props.columns.some(
+                (props.columns?.some(
                         (col) => col && !!getColumnProp(col, "selectionMode"),
                     ))
             );
@@ -117,7 +115,7 @@ export const TableBody = React.memo(
 
         const isSelected = (rowData) => {
             if (rowData && props.selection) {
-                return props.selection instanceof Array
+                return Array.isArray(props.selection)
                     ? findIndex(props.selection, rowData) > -1
                     : equals(rowData, props.selection);
             }
@@ -143,7 +141,7 @@ export const TableBody = React.memo(
             if (rowData && props.expandedRows) {
                 if (isSubheaderGrouping && props.expandableRowGroups) {
                     return isRowGroupExpanded(rowData);
-                } else {
+                }
                     if (props.dataKey) {
                         const rowId = ObjectUtils.resolveFieldData(
                             rowData,
@@ -167,10 +165,8 @@ export const TableBody = React.memo(
                         }
 
                         return expanded;
-                    } else {
-                        return findIndex(props.expandedRows, rowData) !== -1;
                     }
-                }
+                        return findIndex(props.expandedRows, rowData) !== -1;
             }
 
             return false;
@@ -184,7 +180,7 @@ export const TableBody = React.memo(
                         ObjectUtils.resolveFieldData(rowData, props.dataKey),
                     ),
                 );
-            else
+            
                 return props.expandedRows.some((data) =>
                     ObjectUtils.equals(data, rowData, props.groupRowsBy),
                 );
@@ -201,7 +197,7 @@ export const TableBody = React.memo(
                               )
                           ] !== undefined
                         : false;
-                else return findIndex(props.editingRows, rowData) !== -1;
+                return findIndex(props.editingRows, rowData) !== -1;
             }
 
             return false;
@@ -286,7 +282,7 @@ export const TableBody = React.memo(
 
         const rowGroupHeaderStyle = () => {
             if (props.scrollable) {
-                return { top: rowGroupHeaderStyleObjectState["top"] };
+                return { top: rowGroupHeaderStyleObjectState.top };
             }
 
             return null;
@@ -315,15 +311,14 @@ export const TableBody = React.memo(
                     currentRowFieldData,
                     previousRowFieldData,
                 );
-            } else {
-                return true;
             }
+                return true;
         };
 
         const shouldRenderRowGroupFooter = (value, rowData, i, expanded) => {
             if (props.expandableRowGroups && !expanded) {
                 return false;
-            } else {
+            }
                 const currentRowFieldData = ObjectUtils.resolveFieldData(
                     rowData,
                     props.groupRowsBy,
@@ -340,24 +335,22 @@ export const TableBody = React.memo(
                         currentRowFieldData,
                         nextRowFieldData,
                     );
-                } else {
-                    return true;
                 }
-            }
+                    return true;
         };
 
         const updateFrozenRowStickyPosition = () => {
             elementRef.current.style.top =
-                DomHandler.getOuterHeight(
+                `${DomHandler.getOuterHeight(
                     elementRef.current.previousElementSibling,
-                ) + "px";
+                )}px`;
         };
 
         const updateFrozenRowGroupHeaderStickyPosition = () => {
             const tableHeaderHeight = DomHandler.getOuterHeight(
                 elementRef.current.previousElementSibling,
             );
-            const top = tableHeaderHeight + "px";
+            const top = `${tableHeaderHeight}px`;
 
             if (rowGroupHeaderStyleObjectState.top !== top) {
                 setRowGroupHeaderStyleObjectState({ top });
@@ -472,7 +465,8 @@ export const TableBody = React.memo(
         };
 
         const selectRange = (event) => {
-            let rangeStart, rangeEnd;
+            let rangeStart;
+            let rangeEnd;
 
             if (rangeRowIndex.current > anchorRowIndex.current) {
                 rangeStart = anchorRowIndex.current;
@@ -518,9 +512,9 @@ export const TableBody = React.memo(
         };
 
         const selectRangeOnCell = (event, rowRangeStart, rowRangeEnd) => {
-            let cellRangeStart,
-                cellRangeEnd,
-                cellIndex = event.cellIndex;
+            let cellRangeStart;
+            let cellRangeEnd;
+            const cellIndex = event.cellIndex;
 
             if (cellIndex > anchorCellIndex.current) {
                 cellRangeStart = anchorCellIndex.current;
@@ -571,24 +565,22 @@ export const TableBody = React.memo(
 
         const onSelect = (event) => {
             if (allowCellSelection())
-                props.onCellSelect &&
-                    props.onCellSelect({
+                props.onCellSelect?.({
                         originalEvent: event.originalEvent,
                         ...event.data,
                         type: event.type,
                     });
-            else props.onRowSelect && props.onRowSelect(event);
+            else props.onRowSelect?.(event);
         };
 
         const onUnselect = (event) => {
             if (allowCellSelection())
-                props.onCellUnselect &&
-                    props.onCellUnselect({
+                props.onCellUnselect?.({
                         originalEvent: event.originalEvent,
                         ...event.data,
                         type: event.type,
                     });
-            else props.onRowUnselect && props.onRowUnselect(event);
+            else props.onRowUnselect?.(event);
         };
 
         const enableDragSelection = (event) => {
@@ -625,14 +617,14 @@ export const TableBody = React.memo(
                         'td[data-p-selection-column="true"] [data-pc-section="checkbox"]',
                     );
 
-                    checkbox && checkbox.focus();
+                    checkbox?.focus();
                 } else if (isRadioSelectionModeInColumn) {
                     const radio = DomHandler.findSingle(
                         target,
                         'td[data-p-selection-column="true"] input[type="radio"]',
                     );
 
-                    radio && radio.focus();
+                    radio?.focus();
                 }
             }
 
@@ -666,14 +658,14 @@ export const TableBody = React.memo(
         const onRowClick = (event) => {
             if (
                 event.defaultPrevented ||
-                (event.originalEvent && event.originalEvent.defaultPrevented) ||
+                (event.originalEvent?.defaultPrevented) ||
                 allowCellSelection() ||
                 !allowSelection(event)
             ) {
                 return;
             }
 
-            props.onRowClick && props.onRowClick(event);
+            props.onRowClick?.(event);
 
             if (allowRowSelection()) {
                 if (allowRangeSelection(event)) {
@@ -773,11 +765,11 @@ export const TableBody = React.memo(
         };
 
         const onRowMouseEnter = (event) => {
-            props.onRowMouseEnter && props.onRowMouseEnter(event);
+            props.onRowMouseEnter?.(event);
         };
 
         const onRowMouseLeave = (event) => {
-            props.onRowMouseLeave && props.onRowMouseLeave(event);
+            props.onRowMouseLeave?.(event);
         };
 
         const onRowTouchEnd = () => {
@@ -1101,7 +1093,7 @@ export const TableBody = React.memo(
                 return;
             }
 
-            props.onCellClick && props.onCellClick(event);
+            props.onCellClick?.(event);
 
             if (allowCellSelection()) {
                 if (allowRangeSelection(event)) {
@@ -1460,8 +1452,7 @@ export const TableBody = React.memo(
 
         const createContent = () => {
             return (
-                props.value &&
-                props.value.map((rowData, index) => {
+                props.value?.map((rowData, index) => {
                     const rowIndex = getVirtualScrollerOption("getItemOptions")
                         ? getVirtualScrollerOption("getItemOptions")(index)
                               .index

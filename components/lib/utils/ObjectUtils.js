@@ -7,13 +7,13 @@ export default class ObjectUtils {
             obj2 &&
             typeof obj2 === "object"
         ) {
-            return this.deepEquals(
-                this.resolveFieldData(obj1, field),
-                this.resolveFieldData(obj2, field),
+            return ObjectUtils.deepEquals(
+                ObjectUtils.resolveFieldData(obj1, field),
+                ObjectUtils.resolveFieldData(obj2, field),
             );
         }
 
-        return this.deepEquals(obj1, obj2);
+        return ObjectUtils.deepEquals(obj1, obj2);
     }
 
     /**
@@ -25,32 +25,32 @@ export default class ObjectUtils {
     static deepEquals(a, b) {
         if (a === b) return true;
 
-        if (a && b && typeof a == "object" && typeof b == "object") {
-            let arrA = Array.isArray(a),
-                arrB = Array.isArray(b),
-                i,
-                length,
-                key;
+        if (a && b && typeof a === "object" && typeof b === "object") {
+            const arrA = Array.isArray(a);
+            const arrB = Array.isArray(b);
+            let i;
+            let length;
+            let key;
 
             if (arrA && arrB) {
                 length = a.length;
                 if (length !== b.length) return false;
                 for (i = length; i-- !== 0; )
-                    if (!this.deepEquals(a[i], b[i])) return false;
+                    if (!ObjectUtils.deepEquals(a[i], b[i])) return false;
 
                 return true;
             }
 
             if (arrA !== arrB) return false;
 
-            const dateA = a instanceof Date,
-                dateB = b instanceof Date;
+            const dateA = a instanceof Date;
+            const dateB = b instanceof Date;
 
             if (dateA !== dateB) return false;
             if (dateA && dateB) return a.getTime() === b.getTime();
 
-            const regexpA = a instanceof RegExp,
-                regexpB = b instanceof RegExp;
+            const regexpA = a instanceof RegExp;
+            const regexpB = b instanceof RegExp;
 
             if (regexpA !== regexpB) return false;
             if (regexpA && regexpB) return a.toString() === b.toString();
@@ -67,7 +67,7 @@ export default class ObjectUtils {
 
             for (i = length; i-- !== 0; ) {
                 key = keys[i];
-                if (!this.deepEquals(a[key], b[key])) return false;
+                if (!ObjectUtils.deepEquals(a[key], b[key])) return false;
             }
 
             return true;
@@ -86,24 +86,24 @@ export default class ObjectUtils {
         try {
             const value = data[field];
 
-            if (this.isNotEmpty(value)) return value;
+            if (ObjectUtils.isNotEmpty(value)) return value;
         } catch {
             // Performance optimization: https://github.com/primefaces/primereact/issues/4797
             // do nothing and continue to other methods to resolve field data
         }
 
         if (Object.keys(data).length) {
-            if (this.isFunction(field)) {
+            if (ObjectUtils.isFunction(field)) {
                 return field(data);
-            } else if (this.isNotEmpty(data[field])) {
+            }if (ObjectUtils.isNotEmpty(data[field])) {
                 return data[field];
-            } else if (field.indexOf(".") === -1) {
+            }if (field.indexOf(".") === -1) {
                 return data[field];
-            } else {
+            }
                 const fields = field.split(".");
                 let value = data;
 
-                for (var i = 0, len = fields.length; i < len; ++i) {
+                for (let i = 0, len = fields.length; i < len; ++i) {
                     if (value == null) {
                         return null;
                     }
@@ -112,7 +112,6 @@ export default class ObjectUtils {
                 }
 
                 return value;
-            }
         }
 
         return null;
@@ -170,7 +169,7 @@ export default class ObjectUtils {
     static findIndexInList(value, list, dataKey) {
         if (list) {
             return dataKey
-                ? list.findIndex((item) => this.equals(item, value, dataKey))
+                ? list.findIndex((item) => ObjectUtils.equals(item, value, dataKey))
                 : list.findIndex((item) => item === value);
         }
 
@@ -178,11 +177,11 @@ export default class ObjectUtils {
     }
 
     static getJSXElement(obj, ...params) {
-        return this.isFunction(obj) ? obj(...params) : obj;
+        return ObjectUtils.isFunction(obj) ? obj(...params) : obj;
     }
 
     static getItemValue(obj, ...params) {
-        return this.isFunction(obj) ? obj(...params) : obj;
+        return ObjectUtils.isFunction(obj) ? obj(...params) : obj;
     }
 
     static getProp(props, prop = "", defaultProps = {}) {
@@ -192,10 +191,10 @@ export default class ObjectUtils {
     }
 
     static getPropCaseInsensitive(props, prop, defaultProps = {}) {
-        const fkey = this.toFlatCase(prop);
+        const fkey = ObjectUtils.toFlatCase(prop);
 
         for (const key in props) {
-            if (props.hasOwnProperty(key) && this.toFlatCase(key) === fkey) {
+            if (props.hasOwnProperty(key) && ObjectUtils.toFlatCase(key) === fkey) {
                 return props[key];
             }
         }
@@ -203,7 +202,7 @@ export default class ObjectUtils {
         for (const key in defaultProps) {
             if (
                 defaultProps.hasOwnProperty(key) &&
-                this.toFlatCase(key) === fkey
+                ObjectUtils.toFlatCase(key) === fkey
             ) {
                 return defaultProps[key];
             }
@@ -217,28 +216,28 @@ export default class ObjectUtils {
     }
 
     static getDiffProps(props, defaultProps) {
-        return this.findDiffKeys(props, defaultProps);
+        return ObjectUtils.findDiffKeys(props, defaultProps);
     }
 
     static getPropValue(obj, ...params) {
-        return this.isFunction(obj) ? obj(...params) : obj;
+        return ObjectUtils.isFunction(obj) ? obj(...params) : obj;
     }
 
     static getComponentProp(component, prop = "", defaultProps = {}) {
-        return this.isNotEmpty(component)
-            ? this.getProp(component.props, prop, defaultProps)
+        return ObjectUtils.isNotEmpty(component)
+            ? ObjectUtils.getProp(component.props, prop, defaultProps)
             : undefined;
     }
 
     static getComponentProps(component, defaultProps) {
-        return this.isNotEmpty(component)
-            ? this.getMergedProps(component.props, defaultProps)
+        return ObjectUtils.isNotEmpty(component)
+            ? ObjectUtils.getMergedProps(component.props, defaultProps)
             : undefined;
     }
 
     static getComponentDiffProps(component, defaultProps) {
-        return this.isNotEmpty(component)
-            ? this.getDiffProps(component.props, defaultProps)
+        return ObjectUtils.isNotEmpty(component)
+            ? ObjectUtils.getDiffProps(component.props, defaultProps)
             : undefined;
     }
 
@@ -246,7 +245,7 @@ export default class ObjectUtils {
         /* eslint-disable */
         if (child) {
             let childType =
-                this.getComponentProp(child, "__TYPE") ||
+                ObjectUtils.getComponentProp(child, "__TYPE") ||
                 (child.type ? child.type.displayName : undefined);
 
             // for App Router in Next.js ^14,
@@ -258,7 +257,7 @@ export default class ObjectUtils {
 
             try {
                 if (process.env.NODE_ENV !== "production" && !isValid) {
-                    if (validTypes && validTypes.includes(childType)) {
+                    if (validTypes?.includes(childType)) {
                         return false;
                     }
                     const messageTypes = validTypes ? validTypes : [type];
@@ -336,20 +335,20 @@ export default class ObjectUtils {
 
     static toFlatCase(str) {
         // convert snake, kebab, camel and pascal cases to flat case
-        return this.isNotEmpty(str) && this.isString(str)
+        return ObjectUtils.isNotEmpty(str) && ObjectUtils.isString(str)
             ? str.replace(/(-|_)/g, "").toLowerCase()
             : str;
     }
 
     static toCapitalCase(str) {
-        return this.isNotEmpty(str) && this.isString(str)
+        return ObjectUtils.isNotEmpty(str) && ObjectUtils.isString(str)
             ? str[0].toUpperCase() + str.slice(1)
             : str;
     }
 
     static trim(value) {
         // trim only if the value is actually a string
-        return this.isNotEmpty(value) && this.isString(value)
+        return ObjectUtils.isNotEmpty(value) && ObjectUtils.isString(value)
             ? value.trim()
             : value;
     }
@@ -367,11 +366,11 @@ export default class ObjectUtils {
     }
 
     static isNotEmpty(value) {
-        return !this.isEmpty(value);
+        return !ObjectUtils.isEmpty(value);
     }
 
     static isFunction(value) {
-        return !!(value && value.constructor && value.call && value.apply);
+        return !!(value?.constructor && value.call && value.apply);
     }
 
     static isObject(value) {
@@ -399,7 +398,7 @@ export default class ObjectUtils {
     }
 
     static isPrintableCharacter(char = "") {
-        return this.isNotEmpty(char) && char.length === 1 && char.match(/\S| /);
+        return ObjectUtils.isNotEmpty(char) && char.length === 1 && char.match(/\S| /);
     }
 
     static isLetter(char) {
@@ -413,7 +412,7 @@ export default class ObjectUtils {
     static findLast(arr, callback) {
         let item;
 
-        if (this.isNotEmpty(arr)) {
+        if (ObjectUtils.isNotEmpty(arr)) {
             try {
                 item = arr.findLast(callback);
             } catch {
@@ -431,7 +430,7 @@ export default class ObjectUtils {
     static findLastIndex(arr, callback) {
         let index = -1;
 
-        if (this.isNotEmpty(arr)) {
+        if (ObjectUtils.isNotEmpty(arr)) {
             try {
                 index = arr.findLastIndex(callback);
             } catch {
@@ -442,12 +441,12 @@ export default class ObjectUtils {
         return index;
     }
 
-    static sort(value1, value2, order = 1, comparator, nullSortOrder = 1) {
-        const result = this.compare(value1, value2, comparator, order);
+    static sort(value1, value2, order, comparator, nullSortOrder = 1) {
+        const result = ObjectUtils.compare(value1, value2, comparator, order);
         let finalSortOrder = order;
 
         // nullSortOrder == 1 means Excel like sort nulls at bottom
-        if (this.isEmpty(value1) || this.isEmpty(value2)) {
+        if (ObjectUtils.isEmpty(value1) || ObjectUtils.isEmpty(value2)) {
             finalSortOrder = nullSortOrder === 1 ? order : nullSortOrder;
         }
 
@@ -456,8 +455,8 @@ export default class ObjectUtils {
 
     static compare(value1, value2, comparator, order = 1) {
         let result = -1;
-        const emptyValue1 = this.isEmpty(value1);
-        const emptyValue2 = this.isEmpty(value2);
+        const emptyValue1 = ObjectUtils.isEmpty(value1);
+        const emptyValue2 = ObjectUtils.isEmpty(value2);
 
         if (emptyValue1 && emptyValue2) result = 0;
         else if (emptyValue1) result = order;
@@ -478,8 +477,8 @@ export default class ObjectUtils {
         for (const item of data) {
             if (item.key === key) {
                 return item.children || [];
-            } else if (item.children) {
-                const result = this.findChildrenByKey(item.children, key);
+            }if (item.children) {
+                const result = ObjectUtils.findChildrenByKey(item.children, key);
 
                 if (result.length > 0) {
                     return result;
@@ -526,7 +525,7 @@ export default class ObjectUtils {
         const fields = field.split(".");
         let obj = data;
 
-        for (var i = 0, len = fields.length; i < len; ++i) {
+        for (let i = 0, len = fields.length; i < len; ++i) {
             // Check if we are on the last field
             if (i + 1 - len === 0) {
                 obj[fields[i]] = value;

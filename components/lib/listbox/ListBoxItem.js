@@ -54,22 +54,24 @@ export const ListBoxItem = React.memo((props) => {
 
         switch (event.which) {
             //down
-            case 40:
+            case 40: {
                 const nextItem = findNextItem(item);
 
-                nextItem && nextItem.focus();
+                nextItem?.focus();
 
                 event.preventDefault();
                 break;
+            }
 
             //up
-            case 38:
+            case 38: {
                 const prevItem = findPrevItem(item);
 
-                prevItem && prevItem.focus();
+                prevItem?.focus();
 
                 event.preventDefault();
                 break;
+            }
 
             //enter
             case 13:

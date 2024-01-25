@@ -18,7 +18,7 @@ const template = (options) => {
                 className={options.togglerClassName}
                 onClick={options.onTogglerClick}
             >
-                <span className={toggleIcon}></span>
+                <span className={toggleIcon} />
             </button>
             <span className={titleClassName}>Header</span>
         </div>

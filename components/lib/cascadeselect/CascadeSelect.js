@@ -102,7 +102,7 @@ export const CascadeSelect = React.memo(
 
         const onOptionGroupSelect = (event) => {
             dirty.current = true;
-            props.onGroupChange && props.onGroupChange(event);
+            props.onGroupChange?.(event);
         };
 
         const getOptionLabel = (option) => {
@@ -248,12 +248,12 @@ export const CascadeSelect = React.memo(
         };
 
         const show = () => {
-            props.onBeforeShow && props.onBeforeShow();
+            props.onBeforeShow?.();
             setOverlayVisibleState(true);
         };
 
         const hide = () => {
-            props.onBeforeHide && props.onBeforeHide();
+            props.onBeforeHide?.();
             setOverlayVisibleState(false);
             DomHandler.focus(inputRef.current);
         };
@@ -262,9 +262,9 @@ export const CascadeSelect = React.memo(
             ZIndexUtils.set(
                 "overlay",
                 overlayRef.current,
-                (context && context.autoZIndex) || PrimeReact.autoZIndex,
-                (context && context.zIndex["overlay"]) ||
-                    PrimeReact.zIndex["overlay"],
+                (context?.autoZIndex) || PrimeReact.autoZIndex,
+                (context?.zIndex.overlay) ||
+                    PrimeReact.zIndex.overlay,
             );
             DomHandler.addStyles(overlayRef.current, {
                 position: "absolute",
@@ -275,7 +275,7 @@ export const CascadeSelect = React.memo(
 
             if (attributeSelectorState && props.breakpoint) {
                 overlayRef.current.setAttribute(
-                    attributeSelectorState + "_panel",
+                    `${attributeSelectorState}_panel`,
                     "",
                 );
                 createStyle();
@@ -284,7 +284,7 @@ export const CascadeSelect = React.memo(
 
         const onOverlayEntered = () => {
             bindOverlayListener();
-            props.onShow && props.onShow();
+            props.onShow?.();
         };
 
         const onOverlayExit = () => {
@@ -295,7 +295,7 @@ export const CascadeSelect = React.memo(
         const onOverlayExited = () => {
             ZIndexUtils.clear(overlayRef.current);
 
-            props.onHide && props.onHide();
+            props.onHide?.();
             destroyStyle();
         };
 
@@ -304,7 +304,7 @@ export const CascadeSelect = React.memo(
                 overlayRef.current,
                 labelRef.current.parentElement,
                 props.appendTo ||
-                    (context && context.appendTo) ||
+                    (context?.appendTo) ||
                     PrimeReact.appendTo,
             );
         };
@@ -312,8 +312,8 @@ export const CascadeSelect = React.memo(
         const createStyle = () => {
             if (!styleElementRef.current) {
                 styleElementRef.current = DomHandler.createInlineStyle(
-                    (context && context.nonce) || PrimeReact.nonce,
-                    context && context.styleContainer,
+                    (context?.nonce) || PrimeReact.nonce,
+                    context?.styleContainer,
                 );
 
                 const selector = `${attributeSelectorState}_panel`;

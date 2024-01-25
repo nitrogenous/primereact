@@ -48,8 +48,7 @@ export function DocSectionNav({ docs = [] }) {
                     ".active-navbar-item",
                 );
 
-                activeItem &&
-                    activeItem.scrollIntoView({
+                activeItem?.scrollIntoView({
                         block: "nearest",
                         inline: "start",
                     });
@@ -68,8 +67,7 @@ export function DocSectionNav({ docs = [] }) {
     const scrollToLabelById = (id, behavior) => {
         const label = document.getElementById(id);
 
-        label &&
-            label.parentElement.scrollIntoView({ block: "start", behavior });
+        label?.parentElement.scrollIntoView({ block: "start", behavior });
     };
 
     const getThreshold = (label) => {
@@ -88,7 +86,7 @@ export function DocSectionNav({ docs = [] }) {
     useEffect(() => {
         const hash = window.location.hash.substring(1);
         const hasHash = ObjectUtils.isNotEmpty(hash);
-        const id = hasHash ? hash : (docs[0] || {}).id;
+        const id = hasHash ? hash : docs[0]?.id;
 
         setActiveId(id);
         hasHash && scrollToLabelById(id);

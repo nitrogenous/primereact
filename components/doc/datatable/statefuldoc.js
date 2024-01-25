@@ -165,13 +165,13 @@ export function StatefulDoc(props) {
         const value = event.target.value;
         const _filters = { ...filters };
 
-        _filters["global"].value = value;
+        _filters.global.value = value;
 
         setFilters(_filters);
     };
 
     const renderHeader = () => {
-        const value = filters["global"] ? filters["global"].value : "";
+        const value = filters.global ? filters.global.value : "";
 
         return (
             <span className="p-input-icon-left">
@@ -568,7 +568,7 @@ export default function BasicDemo() {
                             filter
                             filterPlaceholder="Search"
                             style={{ width: "25%" }}
-                        ></Column>
+                        />
                         <Column
                             header="Country"
                             body={countryBodyTemplate}
@@ -578,7 +578,7 @@ export default function BasicDemo() {
                             filterField="country.name"
                             filterPlaceholder="Search"
                             style={{ width: "25%" }}
-                        ></Column>
+                        />
                         <Column
                             header="Agent"
                             body={representativeBodyTemplate}
@@ -590,7 +590,7 @@ export default function BasicDemo() {
                             filterElement={representativeFilterTemplate}
                             filterMenuStyle={{ width: "14rem" }}
                             style={{ width: "25%" }}
-                        ></Column>
+                        />
                         <Column
                             field="status"
                             header="Status"
@@ -600,7 +600,7 @@ export default function BasicDemo() {
                             filterElement={statusFilterTemplate}
                             filterMenuStyle={{ width: "14rem" }}
                             style={{ width: "25%" }}
-                        ></Column>
+                        />
                     </DataTable>
                 </div>
             </DeferredDemo>

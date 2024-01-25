@@ -43,7 +43,7 @@ export const FileUpload = React.memo(
         const fileInputRef = React.useRef(null);
         const messagesRef = React.useRef(null);
         const contentRef = React.useRef(null);
-        const uploadedFileCount = React.useRef(0);
+        let uploadedFileCount = React.useRef(0);
         const hasFiles = ObjectUtils.isNotEmpty(filesState);
         const hasUploadedFiles = ObjectUtils.isNotEmpty(uploadedFilesState);
         const disabled = props.disabled || uploadingState;
@@ -119,7 +119,7 @@ export const FileUpload = React.memo(
 
             const i = Math.floor(Math.log(bytes) / Math.log(k));
             const formattedSize = parseFloat(
-                (bytes / Math.pow(k, i)).toFixed(dm),
+                (bytes / k ** i).toFixed(dm),
             );
 
             return `${formattedSize} ${sizes[i]}`;
@@ -201,7 +201,7 @@ export const FileUpload = React.memo(
                     messagesRef.current.show(message);
                 }
 
-                props.onValidationFail && props.onValidationFail(file);
+                props.onValidationFail?.(file);
 
                 return false;
             }
@@ -212,7 +212,7 @@ export const FileUpload = React.memo(
         const upload = (files) => {
             files = files || filesState;
 
-            if (files && files.nativeEvent) {
+            if (files?.nativeEvent) {
                 files = filesState;
             }
 
@@ -314,7 +314,7 @@ export const FileUpload = React.memo(
             setFilesState([]);
             setUploadedFilesState([]);
             setUploadingState(false);
-            props.onClear && props.onClear();
+            props.onClear?.();
             clearInput();
         };
 
@@ -614,8 +614,7 @@ export const FileUpload = React.memo(
                 value: localeOption("completed") || "Completed",
             };
             const content =
-                uploadedFilesState &&
-                uploadedFilesState.map((file, index) =>
+                uploadedFilesState?.map((file, index) =>
                     createFile(file, index, badgeOptions),
                 );
 
@@ -654,11 +653,11 @@ export const FileUpload = React.memo(
         const createAdvanced = () => {
             const chooseButton = createChooseButton();
             const emptyContent = createEmptyContent();
-            let uploadButton,
-                cancelButton,
-                filesList,
-                uplaodedFilesList,
-                progressBar;
+            let uploadButton;
+            let cancelButton;
+            let filesList;
+            let uplaodedFilesList;
+            let progressBar;
 
             if (!props.auto) {
                 const uploadOptions = props.uploadOptions;
@@ -920,7 +919,7 @@ export const FileUpload = React.memo(
         };
 
         if (props.mode === "advanced") return createAdvanced();
-        else if (props.mode === "basic") return createBasic();
+        if (props.mode === "basic") return createBasic();
     }),
 );
 

@@ -50,7 +50,7 @@ export default function TemplateDemo() {
                         alt="logo"
                         src="https://primefaces.org/cdn/primereact/images/primereact-logo-light.svg"
                         className="h-2rem"
-                    ></img>
+                    />
                 </Button>
             </div>
             <DocSectionCode code={code} />

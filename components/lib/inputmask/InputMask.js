@@ -28,7 +28,9 @@ export const InputMask = React.memo(
         };
 
         const caret = (first, last) => {
-            let range, begin, end;
+            let range;
+            let begin;
+            let end;
             const inputEl = elementRef.current;
 
             if (
@@ -45,8 +47,8 @@ export const InputMask = React.memo(
 
                 if (inputEl.setSelectionRange) {
                     inputEl.setSelectionRange(begin, end);
-                } else if (inputEl["createTextRange"]) {
-                    range = inputEl["createTextRange"]();
+                } else if (inputEl.createTextRange) {
+                    range = inputEl.createTextRange();
                     range.collapse(true);
                     range.moveEnd("character", end);
                     range.moveStart("character", begin);
@@ -57,10 +59,9 @@ export const InputMask = React.memo(
                     begin = inputEl.selectionStart;
                     end = inputEl.selectionEnd;
                 } else if (
-                    document["selection"] &&
-                    document["selection"].createRange
+                    document.selection?.createRange
                 ) {
-                    range = document["selection"].createRange();
+                    range = document.selection.createRange();
                     begin =
                         0 - range.duplicate().moveStart("character", -100000);
                     end = begin + range.text.length;
@@ -101,7 +102,7 @@ export const InputMask = React.memo(
         const getValue = () => {
             return props.unmask
                 ? getUnmaskedValue()
-                : elementRef.current && elementRef.current.value;
+                : elementRef.current?.value;
         };
 
         const seekNext = (pos) => {
@@ -117,7 +118,8 @@ export const InputMask = React.memo(
         };
 
         const shiftL = (begin, end) => {
-            let i, j;
+            let i;
+            let j;
 
             if (begin < 0) {
                 return;
@@ -144,7 +146,10 @@ export const InputMask = React.memo(
         };
 
         const shiftR = (pos) => {
-            let i, c, j, t;
+            let i;
+            let c;
+            let j;
+            let t;
 
             for (i = pos, c = getPlaceholder(pos); i < len.current; i++) {
                 if (tests.current[i]) {
@@ -211,7 +216,7 @@ export const InputMask = React.memo(
             updateModel(e);
             updateFilledState();
 
-            props.onBlur && props.onBlur(e);
+            props.onBlur?.(e);
 
             if (elementRef.current.value !== focusText.current) {
                 const event = document.createEvent("HTMLEvents");
@@ -226,10 +231,10 @@ export const InputMask = React.memo(
                 return;
             }
 
-            let k = e.which || e.keyCode,
-                pos,
-                begin,
-                end;
+            const k = e.which || e.keyCode;
+            let pos;
+            let begin;
+            let end;
 
             oldVal.current = elementRef.current.value;
 
@@ -281,16 +286,16 @@ export const InputMask = React.memo(
                 return;
             }
 
-            let k = e.which || e.keyCode,
-                p,
-                c,
-                next,
-                completed;
+            const k = e.which || e.keyCode;
+            let p;
+            let c;
+            let next;
+            let completed;
 
             if (e.ctrlKey || e.altKey || e.metaKey || k < 32) {
                 //Ignore
                 return;
-            } else if (k && k !== 13) {
+            }if (k && k !== 13) {
                 if (pos.end - pos.begin !== 0) {
                     clearBuffer(pos.begin, pos.end);
                     shiftL(pos.begin, pos.end - 1);
@@ -357,11 +362,11 @@ export const InputMask = React.memo(
         const checkVal = (allow) => {
             isValueChecked.current = true;
             //try to place characters where they belong
-            let test = elementRef.current && elementRef.current.value,
-                lastMatch = -1,
-                i,
-                c,
-                pos;
+            const test = elementRef.current?.value;
+            let lastMatch = -1;
+            let i;
+            let c;
+            let pos;
 
             for (i = 0, pos = 0; i < len.current; i++) {
                 if (tests.current[i]) {
@@ -401,7 +406,7 @@ export const InputMask = React.memo(
                 ) {
                     // Invalid value. Remove it and replace it with the
                     // mask, which is the default behavior.
-                    if (elementRef.current && elementRef.current.value)
+                    if (elementRef.current?.value)
                         elementRef.current.value = "";
                     clearBuffer(0, len.current);
                 } else {
@@ -455,7 +460,7 @@ export const InputMask = React.memo(
                 updateFilledState();
             }, 100);
 
-            props.onFocus && props.onFocus(e);
+            props.onFocus?.(e);
         };
 
         const onInput = (event) => {
@@ -503,7 +508,7 @@ export const InputMask = React.memo(
             if (props.onChange) {
                 const val = props.unmask
                     ? getUnmaskedValue()
-                    : e && e.target.value;
+                    : e?.target.value;
 
                 props.onChange({
                     originalEvent: e,
@@ -525,8 +530,7 @@ export const InputMask = React.memo(
 
         const updateFilledState = () => {
             if (
-                elementRef.current &&
-                elementRef.current.value &&
+                elementRef.current?.value &&
                 elementRef.current.value.length > 0
             )
                 DomHandler.addClass(elementRef.current, "p-filled");

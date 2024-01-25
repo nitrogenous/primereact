@@ -33,7 +33,7 @@ export const InputTextarea = React.memo(
                 resize();
             }
 
-            props.onFocus && props.onFocus(event);
+            props.onFocus?.(event);
         };
 
         const onBlur = (event) => {
@@ -41,7 +41,7 @@ export const InputTextarea = React.memo(
                 resize();
             }
 
-            props.onBlur && props.onBlur(event);
+            props.onBlur?.(event);
         };
 
         const onKeyUp = (event) => {
@@ -49,11 +49,11 @@ export const InputTextarea = React.memo(
                 resize();
             }
 
-            props.onKeyUp && props.onKeyUp(event);
+            props.onKeyUp?.(event);
         };
 
         const onKeyDown = (event) => {
-            props.onKeyDown && props.onKeyDown(event);
+            props.onKeyDown?.(event);
 
             if (props.keyfilter) {
                 KeyFilter.onKeyPress(
@@ -65,7 +65,7 @@ export const InputTextarea = React.memo(
         };
 
         const onBeforeInput = (event) => {
-            props.onBeforeInput && props.onBeforeInput(event);
+            props.onBeforeInput?.(event);
 
             if (props.keyfilter) {
                 KeyFilter.onBeforeInput(
@@ -77,7 +77,7 @@ export const InputTextarea = React.memo(
         };
 
         const onPaste = (event) => {
-            props.onPaste && props.onPaste(event);
+            props.onPaste?.(event);
 
             if (props.keyfilter) {
                 KeyFilter.onPaste(event, props.keyfilter, props.validateOnly);
@@ -91,7 +91,7 @@ export const InputTextarea = React.memo(
                 resize(ObjectUtils.isEmpty(target.value));
             }
 
-            props.onInput && props.onInput(event);
+            props.onInput?.(event);
 
             ObjectUtils.isNotEmpty(target.value)
                 ? DomHandler.addClass(target, "p-filled")
@@ -112,7 +112,7 @@ export const InputTextarea = React.memo(
                     initial
                 ) {
                     inputEl.style.height = "";
-                    inputEl.style.height = inputEl.scrollHeight + "px";
+                    inputEl.style.height = `${inputEl.scrollHeight}px`;
 
                     if (
                         parseFloat(inputEl.style.height) >=
@@ -165,7 +165,7 @@ export const InputTextarea = React.memo(
 
         return (
             <>
-                <textarea {...rootProps}></textarea>
+                <textarea {...rootProps} />
                 {hasTooltip && (
                     <Tooltip
                         target={elementRef}

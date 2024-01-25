@@ -109,7 +109,7 @@ export const MultiSelectHeader = React.memo((props) => {
 
     const filterElement = createFilterElement();
     const selectAllId = props.id
-        ? props.id + "_selectall"
+        ? `${props.id}_selectall`
         : UniqueComponentId();
 
     const headerSelectAllLabelProps = mergeProps(

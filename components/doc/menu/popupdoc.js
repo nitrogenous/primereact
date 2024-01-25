@@ -123,7 +123,7 @@ export default function PopupDoc() {
                 </p>
             </DocSectionText>
             <div className="card flex justify-content-center">
-                <Toast ref={toast}></Toast>
+                <Toast ref={toast} />
                 <Menu model={items} popup ref={menuLeft} id="popup_menu_left" />
                 <Button
                     label="Show Left"

@@ -34,8 +34,8 @@ export const Avatar = React.forwardRef((inProps, ref) => {
                 ptm("image"),
             );
 
-            return <img alt={props.imageAlt} {...imageProps}></img>;
-        } else if (props.label) {
+            return <img alt={props.imageAlt} {...imageProps} />;
+        }if (props.label) {
             const labelProps = mergeProps(
                 {
                     className: cx("label"),
@@ -44,7 +44,7 @@ export const Avatar = React.forwardRef((inProps, ref) => {
             );
 
             return <span {...labelProps}>{props.label}</span>;
-        } else if (props.icon) {
+        }if (props.icon) {
             const iconProps = mergeProps(
                 {
                     className: cx("icon"),
@@ -74,7 +74,7 @@ export const Avatar = React.forwardRef((inProps, ref) => {
             event.target.src = props.imageFallback;
         }
 
-        props.onImageError && props.onImageError(event);
+        props.onImageError?.(event);
     };
 
     React.useEffect(() => {

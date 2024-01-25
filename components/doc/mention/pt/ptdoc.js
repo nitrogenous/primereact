@@ -14,7 +14,7 @@ export function PTDoc(props) {
         CustomerService.getCustomersSmall().then((data) => {
             data.forEach(
                 (d) =>
-                    (d["nickname"] = `${d.name
+                    (d.nickname = `${d.name
                         .replace(/\s+/g, "")
                         .toLowerCase()}_${d.id}`),
             );
@@ -44,8 +44,7 @@ export function PTDoc(props) {
 
     const itemTemplate = (suggestion) => {
         const src =
-            "https://primefaces.org/cdn/primereact/images/avatar/" +
-            suggestion.representative.image;
+            `https://primefaces.org/cdn/primereact/images/avatar/${suggestion.representative.image}`;
 
         return (
             <div className="flex align-items-center">
@@ -254,7 +253,7 @@ export default function BasicDemo() {
 
     return (
         <>
-            <DocSectionText {...props}></DocSectionText>
+            <DocSectionText {...props} />
             <div className="card flex justify-content-center">
                 <Mention
                     value={value}

@@ -26,7 +26,7 @@ export const useEventListener = ({
         }
 
         if (!listenerRef.current && targetRef.current) {
-            listenerRef.current = (event) => listener && listener(event);
+            listenerRef.current = (event) => listener?.(event);
             targetRef.current.addEventListener(
                 type,
                 listenerRef.current,
@@ -59,7 +59,7 @@ export const useEventListener = ({
         // to properly compare functions we can implicitly converting the function to it's body's text as a String
         if (
             listenerRef.current &&
-            ("" + prevListener !== "" + listener || prevOptions !== options)
+            (`${prevListener}` !== `${listener}` || prevOptions !== options)
         ) {
             unbind();
             when && bind();

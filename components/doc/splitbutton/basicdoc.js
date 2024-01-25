@@ -177,7 +177,7 @@ export default function BasicDemo() {
                 </p>
             </DocSectionText>
             <div className="card flex justify-content-center">
-                <Toast ref={toast}></Toast>
+                <Toast ref={toast} />
                 <SplitButton
                     label="Save"
                     icon="pi pi-plus"

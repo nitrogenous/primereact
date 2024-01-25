@@ -152,7 +152,7 @@ export const OrderListSubList = React.memo(
                 _ptm("droppoint"),
             );
 
-            return <li key={key} {...droppointProps}></li>;
+            return <li key={key} {...droppointProps} />;
         };
 
         const createHeader = () => {
@@ -178,7 +178,7 @@ export const OrderListSubList = React.memo(
                     const content = props.itemTemplate
                         ? props.itemTemplate(item)
                         : item;
-                    const key = props.parentId + "_" + i;
+                    const key = `${props.parentId}_${i}`;
                     const focused =
                         props.focused && props.focusedOptionId === key;
                     const selected = isSelected(item);
@@ -216,7 +216,7 @@ export const OrderListSubList = React.memo(
                                 createDropPoint(
                                     item,
                                     i,
-                                    key + "_droppoint_start",
+                                    `${key}_droppoint_start`,
                                 ),
                             );
                         }
@@ -228,10 +228,10 @@ export const OrderListSubList = React.memo(
                             </li>,
                         );
 
-                        items.push(createDropPoint(i, key + "_droppoint"));
+                        items.push(createDropPoint(i, `${key}_droppoint`));
 
                         return items;
-                    } else {
+                    }
                         const itemProps = mergeProps(
                             {
                                 id: key,
@@ -260,7 +260,6 @@ export const OrderListSubList = React.memo(
                                 <Ripple />
                             </li>
                         );
-                    }
                 });
             }
 

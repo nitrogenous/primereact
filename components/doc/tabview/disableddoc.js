@@ -160,7 +160,7 @@ export default function DisabledDemo() {
                             eligendi optio cumque nihil impedit quo minus.
                         </p>
                     </TabPanel>
-                    <TabPanel header="Header IV" disabled></TabPanel>
+                    <TabPanel header="Header IV" disabled />
                 </TabView>
             </div>
             <DocSectionCode code={code} />

@@ -8,7 +8,7 @@ export function PTDoc(props) {
     const [items, setItems] = useState([]);
 
     const search = (event) => {
-        setItems([...Array(10).keys()].map((item) => event.query + "-" + item));
+        setItems([...Array(10).keys()].map((item) => `${event.query}-${item}`));
     };
 
     const code = {
@@ -90,7 +90,7 @@ export default function PTDemo() {
 
     return (
         <>
-            <DocSectionText {...props}></DocSectionText>
+            <DocSectionText {...props} />
             <div className="card flex justify-content-center">
                 <AutoComplete
                     value={value}

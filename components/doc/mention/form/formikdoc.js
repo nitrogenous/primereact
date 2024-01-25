@@ -17,7 +17,7 @@ export function FormikDoc(props) {
         CustomerService.getCustomersSmall().then((data) => {
             data.forEach(
                 (d) =>
-                    (d["nickname"] = `${d.name
+                    (d.nickname = `${d.name
                         .replace(/\s+/g, "")
                         .toLowerCase()}_${d.id}`),
             );
@@ -47,8 +47,7 @@ export function FormikDoc(props) {
 
     const itemTemplate = (suggestion) => {
         const src =
-            "https://primefaces.org/cdn/primereact/images/avatar/" +
-            suggestion.representative.image;
+            `https://primefaces.org/cdn/primereact/images/avatar/${suggestion.representative.image}`;
 
         return (
             <div className="flex align-items-center">
@@ -87,7 +86,7 @@ export function FormikDoc(props) {
         },
         validate: (data) => {
             const hasMentionedCustomersNickname = customers.some((customer) => {
-                return data.item && data.item.includes("@" + customer.nickname);
+                return data.item?.includes(`@${customer.nickname}`);
             });
 
             const errors = {};
@@ -379,7 +378,7 @@ export default function FormikDoc() {
         <>
             <DocSectionText {...props}>
                 {/* TO DO: Add demo content. */}
-                <p></p>
+                <p />
             </DocSectionText>
             <div className="card flex justify-content-center">
                 <form

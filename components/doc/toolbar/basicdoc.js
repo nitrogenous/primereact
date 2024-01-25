@@ -39,7 +39,7 @@ export function BasicDoc(props) {
                 label="Save"
                 model={items}
                 icon="pi pi-check"
-            ></SplitButton>
+            />
         </React.Fragment>
     );
 

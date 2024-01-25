@@ -209,7 +209,7 @@ export const PickListTransferControls = React.memo((props) => {
                 unstyled={unstyled}
                 aria-label={ariaLabel("moveToTarget")}
                 __parentMetadata={{ parent: props.metaData }}
-            ></Button>
+            />
             <Button
                 disabled={moveAllRightDisabled}
                 type="button"
@@ -219,7 +219,7 @@ export const PickListTransferControls = React.memo((props) => {
                 unstyled={unstyled}
                 aria-label={ariaLabel("moveAllToTarget")}
                 __parentMetadata={{ parent: props.metaData }}
-            ></Button>
+            />
             <Button
                 disabled={moveLeftDisabled}
                 type="button"
@@ -229,7 +229,7 @@ export const PickListTransferControls = React.memo((props) => {
                 unstyled={unstyled}
                 aria-label={ariaLabel("moveToSource")}
                 __parentMetadata={{ parent: props.metaData }}
-            ></Button>
+            />
             <Button
                 disabled={moveAllLeftDisabled}
                 type="button"
@@ -239,7 +239,7 @@ export const PickListTransferControls = React.memo((props) => {
                 unstyled={unstyled}
                 aria-label={ariaLabel("moveAllToSource")}
                 __parentMetadata={{ parent: props.metaData }}
-            ></Button>
+            />
         </div>
     );
 });

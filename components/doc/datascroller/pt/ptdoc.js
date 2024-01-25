@@ -54,9 +54,9 @@ export function PTDoc(props) {
                                     value={data.rating}
                                     readOnly
                                     cancel={false}
-                                ></Rating>
+                                />
                                 <span className="flex align-items-center gap-2">
-                                    <i className="pi pi-tag product-category-icon"></i>
+                                    <i className="pi pi-tag product-category-icon" />
                                     <span className="font-semibold">
                                         {data.category}
                                     </span>
@@ -71,11 +71,11 @@ export function PTDoc(props) {
                                 icon="pi pi-shopping-cart"
                                 label="Add to Cart"
                                 disabled={data.inventoryStatus === "OUTOFSTOCK"}
-                            ></Button>
+                            />
                             <Tag
                                 value={data.inventoryStatus}
                                 severity={getSeverity(data)}
-                            ></Tag>
+                            />
                         </div>
                     </div>
                 </div>
@@ -267,7 +267,7 @@ export default function BasicDemo() {
 
     return (
         <>
-            <DocSectionText {...props}></DocSectionText>
+            <DocSectionText {...props} />
             <div className="card">
                 <DataScroller
                     value={products}

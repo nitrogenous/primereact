@@ -61,12 +61,12 @@ export const InputSwitch = React.memo(
 
         const onFocus = (event) => {
             setFocusedState(true);
-            props.onFocus && props.onFocus(event);
+            props.onFocus?.(event);
         };
 
         const onBlur = (event) => {
             setFocusedState(false);
-            props.onBlur && props.onBlur(event);
+            props.onBlur?.(event);
         };
 
         React.useImperativeHandle(ref, () => ({
@@ -145,7 +145,7 @@ export const InputSwitch = React.memo(
                     <div {...hiddenInputWrapperProps}>
                         <input ref={inputRef} {...hiddenInputProps} />
                     </div>
-                    <span {...sliderProps}></span>
+                    <span {...sliderProps} />
                 </div>
                 {hasTooltip && (
                     <Tooltip

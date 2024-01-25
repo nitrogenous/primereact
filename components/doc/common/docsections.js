@@ -43,7 +43,7 @@ export function DocSections({ docs }) {
 
     const renderDocChildren = (doc, level = 2) => {
         return (
-            <React.Fragment key={doc.id + "_" + level}>
+            <React.Fragment key={`${doc.id}_${level}`}>
                 <DocSectionText {...doc} level={level}>
                     {doc.description ? <p>{doc.description}</p> : null}
                 </DocSectionText>

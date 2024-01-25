@@ -60,7 +60,7 @@ export const AutoCompletePanel = React.memo(
             const groupChildren = props.getOptionGroupChildren(optionGroup);
 
             return groupChildren.map((item, j) => {
-                const key = i + "_" + j;
+                const key = `${i}_${j}`;
                 const selected = props.selectedItem === item;
                 const content = props.itemTemplate
                     ? ObjectUtils.getJSXElement(props.itemTemplate, item, j)
@@ -113,7 +113,7 @@ export const AutoCompletePanel = React.memo(
                     index,
                     style,
                 );
-                const key = index + "_" + getOptionGroupRenderKey(suggestion);
+                const key = `${index}_${getOptionGroupRenderKey(suggestion)}`;
                 const itemGroupProps = mergeProps(
                     {
                         className: cx("itemGroup"),
@@ -129,7 +129,7 @@ export const AutoCompletePanel = React.memo(
                         {childrenContent}
                     </React.Fragment>
                 );
-            } else {
+            }
                 const content = props.itemTemplate
                     ? ObjectUtils.getJSXElement(
                           props.itemTemplate,
@@ -159,7 +159,6 @@ export const AutoCompletePanel = React.memo(
                         <Ripple />
                     </li>
                 );
-            }
         };
 
         const createItems = () => {
@@ -234,7 +233,7 @@ export const AutoCompletePanel = React.memo(
                         __parentMetadata={{ parent: props.metaData }}
                     />
                 );
-            } else {
+            }
                 const items = createItems();
                 const listProps = mergeProps(
                     {
@@ -258,7 +257,6 @@ export const AutoCompletePanel = React.memo(
                         <ul {...listProps}>{items}</ul>
                     </div>
                 );
-            }
         };
 
         const createElement = () => {

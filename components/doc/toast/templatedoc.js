@@ -44,7 +44,7 @@ export function TemplateDoc(props) {
                             label="Reply"
                             severity="success"
                             onClick={clear}
-                        ></Button>
+                        />
                     </div>
                 ),
             });

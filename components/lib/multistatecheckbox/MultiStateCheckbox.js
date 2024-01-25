@@ -104,7 +104,8 @@ export const MultiStateCheckbox = React.memo(
         };
 
         const getSelectedOptionMap = () => {
-            let option, index;
+            let option;
+            let index;
 
             if (props.options) {
                 index = props.options.findIndex((option) =>
@@ -182,10 +183,10 @@ export const MultiStateCheckbox = React.memo(
             DomHandler.ARIA_PROPS,
         );
         const icon = createIcon();
-        const ariaValueLabel = !!selectedOption
+        const ariaValueLabel = selectedOption
             ? getOptionAriaLabel(selectedOption)
             : ariaLabel("nullLabel");
-        const ariaChecked = !!selectedOption ? "true" : "false";
+        const ariaChecked = selectedOption ? "true" : "false";
 
         const rootProps = mergeProps(
             {

@@ -55,7 +55,7 @@ export default function BasicDemo() {
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
                     feedback={false}
-                    tabIndex={1}
+                    tabIndex="0"
                 />
             </div>
             <DocSectionCode code={code} />

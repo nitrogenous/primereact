@@ -18,7 +18,7 @@ export const Ripple = React.memo(
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = RippleBase.getProps(inProps, context);
-        const isRippleActive = (context && context.ripple) || PrimeReact.ripple;
+        const isRippleActive = (context?.ripple) || PrimeReact.ripple;
 
         const metaData = {
             props,
@@ -34,7 +34,7 @@ export const Ripple = React.memo(
         });
 
         const getTarget = () => {
-            return inkRef.current && inkRef.current.parentElement;
+            return inkRef.current?.parentElement;
         };
 
         const bindEvents = () => {
@@ -83,8 +83,8 @@ export const Ripple = React.memo(
 
             setDimensions();
 
-            inkRef.current.style.top = offsetY + "px";
-            inkRef.current.style.left = offsetX + "px";
+            inkRef.current.style.top = `${offsetY}px`;
+            inkRef.current.style.left = `${offsetX}px`;
             DomHandler.addClass(inkRef.current, "p-ink-active");
         };
 
@@ -103,8 +103,8 @@ export const Ripple = React.memo(
                     DomHandler.getOuterHeight(targetRef.current),
                 );
 
-                inkRef.current.style.height = d + "px";
-                inkRef.current.style.width = d + "px";
+                inkRef.current.style.height = `${d}px`;
+                inkRef.current.style.width = `${d}px`;
             }
         };
 
@@ -159,7 +159,7 @@ export const Ripple = React.memo(
                 ref={inkRef}
                 {...rootProps}
                 onAnimationEnd={onAnimationEnd}
-            ></span>
+            />
         );
     }),
 );

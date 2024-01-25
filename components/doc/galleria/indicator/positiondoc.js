@@ -220,7 +220,7 @@ export default function PositionDemo() {
                         inputId="inside_cbox"
                         onChange={(e) => setInside(e.checked)}
                         checked={inside}
-                    ></Checkbox>
+                    />
                     <label htmlFor="inside_cbox" className="ml-2">
                         Inside
                     </label>

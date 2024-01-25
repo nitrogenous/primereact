@@ -90,7 +90,7 @@ export const Password = React.memo(
             },
         );
 
-        const currentValue = inputRef.current && inputRef.current.value;
+        const currentValue = inputRef.current?.value;
         const isFilled = React.useMemo(
             () =>
                 ObjectUtils.isNotEmpty(props.value) ||
@@ -158,7 +158,7 @@ export const Password = React.memo(
                     overlayRef.current,
                     inputRef.current.parentElement,
                     props.appendTo ||
-                        (context && context.appendTo) ||
+                        (context?.appendTo) ||
                         PrimeReact.appendTo,
                 );
             }
@@ -168,9 +168,9 @@ export const Password = React.memo(
             ZIndexUtils.set(
                 "overlay",
                 overlayRef.current,
-                (context && context.autoZIndex) || PrimeReact.autoZIndex,
-                (context && context.zIndex["overlay"]) ||
-                    PrimeReact.zIndex["overlay"],
+                (context?.autoZIndex) || PrimeReact.autoZIndex,
+                (context?.zIndex.overlay) ||
+                    PrimeReact.zIndex.overlay,
             );
             DomHandler.addStyles(overlayRef.current, {
                 position: "absolute",
@@ -183,7 +183,7 @@ export const Password = React.memo(
         const onOverlayEntered = () => {
             bindOverlayListener();
 
-            props.onShow && props.onShow();
+            props.onShow?.();
         };
 
         const onOverlayExit = () => {
@@ -193,7 +193,7 @@ export const Password = React.memo(
         const onOverlayExited = () => {
             ZIndexUtils.clear(overlayRef.current);
 
-            props.onHide && props.onHide();
+            props.onHide?.();
         };
 
         const onFocus = (event) => {
@@ -203,7 +203,7 @@ export const Password = React.memo(
                 show();
             }
 
-            props.onFocus && props.onFocus(event);
+            props.onFocus?.(event);
         };
 
         const onBlur = (event) => {
@@ -213,7 +213,7 @@ export const Password = React.memo(
                 hide();
             }
 
-            props.onBlur && props.onBlur(event);
+            props.onBlur?.(event);
         };
 
         const onKeyup = (e) => {
@@ -263,7 +263,7 @@ export const Password = React.memo(
                 }
             }
 
-            props.onKeyUp && props.onKeyUp(e);
+            props.onKeyUp?.(e);
         };
 
         const onInput = (event, validatePattern) => {
@@ -286,8 +286,8 @@ export const Password = React.memo(
 
         const testStrength = (str) => {
             if (strongCheckRegExp.current.test(str)) return 3;
-            else if (mediumCheckRegExp.current.test(str)) return 2;
-            else if (str.length) return 1;
+            if (mediumCheckRegExp.current.test(str)) return 2;
+            if (str.length) return 1;
 
             return 0;
         };
@@ -415,7 +415,7 @@ export const Password = React.memo(
             ) : (
                 <>
                     <div {...meterProps}>
-                        <div {...meterLabelProps}></div>
+                        <div {...meterLabelProps} />
                     </div>
                     <div {...infoProps}>{infoTextState}</div>
                 </>

@@ -106,7 +106,7 @@ export function TemplateDoc(props) {
                 tabIndex={-1}
                 onClick={options.onClick}
             >
-                <span className={iconClassName} aria-hidden="true"></span>
+                <span className={iconClassName} aria-hidden="true" />
             </button>
         );
     };

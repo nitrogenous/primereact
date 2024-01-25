@@ -8,8 +8,7 @@ export function PTDoc(props) {
     const msgs = useRef(null);
 
     useMountEffect(() => {
-        msgs.current &&
-            msgs.current.show([
+        msgs.current?.show([
                 {
                     sticky: true,
                     severity: "info",
@@ -85,7 +84,7 @@ export default function PTDemo() {
 
     return (
         <>
-            <DocSectionText {...props}></DocSectionText>
+            <DocSectionText {...props} />
             <div className="card">
                 <Messages
                     ref={msgs}

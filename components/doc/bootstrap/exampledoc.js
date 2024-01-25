@@ -27,7 +27,7 @@ export function ExampleDoc(props) {
                         }}
                         src="https://stackblitz.com/edit/stackblitz-starters-waigrp?file=src%2FApp.js"
                         allowfullscreen
-                    ></iframe>
+                    />
                 </div>
             </DocSectionText>
         </>

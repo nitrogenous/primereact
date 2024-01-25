@@ -324,7 +324,7 @@ const classes = {
     resizeHelper: "p-column-resizer-helper",
     reorderIndicatorUp: "p-datatable-reorder-indicator-up",
     reorderIndicatorDown: "p-datatable-reorder-indicator-down",
-    paginator: ({ position }) => classNames("p-paginator-" + position),
+    paginator: ({ position }) => classNames(`p-paginator-${position}`),
     bodyCell: ({
         selectionMode,
         editor,

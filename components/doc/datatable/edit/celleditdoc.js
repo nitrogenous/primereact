@@ -56,7 +56,7 @@ export function CellEditDoc(props) {
 
     const cellEditor = (options) => {
         if (options.field === "price") return priceEditor(options);
-        else return textEditor(options);
+        return textEditor(options);
     };
 
     const textEditor = (options) => {

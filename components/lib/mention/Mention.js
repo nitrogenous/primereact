@@ -82,9 +82,9 @@ export const Mention = React.memo(
             ZIndexUtils.set(
                 "overlay",
                 overlayRef.current,
-                (context && context.autoZIndex) || PrimeReact.autoZIndex,
-                (context && context.zIndex["overlay"]) ||
-                    PrimeReact.zIndex["overlay"],
+                (context?.autoZIndex) || PrimeReact.autoZIndex,
+                (context?.zIndex.overlay) ||
+                    PrimeReact.zIndex.overlay,
             );
             DomHandler.addStyles(overlayRef.current, {
                 position: "absolute",
@@ -112,7 +112,7 @@ export const Mention = React.memo(
 
         const onOverlayEntered = () => {
             bindOverlayListener();
-            props.onShow && props.onShow();
+            props.onShow?.();
         };
 
         const onOverlayExit = () => {
@@ -122,7 +122,7 @@ export const Mention = React.memo(
         const onOverlayExited = () => {
             ZIndexUtils.clear(overlayRef.current);
 
-            props.onHide && props.onHide();
+            props.onHide?.();
         };
 
         const alignOverlay = () => {
@@ -266,7 +266,7 @@ export const Mention = React.memo(
 
                 inputRef.current.value = `${prevText}${selectedText} ${nextText}`;
                 event.target = inputRef.current;
-                props.onChange && props.onChange(event);
+                props.onChange?.(event);
             }
 
             const cursorStart = triggerState.index + selectedText.length + 1;
@@ -275,8 +275,7 @@ export const Mention = React.memo(
 
             hide();
 
-            props.onSelect &&
-                props.onSelect({ originalEvent: event, suggestion });
+            props.onSelect?.({ originalEvent: event, suggestion });
         };
 
         const formatValue = (value) => {
@@ -302,16 +301,16 @@ export const Mention = React.memo(
 
         const onFocus = (event) => {
             setFocusedState(true);
-            props.onFocus && props.onFocus(event);
+            props.onFocus?.(event);
         };
 
         const onBlur = (event) => {
             setFocusedState(false);
-            props.onBlur && props.onBlur(event);
+            props.onBlur?.(event);
         };
 
         const onInput = (event) => {
-            props.onInput && props.onInput(event);
+            props.onInput?.(event);
             const isFilled = event.target.value.length > 0;
 
             if (isUnstyled()) {
@@ -340,7 +339,7 @@ export const Mention = React.memo(
         };
 
         const onChange = (event) => {
-            props.onChange && props.onChange(event);
+            props.onChange?.(event);
 
             onSearch(event);
         };
@@ -434,7 +433,7 @@ export const Mention = React.memo(
                         break;
 
                     //backspace
-                    case 8:
+                    case 8: {
                         const { value, selectionStart } = event.target;
                         const key = value.substring(
                             selectionStart - 1,
@@ -446,6 +445,7 @@ export const Mention = React.memo(
                         }
 
                         break;
+                    }
 
                     //enter
                     case 13:
@@ -473,7 +473,7 @@ export const Mention = React.memo(
             }
         };
 
-        const currentValue = inputRef.current && inputRef.current.value;
+        const currentValue = inputRef.current?.value;
         const isFilled = React.useMemo(
             () =>
                 ObjectUtils.isNotEmpty(props.value) ||
@@ -498,7 +498,7 @@ export const Mention = React.memo(
 
         useUpdateEffect(() => {
             const hasSuggestions =
-                props.suggestions && props.suggestions.length;
+                props.suggestions?.length;
 
             if (hasSuggestions) {
                 const newState = props.suggestions.map(() => false);
@@ -543,7 +543,7 @@ export const Mention = React.memo(
         });
 
         const createItem = (suggestion, index) => {
-            const key = index + "_item";
+            const key = `${index}_item`;
             const content = props.itemTemplate
                 ? ObjectUtils.getJSXElement(props.itemTemplate, suggestion, {
                       trigger: triggerState ? triggerState.key : "",

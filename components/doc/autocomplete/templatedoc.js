@@ -44,7 +44,7 @@ export function TemplateDoc(props) {
 
     const panelFooterTemplate = () => {
         const isCountrySelected = (filteredCountries || []).some(
-            (country) => country["name"] === selectedCountry,
+            (country) => country.name === selectedCountry,
         );
 
         return (

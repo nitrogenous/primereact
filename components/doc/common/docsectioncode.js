@@ -7,7 +7,7 @@ import { CodeHighlight } from "./codehighlight";
 export function DocSectionCode(props) {
     const [codeMode, setCodeMode] = useState("basic");
     const [codeLang, setCodeLang] = useState(
-        props.code["javascript"] ? "javascript" : "basic",
+        props.code.javascript ? "javascript" : "basic",
     );
     const codeEditor = useCodeEditor({ ...props, template: "vite" });
 
@@ -59,7 +59,7 @@ export function DocSectionCode(props) {
                                             className:
                                                 "doc-section-code-tooltip",
                                         }}
-                                    ></Button>
+                                    />
                                     <Button
                                         className={classNames(
                                             "py-0 px-2 border-round h-2rem shadow-none",
@@ -78,7 +78,7 @@ export function DocSectionCode(props) {
                                             className:
                                                 "doc-section-code-tooltip",
                                         }}
-                                    ></Button>
+                                    />
                                 </>
                             )}
 
@@ -93,7 +93,7 @@ export function DocSectionCode(props) {
                                     className: "doc-section-code-tooltip",
                                 }}
                             >
-                                <i className="pi pi-code"></i>
+                                <i className="pi pi-code" />
                             </Button>
                         )}
                         {!props.hideToggleCode && props.code.data ? (
@@ -107,7 +107,7 @@ export function DocSectionCode(props) {
                                     className: "doc-section-code-tooltip",
                                 }}
                             >
-                                <i className="pi pi-database"></i>
+                                <i className="pi pi-database" />
                             </Button>
                         ) : null}
                         {!props.hideCodeSandbox && (
@@ -170,7 +170,7 @@ export function DocSectionCode(props) {
                                 className: "doc-section-code-tooltip",
                             }}
                         >
-                            <i className="pi pi-copy"></i>
+                            <i className="pi pi-copy" />
                         </Button>
                     </div>
 
@@ -204,7 +204,7 @@ export function DocSectionCode(props) {
                     )}
                 </div>
             )}
-            {props.embedded && <div id="embed"></div>}
+            {props.embedded && <div id="embed" />}
         </>
     );
 }

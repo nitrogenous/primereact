@@ -83,7 +83,7 @@ export function BasicFilterDoc(props) {
         const value = e.target.value;
         const _filters = { ...filters };
 
-        _filters["global"].value = value;
+        _filters.global.value = value;
 
         setFilters(_filters);
         setGlobalFilterValue(value);
@@ -166,7 +166,7 @@ export function BasicFilterDoc(props) {
                     "true-icon pi-check-circle": rowData.verified,
                     "false-icon pi-times-circle": !rowData.verified,
                 })}
-            ></i>
+            />
         );
     };
 

@@ -16,12 +16,12 @@ export function DocApiSection(props) {
         const mod = APIDoc[modName.toLowerCase()];
 
         const isExcluded = (option, key) => {
-            return exclude && exclude[option] && exclude[option].includes(key);
+            return exclude?.[option]?.includes(key);
         };
 
         const isExcludedAll = (option) => {
             return (
-                exclude && exclude[option] && exclude[option] === "excludeAll"
+                exclude?.[option] && exclude[option] === "excludeAll"
             );
         };
 
@@ -203,7 +203,7 @@ export function DocApiSection(props) {
                     });
 
                     const types =
-                        value.parameters && value.parameters.map((p) => p.type);
+                        value.parameters?.map((p) => p.type);
 
                     if (
                         ObjectUtils.isNotEmpty(mod.interfaces) &&
@@ -430,7 +430,7 @@ export function DocApiSection(props) {
         const element = document.getElementById(hash);
 
         setTimeout(() => {
-            element && element.scrollIntoView({ block: "start" });
+            element?.scrollIntoView({ block: "start" });
         }, 1);
     }, []);
 

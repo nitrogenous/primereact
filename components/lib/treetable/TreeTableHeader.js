@@ -188,11 +188,10 @@ export const TreeTableHeader = React.memo((props) => {
     const getAriaSort = (column, sorted, sortOrder) => {
         if (getColumnProp(column, "sortable")) {
             if (sorted && sortOrder < 0) return "descending";
-            else if (sorted && sortOrder > 0) return "ascending";
-            else return "none";
-        } else {
-            return null;
+            if (sorted && sortOrder > 0) return "ascending";
+            return "none";
         }
+            return null;
     };
 
     const createSortIcon = (column, sorted, sortOrder) => {
@@ -223,9 +222,8 @@ export const TreeTableHeader = React.memo((props) => {
             );
 
             return sortIcon;
-        } else {
-            return null;
         }
+            return null;
     };
 
     const createResizer = (column) => {
@@ -239,9 +237,8 @@ export const TreeTableHeader = React.memo((props) => {
             );
 
             return <span {...columnResizerProps} />;
-        } else {
-            return null;
         }
+            return null;
     };
 
     const createSortBadge = (column, sortMetaDataIndex) => {
@@ -293,8 +290,7 @@ export const TreeTableHeader = React.memo((props) => {
                     onInput={(e) => onFilterInput(e, column)}
                     type={props.filterType}
                     defaultValue={
-                        props.filters &&
-                        props.filters[getColumnProp(column, "field")]
+                        props.filters?.[getColumnProp(column, "field")]
                             ? props.filters[getColumnProp(column, "field")]
                                   .value
                             : null
@@ -340,7 +336,7 @@ export const TreeTableHeader = React.memo((props) => {
             );
 
             return <th {...headerCellProps}>{filterElement}</th>;
-        } else {
+        }
             const headerCellRef = React.createRef(null);
             const sortMetaDataIndex = getMultiSortMetaDataIndex(column);
             const multiSortMetaData =
@@ -396,7 +392,6 @@ export const TreeTableHeader = React.memo((props) => {
                         getColumnProp(column, "headerStyle") ||
                         getColumnProp(column, "style"),
                     tabIndex: sortable ? props.tabIndex : null,
-                    "aria-sort": ariaSort,
                     onClick: (e) => onHeaderClick(e, column),
                     onMouseDown: (e) => onHeaderMouseDown(e, column),
                     onKeyDown: (e) => onHeaderKeyDown(e, column),
@@ -456,7 +451,6 @@ export const TreeTableHeader = React.memo((props) => {
                     )}
                 </React.Fragment>
             );
-        }
     };
 
     const createHeaderRow = (row, index) => {
@@ -518,9 +512,9 @@ export const TreeTableHeader = React.memo((props) => {
                         </tr>
                     </>
                 );
-            } else {
+            }
                 return (
-                    <tr role="row" {...headerRowProps}>
+                    <tr {...headerRowProps}>
                         {columns.map((col, i) =>
                             createHeaderCell(col, {
                                 index: i,
@@ -530,10 +524,8 @@ export const TreeTableHeader = React.memo((props) => {
                         )}
                     </tr>
                 );
-            }
-        } else {
-            return null;
         }
+            return null;
     };
 
     const content = props.columnGroup

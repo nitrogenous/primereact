@@ -125,9 +125,9 @@ export default function MultipleColumnsDemo() {
                         header="Name"
                         expander
                         sortable
-                    ></Column>
-                    <Column field="size" header="Size" sortable></Column>
-                    <Column field="type" header="Type" sortable></Column>
+                    />
+                    <Column field="size" header="Size" sortable />
+                    <Column field="type" header="Type" sortable />
                 </TreeTable>
             </div>
             <DocSectionCode code={code} service={["NodeService"]} />

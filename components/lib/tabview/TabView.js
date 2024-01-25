@@ -68,7 +68,7 @@ export const TabView = React.forwardRef((inProps, ref) => {
                 count,
                 first: index === 0,
                 last: index === count - 1,
-                active: index == activeIndexState,
+                active: index === activeIndexState,
                 disabled: getTabProp(tab, "disabled"),
             },
         };
@@ -299,17 +299,16 @@ export const TabView = React.forwardRef((inProps, ref) => {
     const updateInkBar = () => {
         const tabHeader = tabsRef.current[`tab_${activeIndex}`];
 
-        inkbarRef.current.style.width = DomHandler.getWidth(tabHeader) + "px";
+        inkbarRef.current.style.width = `${DomHandler.getWidth(tabHeader)}px`;
         inkbarRef.current.style.left =
-            DomHandler.getOffset(tabHeader).left -
-            DomHandler.getOffset(navRef.current).left +
-            "px";
+            `${DomHandler.getOffset(tabHeader).left -
+            DomHandler.getOffset(navRef.current).left}px`;
     };
 
     const updateScrollBar = ({ index, element }) => {
         const tabHeader = element || tabsRef.current[`tab_${index}`];
 
-        if (tabHeader && tabHeader.scrollIntoView) {
+        if (tabHeader?.scrollIntoView) {
             tabHeader.scrollIntoView({ block: "nearest" });
         }
     };
@@ -408,8 +407,8 @@ export const TabView = React.forwardRef((inProps, ref) => {
             closable,
             closeIcon,
         } = TabPanelBase.getCProps(tab);
-        const headerId = idState + "_header_" + index;
-        const ariaControls = idState + index + "_content";
+        const headerId = `${idState}_header_${index}`;
+        const ariaControls = `${idState + index}_content`;
         const tabIndex = disabled || !selected ? -1 : 0;
         const leftIconElement =
             leftIcon && IconUtils.getJSXIcon(leftIcon, undefined, { props });
@@ -553,7 +552,7 @@ export const TabView = React.forwardRef((inProps, ref) => {
             <div {...navContentProps}>
                 <ul {...navProps}>
                     {headers}
-                    <li {...inkbarProps}></li>
+                    <li {...inkbarProps} />
                 </ul>
             </div>
         );
@@ -573,8 +572,8 @@ export const TabView = React.forwardRef((inProps, ref) => {
                 (!props.renderActiveOnly || isSelected(index))
             ) {
                 const selected = isSelected(index);
-                const contentId = idState + index + "_content";
-                const ariaLabelledBy = idState + "_header_" + index;
+                const contentId = `${idState + index}_content`;
+                const ariaLabelledBy = `${idState}_header_${index}`;
                 const contentProps = mergeProps(
                     {
                         id: contentId,

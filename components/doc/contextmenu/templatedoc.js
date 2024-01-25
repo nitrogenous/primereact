@@ -296,7 +296,7 @@ export default function TemplateDemo() {
                                         {product.name}
                                     </span>
                                     <div className="flex align-items-center gap-2">
-                                        <i className="pi pi-tag text-sm"></i>
+                                        <i className="pi pi-tag text-sm" />
                                         <span>{product.category}</span>
                                     </div>
                                 </div>

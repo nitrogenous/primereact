@@ -180,8 +180,7 @@ export default function CustomContentDemo() {
                     thumbnail={thumbnailTemplate}
                 />
                 <div className="grid" style={{ maxWidth: "400px" }}>
-                    {images &&
-                        images.map((image, index) => {
+                    {images?.map((image, index) => {
                             return (
                                 <div className="col-4" key={index}>
                                     <img

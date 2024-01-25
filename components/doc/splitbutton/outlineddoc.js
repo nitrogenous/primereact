@@ -194,7 +194,7 @@ export default function OutlinedDemo() {
                 </p>
             </DocSectionText>
             <div className="card flex flex-wrap justify-content-center gap-3">
-                <Toast ref={toast}></Toast>
+                <Toast ref={toast} />
                 <SplitButton
                     label="Save"
                     icon="pi pi-plus"

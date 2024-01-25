@@ -69,7 +69,7 @@ export const GalleriaItem = React.memo(
             stopSlideShow();
             prev();
 
-            if (e && e.cancelable) {
+            if (e?.cancelable) {
                 e.preventDefault();
             }
         };
@@ -78,7 +78,7 @@ export const GalleriaItem = React.memo(
             stopSlideShow();
             next();
 
-            if (e && e.cancelable) {
+            if (e?.cancelable) {
                 e.preventDefault();
             }
         };
@@ -357,9 +357,9 @@ export const GalleriaItem = React.memo(
         };
 
         const createIndicator = (index) => {
-            const key = "p-galleria-indicator-" + index;
+            const key = `p-galleria-indicator-${index}`;
             const isActive = props.activeItemIndex === index;
-            let indicator = props.indicator && props.indicator(index);
+            let indicator = props.indicator?.(index);
 
             const indicatorProps = mergeProps(
                 {
@@ -368,7 +368,7 @@ export const GalleriaItem = React.memo(
                     tabIndex: 0,
                     "aria-label": ariaPageLabel(index + 1),
                     "aria-selected": props.activeIndex === index,
-                    "aria-controls": props.id + "_item_" + index,
+                    "aria-controls": `${props.id}_item_${index}`,
                     "data-p-highlight": isActive,
                     onClick: () => onIndicatorClick(index),
                     onMouseEnter: () => onIndicatorMouseEnter(index),
@@ -420,8 +420,7 @@ export const GalleriaItem = React.memo(
         };
 
         const content =
-            props.itemTemplate &&
-            props.itemTemplate(props.value[props.activeItemIndex]);
+            props.itemTemplate?.(props.value[props.activeItemIndex]);
         const backwardNavigator = createBackwardNavigator();
         const forwardNavigator = createForwardNavigator();
         const caption = createCaption();
@@ -445,7 +444,7 @@ export const GalleriaItem = React.memo(
         const itemProps = mergeProps(
             {
                 className: cx("item"),
-                id: props.id + "_item_" + props.activeItemIndex,
+                id: `${props.id}_item_${props.activeItemIndex}`,
                 role: "group",
                 "aria-label": ariaSlideNumber(props.activeItemIndex + 1),
                 "aria-roledescription": localeOption("aria")

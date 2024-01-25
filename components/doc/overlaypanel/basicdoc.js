@@ -72,7 +72,7 @@ export default function BasicDemo() {
                     <img
                         src="https://primefaces.org/cdn/primereact/images/product/bamboo-watch.jpg"
                         alt="Bamboo Watch"
-                    ></img>
+                    />
                 </OverlayPanel>
             </div>
             <DocSectionCode code={code} />

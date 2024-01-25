@@ -88,8 +88,8 @@ export function CommandDoc(props) {
 
     const getBadge = (user) => {
         if (user.role === "Member") return "info";
-        else if (user.role === "Guest") return "warning";
-        else return null;
+        if (user.role === "Guest") return "warning";
+        return null;
     };
 
     const code = {

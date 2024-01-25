@@ -100,7 +100,7 @@ export default function TemplateDemo() {
                         <i
                             className="pi pi-lock"
                             style={{ fontSize: "3rem" }}
-                        ></i>
+                        />
                     }
                 >
                     <Panel header="Prime React News">
@@ -122,7 +122,7 @@ export default function TemplateDemo() {
                     <Button
                         label={buttonText}
                         onClick={() => setBlocked((oldState) => !oldState)}
-                    ></Button>
+                    />
                 </div>
             </div>
             <DocSectionCode code={code} />

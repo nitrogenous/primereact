@@ -116,7 +116,7 @@ export const TieredMenu = React.memo(
             if (props.popup) {
                 targetRef.current = event.currentTarget;
                 setVisibleState(true);
-                props.onShow && props.onShow(event);
+                props.onShow?.(event);
                 relatedTarget.current = event.relatedTarget || null;
             }
 
@@ -130,7 +130,7 @@ export const TieredMenu = React.memo(
         const hide = (event, isFocus) => {
             if (props.popup) {
                 setVisibleState(false);
-                props.onHide && props.onHide(event);
+                props.onHide?.(event);
             }
 
             const menuElement = getMenuElement();
@@ -157,7 +157,7 @@ export const TieredMenu = React.memo(
                       },
             );
 
-            props.onFocus && props.onFocus(event);
+            props.onFocus?.(event);
         };
 
         const onBlur = (event) => {
@@ -165,7 +165,7 @@ export const TieredMenu = React.memo(
             setFocusedItemInfo({ index: -1, level: 0, parentKey: "" });
             searchValue.current = "";
             setDirty(false);
-            props.onBlur && props.onBlur(event);
+            props.onBlur?.(event);
         };
 
         const onKeyDown = (event) => {
@@ -428,7 +428,7 @@ export const TieredMenu = React.memo(
                 props.popup && DomHandler.focus(targetRef.current);
                 anchorElement
                     ? anchorElement.click()
-                    : element && element.click();
+                    : element?.click();
             }
 
             event.preventDefault();
@@ -632,8 +632,7 @@ export const TieredMenu = React.memo(
             );
 
             if (element) {
-                element.scrollIntoView &&
-                    element.scrollIntoView({
+                element.scrollIntoView?.({
                         block: "nearest",
                         inline: "start",
                     });
@@ -644,10 +643,9 @@ export const TieredMenu = React.memo(
             (items, level = 0, parent = {}, parentKey = "") => {
                 const processedItems = [];
 
-                items &&
-                    items.forEach((item, index) => {
+                items?.forEach((item, index) => {
                         const key =
-                            (parentKey !== "" ? parentKey + "_" : "") + index;
+                            (parentKey !== "" ? `${parentKey}_` : "") + index;
                         const newItem = {
                             item,
                             index,
@@ -657,7 +655,7 @@ export const TieredMenu = React.memo(
                             parentKey,
                         };
 
-                        newItem["items"] = createProcessedItems(
+                        newItem.items = createProcessedItems(
                             item.items,
                             level + 1,
                             newItem,
@@ -674,8 +672,8 @@ export const TieredMenu = React.memo(
         const createStyle = () => {
             if (!styleElementRef.current) {
                 styleElementRef.current = DomHandler.createInlineStyle(
-                    (context && context.nonce) || PrimeReact.nonce,
-                    context && context.styleContainer,
+                    (context?.nonce) || PrimeReact.nonce,
+                    context?.styleContainer,
                 );
 
                 const selector = `${attributeSelectorState}`;
@@ -728,7 +726,7 @@ export const TieredMenu = React.memo(
 
             if (targetWidth > DomHandler.getOuterWidth(containerRef.current)) {
                 containerRef.current.style.minWidth =
-                    DomHandler.getOuterWidth(targetRef.current) + "px";
+                    `${DomHandler.getOuterWidth(targetRef.current)}px`;
             }
         };
 
@@ -737,10 +735,10 @@ export const TieredMenu = React.memo(
                 ZIndexUtils.set(
                     "menu",
                     containerRef.current,
-                    (context && context.autoZIndex) || PrimeReact.autoZIndex,
+                    (context?.autoZIndex) || PrimeReact.autoZIndex,
                     props.baseZIndex ||
-                        (context && context.zIndex["menu"]) ||
-                        PrimeReact.zIndex["menu"],
+                        (context?.zIndex.menu) ||
+                        PrimeReact.zIndex.menu,
                 );
             }
 
@@ -808,7 +806,7 @@ export const TieredMenu = React.memo(
                 focusedItemInfo.index !== -1
                     ? `${idState}${
                           ObjectUtils.isNotEmpty(focusedItemInfo.parentKey)
-                              ? "_" + focusedItemInfo.parentKey
+                              ? `_${focusedItemInfo.parentKey}`
                               : ""
                       }_${focusedItemInfo.index}`
                     : null;
@@ -901,7 +899,7 @@ export const TieredMenu = React.memo(
                 <CSSTransition nodeRef={containerRef} {...transitionProps}>
                     <div {...rootProps}>
                         <TieredMenuSub
-                            id={idState + "_list"}
+                            id={`${idState}_list`}
                             ref={menuRef}
                             hostName="TieredMenu"
                             menuProps={props}

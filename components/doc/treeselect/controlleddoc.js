@@ -25,7 +25,7 @@ export function ControlledDoc(props) {
     };
 
     const expandNode = (node, _expandedKeys) => {
-        if (node.children && node.children.length) {
+        if (node.children?.length) {
             _expandedKeys[node.key] = true;
 
             for (const child of node.children) {
@@ -225,7 +225,7 @@ export default function ControlledDemo() {
                     expandedKeys={expandedKeys}
                     onToggle={(e) => setExpandedKeys(e.value)}
                     panelHeaderTemplate={headerTemplate}
-                ></TreeSelect>
+                />
             </div>
             <DocSectionCode code={code} service={["NodeService"]} />
         </>

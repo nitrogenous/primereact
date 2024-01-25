@@ -89,7 +89,7 @@ export default function ThresholdDemo() {
                                 { "bg-primary": visible },
                             )}
                         >
-                            <i className="pi pi-prime text-4xl"></i>
+                            <i className="pi pi-prime text-4xl" />
                         </div>
                     </div>
                 </div>

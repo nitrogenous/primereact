@@ -110,13 +110,13 @@ export const VirtualScroller = React.memo(
 
         const scrollTo = (options) => {
             lastScrollPos.current = both ? { top: 0, left: 0 } : 0;
-            elementRef.current && elementRef.current.scrollTo(options);
+            elementRef.current?.scrollTo(options);
         };
 
         const scrollToIndex = (index, behavior = "auto") => {
             const { numToleratedItems } = calculateNumItems();
             const contentPos = getContentPosition();
-            const calculateFirst = (_index = 0, _numT) =>
+            const calculateFirst = (_index, _numT) =>
                 _index <= _numT ? 0 : _index;
             const calculateCoord = (_first, _size, _cpos) =>
                 _first * _size + _cpos;
@@ -405,7 +405,7 @@ export const VirtualScroller = React.memo(
                         ),
                     };
 
-                    props.onLazyLoad && props.onLazyLoad(lazyLoadState.current);
+                    props.onLazyLoad?.(lazyLoadState.current);
                 });
             }
         };
@@ -431,16 +431,16 @@ export const VirtualScroller = React.memo(
 
                         (both || horizontal) &&
                             (elementRef.current.style.width =
-                                (width < defaultWidth.current
+                                `${width < defaultWidth.current
                                     ? width
                                     : props.scrollWidth ||
-                                      defaultWidth.current) + "px");
+                                      defaultWidth.current}px`);
                         (both || vertical) &&
                             (elementRef.current.style.height =
-                                (height < defaultHeight.current
+                                `${height < defaultHeight.current
                                     ? height
                                     : props.scrollHeight ||
-                                      defaultHeight.current) + "px");
+                                      defaultHeight.current}px`);
 
                         contentRef.current.style.minHeight =
                             contentRef.current.style.minWidth = "";
@@ -451,7 +451,7 @@ export const VirtualScroller = React.memo(
             }
         };
 
-        const getLast = (last = 0, isCols) => {
+        const getLast = (last, isCols) => {
             return props.items
                 ? Math.min(
                       isCols
@@ -528,7 +528,7 @@ export const VirtualScroller = React.memo(
                         ...spacerStyle.current,
                         ...{
                             [`${_name}`]:
-                                (_value || []).length * _size + _cpos + "px",
+                                `${(_value || []).length * _size + _cpos}px`,
                         },
                     });
 
@@ -623,7 +623,7 @@ export const VirtualScroller = React.memo(
                 _isScrollDownOrRight,
             ) => {
                 if (_currentIndex <= _numT) return 0;
-                else
+                
                     return Math.max(
                         0,
                         _isScrollDownOrRight
@@ -816,8 +816,7 @@ export const VirtualScroller = React.memo(
                 setLastState(last);
                 lastScrollPos.current = scrollPos;
 
-                props.onScrollIndexChange &&
-                    props.onScrollIndexChange(newState);
+                props.onScrollIndexChange?.(newState);
 
                 if (props.lazy && isPageChanged(first)) {
                     const newLazyLoadState = {
@@ -850,7 +849,7 @@ export const VirtualScroller = React.memo(
         };
 
         const onScroll = (event) => {
-            props.onScroll && props.onScroll(event);
+            props.onScroll?.(event);
 
             if (props.delay) {
                 if (scrollTimeout.current) {
@@ -974,8 +973,8 @@ export const VirtualScroller = React.memo(
                                       lastState.cols,
                                   ),
                         );
-                else if (horizontal && props.columns) return items;
-                else
+                if (horizontal && props.columns) return items;
+                
                     return items.slice(
                         props.appendOnly ? 0 : firstState,
                         lastState,
@@ -1149,7 +1148,7 @@ export const VirtualScroller = React.memo(
                     ptm("spacer"),
                 );
 
-                return <div {...spacerProps}></div>;
+                return <div {...spacerProps} />;
             }
 
             return null;
@@ -1238,7 +1237,7 @@ export const VirtualScroller = React.memo(
                     {content}
                 </React.Fragment>
             );
-        } else {
+        }
             const className = classNames(
                 "p-virtualscroller",
                 {
@@ -1272,7 +1271,6 @@ export const VirtualScroller = React.memo(
                     {loader}
                 </div>
             );
-        }
     }),
 );
 

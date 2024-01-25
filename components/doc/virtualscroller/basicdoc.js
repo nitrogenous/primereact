@@ -17,7 +17,7 @@ export function BasicDoc(props) {
         return (
             <div
                 className={className}
-                style={{ height: options.props.itemSize + "px" }}
+                style={{ height: `${options.props.itemSize}px` }}
             >
                 {item}
             </div>

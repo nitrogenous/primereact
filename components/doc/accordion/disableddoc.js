@@ -160,7 +160,7 @@ export default function DisabledDemo() {
                             eligendi optio cumque nihil impedit quo minus.
                         </p>
                     </AccordionTab>
-                    <AccordionTab header="Header IV" disabled></AccordionTab>
+                    <AccordionTab header="Header IV" disabled />
                 </Accordion>
             </div>
             <DocSectionCode code={code} />

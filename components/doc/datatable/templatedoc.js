@@ -46,7 +46,7 @@ export function TemplateDoc(props) {
             <Tag
                 value={product.inventoryStatus}
                 severity={getSeverity(product)}
-            ></Tag>
+            />
         );
     };
 
@@ -281,26 +281,26 @@ export default function TemplateDemo() {
                         footer={footer}
                         tableStyle={{ minWidth: "60rem" }}
                     >
-                        <Column field="name" header="Name"></Column>
+                        <Column field="name" header="Name" />
                         <Column
                             header="Image"
                             body={imageBodyTemplate}
-                        ></Column>
+                        />
                         <Column
                             field="price"
                             header="Price"
                             body={priceBodyTemplate}
-                        ></Column>
-                        <Column field="category" header="Category"></Column>
+                        />
+                        <Column field="category" header="Category" />
                         <Column
                             field="rating"
                             header="Reviews"
                             body={ratingBodyTemplate}
-                        ></Column>
+                        />
                         <Column
                             header="Status"
                             body={statusBodyTemplate}
-                        ></Column>
+                        />
                     </DataTable>
                 </div>
             </DeferredDemo>

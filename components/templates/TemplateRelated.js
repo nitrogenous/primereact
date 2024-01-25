@@ -12,7 +12,7 @@ const TemplateRelated = ({ relatedData }) => {
                             key={i}
                             className="template-related-slide-card"
                         >
-                            <img src={data.src} alt={"Related Image " + i} />
+                            <img src={data.src} alt={`Related Image ${i}`} />
                         </a>
                     ))}
                 </div>

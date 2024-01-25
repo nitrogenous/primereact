@@ -32,8 +32,7 @@ export const MenubarSub = React.memo(
                 return;
             }
 
-            props.onItemMouseEnter &&
-                props.onItemMouseEnter({
+            props.onItemMouseEnter?.({
                     originalEvent: event,
                     processedItem: item,
                 });
@@ -63,11 +62,11 @@ export const MenubarSub = React.memo(
         };
 
         const onLeafClick = (event) => {
-            props.onLeafClick && props.onLeafClick(event);
+            props.onLeafClick?.(event);
         };
 
         const getItemId = (processedItem) => {
-            if (processedItem.item && processedItem.item.id) {
+            if (processedItem.item?.id) {
                 return processedItem.item.id;
             }
 
@@ -75,7 +74,7 @@ export const MenubarSub = React.memo(
         };
 
         const getItemProp = (processedItem, name, params) => {
-            return processedItem && processedItem.item
+            return processedItem?.item
                 ? ObjectUtils.getItemValue(processedItem.item[name], params)
                 : undefined;
         };
@@ -125,7 +124,7 @@ export const MenubarSub = React.memo(
         };
 
         const createSeparator = (index) => {
-            const key = props.id + "_separator_" + index;
+            const key = `${props.id}_separator_${index}`;
             const separatorProps = mergeProps(
                 {
                     id: key,
@@ -136,11 +135,11 @@ export const MenubarSub = React.memo(
                 ptm("separator", { hostName: props.hostName }),
             );
 
-            return <li {...separatorProps}></li>;
+            return <li {...separatorProps} />;
         };
 
         const createSubmenu = (processedItem) => {
-            const items = processedItem && processedItem.items;
+            const items = processedItem?.items;
 
             if (items) {
                 return (
@@ -296,7 +295,6 @@ export const MenubarSub = React.memo(
                     "aria-posinset": getAriaPosInset(index),
                     "data-p-highlight": active,
                     "data-p-focused": focused,
-                    "data-p-disabled": disabled,
                     className: classNames(
                         itemClassName,
                         cx("menuitem", { active, focused, disabled }),

@@ -38,7 +38,7 @@ export default function NewsSection() {
     return (
         <div className="layout-news">
             <div className="layout-news-container">
-                <i></i>
+                <i />
                 <div className="layout-news-content">
                     <span className="layout-news-text">
                         {announcement.content}
@@ -51,7 +51,7 @@ export default function NewsSection() {
                     </a>
                 </div>
                 <a className="layout-news-close" onClick={close}>
-                    <span className="pi pi-times"></span>
+                    <span className="pi pi-times" />
                 </a>
             </div>
         </div>

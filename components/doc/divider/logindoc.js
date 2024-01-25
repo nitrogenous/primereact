@@ -141,7 +141,7 @@ export default function LoginDemo() {
                             label="Login"
                             icon="pi pi-user"
                             className="w-10rem mx-auto"
-                        ></Button>
+                        />
                     </div>
                     <div className="w-full md:w-2">
                         <Divider layout="vertical" className="hidden md:flex">
@@ -161,7 +161,7 @@ export default function LoginDemo() {
                             icon="pi pi-user-plus"
                             severity="success"
                             className="w-10rem"
-                        ></Button>
+                        />
                     </div>
                 </div>
             </div>

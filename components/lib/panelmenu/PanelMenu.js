@@ -69,13 +69,12 @@ export const PanelMenu = React.memo(
         const isItemActive = (item) => {
             if (props.expandedKeys) {
                 return props.expandedKeys[getItemProp(item, "key")];
-            } else {
+            }
                 return props.multiple
                     ? activeItemsState.some((subItem) =>
                           ObjectUtils.equals(item, subItem),
                       )
                     : ObjectUtils.equals(item, activeItemState);
-            }
         };
 
         const isItemVisible = (item) => {
@@ -266,7 +265,7 @@ export const PanelMenu = React.memo(
                 setActiveItemState(_activeItemState);
 
                 if (props.multiple) {
-                    const activeItems = activeItemsState;
+                    let activeItems = activeItemsState;
 
                     if (
                         activeItemsState.some((subItem) => {
@@ -285,10 +284,8 @@ export const PanelMenu = React.memo(
 
                 changeExpandedKeys({ item, expanded: isExpanded });
                 isExpanded && event
-                    ? props.onOpen &&
-                      props.onOpen({ originalEvent: event, item })
-                    : props.onClose &&
-                      props.onClose({ originalEvent: event, item });
+                    ? props.onOpen?.({ originalEvent: event, item })
+                    : props.onClose?.({ originalEvent: event, item });
             }
         };
 
@@ -299,7 +296,7 @@ export const PanelMenu = React.memo(
                 if (expanded) _keys[item.key] = true;
                 else delete _keys[item.key];
 
-                props.onExpandedKeysChange && props.onExpandedKeysChange(_keys);
+                props.onExpandedKeysChange?.(_keys);
             }
         };
 
@@ -330,8 +327,7 @@ export const PanelMenu = React.memo(
         React.useEffect(() => {
             setAnimationDisabled(true);
 
-            props.model &&
-                props.model.forEach((item) => {
+            props.model?.forEach((item) => {
                     if (item.expanded) {
                         changeActiveItem(null, item);
                         item.expanded = false;
@@ -349,7 +345,7 @@ export const PanelMenu = React.memo(
                 return null;
             }
 
-            const key = item.id || idState + "_" + index;
+            const key = item.id || `${idState}_${index}`;
             const active = isItemActive(item) || item.expanded;
             const iconClassName = classNames("p-menuitem-icon", item.icon);
             const headerIconProps = mergeProps(

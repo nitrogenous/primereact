@@ -29,9 +29,9 @@ export function ListDoc(props) {
         IconService.getIcons().then((data) => {
             data.sort((icon1, icon2) => {
                 if (icon1.properties.name < icon2.properties.name) return -1;
-                else if (icon1.properties.name < icon2.properties.name)
+                if (icon1.properties.name < icon2.properties.name)
                     return 1;
-                else return 0;
+                return 0;
             });
 
             setIcons(data);
@@ -60,8 +60,7 @@ export function ListDoc(props) {
 
             <div className="card">
                 <div className="grid text-center">
-                    {filteredIcons &&
-                        filteredIcons.map((iconMeta) => {
+                    {filteredIcons?.map((iconMeta) => {
                             const { icon, properties } = iconMeta;
 
                             return (
@@ -72,10 +71,9 @@ export function ListDoc(props) {
                                     >
                                         <i
                                             className={
-                                                "text-2xl mb-3 text-color-secondary pi pi-" +
-                                                properties.name
+                                                `text-2xl mb-3 text-color-secondary pi pi-${properties.name}`
                                             }
-                                        ></i>
+                                        />
                                         <div>pi-{properties.name}</div>
                                     </div>
                                 )

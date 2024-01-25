@@ -18,7 +18,7 @@ export function ExampleDoc(props) {
                         }}
                         src="https://stackblitz.com/edit/react-w9xywf?file=src%2FApp.js"
                         allowfullscreen
-                    ></iframe>
+                    />
                 </div>
             </DocSectionText>
         </>

@@ -10,12 +10,10 @@ const Menu = memo((props) => {
         const rootItem = { ...data };
 
         rootItem.expanded =
-            rootItem.children &&
-            rootItem.children.some(
+            rootItem.children?.some(
                 (item) =>
                     item.to === router.pathname ||
-                    (item.children &&
-                        item.children.some((it) => it.to === router.pathname)),
+                    (item.children?.some((it) => it.to === router.pathname)),
             );
 
         return rootItem;

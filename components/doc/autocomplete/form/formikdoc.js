@@ -20,7 +20,7 @@ export function FormikDoc(props) {
     };
 
     const search = (event) => {
-        setItems([...Array(10).keys()].map((item) => event.query + "-" + item));
+        setItems([...Array(10).keys()].map((item) => `${event.query}-${item}`));
     };
 
     const formik = useFormik({

@@ -54,10 +54,10 @@ export function PTDoc(props) {
                                 value={product.rating}
                                 readOnly
                                 cancel={false}
-                            ></Rating>
+                            />
                             <div className="flex align-items-center gap-3">
                                 <span className="flex align-items-center gap-2">
-                                    <i className="pi pi-tag"></i>
+                                    <i className="pi pi-tag" />
                                     <span className="font-semibold">
                                         {product.category}
                                     </span>
@@ -65,7 +65,7 @@ export function PTDoc(props) {
                                 <Tag
                                     value={product.inventoryStatus}
                                     severity={getSeverity(product)}
-                                ></Tag>
+                                />
                             </div>
                         </div>
                         <div className="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
@@ -78,7 +78,7 @@ export function PTDoc(props) {
                                 disabled={
                                     product.inventoryStatus === "OUTOFSTOCK"
                                 }
-                            ></Button>
+                            />
                         </div>
                     </div>
                 </div>
@@ -92,7 +92,7 @@ export function PTDoc(props) {
                 <div className="p-4 border-1 surface-border surface-card border-round">
                     <div className="flex flex-wrap align-items-center justify-content-between gap-2">
                         <div className="flex align-items-center gap-2">
-                            <i className="pi pi-tag"></i>
+                            <i className="pi pi-tag" />
                             <span className="font-semibold">
                                 {product.category}
                             </span>
@@ -100,7 +100,7 @@ export function PTDoc(props) {
                         <Tag
                             value={product.inventoryStatus}
                             severity={getSeverity(product)}
-                        ></Tag>
+                        />
                     </div>
                     <div className="flex flex-column align-items-center gap-3 py-5">
                         <img
@@ -113,7 +113,7 @@ export function PTDoc(props) {
                             value={product.rating}
                             readOnly
                             cancel={false}
-                        ></Rating>
+                        />
                     </div>
                     <div className="flex align-items-center justify-content-between">
                         <span className="text-2xl font-semibold">
@@ -123,7 +123,7 @@ export function PTDoc(props) {
                             icon="pi pi-shopping-cart"
                             className="p-button-rounded"
                             disabled={product.inventoryStatus === "OUTOFSTOCK"}
-                        ></Button>
+                        />
                     </div>
                 </div>
             </div>
@@ -136,7 +136,7 @@ export function PTDoc(props) {
         }
 
         if (layout === "list") return listItem(product);
-        else if (layout === "grid") return gridItem(product);
+        if (layout === "grid") return gridItem(product);
     };
 
     const header = () => {
@@ -455,7 +455,7 @@ export default function BasicDemo() {
 
     return (
         <>
-            <DocSectionText {...props}></DocSectionText>
+            <DocSectionText {...props} />
             <div className="card">
                 <DataView
                     value={products}

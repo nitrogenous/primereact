@@ -72,17 +72,17 @@ export default function BasicDemo() {
                         icon="pi pi-plus"
                         className="p-button-outlined p-button-rounded p-button-success"
                         onClick={increment}
-                    ></Button>
+                    />
                     <Button
                         icon="pi pi-minus"
                         className="p-button-outlined p-button-rounded"
                         onClick={decrement}
-                    ></Button>
+                    />
                     <Button
                         icon="pi pi-times"
                         className="p-button-outlined p-button-rounded p-button-danger"
                         onClick={reset}
-                    ></Button>
+                    />
                 </div>
             </div>
             <DocSectionCode code={code} />

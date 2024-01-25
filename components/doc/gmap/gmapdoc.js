@@ -42,7 +42,7 @@ export function GMapDoc(props) {
 
             infoWindow.current =
                 infoWindow.current || new google.maps.InfoWindow();
-            infoWindow.setContent("<div>" + title + "</div>");
+            infoWindow.setContent(`<div>${title}</div>`);
             infoWindow.open(event.map, event.overlay);
             event.map.setCenter(event.overlay.getPosition());
 
@@ -607,7 +607,7 @@ export default function GMapDoc() {
                     indicates a failed validation.
                 </p>
             </DocSectionText>
-            <Toast ref={toast}></Toast>
+            <Toast ref={toast} />
 
             {googleMapsReady && (
                 <div className="card">

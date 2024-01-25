@@ -38,8 +38,8 @@ export function LazyDoc(props) {
 
                 for (let i = 0; i < 3; i++) {
                     node.children.push({
-                        key: node.key + "-" + i,
-                        label: "Lazy " + node.label + "-" + i,
+                        key: `${node.key}-${i}`,
+                        label: `Lazy ${node.label}-${i}`,
                     });
                 }
 

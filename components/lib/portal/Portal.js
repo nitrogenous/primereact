@@ -20,16 +20,16 @@ export const Portal = React.memo((inProps) => {
     useMountEffect(() => {
         if (DomHandler.isClient() && !mountedState) {
             setMountedState(true);
-            props.onMounted && props.onMounted();
+            props.onMounted?.();
         }
     });
 
     useUpdateEffect(() => {
-        props.onMounted && props.onMounted();
+        props.onMounted?.();
     }, [mountedState]);
 
     useUnmountEffect(() => {
-        props.onUnmounted && props.onUnmounted();
+        props.onUnmounted?.();
     });
 
     const element = props.element || props.children;
@@ -37,7 +37,7 @@ export const Portal = React.memo((inProps) => {
     if (element && mountedState) {
         let appendTo =
             props.appendTo ||
-            (context && context.appendTo) ||
+            (context?.appendTo) ||
             PrimeReact.appendTo;
 
         if (ObjectUtils.isFunction(appendTo)) {

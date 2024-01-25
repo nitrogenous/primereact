@@ -64,7 +64,7 @@ export function PTDoc(props) {
                     <Tag
                         value={product.inventoryStatus}
                         severity={getSeverity(product)}
-                    ></Tag>
+                    />
                     <div className="mt-5 flex flex-wrap gap-2 justify-content-center">
                         <Button
                             icon="pi pi-search"
@@ -290,7 +290,7 @@ export default function PTDemo() {
 
     return (
         <>
-            <DocSectionText {...props}></DocSectionText>
+            <DocSectionText {...props} />
             <div className="card">
                 <Carousel
                     value={products}

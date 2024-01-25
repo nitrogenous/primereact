@@ -114,7 +114,7 @@ export const RowRadioButton = React.memo((props) => {
                 <input ref={inputRef} {...hiddenInputProps} />
             </div>
             <div {...radiobuttonProps}>
-                <div {...radiobuttonIconProps}></div>
+                <div {...radiobuttonIconProps} />
             </div>
         </div>
     );

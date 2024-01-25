@@ -72,7 +72,7 @@ export default function TemplateDemo() {
                             style={{ width: "18px" }}
                         />
                         <span className="text-base">Italy</span>
-                        <i className="pi pi-times text-xs"></i>
+                        <i className="pi pi-times text-xs" />
                     </div>
                 </Tag>
             </div>

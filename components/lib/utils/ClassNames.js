@@ -15,7 +15,7 @@ export function classNames(...args) {
                 const _classes = Array.isArray(className)
                     ? className
                     : Object.entries(className).map(([key, value]) =>
-                          !!value ? key : null,
+                          value ? key : null,
                       );
 
                 classes = _classes.length

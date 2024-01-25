@@ -130,20 +130,22 @@ export const MultiSelect = React.memo(
 
             switch (originalEvent.which) {
                 //down
-                case 40:
+                case 40: {
                     const nextItem = findNextItem(listItem);
 
-                    nextItem && nextItem.focus();
+                    nextItem?.focus();
                     originalEvent.preventDefault();
                     break;
+                }
 
                 //up
-                case 38:
+                case 38: {
                     const prevItem = findPrevItem(listItem);
 
-                    prevItem && prevItem.focus();
+                    prevItem?.focus();
                     originalEvent.preventDefault();
                     break;
+                }
 
                 //enter and space
                 case 13:
@@ -338,7 +340,7 @@ export const MultiSelect = React.memo(
 
         const resetFilter = () => {
             setFilterState("");
-            props.onFilter && props.onFilter({ filter: "" });
+            props.onFilter?.({ filter: "" });
         };
 
         const scrollInView = () => {
@@ -347,7 +349,7 @@ export const MultiSelect = React.memo(
                 'li[data-p-highlight="true"]',
             );
 
-            if (highlightItem && highlightItem.scrollIntoView) {
+            if (highlightItem?.scrollIntoView) {
                 highlightItem.scrollIntoView({
                     block: "nearest",
                     inline: "nearest",
@@ -367,9 +369,9 @@ export const MultiSelect = React.memo(
             ZIndexUtils.set(
                 "overlay",
                 overlayRef.current,
-                (context && context.autoZIndex) || PrimeReact.autoZIndex,
-                (context && context.zIndex["overlay"]) ||
-                    PrimeReact.zIndex["overlay"],
+                (context?.autoZIndex) || PrimeReact.autoZIndex,
+                (context?.zIndex.overlay) ||
+                    PrimeReact.zIndex.overlay,
             );
             DomHandler.addStyles(overlayRef.current, {
                 position: "absolute",
@@ -378,13 +380,13 @@ export const MultiSelect = React.memo(
             });
             alignOverlay();
             scrollInView();
-            callback && callback();
+            callback?.();
         };
 
         const onOverlayEntered = (callback) => {
-            callback && callback();
+            callback?.();
             bindOverlayListener();
-            props.onShow && props.onShow();
+            props.onShow?.();
         };
 
         const onOverlayExit = () => {
@@ -398,7 +400,7 @@ export const MultiSelect = React.memo(
 
             ZIndexUtils.clear(overlayRef.current);
 
-            props.onHide && props.onHide();
+            props.onHide?.();
         };
 
         const alignOverlay = () => {
@@ -406,7 +408,7 @@ export const MultiSelect = React.memo(
                 overlayRef.current,
                 labelRef.current.parentElement,
                 props.appendTo ||
-                    (context && context.appendTo) ||
+                    (context?.appendTo) ||
                     PrimeReact.appendTo,
             );
         };
@@ -427,7 +429,7 @@ export const MultiSelect = React.memo(
 
         const isPanelClicked = (event) => {
             return (
-                overlayRef.current && overlayRef.current.contains(event.target)
+                overlayRef.current?.contains(event.target)
             );
         };
 
@@ -454,9 +456,8 @@ export const MultiSelect = React.memo(
                     return optionIndex !== -1
                         ? { group: groupIndex, option: optionIndex }
                         : -1;
-                } else {
-                    return findOptionIndexInList(props.value, props.options);
                 }
+                    return findOptionIndexInList(props.value, props.options);
             }
 
             return -1;
@@ -522,18 +523,18 @@ export const MultiSelect = React.memo(
 
         const onFocus = (event) => {
             setFocusedState(true);
-            props.onFocus && props.onFocus(event);
+            props.onFocus?.(event);
         };
 
         const onBlur = (event) => {
             setFocusedState(false);
-            props.onBlur && props.onBlur(event);
+            props.onBlur?.(event);
         };
 
         const isAllSelected = () => {
             if (props.onSelectAll) {
                 return props.selectAll;
-            } else {
+            }
                 if (ObjectUtils.isEmpty(visibleOptions)) {
                     return false;
                 }
@@ -561,17 +562,15 @@ export const MultiSelect = React.memo(
                     }
 
                     return areAllSelected;
-                } else {
-                    return !options.some((option) => !isSelected(option));
                 }
-            }
+                    return !options.some((option) => !isSelected(option));
         };
 
         const getOptionLabel = (option) => {
             return props.optionLabel
                 ? ObjectUtils.resolveFieldData(option, props.optionLabel)
-                : option && option["label"] !== undefined
-                  ? option["label"]
+                : option && option.label !== undefined
+                  ? option.label
                   : option;
         };
 
@@ -589,8 +588,8 @@ export const MultiSelect = React.memo(
                 return data !== null ? data : option;
             }
 
-            return option && option["value"] !== undefined
-                ? option["value"]
+            return option && option.value !== undefined
+                ? option.value
                 : option;
         };
 
@@ -631,15 +630,15 @@ export const MultiSelect = React.memo(
                       );
             }
 
-            return option && option["disabled"] !== undefined
-                ? option["disabled"]
+            return option && option.disabled !== undefined
+                ? option.disabled
                 : false;
         };
 
         const isOptionValueUsed = (option) => {
             return (
                 (!props.useOptionAsValue && props.optionValue) ||
-                (option && option["value"] !== undefined)
+                (option && option.value !== undefined)
             );
         };
 
@@ -668,7 +667,7 @@ export const MultiSelect = React.memo(
             if (pattern.test(props.selectedItemsLabel)) {
                 return props.selectedItemsLabel.replace(
                     props.selectedItemsLabel.match(pattern)[0],
-                    props.value.length + "",
+                    `${props.value.length}`,
                 );
             }
 
@@ -684,7 +683,7 @@ export const MultiSelect = React.memo(
                     props.value.length > props.maxSelectedLabels
                 ) {
                     return getSelectedItemsLabel();
-                } else {
+                }
                     if (ObjectUtils.isArray(props.value)) {
                         return props.value.reduce(
                             (acc, value, index) =>
@@ -693,10 +692,8 @@ export const MultiSelect = React.memo(
                                 getLabelByValue(value),
                             "",
                         );
-                    } else {
-                        return "";
                     }
-                }
+                        return "";
             }
 
             return label;
@@ -710,7 +707,7 @@ export const MultiSelect = React.memo(
                         props.value.length > props.maxSelectedLabels
                     ) {
                         return getSelectedItemsLabel();
-                    } else {
+                    }
                         return props.value.map((val, index) => {
                             const item = ObjectUtils.getJSXElement(
                                 props.selectedItemTemplate,
@@ -723,13 +720,11 @@ export const MultiSelect = React.memo(
                                 </React.Fragment>
                             );
                         });
-                    }
-                } else {
+                }
                     return ObjectUtils.getJSXElement(
                         props.selectedItemTemplate,
                     );
-                }
-            } else {
+            }
                 if (props.display === "chip" && !empty) {
                     const value = props.value.slice(
                         0,
@@ -783,7 +778,6 @@ export const MultiSelect = React.memo(
                 }
 
                 return getLabel();
-            }
         };
 
         const getVisibleOptions = () => {
@@ -807,7 +801,7 @@ export const MultiSelect = React.memo(
                             props.filterLocale,
                         );
 
-                        if (filteredSubOptions && filteredSubOptions.length) {
+                        if (filteredSubOptions?.length) {
                             filteredGroups.push({
                                 ...optgroup,
                                 ...{
@@ -819,7 +813,7 @@ export const MultiSelect = React.memo(
                     }
 
                     return filteredGroups;
-                } else {
+                }
                     return FilterService.filter(
                         props.options,
                         searchFields,
@@ -827,10 +821,8 @@ export const MultiSelect = React.memo(
                         props.filterMatchMode,
                         props.filterLocale,
                     );
-                }
-            } else {
-                return props.options;
             }
+                return props.options;
         };
 
         React.useImperativeHandle(ref, () => ({

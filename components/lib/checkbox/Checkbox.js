@@ -65,7 +65,7 @@ export const Checkbox = React.memo(
                     },
                 };
 
-                props.onClick && props.onClick(eventData);
+                props.onClick?.(eventData);
 
                 // do not continue if the user defined click wants to prevent
                 if (event.defaultPrevented) {
@@ -73,7 +73,7 @@ export const Checkbox = React.memo(
                 }
 
                 if (isInputToggled || isCheckboxToggled) {
-                    props.onChange && props.onChange(eventData);
+                    props.onChange?.(eventData);
                 }
 
                 DomHandler.focus(inputRef.current);

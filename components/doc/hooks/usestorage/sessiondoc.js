@@ -65,12 +65,12 @@ export default function SessionDoc() {
                         icon="pi pi-plus"
                         className="p-button-outlined p-button-rounded p-button-success"
                         onClick={() => setCount(count + 1)}
-                    ></Button>
+                    />
                     <Button
                         icon="pi pi-times"
                         className="p-button-outlined p-button-rounded p-button-danger"
                         onClick={() => setCount(0)}
-                    ></Button>
+                    />
                 </div>
             </div>
             <DocSectionCode code={code} />

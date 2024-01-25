@@ -86,21 +86,21 @@ export const SplitButton = React.memo(
 
         const show = (event) => {
             setOverlayVisibleState(true);
-            menuRef.current && menuRef.current.show(event);
+            menuRef.current?.show(event);
         };
 
         const hide = (event) => {
             setOverlayVisibleState(false);
-            menuRef.current && menuRef.current.hide(event);
+            menuRef.current?.hide(event);
         };
 
         const onMenuShow = () => {
-            props.onShow && props.onShow();
+            props.onShow?.();
         };
 
         const onMenuHide = () => {
             setOverlayVisibleState(false);
-            props.onHide && props.onHide();
+            props.onHide?.();
         };
 
         const alignOverlay = () => {
@@ -108,7 +108,7 @@ export const SplitButton = React.memo(
                 overlayRef.current,
                 defaultButtonRef.current.parentElement,
                 props.appendTo ||
-                    (context && context.appendTo) ||
+                    (context?.appendTo) ||
                     PrimeReact.appendTo,
             );
         };
@@ -145,7 +145,7 @@ export const SplitButton = React.memo(
         const buttonContent = props.buttonTemplate
             ? ObjectUtils.getJSXElement(props.buttonTemplate, props)
             : null;
-        const menuId = idState + "_overlay";
+        const menuId = `${idState}_overlay`;
 
         const dropdownIcon = () => {
             const iconProps = mergeProps(

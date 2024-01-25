@@ -52,7 +52,7 @@ export const UIMessage = React.memo(
 
         const onClose = (event) => {
             clearTimer();
-            props.onClose && props.onClose(props.message);
+            props.onClose?.(props.message);
 
             if (event) {
                 event.preventDefault();
@@ -61,7 +61,7 @@ export const UIMessage = React.memo(
         };
 
         const onClick = () => {
-            props.onClick && props.onClick(props.message);
+            props.onClick?.(props.message);
         };
 
         const createCloseIcon = () => {

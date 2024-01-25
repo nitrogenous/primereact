@@ -107,7 +107,7 @@ export default function BasicDemo() {
                     className="md:w-20rem w-full"
                     placeholder="Select Item"
                     showClear
-                ></TreeSelect>
+                />
             </div>
             <DocSectionCode code={code} service={["NodeService"]} />
         </>

@@ -96,11 +96,10 @@ export const TabMenu = React.memo(
 
                     if (DomHandler.getAttribute(tab, "data-p-highlight")) {
                         inkbarRef.current.style.width =
-                            DomHandler.getWidth(tab) + "px";
+                            `${DomHandler.getWidth(tab)}px`;
                         inkbarRef.current.style.left =
-                            DomHandler.getOffset(tab).left -
-                            DomHandler.getOffset(navRef.current).left +
-                            "px";
+                            `${DomHandler.getOffset(tab).left -
+                            DomHandler.getOffset(navRef.current).left}px`;
                         inkHighlighted = true;
                     }
                 }
@@ -263,7 +262,7 @@ export const TabMenu = React.memo(
                 url,
                 target,
             } = item;
-            const key = item.id || idState + "_" + index;
+            const key = item.id || `${idState}_${index}`;
             const active = isSelected(index);
             const iconClassName = classNames("p-menuitem-icon", _icon);
             const iconProps = mergeProps(
@@ -389,7 +388,7 @@ export const TabMenu = React.memo(
                 <div {...rootProps}>
                     <ul {...menuProps}>
                         {items}
-                        <li {...inkbarProps}></li>
+                        <li {...inkbarProps} />
                     </ul>
                 </div>
             );

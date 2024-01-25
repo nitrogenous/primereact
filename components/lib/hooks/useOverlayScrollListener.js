@@ -36,7 +36,7 @@ export const useOverlayScrollListener = ({
                     hideOnScroll,
                 ));
 
-            listenerRef.current = (event) => listener && listener(event);
+            listenerRef.current = (event) => listener?.(event);
             nodes.forEach((node) =>
                 node.addEventListener("scroll", listenerRef.current, options),
             );

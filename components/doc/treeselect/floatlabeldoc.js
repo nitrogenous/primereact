@@ -116,7 +116,7 @@ export default function FloatLabelDemo() {
                         onChange={(e) => setSelectedNodeKey(e.value)}
                         options={nodes}
                         className="w-full"
-                    ></TreeSelect>
+                    />
                     <label htmlFor="treeselect">TreeSelect</label>
                 </span>
             </div>

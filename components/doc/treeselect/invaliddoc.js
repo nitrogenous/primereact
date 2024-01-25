@@ -106,7 +106,7 @@ export default function InvalidDemo() {
                     options={nodes}
                     className="md:w-20rem w-full p-invalid"
                     placeholder="Select Item"
-                ></TreeSelect>
+                />
             </div>
             <DocSectionCode code={code} service={["NodeService"]} />
         </>

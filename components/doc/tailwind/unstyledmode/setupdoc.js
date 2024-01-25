@@ -128,7 +128,7 @@ export default function MyApp({ Component, pageProps }) {
                     Tailwind as well.
                 </p>
                 <p className="flex align-items-start gap-2">
-                    <Badge value="1"></Badge>
+                    <Badge value="1" />
                     <span>
                         Tailwind uses PurgeCSS internally to remove unused
                         classes, as PrimeReact components are loaded from{" "}
@@ -146,7 +146,7 @@ export default function MyApp({ Component, pageProps }) {
                     hideStackBlitz
                 />
                 <p className="flex align-items-start gap-2">
-                    <Badge value="2"></Badge>
+                    <Badge value="2" />
                     <span>
                         Next step is enabling the <i>unstyled</i> option to
                         remove the default style classes from the components and
@@ -165,7 +165,7 @@ export default function MyApp({ Component, pageProps }) {
                     hideStackBlitz
                 />
                 <p className="flex align-items-start gap-2">
-                    <Badge value="3"></Badge>
+                    <Badge value="3" />
                     <span>
                         <b>Optional:</b> specify the classNameMergeFunction as{" "}
                         <i>twMerge</i> to resolve className conflicts via{" "}
@@ -185,7 +185,7 @@ export default function MyApp({ Component, pageProps }) {
                     hideStackBlitz
                 />
                 <p className="flex align-items-start gap-2">
-                    <Badge value="4"></Badge>
+                    <Badge value="4" />
                     <span>
                         At the final step, component styles are provided via a
                         pass through configuration that utilizes Tailwind CSS.

@@ -137,8 +137,7 @@ export const ListBox = React.memo(
         };
 
         const onFilter = (event) => {
-            virtualScrollerRef.current &&
-                virtualScrollerRef.current.scrollToIndex(0);
+            virtualScrollerRef.current?.scrollToIndex(0);
 
             const { originalEvent, value } = event;
 
@@ -154,7 +153,7 @@ export const ListBox = React.memo(
 
         const resetFilter = () => {
             setFilterValueState("");
-            props.onFilter && props.onFilter({ filter: "" });
+            props.onFilter?.({ filter: "" });
         };
 
         const updateModel = (event, value) => {
@@ -246,16 +245,16 @@ export const ListBox = React.memo(
         const getOptionLabel = (option) => {
             return props.optionLabel
                 ? ObjectUtils.resolveFieldData(option, props.optionLabel)
-                : option && option["label"] !== undefined
-                  ? option["label"]
+                : option && option.label !== undefined
+                  ? option.label
                   : option;
         };
 
         const getOptionValue = (option) => {
             return props.optionValue
                 ? ObjectUtils.resolveFieldData(option, props.optionValue)
-                : option && option["value"] !== undefined
-                  ? option["value"]
+                : option && option.value !== undefined
+                  ? option.value
                   : option;
         };
 
@@ -275,8 +274,8 @@ export const ListBox = React.memo(
                       );
             }
 
-            return option && option["disabled"] !== undefined
-                ? option["disabled"]
+            return option && option.disabled !== undefined
+                ? option.disabled
                 : false;
         };
 
@@ -322,7 +321,7 @@ export const ListBox = React.memo(
                             props.filterLocale,
                         );
 
-                        if (filteredSubOptions && filteredSubOptions.length) {
+                        if (filteredSubOptions?.length) {
                             filteredGroups.push({
                                 ...optgroup,
                                 ...{ items: filteredSubOptions },
@@ -331,7 +330,7 @@ export const ListBox = React.memo(
                     }
 
                     return filteredGroups;
-                } else {
+                }
                     return FilterService.filter(
                         props.options,
                         searchFields,
@@ -339,10 +338,8 @@ export const ListBox = React.memo(
                         props.filterMatchMode,
                         props.filterLocale,
                     );
-                }
-            } else {
-                return props.options;
             }
+                return props.options;
         };
 
         const scrollToSelectedIndex = () => {
@@ -395,7 +392,7 @@ export const ListBox = React.memo(
 
             return groupChildren.map((option, j) => {
                 const optionLabel = getOptionLabel(option);
-                const optionKey = j + "_" + getOptionRenderKey(option);
+                const optionKey = `${j}_${getOptionRenderKey(option)}`;
                 const disabled = isOptionDisabled(option);
                 const tabIndex = disabled ? null : props.tabIndex || 0;
 
@@ -435,7 +432,7 @@ export const ListBox = React.memo(
                       )
                     : getOptionGroupLabel(option);
                 const groupChildrenContent = createGroupChildren(option, style);
-                const key = index + "_" + getOptionGroupRenderKey(option);
+                const key = `${index}_${getOptionGroupRenderKey(option)}`;
 
                 const itemGroupProps = mergeProps(
                     {
@@ -452,9 +449,9 @@ export const ListBox = React.memo(
                         {groupChildrenContent}
                     </React.Fragment>
                 );
-            } else {
+            }
                 const optionLabel = getOptionLabel(option);
-                const optionKey = index + "_" + getOptionRenderKey(option);
+                const optionKey = `${index}_${getOptionRenderKey(option)}`;
                 const disabled = isOptionDisabled(option);
                 const tabIndex = disabled ? null : props.tabIndex || 0;
 
@@ -475,13 +472,12 @@ export const ListBox = React.memo(
                         metaData={metaData}
                     />
                 );
-            }
         };
 
         const createItems = () => {
             if (ObjectUtils.isNotEmpty(visibleOptions)) {
                 return visibleOptions.map(createItem);
-            } else if (hasFilter) {
+            }if (hasFilter) {
                 return createEmptyMessage(props.emptyFilterMessage, true);
             }
 
@@ -543,7 +539,7 @@ export const ListBox = React.memo(
                         pt={ptCallbacks.ptm("virtualScroller")}
                     />
                 );
-            } else {
+            }
                 const items = createItems();
 
                 const listProps = mergeProps(
@@ -557,7 +553,6 @@ export const ListBox = React.memo(
                 );
 
                 return <ul {...listProps}>{items}</ul>;
-            }
         };
 
         const visibleOptions = getVisibleOptions();

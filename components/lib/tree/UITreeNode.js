@@ -109,9 +109,8 @@ export const UITreeNode = React.memo((props) => {
                 ];
 
             return findLastVisibleDescendant(lastChildElement);
-        } else {
-            return nodeElement;
         }
+            return nodeElement;
     };
 
     const getParentNodeElement = (nodeElement) => {
@@ -123,7 +122,7 @@ export const UITreeNode = React.memo((props) => {
     };
 
     const focusNode = (element) => {
-        element && element.focus();
+        element?.focus();
     };
 
     const onClick = (event) => {
@@ -583,7 +582,7 @@ export const UITreeNode = React.memo((props) => {
             selectionKeys[node.key] = { checked: true, partialChecked: false };
         else delete selectionKeys[node.key];
 
-        if (node.children && node.children.length) {
+        if (node.children?.length) {
             for (let i = 0; i < node.children.length; i++) {
                 propagateDown(node.children[i], check, selectionKeys);
             }
@@ -595,7 +594,7 @@ export const UITreeNode = React.memo((props) => {
             return isSingleSelectionMode()
                 ? props.selectionKeys === props.node.key
                 : props.selectionKeys[props.node.key] !== undefined;
-        else return false;
+        return false;
     };
 
     const isChecked = () => {
@@ -859,7 +858,7 @@ export const UITreeNode = React.memo((props) => {
                 getPTOptions("nodeIcon"),
             );
 
-            return <span {...nodeIconProps}></span>;
+            return <span {...nodeIconProps} />;
         }
 
         return null;
@@ -931,7 +930,7 @@ export const UITreeNode = React.memo((props) => {
                 getPTOptions("droppoint"),
             );
 
-            return <li {...droppointProps}></li>;
+            return <li {...droppointProps} />;
         }
 
         return null;
@@ -1040,7 +1039,7 @@ export const UITreeNode = React.memo((props) => {
                                 onUnselect={props.onUnselect}
                                 originalOptions={props.originalOptions}
                                 parent={props.node}
-                                path={props.path + "-" + index}
+                                path={`${props.path}-${index}`}
                                 propagateSelectionDown={
                                     props.propagateSelectionDown
                                 }
@@ -1081,7 +1080,6 @@ export const UITreeNode = React.memo((props) => {
                 role: "treeitem",
                 "aria-label": label,
                 "aria-level": props.level,
-                "aria-expanded": expanded,
                 "aria-checked": checked,
                 "aria-setsize": props.node.children
                     ? props.node.children.length

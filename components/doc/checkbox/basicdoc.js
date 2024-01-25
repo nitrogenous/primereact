@@ -52,7 +52,7 @@ export default function BasicDemo() {
                 <Checkbox
                     onChange={(e) => setChecked(e.checked)}
                     checked={checked}
-                ></Checkbox>
+                />
             </div>
             <DocSectionCode code={code} />
         </>

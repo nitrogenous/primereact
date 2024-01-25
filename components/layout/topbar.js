@@ -54,7 +54,7 @@ export default function Topbar(props) {
 
     const bindScrollListener = () => {
         scrollListener.current = () => {
-            if (containerElement && containerElement.current) {
+            if (containerElement?.current) {
                 if (window.scrollY > 0)
                     containerElement.current.classList.add(
                         "layout-topbar-sticky",
@@ -287,7 +287,7 @@ export default function Topbar(props) {
                             rel="noopener noreferrer"
                             className="flex flex-shrink-0 px-link border-1 border-solid w-2rem h-2rem surface-border border-round surface-card align-items-center justify-content-center transition-all transition-duration-300 hover:border-primary"
                         >
-                            <i className="pi pi-github text-700"></i>
+                            <i className="pi pi-github text-700" />
                         </a>
                     </li>
                     <li>
@@ -297,7 +297,7 @@ export default function Topbar(props) {
                             rel="noopener noreferrer"
                             className="flex flex-shrink-0 px-link border-1 border-solid w-2rem h-2rem surface-border border-round surface-card align-items-center justify-content-center transition-all transition-duration-300 hover:border-primary"
                         >
-                            <i className="pi pi-discord text-700"></i>
+                            <i className="pi pi-discord text-700" />
                         </a>
                     </li>
                     <li>
@@ -307,7 +307,7 @@ export default function Topbar(props) {
                             rel="noopener noreferrer"
                             className="flex flex-shrink-0 px-link border-1 border-solid w-2rem h-2rem surface-border border-round surface-card align-items-center justify-content-center transition-all transition-duration-300 hover:border-primary"
                         >
-                            <i className="pi pi-comments text-700"></i>
+                            <i className="pi pi-comments text-700" />
                         </a>
                     </li>
                     <li>
@@ -321,7 +321,7 @@ export default function Topbar(props) {
                                     "pi-moon": props.dark,
                                     "pi-sun": !props.dark,
                                 })}
-                            ></i>
+                            />
                         </button>
                     </li>
                     {props.showConfigurator && (
@@ -331,7 +331,7 @@ export default function Topbar(props) {
                                 className="p-button flex-shrink-0 flex border-1 w-2rem h-2rem p-0 align-items-center justify-content-center transition-all transition-duration-300 min-w-0"
                                 onClick={onConfigButtonClick}
                             >
-                                <i className="pi pi-palette"></i>
+                                <i className="pi pi-palette" />
                             </button>
                         </li>
                     )}
@@ -353,18 +353,18 @@ export default function Topbar(props) {
                                 className="px-link flex align-items-center surface-card h-2rem px-2 border-1 border-solid surface-border transition-all transition-duration-300 hover:border-primary"
                             >
                                 <span className="text-900 block white-space-nowrap overflow-hidden">
-                                    {versions && versions.length
+                                    {versions?.length
                                         ? versions[0].version
                                         : ""}
                                 </span>
-                                <span className="ml-2 pi pi-angle-down text-600"></span>
+                                <span className="ml-2 pi pi-angle-down text-600" />
                             </button>
                         </StyleClass>
                         <div className="p-3 surface-overlay hidden absolute right-0 top-auto border-round shadow-2 origin-top w-8rem">
                             <ul className="list-none m-0 p-0">
                                 {versions.map((version) => {
                                     return (
-                                        <li role="none" key={version.version}>
+                                        <li key={version.version}>
                                             <a
                                                 href={version.url}
                                                 className="inline-flex p-2 border-round hover:surface-hover w-full"
@@ -391,7 +391,7 @@ export default function Topbar(props) {
                                 aria-haspopup
                                 aria-label="Menu"
                             >
-                                <i className="pi pi-bars text-700"></i>
+                                <i className="pi pi-bars text-700" />
                             </button>
                         </li>
                     )}

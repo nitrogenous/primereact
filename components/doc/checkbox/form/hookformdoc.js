@@ -206,7 +206,7 @@ export default function HookFormDoc() {
                                     className={classNames({
                                         "p-error": errors.checked,
                                     })}
-                                ></label>
+                                />
                                 <Checkbox
                                     inputId={field.name}
                                     checked={field.value}

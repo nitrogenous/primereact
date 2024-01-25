@@ -43,10 +43,10 @@ export const BlockUI = React.forwardRef((inProps, ref) => {
 
             if (props.fullScreen) {
                 DomHandler.unblockBodyScroll();
-                activeElementRef.current && activeElementRef.current.focus();
+                activeElementRef.current?.focus();
             }
 
-            props.onUnblocked && props.onUnblocked();
+            props.onUnblocked?.();
         };
 
         if (maskRef.current) {
@@ -63,7 +63,7 @@ export const BlockUI = React.forwardRef((inProps, ref) => {
     const onPortalMounted = () => {
         if (props.fullScreen) {
             DomHandler.blockBodyScroll();
-            activeElementRef.current && activeElementRef.current.blur();
+            activeElementRef.current?.blur();
         }
 
         if (props.autoZIndex) {
@@ -72,14 +72,14 @@ export const BlockUI = React.forwardRef((inProps, ref) => {
             ZIndexUtils.set(
                 key,
                 maskRef.current,
-                (context && context.autoZIndex) || PrimeReact.autoZIndex,
+                (context?.autoZIndex) || PrimeReact.autoZIndex,
                 props.baseZIndex ||
-                    (context && context.zIndex[key]) ||
+                    (context?.zIndex[key]) ||
                     PrimeReact.zIndex[key],
             );
         }
 
-        props.onBlocked && props.onBlocked();
+        props.onBlocked?.();
     };
 
     useMountEffect(() => {

@@ -205,7 +205,7 @@ export default function HookFormDoc() {
                                     className={classNames({
                                         "p-error": errors.checked,
                                     })}
-                                ></label>
+                                />
                                 <InputSwitch
                                     inputId={field.name}
                                     checked={field.value}

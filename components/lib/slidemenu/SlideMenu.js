@@ -107,13 +107,13 @@ export const SlideMenu = React.memo(
         const show = (event) => {
             targetRef.current = event.currentTarget;
             setVisibleState(true);
-            props.onShow && props.onShow(event);
+            props.onShow?.(event);
         };
 
         const hide = (event) => {
             targetRef.current = event.currentTarget;
             setVisibleState(false);
-            props.onHide && props.onHide(event);
+            props.onHide?.(event);
         };
 
         const onEnter = () => {
@@ -121,10 +121,10 @@ export const SlideMenu = React.memo(
                 ZIndexUtils.set(
                     "menu",
                     menuRef.current,
-                    (context && context.autoZIndex) || PrimeReact.autoZIndex,
+                    (context?.autoZIndex) || PrimeReact.autoZIndex,
                     props.baseZIndex ||
-                        (context && context.zIndex["menu"]) ||
-                        PrimeReact.zIndex["menu"],
+                        (context?.zIndex.menu) ||
+                        PrimeReact.zIndex.menu,
                 );
             }
 
@@ -161,7 +161,7 @@ export const SlideMenu = React.memo(
         }, [props.model]);
 
         useUpdateEffect(() => {
-            props.onNavigate && props.onNavigate({ level: levelState });
+            props.onNavigate?.({ level: levelState });
         }, [levelState]);
 
         useUnmountEffect(() => {
@@ -213,7 +213,7 @@ export const SlideMenu = React.memo(
         };
 
         const createElement = () => {
-            const wrapperStyle = { height: props.viewportHeight + "px" };
+            const wrapperStyle = { height: `${props.viewportHeight}px` };
             const backward = createBackward();
             const rootProps = mergeProps(
                 {

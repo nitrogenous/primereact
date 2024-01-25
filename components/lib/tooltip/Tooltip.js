@@ -115,7 +115,7 @@ export const Tooltip = React.memo(
         };
 
         const hasTargetOption = (target, option) => {
-            return target && target.hasAttribute(option);
+            return target?.hasAttribute(option);
         };
 
         const getEvents = (target) => {
@@ -185,11 +185,11 @@ export const Tooltip = React.memo(
                     ZIndexUtils.set(
                         "tooltip",
                         elementRef.current,
-                        (context && context.autoZIndex) ||
+                        (context?.autoZIndex) ||
                             PrimeReact.autoZIndex,
                         props.baseZIndex ||
-                            (context && context.zIndex["tooltip"]) ||
-                            PrimeReact.zIndex["tooltip"],
+                            (context?.zIndex.tooltip) ||
+                            PrimeReact.zIndex.tooltip,
                     );
                 }
 
@@ -287,12 +287,12 @@ export const Tooltip = React.memo(
         };
 
         const align = (target, coordinate, position) => {
-            let left = 0,
-                top = 0,
-                currentPosition = position || positionState;
+            let left = 0;
+            let top = 0;
+            const currentPosition = position || positionState;
 
             if (
-                (isMouseTrack(target) || currentPosition == "mouse") &&
+                (isMouseTrack(target) || currentPosition === "mouse") &&
                 coordinate
             ) {
                 const _containerSize = {
@@ -334,13 +334,13 @@ export const Tooltip = React.memo(
                 ) {
                     elementRef.current.style.left = "0px";
                     elementRef.current.style.right =
-                        window.innerWidth - _containerSize.width - left + "px";
+                        `${window.innerWidth - _containerSize.width - left}px`;
                 } else {
                     elementRef.current.style.right = "";
-                    elementRef.current.style.left = left + "px";
+                    elementRef.current.style.left = `${left}px`;
                 }
 
-                elementRef.current.style.top = top + "px";
+                elementRef.current.style.top = `${top}px`;
                 DomHandler.addClass(elementRef.current, "p-tooltip-active");
             } else {
                 const pos = DomHandler.findCollisionPosition(currentPosition);
@@ -382,14 +382,12 @@ export const Tooltip = React.memo(
 
                 if (position === "left")
                     elementRef.current.style.left =
-                        parseFloat(style.left) -
-                        parseFloat(style.paddingLeft) * 2 +
-                        "px";
+                        `${parseFloat(style.left) -
+                        parseFloat(style.paddingLeft) * 2}px`;
                 else if (position === "top")
                     elementRef.current.style.top =
-                        parseFloat(style.top) -
-                        parseFloat(style.paddingTop) * 2 +
-                        "px";
+                        `${parseFloat(style.top) -
+                        parseFloat(style.paddingTop) * 2}px`;
             }
         };
 
@@ -443,7 +441,7 @@ export const Tooltip = React.memo(
                     delayProp.toLowerCase(),
                 ) || props[delayProp];
 
-            !!delay
+            delay
                 ? (timeouts.current[`${delayProp}`] = setTimeout(
                       () => callback(),
                       delay,
@@ -479,7 +477,7 @@ export const Tooltip = React.memo(
                         if (isInputElement) {
                             DomHandler.addMultipleClasses(
                                 wrapper,
-                                `p-tooltip-target-wrapper p-inputwrapper`,
+                                "p-tooltip-target-wrapper p-inputwrapper",
                             );
                         } else {
                             DomHandler.addClass(
@@ -493,14 +491,13 @@ export const Tooltip = React.memo(
                         target.hasWrapper = true;
 
                         return wrapper;
-                    } else {
-                        return target.parentElement;
                     }
-                } else if (target.hasWrapper) {
+                        return target.parentElement;
+                }if (target.hasWrapper) {
                     target.parentElement.replaceWith(
                         ...target.parentElement.childNodes,
                     );
-                    delete target.hasWrapper;
+                    target.hasWrapper = undefined;
                 }
 
                 return target;
@@ -537,7 +534,7 @@ export const Tooltip = React.memo(
                         });
                     };
 
-                    if (target instanceof Array) {
+                    if (Array.isArray(target)) {
                         target.forEach((t) => {
                             setEvent(t);
                         });
@@ -656,7 +653,7 @@ export const Tooltip = React.memo(
 
             return (
                 <div ref={elementRef} {...rootProps}>
-                    <div {...arrowProps}></div>
+                    <div {...arrowProps} />
                     <div ref={textRef} {...textProps}>
                         {empty && props.children}
                     </div>

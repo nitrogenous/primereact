@@ -64,7 +64,7 @@ const ThemeSection = () => {
 
             const cloneLinkElement = linkElement.cloneNode(true);
 
-            cloneLinkElement.setAttribute("id", elementId + "-clone");
+            cloneLinkElement.setAttribute("id", `${elementId}-clone`);
             cloneLinkElement.setAttribute("href", newThemeUrl);
             cloneLinkElement.addEventListener("load", () => {
                 linkElement.remove();
@@ -81,7 +81,7 @@ const ThemeSection = () => {
 
     const changeTheme = (name, color) => {
         const newTheme =
-            name + "-" + (darkMode ? "dark" : "light") + "-" + color;
+            `${name}-${darkMode ? "dark" : "light"}-${color}`;
 
         replaceTableTheme(newTheme);
     };
@@ -128,7 +128,7 @@ const ThemeSection = () => {
         const value = e.target.value;
         const _filters = { ...filters };
 
-        _filters["global"].value = value;
+        _filters.global.value = value;
 
         setFilters(_filters);
         setGlobalFilterValue(value);
@@ -209,7 +209,7 @@ const ThemeSection = () => {
                 value={rowData.activity}
                 showValue={false}
                 style={{ height: "6px" }}
-            ></ProgressBar>
+            />
         );
     };
 
@@ -219,7 +219,7 @@ const ThemeSection = () => {
                 type="button"
                 icon="pi pi-cog"
                 className="p-button-text"
-            ></Button>
+            />
         );
     };
 
@@ -256,7 +256,7 @@ const ThemeSection = () => {
                 <button
                     type="button"
                     className={classNames("font-medium linkbox mr-3 mt-4", {
-                        active: tableTheme && tableTheme.startsWith("lara"),
+                        active: tableTheme?.startsWith("lara"),
                     })}
                     onClick={() => changeTheme("lara", "cyan")}
                 >
@@ -265,7 +265,7 @@ const ThemeSection = () => {
                 <button
                     type="button"
                     className={classNames("font-medium linkbox mr-3 mt-4", {
-                        active: tableTheme && tableTheme.startsWith("md"),
+                        active: tableTheme?.startsWith("md"),
                     })}
                     onClick={() => changeTheme("md", "indigo")}
                 >
@@ -275,7 +275,7 @@ const ThemeSection = () => {
                     type="button"
                     className={classNames("font-medium linkbox mr-3 mt-4", {
                         active:
-                            tableTheme && tableTheme.startsWith("bootstrap4"),
+                            tableTheme?.startsWith("bootstrap4"),
                     })}
                     onClick={() => changeTheme("bootstrap4", "blue")}
                 >
@@ -319,7 +319,7 @@ const ThemeSection = () => {
                         <Column
                             selectionMode="multiple"
                             style={{ width: "3rem" }}
-                        ></Column>
+                        />
                         <Column
                             field="name"
                             header="Name"

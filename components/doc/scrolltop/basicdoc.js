@@ -47,7 +47,7 @@ export default function BasicDemo() {
                 <i
                     className="pi pi-angle-down fadeout animation-duration-1000 animation-iteration-infinite text-2xl"
                     style={{ fontSize: "2rem", marginBottom: "30rem" }}
-                ></i>
+                />
                 <ScrollTop />
             </div>
             <DocSectionCode code={code} />

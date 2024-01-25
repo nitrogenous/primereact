@@ -9,7 +9,7 @@ export const useUpdateEffect = (fn, deps) => {
             return;
         }
 
-        return fn && fn();
+        return fn?.();
     }, deps);
 };
 /* eslint-enable */

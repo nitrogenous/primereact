@@ -80,7 +80,7 @@ export default function PTDemo() {
 
     return (
         <>
-            <DocSectionText {...props}></DocSectionText>
+            <DocSectionText {...props} />
             <ConfirmDialog
                 pt={{ headerTitle: { className: "text-primary" } }}
                 visible={visible}

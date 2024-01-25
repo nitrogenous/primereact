@@ -178,7 +178,7 @@ const GalleriaThumbnailItem = React.memo((props) => {
         indicators[nextInd].children[0].focus();
     };
 
-    const content = props.template && props.template(props.item);
+    const content = props.template?.(props.item);
 
     const thumbnailItemProps = mergeProps(
         {
@@ -186,11 +186,11 @@ const GalleriaThumbnailItem = React.memo((props) => {
                 props.className,
                 cx("thumbnailItem", { subProps: props }),
             ),
-            key: "p-galleria-thumbnail-item-" + props.index,
+            key: `p-galleria-thumbnail-item-${props.index}`,
             role: "tab",
             "data-p-active": props.current,
             "aria-selected": props.current,
-            "aria-controls": props.containerId + "_item_" + props.index,
+            "aria-controls": `${props.containerId}_item_${props.index}`,
             onKeyDown: onThumbnailKeydown,
             "data-p-galleria-thumbnail-item-current": props.current,
             "data-p-galleria-thumbnail-item-active": props.active,
@@ -445,8 +445,8 @@ export const GalleriaThumbnails = React.memo(
         const createStyle = () => {
             if (!thumbnailsStyle.current) {
                 thumbnailsStyle.current = DomHandler.createInlineStyle(
-                    (context && context.nonce) || PrimeReact.nonce,
-                    context && context.styleContainer,
+                    (context?.nonce) || PrimeReact.nonce,
+                    context?.styleContainer,
                 );
             }
 
@@ -460,7 +460,7 @@ export const GalleriaThumbnails = React.memo(
 
             if (props.responsiveOptions) {
                 const comparator = ObjectUtils.localeComparator(
-                    (context && context.locale) || PrimeReact.locale,
+                    (context?.locale) || PrimeReact.locale,
                 );
 
                 responsiveOptions.current = [...props.responsiveOptions];
@@ -473,7 +473,7 @@ export const GalleriaThumbnails = React.memo(
                         value2,
                         -1,
                         comparator,
-                        (context && context.nullSortOrder) ||
+                        (context?.nullSortOrder) ||
                             PrimeReact.nullSortOrder,
                     );
                 });

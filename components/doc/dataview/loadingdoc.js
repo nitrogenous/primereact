@@ -83,7 +83,7 @@ export function LoadingDoc(props) {
         }
 
         if (layout === "list") return listItem(product, index);
-        else if (layout === "grid") return gridItem(product);
+        if (layout === "grid") return gridItem(product);
     };
 
     const listTemplate = (products, layout) => {

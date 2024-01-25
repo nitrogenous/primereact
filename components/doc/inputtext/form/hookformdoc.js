@@ -214,7 +214,7 @@ export default function HookFormDoc() {
                                     className={classNames({
                                         "p-error": errors.value,
                                     })}
-                                ></label>
+                                />
                                 <span className="p-float-label">
                                     <InputText
                                         id={field.name}

@@ -111,13 +111,13 @@ export const TreeSelect = React.memo(
         const onInputFocus = () => {
             setFocusedState(true);
 
-            props.onFocus && props.onFocus();
+            props.onFocus?.();
         };
 
         const onInputBlur = () => {
             setFocusedState(false);
 
-            props.onBlur && props.onBlur();
+            props.onBlur?.();
         };
 
         const onClick = (event) => {
@@ -181,12 +181,12 @@ export const TreeSelect = React.memo(
         };
 
         const onNodeSelect = (node) => {
-            props.onNodeSelect && props.onNodeSelect(node);
+            props.onNodeSelect?.(node);
             isSingleSelectionMode && hide();
         };
 
         const onNodeUnselect = (node) => {
-            props.onNodeUnselect && props.onNodeUnselect(node);
+            props.onNodeUnselect?.(node);
             isCheckboxSelectionMode && node.originalEvent.stopPropagation();
         };
 
@@ -363,9 +363,9 @@ export const TreeSelect = React.memo(
             ZIndexUtils.set(
                 "overlay",
                 overlayRef.current,
-                (context && context.autoZIndex) || PrimeReact.autoZIndex,
-                (context && context.zIndex["overlay"]) ||
-                    PrimeReact.zIndex["overlay"],
+                (context?.autoZIndex) || PrimeReact.autoZIndex,
+                (context?.zIndex.overlay) ||
+                    PrimeReact.zIndex.overlay,
             );
             DomHandler.addStyles(overlayRef.current, {
                 position: "absolute",
@@ -387,7 +387,7 @@ export const TreeSelect = React.memo(
                 );
             }
 
-            props.onShow && props.onShow();
+            props.onShow?.();
         };
 
         const onOverlayExit = () => {
@@ -401,7 +401,7 @@ export const TreeSelect = React.memo(
 
             ZIndexUtils.clear(overlayRef.current);
 
-            props.onHide && props.onHide();
+            props.onHide?.();
         };
 
         const alignOverlay = () => {
@@ -409,7 +409,7 @@ export const TreeSelect = React.memo(
                 overlayRef.current,
                 triggerRef.current.parentElement,
                 props.appendTo ||
-                    (context && context.appendTo) ||
+                    (context?.appendTo) ||
                     PrimeReact.appendTo,
             );
         };
@@ -420,7 +420,7 @@ export const TreeSelect = React.memo(
                 '[data-pc-section="content"][data-p-highlight="true"]',
             );
 
-            if (highlightItem && highlightItem.scrollIntoView) {
+            if (highlightItem?.scrollIntoView) {
                 highlightItem.scrollIntoView({
                     block: "nearest",
                     inline: "start",
@@ -539,7 +539,7 @@ export const TreeSelect = React.memo(
         useMountEffect(() => {
             updateTreeState();
 
-            listId.current = UniqueComponentId() + "_list";
+            listId.current = `${UniqueComponentId()}_list`;
 
             if (props.autoFocus) {
                 DomHandler.focus(focusInputRef.current, props.autoFocus);
@@ -664,8 +664,7 @@ export const TreeSelect = React.memo(
                 } else if (props.display === "chip") {
                     content = (
                         <>
-                            {selectedNodes &&
-                                selectedNodes.map((node, index) => {
+                            {selectedNodes?.map((node, index) => {
                                     return (
                                         <div
                                             {...tokenProps}
@@ -780,7 +779,7 @@ export const TreeSelect = React.memo(
                         value={props.options}
                         pt={ptm("tree")}
                         __parentMetadata={{ parent: metaData }}
-                    ></Tree>
+                    />
 
                     {hasNoOptions && (
                         <div {...emptyMessageProps}>
@@ -1010,12 +1009,12 @@ export const TreeSelect = React.memo(
                     firstHiddenFocusableElementOnOverlay={
                         <span
                             {...firstHiddenFocusableElementOnOverlayProps}
-                        ></span>
+                        />
                     }
                     lastHiddenFocusableElementOnOverlay={
                         <span
                             {...lastHiddenFocusableElementOnOverlayProps}
-                        ></span>
+                        />
                     }
                     transitionOptions={props.transitionOptions}
                     in={overlayVisibleState}

@@ -12,7 +12,7 @@ export function DropdownDoc(props) {
 
         setItems(
             event.query
-                ? [...Array(10).keys()].map((item) => event.query + "-" + item)
+                ? [...Array(10).keys()].map((item) => `${event.query}-${item}`)
                 : _items,
         );
     };

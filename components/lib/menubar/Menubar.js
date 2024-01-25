@@ -162,7 +162,7 @@ export const Menubar = React.memo(
                           parentKey: "",
                       },
             );
-            props.onFocus && props.onFocus(event);
+            props.onFocus?.(event);
         };
 
         const onBlur = (event) => {
@@ -170,7 +170,7 @@ export const Menubar = React.memo(
             setFocusedItemInfo({ index: -1, level: 0, parentKey: "" });
             searchValue.current = "";
             setDirty(false);
-            props.onBlur && props.onBlur(event);
+            props.onBlur?.(event);
         };
 
         const onKeyDown = (event) => {
@@ -468,7 +468,7 @@ export const Menubar = React.memo(
 
                 anchorElement
                     ? anchorElement.click()
-                    : element && element.click();
+                    : element?.click();
             }
 
             event.preventDefault();
@@ -641,8 +641,7 @@ export const Menubar = React.memo(
             );
 
             if (element) {
-                element.scrollIntoView &&
-                    element.scrollIntoView({
+                element.scrollIntoView?.({
                         block: "nearest",
                         inline: "start",
                     });
@@ -653,10 +652,9 @@ export const Menubar = React.memo(
             (items, level = 0, parent = {}, parentKey = "") => {
                 const _processedItems = [];
 
-                items &&
-                    items.forEach((item, index) => {
+                items?.forEach((item, index) => {
                         const key =
-                            (parentKey !== "" ? parentKey + "_" : "") + index;
+                            (parentKey !== "" ? `${parentKey}_` : "") + index;
                         const newItem = {
                             item,
                             index,
@@ -666,7 +664,7 @@ export const Menubar = React.memo(
                             parentKey,
                         };
 
-                        newItem["items"] = createProcessedItems(
+                        newItem.items = createProcessedItems(
                             item.items,
                             level + 1,
                             newItem,
@@ -693,9 +691,9 @@ export const Menubar = React.memo(
                 ZIndexUtils.set(
                     "menu",
                     rootMenuRef.current,
-                    (context && context.autoZIndex) || PrimeReact.autoZIndex,
-                    (context && context.zIndex["menu"]) ||
-                        PrimeReact.zIndex["menu"],
+                    (context?.autoZIndex) || PrimeReact.autoZIndex,
+                    (context?.zIndex.menu) ||
+                        PrimeReact.zIndex.menu,
                 );
             } else {
                 unbindResizeListener();
@@ -752,7 +750,7 @@ export const Menubar = React.memo(
                 focusedItemInfo.index !== -1
                     ? `${idState}${
                           ObjectUtils.isNotEmpty(focusedItemInfo.parentKey)
-                              ? "_" + focusedItemInfo.parentKey
+                              ? `_${focusedItemInfo.parentKey}`
                               : ""
                       }_${focusedItemInfo.index}`
                     : null,
@@ -812,7 +810,6 @@ export const Menubar = React.memo(
                 {
                     ref: menuButtonRef,
                     href: "#",
-                    tabIndex: "0",
                     "aria-haspopup":
                         mobileActiveState &&
                         props.model &&

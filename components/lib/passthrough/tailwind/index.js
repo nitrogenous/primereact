@@ -195,14 +195,14 @@ const Tailwind = {
                 "flex relative", // alignments.
                 {
                     "w-full my-5 mx-0 py-0 px-5 before:block before:left-0 before:absolute before:top-1/2 before:w-full before:border-t before:border-gray-300 before:dark:border-blue-900/40":
-                        props.layout == "horizontal", // Padding and borders for horizontal layout.
+                        props.layout === "horizontal", // Padding and borders for horizontal layout.
                     "min-h-full mx-4 md:mx-5 py-5 before:block before:min-h-full before:absolute before:left-1/2 before:top-0 before:transform before:-translate-x-1/2 before:border-l before:border-gray-300 before:dark:border-blue-900/40":
-                        props.layout == "vertical", // Padding and borders for vertical layout.
+                        props.layout === "vertical", // Padding and borders for vertical layout.
                 },
                 {
-                    "before:border-solid": props.type == "solid",
-                    "before:border-dotted": props.type == "dotted",
-                    "before:border-dashed": props.type == "dashed",
+                    "before:border-solid": props.type === "solid",
+                    "before:border-dotted": props.type === "dotted",
+                    "before:border-dashed": props.type === "dashed",
                 }, // Border type condition.
             ),
         }),
@@ -335,7 +335,7 @@ const Tailwind = {
                 "flex items-center justify-center shrink-0",
                 "transition-all duration-200 bg-gray-100 dark:bg-gray-800",
                 {
-                    "cursor-col-resize": props.layout == "horizontal",
+                    "cursor-col-resize": props.layout === "horizontal",
                     "cursor-row-resize": props.layout !== "horizontal",
                 },
             ),
@@ -344,8 +344,8 @@ const Tailwind = {
             className: classNames(
                 "bg-gray-300 dark:bg-gray-600 transition-all duration-200",
                 {
-                    "h-7 w-[0.3rem]": props.layout == "horizontal",
-                    "w-7 h-[0.3rem]": props.layout == "vertical",
+                    "h-7 w-[0.3rem]": props.layout === "horizontal",
+                    "w-7 h-[0.3rem]": props.layout === "vertical",
                 },
             ),
         }),
@@ -499,9 +499,9 @@ const Tailwind = {
                     "!transition-none !transform-none !w-screen !h-screen !max-h-full !top-0 !left-0":
                         props.fullScreen,
                     "h-full w-80":
-                        props.position == "left" || props.position == "right",
+                        props.position === "left" || props.position === "right",
                     "h-40 w-full":
-                        props.position == "top" || props.position == "bottom",
+                        props.position === "top" || props.position === "bottom",
                 },
                 "dark:border dark:border-blue-900/40 dark:bg-gray-900 dark:text-white/80",
             ),
@@ -682,16 +682,16 @@ const Tailwind = {
                 className: classNames("my-4 rounded-md", {
                     "bg-blue-100 border-solid border-0 border-l-4 border-blue-500 text-blue-700":
                         state.messages[index] &&
-                        state.messages[index].message.severity == "info",
+                        state.messages[index].message.severity === "info",
                     "bg-green-100 border-solid border-0 border-l-4 border-green-500 text-green-700":
                         state.messages[index] &&
-                        state.messages[index].message.severity == "success",
+                        state.messages[index].message.severity === "success",
                     "bg-orange-100 border-solid border-0 border-l-4 border-orange-500 text-orange-700":
                         state.messages[index] &&
-                        state.messages[index].message.severity == "warn",
+                        state.messages[index].message.severity === "warn",
                     "bg-red-100 border-solid border-0 border-l-4 border-red-500 text-red-700":
                         state.messages[index] &&
-                        state.messages[index].message.severity == "error",
+                        state.messages[index].message.severity === "error",
                 }),
             };
         },
@@ -727,13 +727,13 @@ const Tailwind = {
                 "p-3 m-0 rounded-md",
                 {
                     "bg-blue-100 border-0 text-blue-700":
-                        props.severity == "info",
+                        props.severity === "info",
                     "bg-green-100 border-0 text-green-700":
-                        props.severity == "success",
+                        props.severity === "success",
                     "bg-orange-100 border-0 text-orange-700":
-                        props.severity == "warn",
+                        props.severity === "warn",
                     "bg-red-100 border-0 text-red-700":
-                        props.severity == "error",
+                        props.severity === "error",
                 },
             ),
         }),
@@ -747,16 +747,16 @@ const Tailwind = {
             className: classNames("my-4 rounded-md w-full", {
                 "bg-blue-100 border-solid border-0 border-l-4 border-blue-500 text-blue-700":
                     state.messages[index] &&
-                    state.messages[index].message.severity == "info",
+                    state.messages[index].message.severity === "info",
                 "bg-green-100 border-solid border-0 border-l-4 border-green-500 text-green-700":
                     state.messages[index] &&
-                    state.messages[index].message.severity == "success",
+                    state.messages[index].message.severity === "success",
                 "bg-orange-100 border-solid border-0 border-l-4 border-orange-500 text-orange-700":
                     state.messages[index] &&
-                    state.messages[index].message.severity == "warn",
+                    state.messages[index].message.severity === "warn",
                 "bg-red-100 border-solid border-0 border-l-4 border-red-500 text-red-700":
                     state.messages[index] &&
-                    state.messages[index].message.severity == "error",
+                    state.messages[index].message.severity === "error",
             }),
         }),
         content: "flex items-center py-5 px-7",
@@ -922,7 +922,7 @@ const Tailwind = {
                 },
                 {
                     "flex-column":
-                        props.iconPos == "top" || props.iconPos == "bottom",
+                        props.iconPos === "top" || props.iconPos === "bottom",
                 },
                 {
                     "opacity-60 pointer-events-none cursor-default":
@@ -943,30 +943,30 @@ const Tailwind = {
         }),
         icon: ({ props }) => ({
             className: classNames("mx-0", {
-                "mr-2": props.iconPos == "left" && props.label != null,
-                "ml-2 order-1": props.iconPos == "right" && props.label != null,
-                "mb-2": props.iconPos == "top" && props.label != null,
+                "mr-2": props.iconPos === "left" && props.label != null,
+                "ml-2 order-1": props.iconPos === "right" && props.label != null,
+                "mb-2": props.iconPos === "top" && props.label != null,
                 "mt-2 order-2":
-                    props.iconPos == "bottom" && props.label != null,
+                    props.iconPos === "bottom" && props.label != null,
             }),
         }),
         loadingIcon: ({ props }) => ({
             className: classNames("mx-0", {
                 "mr-2":
                     props.loading &&
-                    props.iconPos == "left" &&
+                    props.iconPos === "left" &&
                     props.label != null,
                 "ml-2 order-1":
                     props.loading &&
-                    props.iconPos == "right" &&
+                    props.iconPos === "right" &&
                     props.label != null,
                 "mb-2":
                     props.loading &&
-                    props.iconPos == "top" &&
+                    props.iconPos === "top" &&
                     props.label != null,
                 "mt-2 order-2":
                     props.loading &&
-                    props.iconPos == "bottom" &&
+                    props.iconPos === "bottom" &&
                     props.label != null,
             }),
         }),
@@ -999,13 +999,13 @@ const Tailwind = {
                 !state.visible ? "opacity-0 scale-0" : "opacity-1 scale-100",
                 {
                     "my-1 first:mb-2":
-                        props.direction == "up" && props.type == "linear",
+                        props.direction === "up" && props.type === "linear",
                     "my-1 first:mt-2":
-                        props.direction == "down" && props.type == "linear",
+                        props.direction === "down" && props.type === "linear",
                     "mx-1 first:mr-2":
-                        props.direction == "left" && props.type == "linear",
+                        props.direction === "left" && props.type === "linear",
                     "mx-1 first:ml-2":
-                        props.direction == "right" && props.type == "linear",
+                        props.direction === "right" && props.type === "linear",
                 },
                 { absolute: props.type !== "linear" },
             ),
@@ -1072,8 +1072,8 @@ const Tailwind = {
                         context.disabled,
                 },
                 {
-                    "text-lg px-4 py-4": props.size == "large",
-                    "text-xs px-2 py-2": props.size == "small",
+                    "text-lg px-4 py-4": props.size === "large",
+                    "text-xs px-2 py-2": props.size === "small",
                     "p-3 text-base":
                         !props.size || typeof props.size === "number",
                 },
@@ -1086,26 +1086,26 @@ const Tailwind = {
             root: ({ props }) => ({
                 className: classNames({
                     "rounded-tr-none rounded-br-none":
-                        props.showButtons && props.buttonLayout == "stacked",
+                        props.showButtons && props.buttonLayout === "stacked",
                 }),
             }),
         },
         buttonGroup: ({ props }) => ({
             className: classNames({
                 "flex flex-col":
-                    props.showButtons && props.buttonLayout == "stacked",
+                    props.showButtons && props.buttonLayout === "stacked",
             }),
         }),
         incrementButton: ({ props }) => ({
             className: classNames("flex !items-center !justify-center", {
                 "rounded-br-none rounded-bl-none rounded-bl-none !p-0 flex-1 w-[3rem]":
-                    props.showButtons && props.buttonLayout == "stacked",
+                    props.showButtons && props.buttonLayout === "stacked",
             }),
         }),
         decrementButton: ({ props }) => ({
             className: classNames("flex !items-center !justify-center", {
                 "rounded-tr-none rounded-tl-none rounded-tl-none !p-0 flex-1 w-[3rem]":
-                    props.showButtons && props.buttonLayout == "stacked",
+                    props.showButtons && props.buttonLayout === "stacked",
             }),
         }),
     },
@@ -1285,8 +1285,8 @@ const Tailwind = {
                 "relative",
                 "bg-gray-100 dark:bg-gray-800 border-0 rounded-6",
                 {
-                    "h-1 w-56": props.orientation == "horizontal",
-                    "w-1 h-56": props.orientation == "vertical",
+                    "h-1 w-56": props.orientation === "horizontal",
+                    "w-1 h-56": props.orientation === "vertical",
                 },
                 {
                     "opacity-60 select-none pointer-events-none cursor-default":
@@ -1296,8 +1296,8 @@ const Tailwind = {
         }),
         range: ({ props }) => ({
             className: classNames("bg-blue-500", "block absolute", {
-                "top-0 left-0 h-full": props.orientation == "horizontal",
-                "bottom-0 left-0 w-full": props.orientation == "vertical",
+                "top-0 left-0 h-full": props.orientation === "horizontal",
+                "bottom-0 left-0 w-full": props.orientation === "vertical",
             }),
         }),
         handle: ({ props }) => ({
@@ -1308,9 +1308,9 @@ const Tailwind = {
                 "hover:bg-blue-500 hover:border hover:border-blue-500",
                 {
                     "top-[50%] mt-[-0.5715rem] ml-[-0.5715rem]":
-                        props.orientation == "horizontal",
+                        props.orientation === "horizontal",
                     "left-[50%] mb-[-0.5715rem] ml-[-0.4715rem]":
-                        props.orientation == "vertical",
+                        props.orientation === "vertical",
                 },
             ),
         }),
@@ -1328,9 +1328,9 @@ const Tailwind = {
             className: classNames(
                 "transition-width duration-1000 ease-in-out h-full",
                 {
-                    "bg-red-500": state.meter?.strength == "weak",
-                    "bg-orange-500": state.meter?.strength == "medium",
-                    "bg-green-500": state.meter?.strength == "strong",
+                    "bg-red-500": state.meter?.strength === "weak",
+                    "bg-orange-500": state.meter?.strength === "medium",
+                    "bg-green-500": state.meter?.strength === "strong",
                 },
                 { "pr-[2.5rem] ": props.toggleMask },
             ),
@@ -1790,7 +1790,7 @@ const Tailwind = {
                 {
                     "!p-3":
                         props.display !== "chip" &&
-                        (props.value == null || props.value == undefined),
+                        (props.value == null || props.value === undefined),
                     "!py-1.5 px-3":
                         props.display === "chip" && props.value !== null,
                 },
@@ -2192,20 +2192,20 @@ const Tailwind = {
                 "rounded-full p-0 text-center inline-block",
                 "bg-blue-500 text-white font-bold",
                 {
-                    "bg-gray-500 ": props.severity == "secondary",
-                    "bg-green-500 ": props.severity == "success",
-                    "bg-blue-500 ": props.severity == "info",
-                    "bg-orange-500 ": props.severity == "warning",
-                    "bg-purple-500 ": props.severity == "help",
-                    "bg-red-500 ": props.severity == "danger",
+                    "bg-gray-500 ": props.severity === "secondary",
+                    "bg-green-500 ": props.severity === "success",
+                    "bg-blue-500 ": props.severity === "info",
+                    "bg-orange-500 ": props.severity === "warning",
+                    "bg-purple-500 ": props.severity === "help",
+                    "bg-red-500 ": props.severity === "danger",
                 },
                 {
                     "text-xs min-w-[1.5rem] h-[1.5rem] leading-[1.5rem]":
                         props.size == null,
                     "text-lg min-w-[2.25rem] h-[2.25rem] leading-[2.25rem]":
-                        props.size == "large",
+                        props.size === "large",
                     "text-2xl min-w-[3rem] h-[3rem] leading-[3rem]":
-                        props.size == "xlarge",
+                        props.size === "xlarge",
                 },
             ),
         }),
@@ -2216,14 +2216,14 @@ const Tailwind = {
                 "flex items-center justify-center",
                 "bg-gray-300 dark:bg-gray-800",
                 {
-                    "rounded-lg": props.shape == "square",
-                    "rounded-full": props.shape == "circle",
+                    "rounded-lg": props.shape === "square",
+                    "rounded-full": props.shape === "circle",
                 },
                 {
                     "text-base h-8 w-8":
-                        props.size == null || props.size == "normal",
-                    "w-12 h-12 text-xl": props.size == "large",
-                    "w-16 h-16 text-2xl": props.size == "xlarge",
+                        props.size == null || props.size === "normal",
+                    "w-12 h-12 text-xl": props.size === "large",
+                    "w-16 h-16 text-2xl": props.size === "xlarge",
                 },
                 {
                     "-ml-4 border-2 border-white dark:border-gray-900":
@@ -2267,7 +2267,7 @@ const Tailwind = {
                 "transition-width duration-1000 ease-in-out absolute items-center border-0 flex h-full justify-center overflow-hidden w-0":
                     props.mode !== "indeterminate",
                 "progressbar-value-animate before:absolute before:top-0 before:left-0 before:bottom-0 before:bg-inherit after:absolute after:top-0 after:left-0 after:bottom-0 after:bg-inherit after:delay-1000":
-                    props.mode == "indeterminate",
+                    props.mode === "indeterminate",
             }),
         }),
         label: {
@@ -2294,7 +2294,7 @@ const Tailwind = {
                 "after:absolute after:top-0 after:left-0 after:right-0 after:bottom-0 after:content after:w-full after:h-full after:bg-blue-400 after:left-full after:transform after:translate-x-full after:z-10 after:bg-gradient-to-r after:from-transparent after:via-white after:to-transparent animate-pulse",
                 {
                     "rounded-md": props.shape !== "circle",
-                    "rounded-full": props.shape == "circle",
+                    "rounded-full": props.shape === "circle",
                 },
             ),
         }),
@@ -2305,12 +2305,12 @@ const Tailwind = {
                 "inline-flex items-center justify-center",
                 "bg-blue-500 text-white text-xs font-semibold px-2 py-1 ",
                 {
-                    "bg-gray-500 ": props.severity == "secondary",
-                    "bg-green-500 ": props.severity == "success",
-                    "bg-blue-500 ": props.severity == "info",
-                    "bg-orange-500 ": props.severity == "warning",
-                    "bg-purple-500 ": props.severity == "help",
-                    "bg-red-500 ": props.severity == "danger",
+                    "bg-gray-500 ": props.severity === "secondary",
+                    "bg-green-500 ": props.severity === "success",
+                    "bg-blue-500 ": props.severity === "info",
+                    "bg-orange-500 ": props.severity === "warning",
+                    "bg-purple-500 ": props.severity === "help",
+                    "bg-red-500 ": props.severity === "danger",
                 },
                 {
                     "rounded-md": !props.rounded,
@@ -2337,7 +2337,7 @@ const Tailwind = {
                 "ml-auto",
                 {
                     "!bg-blue-500 hover:bg-blue-600 text-white rounded-md h-8 w-8":
-                        props.target == "parent",
+                        props.target === "parent",
                     "!bg-gray-700 hover:bg-gray-800 h-12 w-12 rounded-full text-white":
                         props.target !== "parent",
                 },
@@ -2443,10 +2443,10 @@ const Tailwind = {
             className: classNames(
                 "absolute z-1 flex justify-center items-center pointer-events-none",
                 {
-                    "left-0 bottom-0 w-full": props.position == "bottom",
-                    "left-0 top-0 w-full": props.position == "top",
-                    "left-0 top-0 h-full": props.position == "left",
-                    "right-0 top-0 h-full": props.position == "right",
+                    "left-0 bottom-0 w-full": props.position === "bottom",
+                    "left-0 top-0 w-full": props.position === "top",
+                    "left-0 top-0 h-full": props.position === "left",
+                    "right-0 top-0 h-full": props.position === "right",
                 },
             ),
         }),
@@ -2462,7 +2462,7 @@ const Tailwind = {
                 "outline-none",
                 {
                     "flex-col":
-                        props.position == "left" || props.position == "right",
+                        props.position === "left" || props.position === "right",
                 },
             ),
         }),
@@ -2471,10 +2471,10 @@ const Tailwind = {
                 "p-2 rounded-md",
                 "transition-all duration-200 ease-cubic-bezier-will-change-transform transform ",
                 {
-                    "origin-bottom hover:mx-6": props.position == "bottom",
-                    "origin-top hover:mx-6": props.position == "top",
-                    "origin-left hover:my-6": props.position == "left",
-                    "origin-right hover:my-6": props.position == "right",
+                    "origin-bottom hover:mx-6": props.position === "bottom",
+                    "origin-top hover:mx-6": props.position === "top",
+                    "origin-left hover:my-6": props.position === "left",
+                    "origin-right hover:my-6": props.position === "right",
                 },
                 {
                     "hover:scale-150": state.currentIndex === context.index,
@@ -2609,7 +2609,7 @@ const Tailwind = {
                 "bg-gray-100 dark:bg-gray-900  border border-gray-300 dark:border-blue-900/40  rounded-md",
                 "flex relative",
                 {
-                    "p-2 items-center": props.orientation == "horizontal",
+                    "p-2 items-center": props.orientation === "horizontal",
                     "flex-col w-48 p-0 py-1":
                         props.orientation !== "horizontal",
                 },
@@ -2636,7 +2636,7 @@ const Tailwind = {
         menuitem: ({ props, context }) => ({
             className: classNames(
                 "transition-shadow duration-200",
-                { "rounded-md": props.orientation == "horizontal" },
+                { "rounded-md": props.orientation === "horizontal" },
                 {
                     "text-gray-700 dark:text-white/80": !context.active,
                     "bg-blue-50 text-blue-700 dark:bg-blue-300 dark:text-white/80":
@@ -3103,7 +3103,7 @@ const Tailwind = {
         container: ({ props }) => ({
             className: classNames("flex", {
                 "flex-row": props.orientation !== "vertical",
-                "flex-col": props.orientation == "vertical",
+                "flex-col": props.orientation === "vertical",
             }),
         }),
         previousbutton: {
@@ -3116,13 +3116,13 @@ const Tailwind = {
         itemscontainer: ({ props }) => ({
             className: classNames("flex ", {
                 "flex-row": props.orientation !== "vertical",
-                "flex-col h-full": props.orientation == "vertical",
+                "flex-col h-full": props.orientation === "vertical",
             }),
         }),
         item: ({ props }) => ({
             className: classNames("flex shrink-0 grow", {
                 "w-1/3": props.orientation !== "vertical",
-                "w-full": props.orientation == "vertical",
+                "w-full": props.orientation === "vertical",
             }),
         }),
         indicators: {
@@ -3164,8 +3164,8 @@ const Tailwind = {
                 { "bg-blue-50 text-blue-600": context.selected },
                 {
                     "cursor-pointer select-none":
-                        props.selectionMode == "single" ||
-                        props.selectionMode == "multiple",
+                        props.selectionMode === "single" ||
+                        props.selectionMode === "multiple",
                 },
             ),
         }),

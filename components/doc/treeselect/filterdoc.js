@@ -116,7 +116,7 @@ export default function FilterDemo() {
                     filter
                     className="md:w-20rem w-full"
                     placeholder="Select Item"
-                ></TreeSelect>
+                />
             </div>
             <DocSectionCode code={code} service={["NodeService"]} />
         </>

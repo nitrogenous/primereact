@@ -9,7 +9,7 @@ export function DocSubSection(props) {
             <h3 className="doc-section-label">
                 {props.label}
                 <Link
-                    href={router.basePath + router.pathname + "#" + props.id}
+                    href={`${router.basePath + router.pathname}#${props.id}`}
                     target="_self"
                 >
                     <a id={props.id}>#</a>

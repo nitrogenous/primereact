@@ -36,17 +36,16 @@ export const DeferredContent = React.forwardRef((inProps, ref) => {
     const shouldLoad = () => {
         if (loadedState) {
             return false;
-        } else {
+        }
             const rect = elementRef.current.getBoundingClientRect();
             const winHeight = document.documentElement.clientHeight;
 
             return winHeight >= rect.top;
-        }
     };
 
     const load = (event) => {
         setLoadedState(true);
-        props.onLoad && props.onLoad(event);
+        props.onLoad?.(event);
     };
 
     React.useImperativeHandle(ref, () => ({

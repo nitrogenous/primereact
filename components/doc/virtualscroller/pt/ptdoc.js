@@ -17,7 +17,7 @@ export function PTDoc(props) {
         return (
             <div
                 className={className}
-                style={{ height: options.props.itemSize + "px" }}
+                style={{ height: `${options.props.itemSize}px` }}
             >
                 {item}
             </div>
@@ -116,7 +116,7 @@ export default function PTDemo() {
 
     return (
         <>
-            <DocSectionText {...props}></DocSectionText>
+            <DocSectionText {...props} />
             <div className="card flex justify-content-center">
                 <VirtualScroller
                     items={items}

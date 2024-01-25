@@ -64,7 +64,7 @@ export function GroupDoc(props) {
                     -1,
             );
 
-            if (filteredItems && filteredItems.length) {
+            if (filteredItems?.length) {
                 _filteredCities.push({
                     ...country,
                     ...{ items: filteredItems },

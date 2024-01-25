@@ -49,7 +49,7 @@ export const Terminal = React.memo(
         const onKeyDown = (event) => {
             switch (event.code) {
                 case "ArrowUp":
-                    if (commandsState && commandsState.length) {
+                    if (commandsState?.length) {
                         const prevIndex =
                             indexState - 1 < 0
                                 ? commandsState.length - 1
@@ -63,7 +63,7 @@ export const Terminal = React.memo(
                     break;
 
                 case "Enter":
-                    if (!!commandTextState) {
+                    if (commandTextState) {
                         const newCommands = [...commandsState];
 
                         newCommands.push({ text: commandTextState });
@@ -136,7 +136,7 @@ export const Terminal = React.memo(
 
         const createCommand = (command, index) => {
             const { text, response } = command;
-            const key = text + "_" + index;
+            const key = `${text}_${index}`;
             const commandsProps = mergeProps({ key }, ptm("commands"));
             const commandProps = mergeProps(
                 {

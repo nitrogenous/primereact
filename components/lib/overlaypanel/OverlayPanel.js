@@ -87,8 +87,7 @@ export const OverlayPanel = React.forwardRef((inProps, ref) => {
 
     const isOutsideClicked = (target) => {
         return (
-            overlayRef &&
-            overlayRef.current &&
+            overlayRef?.current &&
             !(
                 overlayRef.current.isSameNode(target) ||
                 overlayRef.current.contains(target)
@@ -169,9 +168,9 @@ export const OverlayPanel = React.forwardRef((inProps, ref) => {
         ZIndexUtils.set(
             "overlay",
             overlayRef.current,
-            (context && context.autoZIndex) || PrimeReact.autoZIndex,
-            (context && context.zIndex["overlay"]) ||
-                PrimeReact.zIndex["overlay"],
+            (context?.autoZIndex) || PrimeReact.autoZIndex,
+            (context?.zIndex.overlay) ||
+                PrimeReact.zIndex.overlay,
         );
         DomHandler.addStyles(overlayRef.current, {
             position: "absolute",
@@ -184,7 +183,7 @@ export const OverlayPanel = React.forwardRef((inProps, ref) => {
     const onEntered = () => {
         bindOverlayListener();
 
-        props.onShow && props.onShow();
+        props.onShow?.();
     };
 
     const onExit = () => {
@@ -194,7 +193,7 @@ export const OverlayPanel = React.forwardRef((inProps, ref) => {
     const onExited = () => {
         ZIndexUtils.clear(overlayRef.current);
 
-        props.onHide && props.onHide();
+        props.onHide?.();
     };
 
     const align = () => {
@@ -244,8 +243,8 @@ export const OverlayPanel = React.forwardRef((inProps, ref) => {
     const createStyle = () => {
         if (!styleElement.current) {
             styleElement.current = DomHandler.createInlineStyle(
-                (context && context.nonce) || PrimeReact.nonce,
-                context && context.styleContainer,
+                (context?.nonce) || PrimeReact.nonce,
+                context?.styleContainer,
             );
 
             let innerHTML = "";

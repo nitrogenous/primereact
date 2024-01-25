@@ -85,7 +85,7 @@ export const ContextMenuSub = React.memo(
                     DomHandler.getWindowScrollTop();
 
                 if (top > viewport.height) {
-                    submenuRef.current.style.top = viewport.height - top + "px";
+                    submenuRef.current.style.top = `${viewport.height - top}px`;
                 } else {
                     submenuRef.current.style.top = "0px";
                 }
@@ -96,9 +96,9 @@ export const ContextMenuSub = React.memo(
                         sublistWidth >
                     viewport.width - DomHandler.calculateScrollbarWidth()
                 ) {
-                    submenuRef.current.style.left = -1 * sublistWidth + "px";
+                    submenuRef.current.style.left = `${-1 * sublistWidth}px`;
                 } else {
-                    submenuRef.current.style.left = itemOuterWidth + "px";
+                    submenuRef.current.style.left = `${itemOuterWidth}px`;
                 }
             }
         };
@@ -116,7 +116,7 @@ export const ContextMenuSub = React.memo(
         };
 
         const getItemProp = (processedItem, name, params) => {
-            return processedItem && processedItem.item
+            return processedItem?.item
                 ? ObjectUtils.getItemValue(processedItem.item[name], params)
                 : undefined;
         };
@@ -127,8 +127,7 @@ export const ContextMenuSub = React.memo(
 
         const isItemActive = (processedItem) => {
             return (
-                props.activeItemPath &&
-                props.activeItemPath.some(
+                props.activeItemPath?.some(
                     (path) => path.key === processedItem.key,
                 )
             );
@@ -178,7 +177,7 @@ export const ContextMenuSub = React.memo(
         }));
 
         const createSeparator = (index) => {
-            const key = props.id + "_separator_" + index;
+            const key = `${props.id}_separator_${index}`;
             const separatorProps = mergeProps(
                 {
                     id: key,
@@ -189,14 +188,14 @@ export const ContextMenuSub = React.memo(
                 ptm("separator", { hostName: props.hostName }),
             );
 
-            return <li {...separatorProps}></li>;
+            return <li {...separatorProps} />;
         };
 
         const createSubmenu = (item, index) => {
             if (isItemGroup(item)) {
                 return (
                     <ContextMenuSub
-                        id={props.id + "_" + index}
+                        id={`${props.id}_${index}`}
                         role="menu"
                         menuId={props.menuId}
                         focusedItemId={props.focusedItemId}
@@ -324,7 +323,6 @@ export const ContextMenuSub = React.memo(
             const menuitemProps = mergeProps(
                 {
                     id: key,
-                    key,
                     role: "menuitem",
                     "aria-label": item.label,
                     "aria-disabled": disabled,

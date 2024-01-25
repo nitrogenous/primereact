@@ -92,7 +92,7 @@ export function DocComponent(props) {
                                     dangerouslySetInnerHTML={{
                                         __html: props.description,
                                     }}
-                                ></p>
+                                />
                             </div>
                             <DocSections docs={props.componentDocs} />
                         </div>

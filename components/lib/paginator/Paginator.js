@@ -293,7 +293,7 @@ export const Paginator = React.memo(
 
         if (!props.alwaysShow && pageCount <= 1) {
             return null;
-        } else {
+        }
             const leftContent = ObjectUtils.getJSXElement(
                 props.leftContent,
                 props,
@@ -339,7 +339,6 @@ export const Paginator = React.memo(
                     {rightElement}
                 </div>
             );
-        }
     }),
 );
 

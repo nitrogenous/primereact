@@ -520,8 +520,7 @@ export const ComponentBase = {
                 params.hostName && ObjectUtils.toFlatCase(params.hostName);
             const componentName =
                 hostName ||
-                (params.props &&
-                    params.props.__TYPE &&
+                (params.props?.__TYPE &&
                     ObjectUtils.toFlatCase(params.props.__TYPE)) ||
                 "";
             const isTransition = fkey === "transition";
@@ -583,7 +582,7 @@ export const ComponentBase = {
             const datasetProps = !isTransition && {
                 ...(fkey === "root" && {
                     [`${datasetPrefix}name`]:
-                        params.props && params.props.__parentMetadata
+                        params.props?.__parentMetadata
                             ? ObjectUtils.toFlatCase(params.props.__TYPE)
                             : componentName,
                 }),
@@ -622,7 +621,7 @@ export const ComponentBase = {
         const setMetaData = (metadata = {}) => {
             const { props, state } = metadata;
             const ptm = (key = "", params = {}) =>
-                getPTValue((props || {}).pt, key, { ...metadata, ...params });
+                getPTValue(props?.pt, key, { ...metadata, ...params });
             const ptmo = (obj = {}, key = "", params = {}) =>
                 getPTValue(obj, key, params, false);
 
@@ -636,7 +635,7 @@ export const ComponentBase = {
 
             const cx = (key = "", params = {}) => {
                 return !isUnstyled()
-                    ? getOptionValue(css && css.classes, key, {
+                    ? getOptionValue(css?.classes, key, {
                           props,
                           state,
                           ...params,
@@ -646,7 +645,7 @@ export const ComponentBase = {
 
             const sx = (key = "", params = {}, when = true) => {
                 if (when) {
-                    const self = getOptionValue(css && css.inlineStyles, key, {
+                    const self = getOptionValue(css?.inlineStyles, key, {
                         props,
                         state,
                         ...params,
@@ -698,8 +697,8 @@ const getOptionValue = (obj, key = "", params = {}) => {
         : ObjectUtils.getItemValue(obj, params);
 };
 
-const _getPT = (pt, key = "", callback) => {
-    const _usept = pt?.["_usept"];
+const _getPT = (pt, key, callback) => {
+    const _usept = pt?._usept;
 
     const getValue = (value, checkSameKey = false) => {
         const _value = callback ? callback(value) : value;
@@ -731,14 +730,14 @@ const _usePT = (pt, callback, key, params) => {
             mergeSections = true,
             mergeProps: useMergeProps = false,
             classNameMergeFunction,
-        } = pt["_usept"] || ComponentBase.context.ptOptions || {};
+        } = pt._usept || ComponentBase.context.ptOptions || {};
         const originalValue = fn(pt.originalValue);
         const value = fn(pt.value);
 
         if (originalValue === undefined && value === undefined)
             return undefined;
-        else if (ObjectUtils.isString(value)) return value;
-        else if (ObjectUtils.isString(originalValue)) return originalValue;
+        if (ObjectUtils.isString(value)) return value;
+        if (ObjectUtils.isString(originalValue)) return originalValue;
 
         return mergeSections || (!mergeSections && value)
             ? useMergeProps
@@ -778,7 +777,7 @@ const _useDefaultPT = (callback, key, params) => {
     return _usePT(getDefaultPT(), callback, key, params);
 };
 
-export const useHandleStyle = (styles, _isUnstyled = () => {}, config) => {
+export const useHandleStyle = (styles, _isUnstyled, config) => {
     const { name, styled = false, hostName = "" } = config;
 
     const globalCSS = _useGlobalPT(
@@ -805,7 +804,7 @@ export const useHandleStyle = (styles, _isUnstyled = () => {}, config) => {
     const hook = (hookName) => {
         if (!hostName) {
             const selfHook = _usePT(
-                _getPT((ComponentBase.cProps || {}).pt, componentName),
+                _getPT(ComponentBase.cProps?.pt, componentName),
                 getOptionValue,
                 `hooks.${hookName}`,
             );

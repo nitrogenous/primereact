@@ -121,25 +121,25 @@ export default function SingleColumnDemo() {
                             header="Code"
                             sortable
                             style={{ width: "25%" }}
-                        ></Column>
+                        />
                         <Column
                             field="name"
                             header="Name"
                             sortable
                             style={{ width: "25%" }}
-                        ></Column>
+                        />
                         <Column
                             field="category"
                             header="Category"
                             sortable
                             style={{ width: "25%" }}
-                        ></Column>
+                        />
                         <Column
                             field="quantity"
                             header="Quantity"
                             sortable
                             style={{ width: "25%" }}
-                        ></Column>
+                        />
                     </DataTable>
                 </div>
             </DeferredDemo>

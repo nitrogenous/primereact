@@ -97,12 +97,12 @@ export default function BasicDemo() {
                         label="Block"
                         onClick={() => setBlocked(true)}
                         className="mr-2"
-                    ></Button>
+                    />
                     <Button
                         label="Unblock"
                         onClick={() => setBlocked(false)}
                         severity="secondary"
-                    ></Button>
+                    />
                 </div>
                 <BlockUI blocked={blocked}>
                     <Panel header="Basic">

@@ -50,7 +50,7 @@ export default function PTDemo() {
 
     return (
         <>
-            <DocSectionText {...props}></DocSectionText>
+            <DocSectionText {...props} />
             <div className="card flex justify-content-center">
                 <ProgressSpinner
                     pt={{
@@ -63,7 +63,7 @@ export default function PTDemo() {
                             },
                         },
                     }}
-                ></ProgressSpinner>
+                />
             </div>
             <DocSectionCode code={code} />
         </>

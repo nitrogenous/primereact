@@ -108,7 +108,7 @@ export const TreeTableBodyCell = (props) => {
                 }
 
                 // if user prevents default stop the editor
-                if (event && event.defaultPrevented) {
+                if (event?.defaultPrevented) {
                     return;
                 }
             }
@@ -123,7 +123,7 @@ export const TreeTableBodyCell = (props) => {
                 }
 
                 // if user prevents default stop the editor
-                if (event && event.defaultPrevented) {
+                if (event?.defaultPrevented) {
                     return;
                 }
             }
@@ -187,7 +187,7 @@ export const TreeTableBodyCell = (props) => {
 
     const isSelected = () => {
         return props.selection
-            ? props.selection instanceof Array
+            ? Array.isArray(props.selection)
                 ? findIndex(props.selection) > -1
                 : equals(props.selection)
             : false;
@@ -282,7 +282,7 @@ export const TreeTableBodyCell = (props) => {
     /* eslint-disable */
     const editorKeyHelper = props.editor && (
         <a {...editorKeyHelperProps}>
-            <span {...editorKeyHelperLabelProps}></span>
+            <span {...editorKeyHelperLabelProps} />
         </a>
     );
     const align = getColumnProp("align");

@@ -121,7 +121,7 @@ export const BreadCrumb = React.memo(
                     );
                 }
 
-                const key = idState + "_home";
+                const key = `${idState}_home`;
                 const menuitemProps = mergeProps(
                     {
                         id: key,
@@ -139,7 +139,7 @@ export const BreadCrumb = React.memo(
         };
 
         const createSeparator = (index) => {
-            const key = idState + "_sep_" + index;
+            const key = `${idState}_sep_${index}`;
             const separatorIconProps = mergeProps(
                 {
                     className: cx("separatorIcon"),
@@ -211,7 +211,7 @@ export const BreadCrumb = React.memo(
                 );
             }
 
-            const key = item.id || idState + "_" + index;
+            const key = item.id || `${idState}_${index}`;
             const menuitemProps = mergeProps(
                 {
                     id: key,
@@ -237,7 +237,7 @@ export const BreadCrumb = React.memo(
                         index === props.model.length - 1
                             ? null
                             : createSeparator(index);
-                    const key = idState + "_" + index;
+                    const key = `${idState}_${index}`;
 
                     return (
                         <React.Fragment key={key}>

@@ -75,25 +75,25 @@ export default function DataTableDemo() {
                         header="Code"
                         style={{ width: "25%" }}
                         body={<Skeleton />}
-                    ></Column>
+                    />
                     <Column
                         field="name"
                         header="Name"
                         style={{ width: "25%" }}
                         body={<Skeleton />}
-                    ></Column>
+                    />
                     <Column
                         field="category"
                         header="Category"
                         style={{ width: "25%" }}
                         body={<Skeleton />}
-                    ></Column>
+                    />
                     <Column
                         field="quantity"
                         header="Quantity"
                         style={{ width: "25%" }}
                         body={<Skeleton />}
-                    ></Column>
+                    />
                 </DataTable>
             </div>
             <DocSectionCode code={code} />

@@ -22,8 +22,8 @@ export const Fieldset = React.forwardRef((inProps, ref) => {
         : false;
     const elementRef = React.useRef(null);
     const contentRef = React.useRef(null);
-    const headerId = idState + "_header";
-    const contentId = idState + "_content";
+    const headerId = `${idState}_header`;
+    const contentId = `${idState}_content`;
 
     const { ptm, cx, isUnstyled } = FieldsetBase.setMetaData({
         props,
@@ -55,7 +55,7 @@ export const Fieldset = React.forwardRef((inProps, ref) => {
             setCollapsedState(false);
         }
 
-        props.onExpand && props.onExpand(event);
+        props.onExpand?.(event);
     };
 
     const collapse = (event) => {
@@ -63,7 +63,7 @@ export const Fieldset = React.forwardRef((inProps, ref) => {
             setCollapsedState(true);
         }
 
-        props.onCollapse && props.onCollapse(event);
+        props.onCollapse?.(event);
     };
 
     useMountEffect(() => {

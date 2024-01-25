@@ -91,7 +91,7 @@ export const Button = React.memo(
                     <span
                         {...labelProps}
                         dangerouslySetInnerHTML={{ __html: "&nbsp;" }}
-                    ></span>
+                    />
                 )
             );
         };
@@ -116,7 +116,7 @@ export const Button = React.memo(
 
         const showTooltip =
             !disabled ||
-            (props.tooltipOptions && props.tooltipOptions.showOnDisabled);
+            (props.tooltipOptions?.showOnDisabled);
         const hasTooltip = ObjectUtils.isNotEmpty(props.tooltip) && showTooltip;
         const sizeMapping = {
             large: "lg",
@@ -128,7 +128,7 @@ export const Button = React.memo(
         const label = createLabel();
         const badge = createBadge();
         const defaultAriaLabel = props.label
-            ? props.label + (props.badge ? " " + props.badge : "")
+            ? props.label + (props.badge ? ` ${props.badge}` : "")
             : props["aria-label"];
 
         const rootProps = mergeProps(

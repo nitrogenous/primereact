@@ -20,7 +20,7 @@ export function NextJSDoc(props) {
                     frameBorder="0"
                     allowFullScreen
                     title="Getting Started With NextJs"
-                ></iframe>
+                />
             </div>
         </>
     );

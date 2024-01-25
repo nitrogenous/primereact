@@ -48,7 +48,7 @@ export default function PTDemo() {
 
     return (
         <>
-            <DocSectionText {...props}></DocSectionText>
+            <DocSectionText {...props} />
             <div className="card flex justify-content-center">
                 <Tag
                     value="New"
@@ -61,7 +61,7 @@ export default function PTDemo() {
                             },
                         },
                     }}
-                ></Tag>
+                />
             </div>
             <DocSectionCode code={code} />
         </>

@@ -56,7 +56,7 @@ primereact/resources/themes/arya-purple/theme.css
                     distribution with import paths. For a live preview, use the
                     configurator{" "}
                     <span className="border-round inline-flex border-1 w-2rem h-2rem p-0 align-items-center justify-content-center bg-primary">
-                        <span className="pi pi-cog"></span>
+                        <span className="pi pi-cog" />
                     </span>{" "}
                     at the topbar to switch themes.
                 </p>

@@ -257,8 +257,8 @@ export const Knob = React.memo(
         return (
             <div {...rootProps}>
                 <svg {...svgProps}>
-                    <path {...rangeProps}></path>
-                    <path {...valueProps}></path>
+                    <path {...rangeProps} />
+                    <path {...valueProps} />
                     {text}
                 </svg>
             </div>

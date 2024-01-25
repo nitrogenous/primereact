@@ -14,21 +14,23 @@ export function mask(el, options) {
     };
 
     options = { ...defaultOptions, ...options };
-    let tests,
-        partialPosition,
-        len,
-        firstNonMaskPos,
-        defs,
-        androidChrome,
-        lastRequiredNonMaskPos,
-        oldVal,
-        focusText,
-        caretTimeoutId,
-        buffer,
-        defaultBuffer;
+    let tests;
+    let partialPosition;
+    let len;
+    let firstNonMaskPos;
+    let defs;
+    let androidChrome;
+    let lastRequiredNonMaskPos;
+    let oldVal;
+    let focusText;
+    let caretTimeoutId;
+    let buffer;
+    let defaultBuffer;
 
     const caret = (first, last) => {
-        let range, begin, end;
+        let range;
+        let begin;
+        let end;
 
         if (!el.offsetParent || el !== document.activeElement) {
             return;
@@ -40,8 +42,8 @@ export function mask(el, options) {
 
             if (el.setSelectionRange) {
                 el.setSelectionRange(begin, end);
-            } else if (el["createTextRange"]) {
-                range = el["createTextRange"]();
+            } else if (el.createTextRange) {
+                range = el.createTextRange();
                 range.collapse(true);
                 range.moveEnd("character", end);
                 range.moveStart("character", begin);
@@ -52,10 +54,9 @@ export function mask(el, options) {
                 begin = el.selectionStart;
                 end = el.selectionEnd;
             } else if (
-                document["selection"] &&
-                document["selection"].createRange
+                document.selection?.createRange
             ) {
-                range = document["selection"].createRange();
+                range = document.selection.createRange();
                 begin = 0 - range.duplicate().moveStart("character", -100000);
                 end = begin + range.text.length;
             }
@@ -83,7 +84,7 @@ export function mask(el, options) {
     };
 
     const getValue = () => {
-        return options.unmask ? getUnmaskedValue() : el && el.value;
+        return options.unmask ? getUnmaskedValue() : el?.value;
     };
 
     const seekNext = (pos) => {
@@ -99,7 +100,8 @@ export function mask(el, options) {
     };
 
     const shiftL = (begin, end) => {
-        let i, j;
+        let i;
+        let j;
 
         if (begin < 0) {
             return;
@@ -123,7 +125,10 @@ export function mask(el, options) {
     };
 
     const shiftR = (pos) => {
-        let i, c, j, t;
+        let i;
+        let c;
+        let j;
+        let t;
 
         for (i = pos, c = getPlaceholder(pos); i < len; i++) {
             if (tests[i]) {
@@ -144,7 +149,7 @@ export function mask(el, options) {
         const curVal = el.value;
         const pos = caret();
 
-        if (oldVal && oldVal.length && oldVal.length > curVal.length) {
+        if (oldVal?.length && oldVal.length > curVal.length) {
             // a deletion or backspace happened
             checkVal(true);
             while (pos.begin > 0 && !tests[pos.begin - 1]) pos.begin--;
@@ -172,7 +177,7 @@ export function mask(el, options) {
 
     const onBlur = (e) => {
         checkVal();
-        options.onBlur && options.onBlur(e);
+        options.onBlur?.(e);
         updateModel(e);
 
         if (el.value !== focusText) {
@@ -188,10 +193,10 @@ export function mask(el, options) {
             return;
         }
 
-        let k = e.which || e.keyCode,
-            pos,
-            begin,
-            end;
+        const k = e.which || e.keyCode;
+        let pos;
+        let begin;
+        let end;
 
         oldVal = el.value;
 
@@ -230,17 +235,17 @@ export function mask(el, options) {
             return;
         }
 
-        let k = e.which || e.keyCode,
-            pos = caret(),
-            p,
-            c,
-            next,
-            completed;
+        const k = e.which || e.keyCode;
+        const pos = caret();
+        let p;
+        let c;
+        let next;
+        let completed;
 
         if (e.ctrlKey || e.altKey || e.metaKey || k < 32) {
             //Ignore
             return;
-        } else if (k && k !== 13) {
+        }if (k && k !== 13) {
             if (pos.end - pos.begin !== 0) {
                 clearBuffer(pos.begin, pos.end);
                 shiftL(pos.begin, pos.end - 1);
@@ -304,11 +309,11 @@ export function mask(el, options) {
 
     const checkVal = (allow) => {
         //try to place characters where they belong
-        let test = el.value,
-            lastMatch = -1,
-            i,
-            c,
-            pos;
+        const test = el.value;
+        let lastMatch = -1;
+        let i;
+        let c;
+        let pos;
 
         for (i = 0, pos = 0; i < len; i++) {
             if (tests[i]) {

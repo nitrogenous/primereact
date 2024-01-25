@@ -7,11 +7,9 @@ export const useMatchMedia = (query, when = true) => {
 
     const handleChange = (e) => setMatches(e.matches);
     const bind = () =>
-        matchMedia.current &&
-        matchMedia.current.addEventListener("change", handleChange);
+        matchMedia.current?.addEventListener("change", handleChange);
     const unbind = () =>
-        matchMedia.current &&
-        matchMedia.current.removeEventListener("change", handleChange) &&
+        matchMedia.current?.removeEventListener("change", handleChange) &&
         (matchMedia.current = null);
 
     React.useEffect(() => {

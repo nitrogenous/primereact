@@ -27,8 +27,8 @@ export const Panel = React.forwardRef((inProps, ref) => {
             ? props.collapsed
             : collapsedState
         : false;
-    const headerId = idState + "_header";
-    const contentId = idState + "_content";
+    const headerId = `${idState}_header`;
+    const contentId = `${idState}_content`;
 
     const { ptm, cx, isUnstyled } = PanelBase.setMetaData({
         props,
@@ -92,7 +92,7 @@ export const Panel = React.forwardRef((inProps, ref) => {
 
     const createToggleIcon = () => {
         if (props.toggleable) {
-            const buttonId = idState + "_label";
+            const buttonId = `${idState}_label`;
             const togglerProps = mergeProps(
                 {
                     className: cx("toggler"),
@@ -178,7 +178,7 @@ export const Panel = React.forwardRef((inProps, ref) => {
                 iconsElement,
                 togglerElement,
                 element: content,
-                id: idState + "_header",
+                id: `${idState}_header`,
                 props,
                 collapsed,
             };
@@ -187,7 +187,7 @@ export const Panel = React.forwardRef((inProps, ref) => {
                 props.headerTemplate,
                 defaultContentOptions,
             );
-        } else if (props.header || props.toggleable) {
+        }if (props.header || props.toggleable) {
             return content;
         }
 
@@ -217,7 +217,7 @@ export const Panel = React.forwardRef((inProps, ref) => {
                 props.footerTemplate,
                 defaultContentOptions,
             );
-        } else if (props.footer) {
+        }if (props.footer) {
             return content;
         }
 

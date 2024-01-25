@@ -37,8 +37,7 @@ export const FocusTrap = React.memo(
 
         const getTarget = () => {
             return (
-                firstFocusableElementRef.current &&
-                firstFocusableElementRef.current.parentElement
+                firstFocusableElementRef.current?.parentElement
             );
         };
 
@@ -125,7 +124,7 @@ export const FocusTrap = React.memo(
                         data-p-hidden-focusable={true}
                         onFocus={onFocus}
                         data-pc-section={section}
-                    ></span>
+                    />
                 );
             };
 

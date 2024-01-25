@@ -138,7 +138,7 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
 
             multiSortMeta = [...getMultiSortMeta()];
 
-            if (multiSortMeta && multiSortMeta instanceof Array) {
+            if (multiSortMeta && Array.isArray(multiSortMeta)) {
                 const sortMeta = multiSortMeta.find(
                     (sortMeta) => sortMeta.field === sortField,
                 );
@@ -256,7 +256,7 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
             const lookupMap = new Map();
             const sortField = getSortField();
             const comparator = ObjectUtils.localeComparator(
-                (context && context.locale) || PrimeReact.locale,
+                (context?.locale) || PrimeReact.locale,
             );
 
             for (const node of data) {
@@ -279,7 +279,7 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
             });
 
             for (let i = 0; i < value.length; i++) {
-                if (value[i].children && value[i].children.length) {
+                if (value[i].children?.length) {
                     value[i].children = sortNodes(value[i].children);
                 }
             }
@@ -292,14 +292,14 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
         const multiSortMeta = getMultiSortMeta();
 
         if (multiSortMeta) return sortMultipleNodes(data, multiSortMeta);
-        else return data;
+        return data;
     };
 
     const sortMultipleNodes = (data, multiSortMeta) => {
         const value = [...data];
 
         const comparator = ObjectUtils.localeComparator(
-            (context && context.locale) || PrimeReact.locale,
+            (context?.locale) || PrimeReact.locale,
         );
 
         value.sort((node1, node2) => {
@@ -307,7 +307,7 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
         });
 
         for (let i = 0; i < value.length; i++) {
-            if (value[i].children && value[i].children.length) {
+            if (value[i].children?.length) {
                 value[i].children = sortMultipleNodes(
                     value[i].children,
                     multiSortMeta,
@@ -359,7 +359,7 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
             value2,
             order,
             comparator,
-            (context && context.nullSortOrder) || PrimeReact.nullSortOrder,
+            (context?.nullSortOrder) || PrimeReact.nullSortOrder,
         );
     };
 
@@ -404,10 +404,10 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
         if (filter !== null && filter !== undefined) {
             if (
                 (typeof filter === "string" && filter.trim().length === 0) ||
-                (filter instanceof Array && filter.length === 0)
+                (Array.isArray(filter) && filter.length === 0)
             )
                 return true;
-            else return false;
+            return false;
         }
 
         return true;
@@ -433,10 +433,10 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
         !ptCallbacks.isUnstyled() &&
             DomHandler.addClass(elementRef.current, "p-unselectable-text");
         resizerHelperRef.current.style.height =
-            elementRef.current.offsetHeight + "px";
-        resizerHelperRef.current.style.top = 0 + "px";
+            `${elementRef.current.offsetHeight}px`;
+        resizerHelperRef.current.style.top = `${0}px`;
         resizerHelperRef.current.style.left =
-            event.pageX - containerLeft + elementRef.current.scrollLeft + "px";
+            `${event.pageX - containerLeft + elementRef.current.scrollLeft}px`;
 
         resizerHelperRef.current.style.display = "block";
     };
@@ -494,10 +494,10 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
                         );
                     } else {
                         resizeColumn.current.style.width =
-                            newColumnWidth + "px";
+                            `${newColumnWidth}px`;
 
                         if (nextColumn) {
-                            nextColumn.style.width = nextColumnWidth + "px";
+                            nextColumn.style.width = `${nextColumnWidth}px`;
                         }
                     }
                 }
@@ -520,13 +520,13 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
                     );
 
                     scrollableBodyTable.style.width =
-                        scrollableBodyTable.offsetWidth + delta + "px";
+                        `${scrollableBodyTable.offsetWidth + delta}px`;
                     scrollableHeaderTable.style.width =
-                        scrollableHeaderTable.offsetWidth + delta + "px";
+                        `${scrollableHeaderTable.offsetWidth + delta}px`;
 
                     if (scrollableFooterTable) {
                         scrollableFooterTable.style.width =
-                            scrollableHeaderTable.offsetWidth + delta + "px";
+                            `${scrollableHeaderTable.offsetWidth + delta}px`;
                     }
 
                     const resizeColumnIndex = DomHandler.index(
@@ -553,8 +553,8 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
                     );
                 } else {
                     tableRef.current.style.width =
-                        tableRef.current.offsetWidth + delta + "px";
-                    resizeColumn.current.style.width = newColumnWidth + "px";
+                        `${tableRef.current.offsetWidth + delta}px`;
+                    resizeColumn.current.style.width = `${newColumnWidth}px`;
                 }
             }
 
@@ -588,9 +588,8 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
             }
 
             return parent;
-        } else {
-            return null;
         }
+            return null;
     };
 
     const resizeColGroup = (
@@ -609,10 +608,10 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
                 const col = colGroup.children[resizeColumnIndex];
                 const nextCol = col.nextElementSibling;
 
-                col.style.width = newColumnWidth + "px";
+                col.style.width = `${newColumnWidth}px`;
 
                 if (nextCol && nextColumnWidth) {
-                    nextCol.style.width = nextColumnWidth + "px";
+                    nextCol.style.width = `${nextColumnWidth}px`;
                 }
             } else {
                 throw new Error(
@@ -674,33 +673,29 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
                     dropHeaderOffset.left + dropHeader.offsetWidth / 2;
 
                 reorderIndicatorUpRef.current.style.top =
-                    dropHeaderOffset.top -
+                    `${dropHeaderOffset.top -
                     containerOffset.top -
-                    (iconHeight.current - 1) +
-                    "px";
+                    (iconHeight.current - 1)}px`;
                 reorderIndicatorDownRef.current.style.top =
-                    dropHeaderOffset.top -
+                    `${dropHeaderOffset.top -
                     containerOffset.top +
-                    dropHeader.offsetHeight +
-                    "px";
+                    dropHeader.offsetHeight}px`;
 
                 if (event.pageX > columnCenter) {
                     reorderIndicatorUpRef.current.style.left =
-                        targetLeft +
+                        `${targetLeft +
                         dropHeader.offsetWidth -
-                        Math.ceil(iconWidth.current / 2) +
-                        "px";
+                        Math.ceil(iconWidth.current / 2)}px`;
                     reorderIndicatorDownRef.current.style.left =
-                        targetLeft +
+                        `${targetLeft +
                         dropHeader.offsetWidth -
-                        Math.ceil(iconWidth.current / 2) +
-                        "px";
+                        Math.ceil(iconWidth.current / 2)}px`;
                     dropPosition.current = 1;
                 } else {
                     reorderIndicatorUpRef.current.style.left =
-                        targetLeft - Math.ceil(iconWidth.current / 2) + "px";
+                        `${targetLeft - Math.ceil(iconWidth.current / 2)}px`;
                     reorderIndicatorDownRef.current.style.left =
-                        targetLeft - Math.ceil(iconWidth.current / 2) + "px";
+                        `${targetLeft - Math.ceil(iconWidth.current / 2)}px`;
                     dropPosition.current = -1;
                 }
 
@@ -800,7 +795,7 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
     const findParentHeader = (element) => {
         if (element.nodeName === "TH") {
             return element;
-        } else {
+        }
             let parent = element.parentElement;
 
             while (parent.nodeName !== "TH") {
@@ -809,7 +804,6 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
             }
 
             return parent;
-        }
     };
 
     const getColumnProp = (column, name) => {
@@ -845,7 +839,7 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
     };
 
     const findColumnByKey = (columns, key) => {
-        if (columns && columns.length) {
+        if (columns?.length) {
             for (let i = 0; i < columns.length; i++) {
                 const child = columns[i];
 
@@ -864,7 +858,7 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
     const getColumns = () => {
         const columns = React.Children.toArray(props.children);
 
-        if (columns && columns.length) {
+        if (columns?.length) {
             if (props.reorderableColumns && columnOrderState) {
                 const orderedColumns = [];
 
@@ -882,9 +876,8 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
                         return orderedColumns.indexOf(item) < 0;
                     }),
                 ];
-            } else {
-                return columns;
             }
+                return columns;
         }
 
         return null;
@@ -949,7 +942,10 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
                     ? filters[getColumnProp(col, "field")]
                     : null;
                 const filterField = getColumnProp(col, "field");
-                let filterValue, filterConstraint, paramsWithoutNode, options;
+                let filterValue;
+                let filterConstraint;
+                let paramsWithoutNode;
+                let options;
 
                 //local
                 if (filterMeta) {
@@ -1121,20 +1117,20 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
     const isNodeLeaf = (node) => {
         return node.leaf === false
             ? false
-            : !(node.children && node.children.length);
+            : !(node.children?.length);
     };
 
     const processedData = (localState) => {
         let data = props.value || [];
 
         if (!props.lazy) {
-            if (data && data.length) {
+            if (data?.length) {
                 const filters =
-                    (localState && localState.filters) || getFilters();
+                    (localState?.filters) || getFilters();
                 const sortField =
-                    (localState && localState.sortField) || getSortField();
+                    (localState?.sortField) || getSortField();
                 const multiSortMeta =
-                    (localState && localState.multiSortMeta) ||
+                    (localState?.multiSortMeta) ||
                     getMultiSortMeta();
 
                 if (ObjectUtils.isNotEmpty(filters) || props.globalFilter) {
@@ -1262,7 +1258,7 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
 
     const createPaginator = (position, totalRecords) => {
         const className = classNames(
-            "p-paginator-" + position,
+            `p-paginator-${position}`,
             props.paginatorClassName,
         );
 
@@ -1321,7 +1317,8 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
         const scrollableColumns = frozenColumns
             ? getScrollableColumns(columns)
             : columns;
-        let frozenView, scrollableView;
+        let frozenView;
+        let scrollableView;
 
         if (frozenColumns) {
             frozenView = createScrollableView(
@@ -1477,7 +1474,7 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
         createPaginator("bottom", totalRecords);
     const loader = createLoader();
     const resizeHelper = props.resizableColumns && (
-        <div ref={resizerHelperRef} {...resizeHelperProps}></div>
+        <div ref={resizerHelperRef} {...resizeHelperProps} />
     );
     const reorderIndicatorUpProps = mergeProps(
         {

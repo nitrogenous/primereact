@@ -71,16 +71,16 @@ export const SelectButton = React.memo(
         const getOptionLabel = (option) => {
             return props.optionLabel
                 ? ObjectUtils.resolveFieldData(option, props.optionLabel)
-                : option && option["label"] !== undefined
-                  ? option["label"]
+                : option && option.label !== undefined
+                  ? option.label
                   : option;
         };
 
         const getOptionValue = (option) => {
             return props.optionValue
                 ? ObjectUtils.resolveFieldData(option, props.optionValue)
-                : option && option["value"] !== undefined
-                  ? option["value"]
+                : option && option.value !== undefined
+                  ? option.value
                   : option;
         };
 
@@ -94,8 +94,8 @@ export const SelectButton = React.memo(
                       );
             }
 
-            return option && option["disabled"] !== undefined
-                ? option["disabled"]
+            return option && option.disabled !== undefined
+                ? option.disabled
                 : false;
         };
 
@@ -103,7 +103,7 @@ export const SelectButton = React.memo(
             const optionValue = getOptionValue(option);
 
             if (props.multiple) {
-                if (props.value && props.value.length) {
+                if (props.value?.length) {
                     return props.value.some((val) =>
                         ObjectUtils.equals(val, optionValue, props.dataKey),
                     );
@@ -120,14 +120,14 @@ export const SelectButton = React.memo(
         };
 
         const createItems = () => {
-            if (props.options && props.options.length) {
+            if (props.options?.length) {
                 return props.options.map((option, index) => {
                     const isDisabled =
                         props.disabled || isOptionDisabled(option);
                     const optionLabel = getOptionLabel(option);
                     const tabIndex = isDisabled ? null : 0;
                     const selected = isSelected(option);
-                    const key = optionLabel + "_" + index;
+                    const key = `${optionLabel}_${index}`;
 
                     return (
                         <SelectButtonItem

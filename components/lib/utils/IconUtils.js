@@ -13,7 +13,7 @@ export default class IconUtils {
                 iconType === "string" && icon,
             );
 
-            content = <span {...iconProps} className={className}></span>;
+            content = <span {...iconProps} className={className} />;
 
             if (iconType !== "string") {
                 const defaultContentOptions = {

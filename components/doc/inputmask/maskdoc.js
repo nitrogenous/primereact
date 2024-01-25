@@ -86,7 +86,7 @@ export default function MaskDemo() {
                         id="ssn"
                         mask="999-99-9999"
                         placeholder="999-99-9999"
-                    ></InputMask>
+                    />
                 </div>
 
                 <div className="flex-auto">
@@ -97,7 +97,7 @@ export default function MaskDemo() {
                         id="phone"
                         mask="(999) 999-9999"
                         placeholder="(999) 999-9999"
-                    ></InputMask>
+                    />
                 </div>
 
                 <div className="flex-auto">
@@ -108,7 +108,7 @@ export default function MaskDemo() {
                         id="serial"
                         mask="a*-999-a999"
                         placeholder="a*-999-a999"
-                    ></InputMask>
+                    />
                 </div>
             </div>
             <DocSectionCode code={code} />

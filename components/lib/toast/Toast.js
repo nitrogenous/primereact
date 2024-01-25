@@ -102,7 +102,7 @@ export const Toast = React.memo(
                 ),
             );
 
-            props.onRemove && props.onRemove(removeMessage);
+            props.onRemove?.(removeMessage);
         };
 
         const onClose = (messageInfo) => {
@@ -110,24 +110,24 @@ export const Toast = React.memo(
         };
 
         const onEntered = () => {
-            props.onShow && props.onShow();
+            props.onShow?.();
         };
 
         const onExited = () => {
             messagesState.length === 1 &&
                 ZIndexUtils.clear(containerRef.current);
 
-            props.onHide && props.onHide();
+            props.onHide?.();
         };
 
         useUpdateEffect(() => {
             ZIndexUtils.set(
                 "toast",
                 containerRef.current,
-                (context && context.autoZIndex) || PrimeReact.autoZIndex,
+                (context?.autoZIndex) || PrimeReact.autoZIndex,
                 props.baseZIndex ||
-                    (context && context.zIndex["toast"]) ||
-                    PrimeReact.zIndex["toast"],
+                    (context?.zIndex.toast) ||
+                    PrimeReact.zIndex.toast,
             );
         }, [messagesState, props.baseZIndex]);
 
@@ -171,8 +171,7 @@ export const Toast = React.memo(
             return (
                 <div {...rootProps}>
                     <TransitionGroup>
-                        {messagesState &&
-                            messagesState.map((messageInfo, index) => {
+                        {messagesState?.map((messageInfo, index) => {
                                 const messageRef = React.createRef();
 
                                 return (

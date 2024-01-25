@@ -77,7 +77,7 @@ export const SpeedDial = React.memo(
             props.onVisibleChange
                 ? props.onVisibleChange(true)
                 : setVisibleState(true);
-            props.onShow && props.onShow();
+            props.onShow?.();
         };
 
         const onFocus = () => {
@@ -93,18 +93,18 @@ export const SpeedDial = React.memo(
             props.onVisibleChange
                 ? props.onVisibleChange(false)
                 : setVisibleState(false);
-            props.onHide && props.onHide();
+            props.onHide?.();
         };
 
         const onClick = (e) => {
             visible ? hide() : show();
-            props.onClick && props.onClick(e);
+            props.onClick?.(e);
 
             isItemClicked.current = true;
         };
 
         const onItemClick = (e, item) => {
-            item.command && item.command({ originalEvent: e, item });
+            item.command?.({ originalEvent: e, item });
             hide();
 
             isItemClicked.current = true;
@@ -424,7 +424,7 @@ export const SpeedDial = React.memo(
                             radius * Math.sin(step * index)
                         }px + var(--item-diff-y, 0px))`,
                     };
-                } else if (type === "semi-circle") {
+                }if (type === "semi-circle") {
                     const direction = props.direction;
                     const step = Math.PI / (length - 1);
                     const x = `calc(${
@@ -436,11 +436,11 @@ export const SpeedDial = React.memo(
 
                     if (direction === "up") {
                         return { left: x, bottom: y };
-                    } else if (direction === "down") {
+                    }if (direction === "down") {
                         return { left: x, top: y };
-                    } else if (direction === "left") {
+                    }if (direction === "left") {
                         return { right: y, top: x };
-                    } else if (direction === "right") {
+                    }if (direction === "right") {
                         return { left: y, top: x };
                     }
                 } else if (type === "quarter-circle") {
@@ -455,11 +455,11 @@ export const SpeedDial = React.memo(
 
                     if (direction === "up-left") {
                         return { right: x, bottom: y };
-                    } else if (direction === "up-right") {
+                    }if (direction === "up-right") {
                         return { left: x, bottom: y };
-                    } else if (direction === "down-left") {
+                    }if (direction === "down-left") {
                         return { right: y, top: x };
-                    } else if (direction === "down-right") {
+                    }if (direction === "down-right") {
                         return { left: y, top: x };
                     }
                 }
@@ -605,7 +605,7 @@ export const SpeedDial = React.memo(
                         active: isItemActive(`${idState}_${index}`),
                     }),
                     style: getItemStyle(index),
-                    "aria-controls": idState + "_item",
+                    "aria-controls": `${idState}_item`,
                     role: "menuitem",
                 },
                 ptm("menuitem"),
@@ -677,7 +677,7 @@ export const SpeedDial = React.memo(
                 "aria-label": props["aria-label"],
                 "aria-expanded": visible,
                 "aria-haspopup": true,
-                "aria-controls": idState + "_list",
+                "aria-controls": `${idState}_list`,
                 "aria-labelledby": props.ariaLabelledby,
                 pt: ptm("button"),
                 unstyled: props.unstyled,
@@ -719,7 +719,7 @@ export const SpeedDial = React.memo(
                     ptm("mask"),
                 );
 
-                return <div {...maskProps}></div>;
+                return <div {...maskProps} />;
             }
 
             return null;

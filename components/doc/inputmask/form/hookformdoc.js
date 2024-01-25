@@ -227,7 +227,7 @@ export default function HookFormDoc() {
                                     className={classNames({
                                         "p-error": errors.value,
                                     })}
-                                ></label>
+                                />
                                 <InputMask
                                     id={field.name}
                                     value={field.value}

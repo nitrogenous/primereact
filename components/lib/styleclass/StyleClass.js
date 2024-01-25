@@ -118,7 +118,7 @@ export const StyleClass = React.forwardRef((inProps, ref) => {
                     targetRef.current.style.height = "0px";
                     DomHandler.removeClass(targetRef.current, "hidden");
                     targetRef.current.style.maxHeight =
-                        targetRef.current.scrollHeight + "px";
+                        `${targetRef.current.scrollHeight}px`;
                     DomHandler.addClass(targetRef.current, "hidden");
                     targetRef.current.style.height = "";
                 }
@@ -148,7 +148,7 @@ export const StyleClass = React.forwardRef((inProps, ref) => {
         }
 
         bindDocumentClickListener({
-            target: elementRef.current && elementRef.current.ownerDocument,
+            target: elementRef.current?.ownerDocument,
         });
     };
 
@@ -193,22 +193,20 @@ export const StyleClass = React.forwardRef((inProps, ref) => {
         switch (props.selector) {
             case "@next":
                 return (
-                    elementRef.current && elementRef.current.nextElementSibling
+                    elementRef.current?.nextElementSibling
                 );
 
             case "@prev":
                 return (
-                    elementRef.current &&
-                    elementRef.current.previousElementSibling
+                    elementRef.current?.previousElementSibling
                 );
 
             case "@parent":
-                return elementRef.current && elementRef.current.parentElement;
+                return elementRef.current?.parentElement;
 
             case "@grandparent":
                 return (
-                    elementRef.current &&
-                    elementRef.current.parentElement.parentElement
+                    elementRef.current?.parentElement.parentElement
                 );
 
             default:

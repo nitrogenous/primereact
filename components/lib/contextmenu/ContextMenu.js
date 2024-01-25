@@ -102,8 +102,8 @@ export const ContextMenu = React.memo(
         const createStyle = () => {
             if (!styleElementRef.current) {
                 styleElementRef.current = DomHandler.createInlineStyle(
-                    (context && context.nonce) || PrimeReact.nonce,
-                    context && context.styleContainer,
+                    (context?.nonce) || PrimeReact.nonce,
+                    context?.styleContainer,
                 );
 
                 const selector = `${attributeSelectorState}`;
@@ -165,7 +165,7 @@ export const ContextMenu = React.memo(
                 setReshowState(true);
             } else {
                 setVisibleState(true);
-                props.onShow && props.onShow(currentEvent.current);
+                props.onShow?.(currentEvent.current);
             }
 
             Promise.resolve().then(() => {
@@ -180,7 +180,7 @@ export const ContextMenu = React.memo(
             setReshowState(false);
             setActiveItemPath([]);
             setFocusedItemInfo({ index: -1, level: 0, parentKey: "" });
-            props.onHide && props.onHide(currentEvent.current);
+            props.onHide?.(currentEvent.current);
         };
 
         const onEnter = () => {
@@ -190,10 +190,10 @@ export const ContextMenu = React.memo(
                 ZIndexUtils.set(
                     "menu",
                     menuRef.current,
-                    (context && context.autoZIndex) || PrimeReact.autoZIndex,
+                    (context?.autoZIndex) || PrimeReact.autoZIndex,
                     props.baseZIndex ||
-                        (context && context.zIndex["menu"]) ||
-                        PrimeReact.zIndex["menu"],
+                        (context?.zIndex.menu) ||
+                        PrimeReact.zIndex.menu,
                 );
             }
 
@@ -251,8 +251,8 @@ export const ContextMenu = React.memo(
                     top = document.body.scrollTop;
                 }
 
-                menuRef.current.style.left = left + "px";
-                menuRef.current.style.top = top + "px";
+                menuRef.current.style.left = `${left}px`;
+                menuRef.current.style.top = `${top}px`;
             }
         };
 
@@ -260,10 +260,9 @@ export const ContextMenu = React.memo(
             (items, level, parent = {}, parentKey = "") => {
                 const processedItems = [];
 
-                items &&
-                    items.forEach((item, index) => {
+                items?.forEach((item, index) => {
                         const key =
-                            (parentKey !== "" ? parentKey + "_" : "") + index;
+                            (parentKey !== "" ? `${parentKey}_` : "") + index;
                         const newItem = {
                             item,
                             index,
@@ -274,7 +273,7 @@ export const ContextMenu = React.memo(
                             parentKey,
                         };
 
-                        newItem["items"] = createProcessedItems(
+                        newItem.items = createProcessedItems(
                             item.items,
                             level + 1,
                             newItem,
@@ -297,8 +296,7 @@ export const ContextMenu = React.memo(
 
         const isOutsideClicked = (event) => {
             return (
-                menuRef &&
-                menuRef.current &&
+                menuRef?.current &&
                 !(
                     menuRef.current.isSameNode(event.target) ||
                     menuRef.current.contains(event.target)
@@ -367,7 +365,7 @@ export const ContextMenu = React.memo(
                 focusedItemInfo.index !== -1
                     ? `${idState}${
                           ObjectUtils.isNotEmpty(focusedItemInfo.parentKey)
-                              ? "_" + focusedItemInfo.parentKey
+                              ? `_${focusedItemInfo.parentKey}`
                               : ""
                       }_${focusedItemInfo.index}`
                     : null;
@@ -377,8 +375,7 @@ export const ContextMenu = React.memo(
 
         useUpdateEffect(() => {
             const processedItem =
-                activeItemPath &&
-                activeItemPath.find((p) => p.key === focusedItemInfo.parentKey);
+                activeItemPath?.find((p) => p.key === focusedItemInfo.parentKey);
             const _visibleItems = processedItem
                 ? processedItem.items
                 : processedItems;
@@ -421,7 +418,7 @@ export const ContextMenu = React.memo(
                     ? focusedItemInfo
                     : { index: -1, level: 0, parentKey: "" },
             );
-            props.onFocus && props.onFocus(event);
+            props.onFocus?.(event);
         };
 
         const onBlur = (event) => {
@@ -429,7 +426,7 @@ export const ContextMenu = React.memo(
             setFocusedItemInfo({ index: -1, level: 0, parentKey: "" });
             searchValue.current = "";
             searchValue.current = "";
-            props.onBlur && props.onBlur(event);
+            props.onBlur?.(event);
         };
 
         const onKeyDown = (event) => {
@@ -633,7 +630,7 @@ export const ContextMenu = React.memo(
 
                 anchorElement
                     ? anchorElement.click()
-                    : element && element.click();
+                    : element?.click();
                 const processedItem = visibleItems[focusedItemInfo.index];
                 const grouped = isProccessedItemGroup(processedItem);
 
@@ -673,7 +670,7 @@ export const ContextMenu = React.memo(
         };
 
         const searchItems = (event, char) => {
-            searchValue.current = searchValue.current || "" + char;
+            searchValue.current = searchValue.current || `${char}`;
 
             let itemIndex = -1;
             let matched = false;
@@ -735,8 +732,7 @@ export const ContextMenu = React.memo(
             );
 
             if (element) {
-                element.scrollIntoView &&
-                    element.scrollIntoView({
+                element.scrollIntoView?.({
                         block: "nearest",
                         inline: "start",
                     });
@@ -811,8 +807,7 @@ export const ContextMenu = React.memo(
 
         const isSelected = (processedItem) => {
             return (
-                activeItemPath &&
-                activeItemPath.some((p) => p.key === processedItem.key)
+                activeItemPath?.some((p) => p.key === processedItem.key)
             );
         };
 
@@ -890,7 +885,7 @@ export const ContextMenu = React.memo(
                             ariaLabelledby={props.ariaLabelledby}
                             activeItemPath={activeItemPath}
                             hostName="ContextMenu"
-                            id={idState + "_list"}
+                            id={`${idState}_list`}
                             role="menubar"
                             tabIndex={props.tabIndex || 0}
                             ariaActivedescendant={

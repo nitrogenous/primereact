@@ -181,9 +181,9 @@ export const ConfirmPopup = React.memo(
             ZIndexUtils.set(
                 "overlay",
                 overlayRef.current,
-                (context && context.autoZIndex) || PrimeReact.autoZIndex,
-                (context && context.zIndex["overlay"]) ||
-                    PrimeReact.zIndex["overlay"],
+                (context?.autoZIndex) || PrimeReact.autoZIndex,
+                (context?.zIndex.overlay) ||
+                    PrimeReact.zIndex.overlay,
             );
             DomHandler.addStyles(overlayRef.current, {
                 position: "absolute",
@@ -200,11 +200,11 @@ export const ConfirmPopup = React.memo(
             const defaultFocus = getPropValue("defaultFocus");
 
             if (defaultFocus === undefined || defaultFocus === "accept") {
-                acceptBtnRef.current && acceptBtnRef.current.focus();
+                acceptBtnRef.current?.focus();
             }
 
             if (defaultFocus === "reject") {
-                rejectBtnRef.current && rejectBtnRef.current.focus();
+                rejectBtnRef.current?.focus();
             }
 
             callbackFromProp("onShow");
@@ -255,8 +255,7 @@ export const ConfirmPopup = React.memo(
 
         const isOutsideClicked = (target) => {
             return (
-                overlayRef &&
-                overlayRef.current &&
+                overlayRef?.current &&
                 !(
                     overlayRef.current.isSameNode(target) ||
                     overlayRef.current.contains(target)

@@ -54,14 +54,14 @@ const TemplateHero = ({
                         <i
                             className="pi pi-github "
                             style={{ fontSize: "1rem" }}
-                        ></i>
+                        />
                         <span>Get Support</span>
                     </a>
                     <a href={docHref} target="_blank" rel="noreferrer">
                         <i
                             className="pi pi-book "
                             style={{ fontSize: "1rem" }}
-                        ></i>
+                        />
                         <span>Read Doc</span>
                     </a>
                 </div>

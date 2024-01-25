@@ -50,8 +50,8 @@ export const Editor = React.memo(
                     );
                     initQuill();
 
-                    if (quill.current && quill.current.getModule("toolbar")) {
-                        props.onLoad && props.onLoad(quill.current);
+                    if (quill.current?.getModule("toolbar")) {
+                        props.onLoad?.(quill.current);
                     }
                 } else {
                     import("quill")
@@ -79,10 +79,9 @@ export const Editor = React.memo(
                         })
                         .then(() => {
                             if (
-                                quill.current &&
-                                quill.current.getModule("toolbar")
+                                quill.current?.getModule("toolbar")
                             ) {
-                                props.onLoad && props.onLoad(quill.current);
+                                props.onLoad?.(quill.current);
                             }
                         });
                 }
@@ -178,9 +177,9 @@ export const Editor = React.memo(
 
             if (props.showHeader === false) {
                 return null;
-            } else if (props.headerTemplate) {
+            }if (props.headerTemplate) {
                 return <div {...toolbarProps}>{props.headerTemplate}</div>;
-            } else {
+            }
                 const getMergeProps = (params, key) =>
                     mergeProps(params && { ...params }, ptm(key));
 
@@ -225,19 +224,19 @@ export const Editor = React.memo(
                             >
                                 <option
                                     {...getMergeProps(undefined, "option")}
-                                ></option>
+                                />
                                 <option
                                     {...getMergeProps(
                                         { value: "serif" },
                                         "option",
                                     )}
-                                ></option>
+                                />
                                 <option
                                     {...getMergeProps(
                                         { value: "monospace" },
                                         "option",
                                     )}
-                                ></option>
+                                />
                             </select>
                         </span>
                         <span {...formatsProps}>
@@ -250,7 +249,7 @@ export const Editor = React.memo(
                                     },
                                     "bold",
                                 )}
-                            ></button>
+                            />
                             <button
                                 {...getMergeProps(
                                     {
@@ -260,7 +259,7 @@ export const Editor = React.memo(
                                     },
                                     "italic",
                                 )}
-                            ></button>
+                            />
                             <button
                                 {...getMergeProps(
                                     {
@@ -270,7 +269,7 @@ export const Editor = React.memo(
                                     },
                                     "underline",
                                 )}
-                            ></button>
+                            />
                         </span>
                         <span {...formatsProps}>
                             <select
@@ -278,13 +277,13 @@ export const Editor = React.memo(
                                     { className: "ql-color" },
                                     "color",
                                 )}
-                            ></select>
+                            />
                             <select
                                 {...getMergeProps(
                                     { className: "ql-background" },
                                     "background",
                                 )}
-                            ></select>
+                            />
                         </span>
                         <span {...formatsProps}>
                             <button
@@ -297,7 +296,7 @@ export const Editor = React.memo(
                                     },
                                     "list",
                                 )}
-                            ></button>
+                            />
                             <button
                                 {...getMergeProps(
                                     {
@@ -308,7 +307,7 @@ export const Editor = React.memo(
                                     },
                                     "list",
                                 )}
-                            ></button>
+                            />
                             <select
                                 {...getMergeProps(
                                     { className: "ql-align" },
@@ -320,25 +319,25 @@ export const Editor = React.memo(
                                         { defaultValue: true },
                                         "option",
                                     )}
-                                ></option>
+                                />
                                 <option
                                     {...getMergeProps(
                                         { value: "center" },
                                         "option",
                                     )}
-                                ></option>
+                                />
                                 <option
                                     {...getMergeProps(
                                         { value: "right" },
                                         "option",
                                     )}
-                                ></option>
+                                />
                                 <option
                                     {...getMergeProps(
                                         { value: "justify" },
                                         "option",
                                     )}
-                                ></option>
+                                />
                             </select>
                         </span>
                         <span {...formatsProps}>
@@ -351,7 +350,7 @@ export const Editor = React.memo(
                                     },
                                     "link",
                                 )}
-                            ></button>
+                            />
                             <button
                                 {...getMergeProps(
                                     {
@@ -361,7 +360,7 @@ export const Editor = React.memo(
                                     },
                                     "image",
                                 )}
-                            ></button>
+                            />
                             <button
                                 {...getMergeProps(
                                     {
@@ -371,7 +370,7 @@ export const Editor = React.memo(
                                     },
                                     "codeBlock",
                                 )}
-                            ></button>
+                            />
                         </span>
                         <span {...formatsProps}>
                             <button
@@ -383,11 +382,10 @@ export const Editor = React.memo(
                                     },
                                     "clean",
                                 )}
-                            ></button>
+                            />
                         </span>
                     </div>
                 );
-            }
         };
 
         const header = createToolbarHeader();
@@ -399,7 +397,7 @@ export const Editor = React.memo(
             },
             ptm("content"),
         );
-        const content = <div {...contentProps}></div>;
+        const content = <div {...contentProps} />;
         const rootProps = mergeProps(
             {
                 className: classNames(props.className, cx("root")),

@@ -61,7 +61,7 @@ export function ExportDoc(props) {
 
     const saveAsExcelFile = (buffer, fileName) => {
         import("file-saver").then((module) => {
-            if (module && module.default) {
+            if (module?.default) {
                 const EXCEL_TYPE =
                     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
                 const EXCEL_EXTENSION = ".xlsx";
@@ -71,10 +71,7 @@ export function ExportDoc(props) {
 
                 module.default.saveAs(
                     data,
-                    fileName +
-                        "_export_" +
-                        new Date().getTime() +
-                        EXCEL_EXTENSION,
+                    `${fileName}_export_${new Date().getTime()}${EXCEL_EXTENSION}`,
                 );
             }
         });

@@ -18,7 +18,6 @@ export const FilterService = {
                     )
                 ) {
                     filteredItems.push(item);
-                    continue;
                 }
             } else {
                 for (const field of fields) {
@@ -152,7 +151,7 @@ export const FilterService = {
 
             if (value.getTime && filter.getTime)
                 return value.getTime() === filter.getTime();
-            else
+            
                 return (
                     ObjectUtils.removeAccents(
                         value.toString(),
@@ -177,7 +176,7 @@ export const FilterService = {
 
             if (value.getTime && filter.getTime)
                 return value.getTime() !== filter.getTime();
-            else
+            
                 return (
                     ObjectUtils.removeAccents(
                         value.toString(),
@@ -218,7 +217,7 @@ export const FilterService = {
                     filter[0].getTime() <= value.getTime() &&
                     value.getTime() <= filter[1].getTime()
                 );
-            else return filter[0] <= value && value <= filter[1];
+            return filter[0] <= value && value <= filter[1];
         },
         lt(value, filter) {
             if (filter === undefined || filter === null) {
@@ -231,7 +230,7 @@ export const FilterService = {
 
             if (value.getTime && filter.getTime)
                 return value.getTime() < filter.getTime();
-            else return value < filter;
+            return value < filter;
         },
         lte(value, filter) {
             if (filter === undefined || filter === null) {
@@ -244,7 +243,7 @@ export const FilterService = {
 
             if (value.getTime && filter.getTime)
                 return value.getTime() <= filter.getTime();
-            else return value <= filter;
+            return value <= filter;
         },
         gt(value, filter) {
             if (filter === undefined || filter === null) {
@@ -257,7 +256,7 @@ export const FilterService = {
 
             if (value.getTime && filter.getTime)
                 return value.getTime() > filter.getTime();
-            else return value > filter;
+            return value > filter;
         },
         gte(value, filter) {
             if (filter === undefined || filter === null) {
@@ -270,7 +269,7 @@ export const FilterService = {
 
             if (value.getTime && filter.getTime)
                 return value.getTime() >= filter.getTime();
-            else return value >= filter;
+            return value >= filter;
         },
         dateIs(value, filter) {
             if (filter === undefined || filter === null) {

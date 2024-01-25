@@ -85,8 +85,7 @@ export const Slider = React.memo(
 
                 const newValue = setValue(event);
 
-                props.onSlideEnd &&
-                    props.onSlideEnd({ originalEvent: event, value: newValue });
+                props.onSlideEnd?.({ originalEvent: event, value: newValue });
 
                 unbindDocumentMouseMoveListener();
                 unbindDocumentMouseUpListener();
@@ -131,8 +130,7 @@ export const Slider = React.memo(
                 updateDomData();
                 const value = setValue(event);
 
-                props.onSlideEnd &&
-                    props.onSlideEnd({ originalEvent: event, value });
+                props.onSlideEnd?.({ originalEvent: event, value });
             }
 
             sliderHandleClick.current = false;
@@ -244,8 +242,8 @@ export const Slider = React.memo(
 
             const style = {
                 transition: dragging.current ? "none" : null,
-                left: leftValue != null ? leftValue + "%" : null,
-                bottom: bottomValue != null ? bottomValue + "%" : null,
+                left: leftValue != null ? `${leftValue}%` : null,
+                bottom: bottomValue != null ? `${bottomValue}%` : null,
             };
 
             const handleProps = mergeProps(
@@ -269,7 +267,7 @@ export const Slider = React.memo(
                 ptm("handle"),
             );
 
-            return <span {...handleProps}></span>;
+            return <span {...handleProps} />;
         };
 
         const createRangeSlider = () => {
@@ -299,12 +297,12 @@ export const Slider = React.memo(
 
             const rangeStyle = horizontal
                 ? {
-                      left: rangeSliderPosition + "%",
-                      width: rangeSliderWidth + "%",
+                      left: `${rangeSliderPosition}%`,
+                      width: `${rangeSliderWidth}%`,
                   }
                 : {
-                      bottom: rangeSliderPosition + "%",
-                      height: rangeSliderWidth + "%",
+                      bottom: `${rangeSliderPosition}%`,
+                      height: `${rangeSliderWidth}%`,
                   };
 
             const rangeProps = mergeProps(
@@ -317,7 +315,7 @@ export const Slider = React.memo(
 
             return (
                 <>
-                    <span {...rangeProps}></span>
+                    <span {...rangeProps} />
                     {rangeStartHandle}
                     {rangeEndHandle}
                 </>
@@ -334,8 +332,8 @@ export const Slider = React.memo(
                     ((value - props.min) * 100) / (props.max - props.min);
 
             const rangeStyle = horizontal
-                ? { width: handleValue + "%" }
-                : { height: handleValue + "%" };
+                ? { width: `${handleValue}%` }
+                : { height: `${handleValue}%` };
             const handle = horizontal
                 ? createHandle(handleValue, null, null)
                 : createHandle(null, handleValue, null);
@@ -350,7 +348,7 @@ export const Slider = React.memo(
 
             return (
                 <>
-                    <span {...rangeProps}></span>
+                    <span {...rangeProps} />
                     {handle}
                 </>
             );

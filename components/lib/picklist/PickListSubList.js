@@ -70,7 +70,7 @@ export const PickListSubList = React.memo(
         const createItems = () => {
             if (props.list) {
                 return props.list.map((item, index) => {
-                    const key = props.parentId + "_" + index;
+                    const key = `${props.parentId}_${index}`;
                     const selected = isSelected(item);
 
                     return (
@@ -192,7 +192,7 @@ export const PickListSubList = React.memo(
                     ref: listElementRef,
                     className: classNames(props.listClassName, cx("list")),
                     role: "listbox",
-                    id: props.parentId + "_" + props.type + "_list",
+                    id: `${props.parentId}_${props.type}_list`,
                     "aria-multiselectable": true,
                     "aria-activedescendant": props.ariaActivedescendant,
                     tabIndex:

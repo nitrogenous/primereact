@@ -89,7 +89,7 @@ export const Accordion = React.forwardRef((inProps, ref) => {
 
             const callback = selected ? props.onTabClose : props.onTabOpen;
 
-            callback && callback({ originalEvent: event, index: index });
+            callback?.({ originalEvent: event, index: index });
 
             if (props.onTabChange) {
                 props.onTabChange({
@@ -227,7 +227,7 @@ export const Accordion = React.forwardRef((inProps, ref) => {
 
     const isSelected = (index) => {
         return props.multiple && Array.isArray(activeIndex)
-            ? activeIndex && activeIndex.some((i) => i === index)
+            ? activeIndex?.some((i) => i === index)
             : activeIndex === index;
     };
 
@@ -251,8 +251,8 @@ export const Accordion = React.forwardRef((inProps, ref) => {
             ...(getTabProp(tab, "style") || {}),
             ...(getTabProp(tab, "headerStyle") || {}),
         };
-        const headerId = idState + "_header_" + index;
-        const ariaControls = idState + "_content_" + index;
+        const headerId = `${idState}_header_${index}`;
+        const ariaControls = `${idState}_content_${index}`;
         const tabIndex = getTabProp(tab, "disabled")
             ? -1
             : getTabProp(tab, "tabIndex");
@@ -308,7 +308,7 @@ export const Accordion = React.forwardRef((inProps, ref) => {
         const headerActionProps = mergeProps(
             {
                 id: headerId,
-                href: "#" + ariaControls,
+                href: `#${ariaControls}`,
                 className: cx("tab.headeraction"),
                 role: "button",
                 tabIndex,
@@ -336,8 +336,8 @@ export const Accordion = React.forwardRef((inProps, ref) => {
             ...(getTabProp(tab, "style") || {}),
             ...(getTabProp(tab, "contentStyle") || {}),
         };
-        const contentId = idState + "_content_" + index;
-        const ariaLabelledby = idState + "_header_" + index;
+        const contentId = `${idState}_content_${index}`;
+        const ariaLabelledby = `${idState}_header_${index}`;
         const contentRef = React.createRef();
         const toggleableContentProps = mergeProps(
             {
@@ -384,7 +384,7 @@ export const Accordion = React.forwardRef((inProps, ref) => {
 
     const createTab = (tab, index) => {
         if (ObjectUtils.isValidChild(tab, "AccordionTab")) {
-            const key = idState + "_" + index;
+            const key = `${idState}_${index}`;
             const selected = isSelected(index);
             const tabHeader = createTabHeader(tab, selected, index);
             const tabContent = createTabContent(tab, selected, index);

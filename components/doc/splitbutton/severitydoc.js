@@ -191,7 +191,7 @@ export default function SeverityDemo() {
                 <p>Severity defines the type of button.</p>
             </DocSectionText>
             <div className="card flex flex-wrap justify-content-center gap-3">
-                <Toast ref={toast}></Toast>
+                <Toast ref={toast} />
                 <SplitButton
                     label="Save"
                     icon="pi pi-plus"

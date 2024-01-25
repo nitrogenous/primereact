@@ -69,7 +69,7 @@ export const OrderList = React.memo(
 
         const getListElement = () => {
             return (
-                listElementRef.current && listElementRef.current.getElement()
+                listElementRef.current?.getElement()
             );
         };
 
@@ -123,7 +123,7 @@ export const OrderList = React.memo(
                 ) ||
                 DomHandler.findSingle(listElement, '[data-pc-section="item"]');
             const itemList =
-                listElement && listElement.children
+                listElement?.children
                     ? [...listElement.children]
                     : [];
 
@@ -143,14 +143,14 @@ export const OrderList = React.memo(
                           : -1;
 
                 changeFocusedOptionIndex(index);
-                props.onFocus && props.onFocus(event);
+                props.onFocus?.(event);
             }
         };
 
         const onListBlur = (event) => {
             setFocused(false);
             setFocusedOptionIndex(-1);
-            props.onBlur && props.onBlur(event);
+            props.onBlur?.(event);
         };
 
         const onListKeyDown = (event) => {
@@ -387,8 +387,7 @@ export const OrderList = React.memo(
             );
 
             if (element) {
-                element.scrollIntoView &&
-                    element.scrollIntoView({
+                element.scrollIntoView?.({
                         block: "nearest",
                         inline: "start",
                     });
@@ -410,7 +409,7 @@ export const OrderList = React.memo(
 
         const resetFilter = () => {
             setFilterValueState("");
-            props.onFilter && props.onFilter({ filter: "" });
+            props.onFilter?.({ filter: "" });
         };
 
         const onFilterInputChange = (event) => {
@@ -462,8 +461,8 @@ export const OrderList = React.memo(
         const createStyle = () => {
             if (!styleElementRef.current) {
                 styleElementRef.current = DomHandler.createInlineStyle(
-                    (context && context.nonce) || PrimeReact.nonce,
-                    context && context.styleContainer,
+                    (context?.nonce) || PrimeReact.nonce,
+                    context?.styleContainer,
                 );
 
                 const innerHTML = `

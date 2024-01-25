@@ -67,7 +67,7 @@ export const Chips = React.memo(
         };
 
         const addItem = (event, item, preventDefault) => {
-            if (item && item.trim().length) {
+            if (item?.trim().length) {
                 const values = props.value ? [...props.value] : [];
 
                 if (props.allowDuplicate || values.indexOf(item) === -1) {
@@ -97,7 +97,7 @@ export const Chips = React.memo(
             const inputValue = event.target.value;
             const values = props.value || [];
 
-            props.onKeyDown && props.onKeyDown(event);
+            props.onKeyDown?.(event);
 
             // do not continue if the user defined keydown wants to prevent
             if (event.defaultPrevented) {
@@ -117,8 +117,7 @@ export const Chips = React.memo(
 
                 case "Enter":
                     if (
-                        inputValue &&
-                        inputValue.trim().length &&
+                        inputValue?.trim().length &&
                         (!props.max || props.max > values.length)
                     ) {
                         addItem(event, inputValue, true);
@@ -177,7 +176,7 @@ export const Chips = React.memo(
                     .replace("\\r", "\r")
                     .replace("\\t", "\t");
                 const pastedData = (
-                    event.clipboardData || window["clipboardData"]
+                    event.clipboardData || window.clipboardData
                 ).getData("Text");
 
                 if (props.keyfilter) {
@@ -203,7 +202,7 @@ export const Chips = React.memo(
 
         const onFocus = (event) => {
             setFocusedState(true);
-            props.onFocus && props.onFocus(event);
+            props.onFocus?.(event);
         };
 
         const onBlur = (event) => {
@@ -212,8 +211,7 @@ export const Chips = React.memo(
                 const values = props.value || [];
 
                 if (
-                    inputValue &&
-                    inputValue.trim().length &&
+                    inputValue?.trim().length &&
                     (!props.max || props.max > values.length)
                 ) {
                     addItem(event, inputValue, true);
@@ -221,14 +219,14 @@ export const Chips = React.memo(
             }
 
             setFocusedState(false);
-            props.onBlur && props.onBlur(event);
+            props.onBlur?.(event);
         };
 
         const isMaxedOut = () => {
             return props.max && props.value && props.max === props.value.length;
         };
 
-        const currentValue = inputRef.current && inputRef.current.value;
+        const currentValue = inputRef.current?.value;
         const isFilled = React.useMemo(
             () =>
                 ObjectUtils.isNotEmpty(props.value) ||

@@ -17,7 +17,7 @@ export const DropdownPanel = React.memo(
         const virtualScrollerRef = React.useRef(null);
         const filterInputRef = React.useRef(null);
         const isEmptyFilter =
-            !(props.visibleOptions && props.visibleOptions.length) &&
+            !(props.visibleOptions?.length) &&
             props.hasFilter;
         const filterOptions = {
             filter: (e) => onFilterInputChange(e),
@@ -58,9 +58,8 @@ export const DropdownPanel = React.memo(
         };
 
         const onFilterInputChange = (event) => {
-            props.virtualScrollerRef.current &&
-                props.virtualScrollerRef.current.scrollToIndex(0);
-            props.onFilterInputChange && props.onFilterInputChange(event);
+            props.virtualScrollerRef.current?.scrollToIndex(0);
+            props.onFilterInputChange?.(event);
         };
 
         const createFooter = () => {
@@ -88,7 +87,7 @@ export const DropdownPanel = React.memo(
 
             return groupChildren.map((option, j) => {
                 const optionLabel = props.getOptionLabel(option);
-                const optionKey = j + "_" + props.getOptionRenderKey(option);
+                const optionKey = `${j}_${props.getOptionRenderKey(option)}`;
                 const disabled = props.isOptionDisabled(option);
 
                 return (
@@ -141,7 +140,7 @@ export const DropdownPanel = React.memo(
                       )
                     : props.getOptionGroupLabel(option);
                 const groupChildrenContent = createGroupChildren(option, style);
-                const key = index + "_" + props.getOptionGroupRenderKey(option);
+                const key = `${index}_${props.getOptionGroupRenderKey(option)}`;
                 const itemGroupProps = mergeProps(
                     {
                         className: cx("itemGroup", { optionGroupLabel }),
@@ -157,10 +156,10 @@ export const DropdownPanel = React.memo(
                         {groupChildrenContent}
                     </React.Fragment>
                 );
-            } else {
+            }
                 const optionLabel = props.getOptionLabel(option);
                 const optionKey =
-                    index + "_" + props.getOptionRenderKey(option);
+                    `${index}_${props.getOptionRenderKey(option)}`;
                 const disabled = props.isOptionDisabled(option);
 
                 return (
@@ -177,13 +176,12 @@ export const DropdownPanel = React.memo(
                         cx={cx}
                     />
                 );
-            }
         };
 
         const createItems = () => {
             if (ObjectUtils.isNotEmpty(props.visibleOptions)) {
                 return props.visibleOptions.map(createItem);
-            } else if (props.hasFilter) {
+            }if (props.hasFilter) {
                 return createEmptyMessage(props.emptyFilterMessage, true);
             }
 
@@ -353,7 +351,7 @@ export const DropdownPanel = React.memo(
                         pt={ptm("virtualScroller")}
                     />
                 );
-            } else {
+            }
                 const items = createItems();
                 const wrapperProps = mergeProps(
                     {
@@ -376,7 +374,6 @@ export const DropdownPanel = React.memo(
                         <ul {...listProps}>{items}</ul>
                     </div>
                 );
-            }
         };
 
         const createElement = () => {

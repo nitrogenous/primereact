@@ -131,7 +131,7 @@ export const Dialog = React.forwardRef((inProps, ref) => {
 
     const onDialogPointerDown = (event) => {
         pointerRef.current = event.target;
-        props.onPointerDown && props.onPointerDown(event);
+        props.onPointerDown?.(event);
     };
 
     const onMaskPointerUp = (event) => {
@@ -144,7 +144,7 @@ export const Dialog = React.forwardRef((inProps, ref) => {
             onClose(event);
         }
 
-        props.onMaskClick && props.onMaskClick(event);
+        props.onMaskClick?.(event);
         pointerRef.current = null;
     };
 
@@ -229,7 +229,7 @@ export const Dialog = React.forwardRef((inProps, ref) => {
             dialogRef.current.style.margin = "0";
             DomHandler.addClass(document.body, "p-unselectable-text");
 
-            props.onDragStart && props.onDragStart(event);
+            props.onDragStart?.(event);
         }
     };
 
@@ -252,21 +252,21 @@ export const Dialog = React.forwardRef((inProps, ref) => {
             if (props.keepInViewport) {
                 if (leftPos >= props.minX && leftPos + width < viewport.width) {
                     lastPageX.current = event.pageX;
-                    dialogRef.current.style.left = leftPos - leftMargin + "px";
+                    dialogRef.current.style.left = `${leftPos - leftMargin}px`;
                 }
 
                 if (topPos >= props.minY && topPos + height < viewport.height) {
                     lastPageY.current = event.pageY;
-                    dialogRef.current.style.top = topPos - topMargin + "px";
+                    dialogRef.current.style.top = `${topPos - topMargin}px`;
                 }
             } else {
                 lastPageX.current = event.pageX;
-                dialogRef.current.style.left = leftPos - leftMargin + "px";
+                dialogRef.current.style.left = `${leftPos - leftMargin}px`;
                 lastPageY.current = event.pageY;
-                dialogRef.current.style.top = topPos - topMargin + "px";
+                dialogRef.current.style.top = `${topPos - topMargin}px`;
             }
 
-            props.onDrag && props.onDrag(event);
+            props.onDrag?.(event);
         }
     };
 
@@ -275,7 +275,7 @@ export const Dialog = React.forwardRef((inProps, ref) => {
             dragging.current = false;
             DomHandler.removeClass(document.body, "p-unselectable-text");
 
-            props.onDragEnd && props.onDragEnd(event);
+            props.onDragEnd?.(event);
         }
     };
 
@@ -286,7 +286,7 @@ export const Dialog = React.forwardRef((inProps, ref) => {
             lastPageY.current = event.pageY;
             DomHandler.addClass(document.body, "p-unselectable-text");
 
-            props.onResizeStart && props.onResizeStart(event);
+            props.onResizeStart?.(event);
         }
     };
 
@@ -336,20 +336,20 @@ export const Dialog = React.forwardRef((inProps, ref) => {
                 (!minWidth || newWidth > minWidth) &&
                 offset.left + newWidth < viewport.width
             ) {
-                dialogRef.current.style.width = newWidth + "px";
+                dialogRef.current.style.width = `${newWidth}px`;
             }
 
             if (
                 (!minHeight || newHeight > minHeight) &&
                 offset.top + newHeight < viewport.height
             ) {
-                dialogRef.current.style.height = newHeight + "px";
+                dialogRef.current.style.height = `${newHeight}px`;
             }
 
             lastPageX.current = event.pageX;
             lastPageY.current = event.pageY;
 
-            props.onResize && props.onResize(event);
+            props.onResize?.(event);
         }
     };
 
@@ -358,7 +358,7 @@ export const Dialog = React.forwardRef((inProps, ref) => {
             resizing.current = false;
             DomHandler.removeClass(document.body, "p-unselectable-text");
 
-            props.onResizeEnd && props.onResizeEnd(event);
+            props.onResizeEnd?.(event);
         }
     };
 
@@ -374,7 +374,7 @@ export const Dialog = React.forwardRef((inProps, ref) => {
     };
 
     const onEntered = () => {
-        props.onShow && props.onShow();
+        props.onShow?.();
 
         if (props.focusOnShow) {
             focus();
@@ -411,8 +411,7 @@ export const Dialog = React.forwardRef((inProps, ref) => {
     const updateScrollBlocker = () => {
         // Scroll should be unblocked if there is at least one dialog that blocks scrolling:
         const isThereAnyDialogThatBlocksScrolling =
-            document.primeDialogParams &&
-            document.primeDialogParams.some((i) => i.hasBlockScroll);
+            document.primeDialogParams?.some((i) => i.hasBlockScroll);
 
         if (isThereAnyDialogThatBlocksScrolling) {
             DomHandler.blockBodyScroll();
@@ -453,8 +452,7 @@ export const Dialog = React.forwardRef((inProps, ref) => {
         // Or remove it from global registry if unmounted or invisible:
         else {
             document.primeDialogParams =
-                document.primeDialogParams &&
-                document.primeDialogParams.filter(
+                document.primeDialogParams?.filter(
                     (param) => param.id !== idState,
                 );
         }
@@ -488,8 +486,8 @@ export const Dialog = React.forwardRef((inProps, ref) => {
 
     const createStyle = () => {
         styleElement.current = DomHandler.createInlineStyle(
-            (context && context.nonce) || PrimeReact.nonce,
-            context && context.styleContainer,
+            (context?.nonce) || PrimeReact.nonce,
+            context?.styleContainer,
         );
 
         let innerHTML = "";
@@ -553,10 +551,10 @@ export const Dialog = React.forwardRef((inProps, ref) => {
             ZIndexUtils.set(
                 "modal",
                 maskRef.current,
-                (context && context.autoZIndex) || PrimeReact.autoZIndex,
+                (context?.autoZIndex) || PrimeReact.autoZIndex,
                 props.baseZIndex ||
-                    (context && context.zIndex["modal"]) ||
-                    PrimeReact.zIndex["modal"],
+                    (context?.zIndex.modal) ||
+                    PrimeReact.zIndex.modal,
             );
             setVisibleState(true);
         }
@@ -677,7 +675,7 @@ export const Dialog = React.forwardRef((inProps, ref) => {
             const maximizeIcon = createMaximizeIcon();
             const icons = ObjectUtils.getJSXElement(props.icons, props);
             const header = ObjectUtils.getJSXElement(props.header, props);
-            const headerId = idState + "_header";
+            const headerId = `${idState}_header`;
 
             const headerProps = mergeProps(
                 {
@@ -720,7 +718,7 @@ export const Dialog = React.forwardRef((inProps, ref) => {
     };
 
     const createContent = () => {
-        const contentId = idState + "_content";
+        const contentId = `${idState}_content`;
 
         const contentProps = mergeProps(
             {
@@ -756,7 +754,7 @@ export const Dialog = React.forwardRef((inProps, ref) => {
                     className="p-resizable-handle"
                     style={{ zIndex: 90 }}
                     onMouseDown={onResizeStart}
-                ></span>
+                />
             );
         }
 
@@ -768,7 +766,7 @@ export const Dialog = React.forwardRef((inProps, ref) => {
             if (obj.hasOwnProperty(key)) {
                 if (key === "message") {
                     return obj[key];
-                } else if (typeof obj[key] === "object") {
+                }if (typeof obj[key] === "object") {
                     const result = findMessageProperty(obj[key]);
 
                     if (result !== undefined) {
@@ -836,8 +834,8 @@ export const Dialog = React.forwardRef((inProps, ref) => {
     };
 
     const createDialog = () => {
-        const headerId = idState + "_header";
-        const contentId = idState + "_content";
+        const headerId = `${idState}_header`;
+        const contentId = `${idState}_content`;
 
         const transitionTimeout = {
             enter: props.position === "center" ? 150 : 300,
@@ -900,7 +898,7 @@ export const Dialog = React.forwardRef((inProps, ref) => {
                     visible
                 />
             );
-        } else {
+        }
             const element = createElement({
                 maskProps,
                 rootProps,
@@ -910,7 +908,6 @@ export const Dialog = React.forwardRef((inProps, ref) => {
             return (
                 <Portal element={element} appendTo={props.appendTo} visible />
             );
-        }
     };
 
     return maskVisibleState && createDialog();

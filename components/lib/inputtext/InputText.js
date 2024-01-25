@@ -28,7 +28,7 @@ export const InputText = React.memo(
         const elementRef = React.useRef(ref);
 
         const onKeyDown = (event) => {
-            props.onKeyDown && props.onKeyDown(event);
+            props.onKeyDown?.(event);
 
             if (props.keyfilter) {
                 KeyFilter.onKeyPress(
@@ -40,7 +40,7 @@ export const InputText = React.memo(
         };
 
         const onBeforeInput = (event) => {
-            props.onBeforeInput && props.onBeforeInput(event);
+            props.onBeforeInput?.(event);
 
             if (props.keyfilter) {
                 KeyFilter.onBeforeInput(
@@ -59,7 +59,7 @@ export const InputText = React.memo(
                 validatePattern = KeyFilter.validate(event, props.keyfilter);
             }
 
-            props.onInput && props.onInput(event, validatePattern);
+            props.onInput?.(event, validatePattern);
 
             // for uncontrolled changes
             ObjectUtils.isNotEmpty(target.value)
@@ -68,7 +68,7 @@ export const InputText = React.memo(
         };
 
         const onPaste = (event) => {
-            props.onPaste && props.onPaste(event);
+            props.onPaste?.(event);
 
             if (props.keyfilter) {
                 KeyFilter.onPaste(event, props.keyfilter, props.validateOnly);

@@ -11,8 +11,7 @@ export function BasicDoc(props) {
 
     const DynamicBox = () => {
         useUnmountEffect(() => {
-            toast.current &&
-                toast.current.show({ severity: "info", summary: "Unmounted" });
+            toast.current?.show({ severity: "info", summary: "Unmounted" });
         });
 
         return (

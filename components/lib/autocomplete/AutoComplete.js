@@ -96,7 +96,7 @@ export const AutoComplete = React.memo(
 
             if (ObjectUtils.isEmpty(query)) {
                 hide();
-                props.onClear && props.onClear(event);
+                props.onClear?.(event);
             } else {
                 if (query.length >= props.minLength) {
                     timeout.current = setTimeout(() => {
@@ -192,14 +192,14 @@ export const AutoComplete = React.memo(
             if (ObjectUtils.isNotEmpty(value)) {
                 if (typeof value === "string") {
                     return value;
-                } else if (props.selectedItemTemplate) {
+                }if (props.selectedItemTemplate) {
                     const resolvedFieldData = ObjectUtils.getJSXElement(
                         props.selectedItemTemplate,
                         value,
                     );
 
                     return resolvedFieldData ? resolvedFieldData : value;
-                } else if (props.field) {
+                }if (props.field) {
                     const resolvedFieldData = ObjectUtils.resolveFieldData(
                         value,
                         props.field,
@@ -209,9 +209,8 @@ export const AutoComplete = React.memo(
                         resolvedFieldData !== undefined
                         ? resolvedFieldData
                         : value;
-                } else {
-                    return value;
                 }
+                    return value;
             }
 
             return "";
@@ -234,9 +233,9 @@ export const AutoComplete = React.memo(
             ZIndexUtils.set(
                 "overlay",
                 overlayRef.current,
-                (context && context.autoZIndex) || PrimeReact.autoZIndex,
-                (context && context.zIndex["overlay"]) ||
-                    PrimeReact.zIndex["overlay"],
+                (context?.autoZIndex) || PrimeReact.autoZIndex,
+                (context?.zIndex.overlay) ||
+                    PrimeReact.zIndex.overlay,
             );
             DomHandler.addStyles(overlayRef.current, {
                 position: "absolute",
@@ -264,7 +263,7 @@ export const AutoComplete = React.memo(
 
         const onOverlayEntered = () => {
             bindOverlayListener();
-            props.onShow && props.onShow();
+            props.onShow?.();
         };
 
         const onOverlayExit = () => {
@@ -274,7 +273,7 @@ export const AutoComplete = React.memo(
         const onOverlayExited = () => {
             ZIndexUtils.clear(overlayRef.current);
 
-            props.onHide && props.onHide();
+            props.onHide?.();
         };
 
         const alignOverlay = () => {
@@ -286,7 +285,7 @@ export const AutoComplete = React.memo(
                 overlayRef.current,
                 target,
                 props.appendTo ||
-                    (context && context.appendTo) ||
+                    (context?.appendTo) ||
                     PrimeReact.appendTo,
             );
         };
@@ -466,8 +465,7 @@ export const AutoComplete = React.memo(
                     //backspace
                     case 8:
                         if (
-                            props.value &&
-                            props.value.length &&
+                            props.value?.length &&
                             !inputRef.current.value
                         ) {
                             const removedValue =
@@ -532,7 +530,7 @@ export const AutoComplete = React.memo(
 
         const onInputFocus = (event) => {
             setFocusedState(true);
-            props.onFocus && props.onFocus(event);
+            props.onFocus?.(event);
         };
 
         const forceItemSelection = (event) => {
@@ -557,7 +555,7 @@ export const AutoComplete = React.memo(
                 inputRef.current.value = "";
                 updateModel(event, null);
 
-                props.onClear && props.onClear(event);
+                props.onClear?.(event);
             }
         };
 
@@ -568,13 +566,13 @@ export const AutoComplete = React.memo(
                 forceItemSelection(event);
             }
 
-            props.onBlur && props.onBlur(event);
+            props.onBlur?.(event);
         };
 
         const onMultiContainerClick = (event) => {
             DomHandler.focus(inputRef.current);
 
-            props.onClick && props.onClick(event);
+            props.onClick?.(event);
         };
 
         const onMultiInputFocus = (event) => {
@@ -691,7 +689,7 @@ export const AutoComplete = React.memo(
 
         const createSimpleAutoComplete = () => {
             const value = formatValue(props.value);
-            const ariaControls = overlayVisibleState ? idState + "_list" : null;
+            const ariaControls = overlayVisibleState ? `${idState}_list` : null;
 
             return (
                 <InputText
@@ -735,7 +733,7 @@ export const AutoComplete = React.memo(
         const createChips = () => {
             if (ObjectUtils.isNotEmpty(props.value)) {
                 return props.value.map((val, index) => {
-                    const key = index + "multi-item";
+                    const key = `${index}multi-item`;
                     const removeTokenIconProps = mergeProps(
                         {
                             className: cx("removeTokenIcon"),
@@ -779,7 +777,7 @@ export const AutoComplete = React.memo(
         };
 
         const createMultiInput = (allowMoreValues) => {
-            const ariaControls = overlayVisibleState ? idState + "_list" : null;
+            const ariaControls = overlayVisibleState ? `${idState}_list` : null;
             const inputTokenProps = mergeProps(
                 {
                     className: cx("inputToken"),
@@ -907,7 +905,7 @@ export const AutoComplete = React.memo(
                 : createSimpleAutoComplete();
         };
 
-        const listId = idState + "_list";
+        const listId = `${idState}_list`;
         const hasTooltip = ObjectUtils.isNotEmpty(props.tooltip);
         const otherProps = AutoCompleteBase.getOtherProps(props);
         const ariaProps = ObjectUtils.reduceKeys(

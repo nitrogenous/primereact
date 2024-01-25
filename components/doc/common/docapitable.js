@@ -19,8 +19,7 @@ const DocApiTable = (props) => {
         const onClick = (id, behavior) => {
             const element = document.getElementById(id);
 
-            element &&
-                element.parentElement.scrollIntoView({
+            element?.parentElement.scrollIntoView({
                     block: "start",
                     behavior,
                 });
@@ -50,9 +49,8 @@ const DocApiTable = (props) => {
                                 {i !== 0 ? "|" : ""}
                                 <Link
                                     href={
-                                        router.basePath +
-                                        router.pathname +
-                                        `#${apiId}`
+                                        `${router.basePath +
+                                        router.pathname}#${apiId}`
                                     }
                                     target="_self"
                                 >
@@ -69,7 +67,7 @@ const DocApiTable = (props) => {
                             {i !== 0 ? "|" : ""}
                             {isLinkableOption ? (
                                 <span
-                                    id={id + "." + sValue}
+                                    id={`${id}.${sValue}`}
                                     className={classNames("doc-option-name", {
                                         "line-through cursor-pointer":
                                             !!deprecated,
@@ -79,19 +77,18 @@ const DocApiTable = (props) => {
                                     {sValue}
                                     <Link
                                         href={
-                                            router.basePath +
-                                            router.pathname +
-                                            `#${id + "." + sValue}`
+                                            `${router.basePath +
+                                            router.pathname}#${`${id}.${sValue}`}`
                                         }
                                         target="_self"
                                     >
                                         <a
                                             onClick={() =>
-                                                onClick(id + "." + sValue)
+                                                onClick(`${id}.${sValue}`)
                                             }
                                             className="doc-option-link"
                                         >
-                                            <i className="pi pi-link"></i>
+                                            <i className="pi pi-link" />
                                         </a>
                                     </Link>
                                 </span>
@@ -104,13 +101,13 @@ const DocApiTable = (props) => {
             }
 
             const val =
-                value && value.includes('": "')
+                value?.includes('": "')
                     ? value.replace(/['"]+/g, "").replace(/\.,/gm, ".")
                     : value;
 
             return isLinkableOption ? (
                 <span
-                    id={id + "." + val}
+                    id={`${id}.${val}`}
                     className={classNames("doc-option-name", {
                         "line-through cursor-pointer": !!deprecated,
                     })}
@@ -119,17 +116,16 @@ const DocApiTable = (props) => {
                     {val}
                     <Link
                         href={
-                            router.basePath +
-                            router.pathname +
-                            `#${id + "." + val}`
+                            `${router.basePath +
+                            router.pathname}#${`${id}.${val}`}`
                         }
                         target="_self"
                     >
                         <a
-                            onClick={() => onClick(id + "." + val)}
+                            onClick={() => onClick(`${id}.${val}`)}
                             className="doc-option-link"
                         >
-                            <i className="pi pi-link"></i>
+                            <i className="pi pi-link" />
                         </a>
                     </Link>
                 </span>
@@ -152,7 +148,7 @@ const DocApiTable = (props) => {
                                     <td>{description}</td>
                                 </tr>
                             );
-                        } else {
+                        }
                             return (
                                 <tr key={i}>
                                     {Object.entries(d).map(
@@ -203,9 +199,7 @@ const DocApiTable = (props) => {
                                                                       v,
                                                                       k ===
                                                                           "name",
-                                                                      d[
-                                                                          "deprecated"
-                                                                      ],
+                                                                      d.deprecated,
                                                                   )}
                                                         </div>
                                                     ) : k === "type" ? (
@@ -213,7 +207,7 @@ const DocApiTable = (props) => {
                                                             {createContent(
                                                                 v,
                                                                 k === "name",
-                                                                d["deprecated"],
+                                                                d.deprecated,
                                                             )}
                                                         </span>
                                                     ) : k === "returnType" ? (
@@ -231,7 +225,7 @@ const DocApiTable = (props) => {
                                                             {createContent(
                                                                 v,
                                                                 k === "name",
-                                                                d["deprecated"],
+                                                                d.deprecated,
                                                             )}
                                                         </div>
                                                     ) : k === "description" ||
@@ -243,7 +237,7 @@ const DocApiTable = (props) => {
                                                         createContent(
                                                             v,
                                                             k === "name",
-                                                            d["deprecated"],
+                                                            d.deprecated,
                                                         )
                                                     )}
                                                 </td>
@@ -251,7 +245,6 @@ const DocApiTable = (props) => {
                                     )}
                                 </tr>
                             );
-                        }
                     })}
                 </React.Fragment>
             );

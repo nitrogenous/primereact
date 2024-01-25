@@ -50,7 +50,7 @@ export function TemplateDoc(props) {
                         className="p-panel-header-icon p-link mr-2"
                         onClick={(e) => configMenu?.current?.toggle(e)}
                     >
-                        <span className="pi pi-cog"></span>
+                        <span className="pi pi-cog" />
                     </button>
                     {options.togglerElement}
                 </div>
@@ -64,13 +64,13 @@ export function TemplateDoc(props) {
         return (
             <div className={className}>
                 <div className="flex align-items-center gap-2">
-                    <Button icon="pi pi-user" rounded text></Button>
+                    <Button icon="pi pi-user" rounded text />
                     <Button
                         icon="pi pi-bookmark"
                         severity="secondary"
                         rounded
                         text
-                    ></Button>
+                    />
                 </div>
                 <span className="p-text-secondary">Updated 2 hours ago</span>
             </div>

@@ -309,7 +309,7 @@ export const TableHeader = React.memo((props) => {
                     </tr>
                 );
             });
-        } else {
+        }
             const headerRowProps = mergeProps(
                 {
                     role: "row",
@@ -329,7 +329,6 @@ export const TableHeader = React.memo((props) => {
                     {filterRow}
                 </>
             );
-        }
     };
 
     const content = createContent();

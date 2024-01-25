@@ -36,7 +36,7 @@ export const CascadeSelectSub = React.memo((props) => {
     };
 
     const onOptionSelect = (event) => {
-        props.onOptionSelect && props.onOptionSelect(event);
+        props.onOptionSelect?.(event);
     };
 
     const onKeyDown = (event, option) => {
@@ -44,7 +44,7 @@ export const CascadeSelectSub = React.memo((props) => {
 
         switch (event.key) {
             case "Down":
-            case "ArrowDown":
+            case "ArrowDown": {
                 const nextItem = findNextItem(listItem);
 
                 if (nextItem) {
@@ -52,9 +52,10 @@ export const CascadeSelectSub = React.memo((props) => {
                 }
 
                 break;
+            }
 
             case "Up":
-            case "ArrowUp":
+            case "ArrowUp": {
                 const prevItem = findPrevItem(listItem);
 
                 if (prevItem) {
@@ -62,6 +63,7 @@ export const CascadeSelectSub = React.memo((props) => {
                 }
 
                 break;
+            }
 
             case "Right":
             case "ArrowRight":
@@ -76,7 +78,7 @@ export const CascadeSelectSub = React.memo((props) => {
                 break;
 
             case "Left":
-            case "ArrowLeft":
+            case "ArrowLeft": {
                 setActiveOptionState(null);
 
                 const parentList =
@@ -88,6 +90,7 @@ export const CascadeSelectSub = React.memo((props) => {
                 }
 
                 break;
+            }
 
             case "Enter":
                 onOptionClick(event, option);
@@ -154,7 +157,7 @@ export const CascadeSelectSub = React.memo((props) => {
     };
 
     const onOptionGroupSelect = (event) => {
-        props.onOptionGroupSelect && props.onOptionGroupSelect(event);
+        props.onOptionGroupSelect?.(event);
     };
 
     const getOptionLabel = (option) => {
@@ -272,7 +275,7 @@ export const CascadeSelectSub = React.memo((props) => {
         const optionGroup =
             isOptionGroup(option) &&
             IconUtils.getJSXIcon(icon, { ...optionGroupIconProps }, { props });
-        const key = getOptionLabelToRender(option) + "_" + index;
+        const key = `${getOptionLabelToRender(option)}_${index}`;
         const contentProps = mergeProps(
             {
                 className: cx("content"),

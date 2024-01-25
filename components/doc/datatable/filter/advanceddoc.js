@@ -101,7 +101,7 @@ export function AdvancedFilterDoc(props) {
         const value = e.target.value;
         const _filters = { ...filters };
 
-        _filters["global"].value = value;
+        _filters.global.value = value;
 
         setFilters(_filters);
         setGlobalFilterValue(value);
@@ -190,7 +190,7 @@ export function AdvancedFilterDoc(props) {
                 icon="pi pi-times"
                 onClick={options.filterClearCallback}
                 severity="secondary"
-            ></Button>
+            />
         );
     };
 
@@ -201,7 +201,7 @@ export function AdvancedFilterDoc(props) {
                 icon="pi pi-check"
                 onClick={options.filterApplyCallback}
                 severity="success"
-            ></Button>
+            />
         );
     };
 
@@ -318,7 +318,7 @@ export function AdvancedFilterDoc(props) {
                 value={rowData.activity}
                 showValue={false}
                 style={{ height: "6px" }}
-            ></ProgressBar>
+            />
         );
     };
 
@@ -330,7 +330,7 @@ export function AdvancedFilterDoc(props) {
                     onChange={(e) => options.filterCallback(e.value)}
                     range
                     className="m-3"
-                ></Slider>
+                />
                 <div className="flex align-items-center justify-content-between px-2">
                     <span>{options.value ? options.value[0] : 0}</span>
                     <span>{options.value ? options.value[1] : 100}</span>
@@ -346,7 +346,7 @@ export function AdvancedFilterDoc(props) {
                     "text-green-500 pi-check-circle": rowData.verified,
                     "text-red-500 pi-times-circle": !rowData.verified,
                 })}
-            ></i>
+            />
         );
     };
 

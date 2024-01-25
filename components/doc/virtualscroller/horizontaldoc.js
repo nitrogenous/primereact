@@ -18,7 +18,7 @@ export function HorizontalDoc(props) {
             <div
                 className={className}
                 style={{
-                    width: options.props.itemSize + "px",
+                    width: `${options.props.itemSize}px`,
                     writingMode: "vertical-lr",
                 }}
             >

@@ -13,7 +13,7 @@ export function ControlledDoc(props) {
     const toggleApplications = () => {
         const _expandedKeys = { ...expandedKeys };
 
-        if (_expandedKeys["0"]) delete _expandedKeys["0"];
+        if (_expandedKeys["0"]) _expandedKeys["0"] = undefined;
         else _expandedKeys["0"] = true;
 
         setExpandedKeys(_expandedKeys);
@@ -158,9 +158,9 @@ export default function ControlledDemo() {
                     className="mt-4"
                     tableStyle={{ minWidth: "50rem" }}
                 >
-                    <Column field="name" header="Name" expander></Column>
-                    <Column field="size" header="Size"></Column>
-                    <Column field="type" header="Type"></Column>
+                    <Column field="name" header="Name" expander />
+                    <Column field="size" header="Size" />
+                    <Column field="type" header="Type" />
                 </TreeTable>
             </div>
             <DocSectionCode code={code} service={["NodeService"]} />

@@ -12,11 +12,11 @@ export function PTDoc(props) {
 
         switch (command) {
             case "date":
-                response = "Today is " + new Date().toDateString();
+                response = `Today is ${new Date().toDateString()}`;
                 break;
 
             case "greet":
-                response = "Hola " + text.substring(argsIndex + 1) + "!";
+                response = `Hola ${text.substring(argsIndex + 1)}!`;
                 break;
 
             case "random":
@@ -28,7 +28,7 @@ export function PTDoc(props) {
                 break;
 
             default:
-                response = "Unknown command: " + command;
+                response = `Unknown command: ${command}`;
                 break;
         }
 
@@ -191,7 +191,7 @@ export default function PTDemo() {
 
     return (
         <>
-            <DocSectionText {...props}></DocSectionText>
+            <DocSectionText {...props} />
             <div className="card">
                 <p>
                     Enter "<strong>date</strong>" to display the current date, "

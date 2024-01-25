@@ -133,8 +133,8 @@ export default function DynamicDemo() {
                 </p>
             </DocSectionText>
             <div className="card">
-                <Toast ref={toast}></Toast>
-                <ProgressBar value={value}></ProgressBar>
+                <Toast ref={toast} />
+                <ProgressBar value={value} />
             </div>
             <DocSectionCode code={code} />
         </>

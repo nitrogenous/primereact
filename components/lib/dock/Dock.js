@@ -61,13 +61,13 @@ export const Dock = React.memo(
         const onListFocus = (event) => {
             setFocused(true);
             changeFocusedOptionIndex(0);
-            props.onFocus && props.onFocus(event);
+            props.onFocus?.(event);
         };
 
         const onListBlur = (event) => {
             setFocused(false);
             setFocusedOptionIndex(-1);
-            props.onBlur && props.onBlur(event);
+            props.onBlur?.(event);
         };
 
         const onListKeyDown = (event) => {
@@ -151,7 +151,7 @@ export const Dock = React.memo(
                 element &&
                 DomHandler.findSingle(element, '[data-pc-section="action"]');
 
-            anchorElement ? anchorElement.click() : element && element.click();
+            anchorElement ? anchorElement.click() : element?.click();
         };
 
         const findNextOptionIndex = (index) => {
@@ -210,7 +210,7 @@ export const Dock = React.memo(
                 url,
                 target,
             } = item;
-            const key = item.id || idState + "_" + index;
+            const key = item.id || `${idState}_${index}`;
             const contentClassName = classNames("p-dock-action", {
                 "p-disabled": disabled,
             });
@@ -278,7 +278,6 @@ export const Dock = React.memo(
             const menuitemProps = mergeProps(
                 {
                     id: key,
-                    role: "menuitem",
                     key,
                     "aria-label": label,
                     "aria-disabled": disabled,

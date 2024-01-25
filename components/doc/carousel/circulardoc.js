@@ -69,7 +69,7 @@ export function CircularDoc(props) {
                     <Tag
                         value={product.inventoryStatus}
                         severity={getSeverity(product)}
-                    ></Tag>
+                    />
                     <div className="mt-5 flex flex-wrap gap-2 justify-content-center">
                         <Button
                             icon="pi pi-search"

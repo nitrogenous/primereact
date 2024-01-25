@@ -23,7 +23,7 @@ export function HookFormDoc(props) {
     };
 
     const search = (event) => {
-        setItems([...Array(10).keys()].map((item) => event.query + "-" + item));
+        setItems([...Array(10).keys()].map((item) => `${event.query}-${item}`));
     };
 
     const onSubmit = (data) => {

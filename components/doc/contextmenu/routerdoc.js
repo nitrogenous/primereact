@@ -142,7 +142,7 @@ export function RouterDemo(props: any) {
                         alt="logo"
                         src="https://primefaces.org/cdn/primereact/images/logo.png"
                         height="40"
-                    ></img>
+                    />
                 </span>
                 <ContextMenu model={items} ref={cm} />
             </div>

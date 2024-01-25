@@ -67,7 +67,7 @@ export function RowExpansionDoc(props) {
             <Tag
                 value={rowData.status.toLowerCase()}
                 severity={getOrderSeverity(rowData)}
-            ></Tag>
+            />
         );
     };
 
@@ -99,7 +99,7 @@ export function RowExpansionDoc(props) {
             <Tag
                 value={rowData.inventoryStatus}
                 severity={getProductSeverity(rowData)}
-            ></Tag>
+            />
         );
     };
 
@@ -147,29 +147,29 @@ export function RowExpansionDoc(props) {
             <div className="p-3">
                 <h5>Orders for {data.name}</h5>
                 <DataTable value={data.orders}>
-                    <Column field="id" header="Id" sortable></Column>
+                    <Column field="id" header="Id" sortable />
                     <Column
                         field="customer"
                         header="Customer"
                         sortable
-                    ></Column>
-                    <Column field="date" header="Date" sortable></Column>
+                    />
+                    <Column field="date" header="Date" sortable />
                     <Column
                         field="amount"
                         header="Amount"
                         body={amountBodyTemplate}
                         sortable
-                    ></Column>
+                    />
                     <Column
                         field="status"
                         header="Status"
                         body={statusOrderBodyTemplate}
                         sortable
-                    ></Column>
+                    />
                     <Column
                         headerStyle={{ width: "4rem" }}
                         body={searchBodyTemplate}
-                    ></Column>
+                    />
                 </DataTable>
             </div>
         );

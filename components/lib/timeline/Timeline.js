@@ -36,8 +36,7 @@ export const Timeline = React.memo(
 
         const createEvents = () => {
             return (
-                props.value &&
-                props.value.map((item, index) => {
+                props.value?.map((item, index) => {
                     const opposite = ObjectUtils.getJSXElement(
                         props.opposite,
                         item,
@@ -53,7 +52,7 @@ export const Timeline = React.memo(
                         props.marker,
                         item,
                         index,
-                    ) || <div {...markerProps}></div>;
+                    ) || <div {...markerProps} />;
                     const connectorProps = mergeProps(
                         {
                             className: cx("connector"),
@@ -61,7 +60,7 @@ export const Timeline = React.memo(
                         getPTOptions("connector", index),
                     );
                     const connector = index !== props.value.length - 1 && (
-                        <div {...connectorProps}></div>
+                        <div {...connectorProps} />
                     );
                     const content = ObjectUtils.getJSXElement(
                         props.content,

@@ -116,7 +116,7 @@ export default function PTDemo() {
 
     return (
         <>
-            <DocSectionText {...props}></DocSectionText>
+            <DocSectionText {...props} />
             <div className="card">
                 <Accordion activeIndex={0}>
                     {tabs.map((tab, i) => {

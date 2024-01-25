@@ -95,7 +95,7 @@ export const Messages = React.memo(
                 ),
             );
 
-            props.onRemove && props.onRemove(removeMessage);
+            props.onRemove?.(removeMessage);
         };
 
         const onClose = (messageInfo) => {
@@ -134,8 +134,7 @@ export const Messages = React.memo(
         return (
             <div ref={elementRef} {...rootProps}>
                 <TransitionGroup>
-                    {messagesState &&
-                        messagesState.map((message, index) => {
+                    {messagesState?.map((message, index) => {
                             const messageRef = React.createRef();
 
                             return (

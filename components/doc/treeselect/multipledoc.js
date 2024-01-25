@@ -134,7 +134,7 @@ export default function MultipleDemo() {
                     className="md:w-20rem w-full"
                     selectionMode="multiple"
                     placeholder="Select Items"
-                ></TreeSelect>
+                />
             </div>
             <DocSectionCode code={code} service={["NodeService"]} />
         </>

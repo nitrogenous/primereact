@@ -63,7 +63,7 @@ export default function PTDemo() {
 
     return (
         <>
-            <DocSectionText {...props}></DocSectionText>
+            <DocSectionText {...props} />
             <div className="card">
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed

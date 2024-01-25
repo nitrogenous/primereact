@@ -19,7 +19,7 @@ export const OrganizationChart = React.memo(
             name: "orgchart",
         });
         const elementRef = React.useRef(null);
-        const root = props.value && props.value.length ? props.value[0] : null;
+        const root = props.value?.length ? props.value[0] : null;
 
         const onNodeClick = (event, node) => {
             if (props.selectionMode) {
@@ -40,30 +40,26 @@ export const OrganizationChart = React.memo(
                 if (props.selectionMode === "single") {
                     if (selected) {
                         selection = null;
-                        props.onNodeUnselect &&
-                            props.onNodeUnselect({
+                        props.onNodeUnselect?.({
                                 originalEvent: event,
                                 node,
                             });
                     } else {
                         selection = node;
-                        props.onNodeSelect &&
-                            props.onNodeSelect({ originalEvent: event, node });
+                        props.onNodeSelect?.({ originalEvent: event, node });
                     }
                 } else if (props.selectionMode === "multiple") {
                     if (selected) {
                         selection = props.selection.filter(
                             (_, i) => i !== index,
                         );
-                        props.onNodeUnselect &&
-                            props.onNodeUnselect({
+                        props.onNodeUnselect?.({
                                 originalEvent: event,
                                 node,
                             });
                     } else {
                         selection = [...(props.selection || []), node];
-                        props.onNodeSelect &&
-                            props.onNodeSelect({ originalEvent: event, node });
+                        props.onNodeSelect?.({ originalEvent: event, node });
                     }
                 }
 
@@ -80,7 +76,7 @@ export const OrganizationChart = React.memo(
             if (props.selectionMode && props.selection) {
                 if (props.selectionMode === "single")
                     return props.selection === node ? 0 : -1;
-                else if (props.selectionMode === "multiple")
+                if (props.selectionMode === "multiple")
                     return props.selection.findIndex(
                         (selectedNode) => selectedNode === node,
                     );

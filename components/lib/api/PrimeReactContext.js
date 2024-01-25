@@ -79,7 +79,7 @@ export const PrimeReactProvider = (props) => {
             .getAttribute("href")
             .replace(currentTheme, newTheme);
 
-        cloneLinkElement.setAttribute("id", linkElementId + "-clone");
+        cloneLinkElement.setAttribute("id", `${linkElementId}-clone`);
         cloneLinkElement.setAttribute("href", newThemeUrl);
         cloneLinkElement.addEventListener("load", () => {
             linkElement.remove();

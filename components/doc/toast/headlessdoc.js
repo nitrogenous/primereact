@@ -232,7 +232,7 @@ export default function HeadlessDemo() {
                             className="flex p-3 gap-3 w-full bg-black-alpha-90 shadow-2 fadeindown"
                             style={{ borderRadius: "10px" }}
                         >
-                            <i className="pi pi-cloud-upload text-primary-500 text-2xl"></i>
+                            <i className="pi pi-cloud-upload text-primary-500 text-2xl" />
                             <div className="flex flex-column gap-3 w-full">
                                 <p className="m-0 font-semibold text-base text-white">
                                     {message.summary}
@@ -245,7 +245,7 @@ export default function HeadlessDemo() {
                                         value={progress}
                                         showValue={false}
                                         style={{ height: "4px" }}
-                                    ></ProgressBar>
+                                    />
                                     <label className="text-right text-xs text-white">
                                         {progress}% uploaded...
                                     </label>
@@ -256,18 +256,18 @@ export default function HeadlessDemo() {
                                         text
                                         className="p-0"
                                         onClick={clear}
-                                    ></Button>
+                                    />
                                     <Button
                                         label="Cancel"
                                         text
                                         className="text-white p-0"
                                         onClick={clear}
-                                    ></Button>
+                                    />
                                 </div>
                             </div>
                         </section>
                     )}
-                ></Toast>
+                />
                 <Button onClick={show} label="View" />
             </div>
             <DocSectionCode code={code} />

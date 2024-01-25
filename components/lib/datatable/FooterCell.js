@@ -59,7 +59,7 @@ export const FooterCell = React.memo((props) => {
                         parseFloat(next.style.right || 0);
                 }
 
-                styleObject["right"] = right + "px";
+                styleObject.right = `${right}px`;
             } else {
                 let left = 0;
                 const prev = elementRef.current.previousElementSibling;
@@ -70,12 +70,12 @@ export const FooterCell = React.memo((props) => {
                         parseFloat(prev.style.left || 0);
                 }
 
-                styleObject["left"] = left + "px";
+                styleObject.left = `${left}px`;
             }
 
             const isSameStyle =
-                styleObjectState["left"] === styleObject["left"] &&
-                styleObjectState["right"] === styleObject["right"];
+                styleObjectState.left === styleObject.left &&
+                styleObjectState.right === styleObject.right;
 
             !isSameStyle && setStyleObjectState(styleObject);
         }

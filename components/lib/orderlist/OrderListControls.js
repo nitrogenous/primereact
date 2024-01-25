@@ -217,16 +217,16 @@ export const OrderListControls = React.memo((props) => {
 
     return (
         <div {...controlsProps}>
-            <Button pt={ptm("moveUpButton")} {...moveUpButtonProps}></Button>
-            <Button pt={ptm("moveTopButton")} {...moveTopButtonProps}></Button>
+            <Button pt={ptm("moveUpButton")} {...moveUpButtonProps} />
+            <Button pt={ptm("moveTopButton")} {...moveTopButtonProps} />
             <Button
                 pt={ptm("moveDownButton")}
                 {...moveDownButtonProps}
-            ></Button>
+            />
             <Button
                 pt={ptm("moveBottomButton")}
                 {...moveBottomButtonProps}
-            ></Button>
+            />
         </div>
     );
 });

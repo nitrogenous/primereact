@@ -81,12 +81,12 @@ export default function Layout({ children }) {
                     name="twitter:description"
                     content="The ultimate collection of design-agnostic, flexible and accessible React UI Components."
                 />
-                <meta property="og:type" content="website"></meta>
+                <meta property="og:type" content="website" />
                 <meta
                     property="og:title"
                     content="PrimeReact | React UI Component Library"
-                ></meta>
-                <meta property="og:url" content="https://primereact.org"></meta>
+                />
+                <meta property="og:url" content="https://primereact.org" />
                 <meta
                     property="og:description"
                     content="The ultimate collection of design-agnostic, flexible and accessible React UI Components."
@@ -94,13 +94,13 @@ export default function Layout({ children }) {
                 <meta
                     property="og:image"
                     content="https://www.primefaces.org/static/social/primereact-preview.jpg"
-                ></meta>
-                <meta property="og:ttl" content="604800"></meta>
+                />
+                <meta property="og:ttl" content="604800" />
                 <link
                     rel="icon"
                     href="https://primefaces.org/cdn/primereact/images/favicon.ico"
                     type="image/x-icon"
-                ></link>
+                />
             </Head>
             <NewsSection />
             <Topbar
@@ -115,7 +115,7 @@ export default function Layout({ children }) {
                     "layout-mask-active": sidebarActive,
                 })}
                 onClick={() => setSidebarActive(false)}
-            ></div>
+            />
             <Config
                 active={configActive}
                 onHide={() => setConfigActive(false)}

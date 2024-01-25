@@ -26,9 +26,9 @@ export function LazyLoadDoc(props) {
             const node = {
                 key: first + i,
                 data: {
-                    name: "Item " + (first + i),
-                    size: Math.floor(Math.random() * 1000) + 1 + "kb",
-                    type: "Type " + (first + i),
+                    name: `Item ${first + i}`,
+                    size: `${Math.floor(Math.random() * 1000) + 1}kb`,
+                    type: `Type ${first + i}`,
                 },
                 leaf: false,
             };
@@ -50,15 +50,15 @@ export function LazyLoadDoc(props) {
                 lazyNode.children = [
                     {
                         data: {
-                            name: lazyNode.data.name + " - 0",
-                            size: Math.floor(Math.random() * 1000) + 1 + "kb",
+                            name: `${lazyNode.data.name} - 0`,
+                            size: `${Math.floor(Math.random() * 1000) + 1}kb`,
                             type: "File",
                         },
                     },
                     {
                         data: {
-                            name: lazyNode.data.name + " - 1",
-                            size: Math.floor(Math.random() * 1000) + 1 + "kb",
+                            name: `${lazyNode.data.name} - 1`,
+                            size: `${Math.floor(Math.random() * 1000) + 1}kb`,
                             type: "File",
                         },
                     },
@@ -347,9 +347,9 @@ export default function LazyLoadDemo() {
                     loading={loading}
                     tableStyle={{ minWidth: "50rem" }}
                 >
-                    <Column field="name" header="Name" expander></Column>
-                    <Column field="size" header="Size"></Column>
-                    <Column field="type" header="Type"></Column>
+                    <Column field="name" header="Name" expander />
+                    <Column field="size" header="Size" />
+                    <Column field="type" header="Type" />
                 </TreeTable>
             </div>
             <DocSectionCode code={code} />

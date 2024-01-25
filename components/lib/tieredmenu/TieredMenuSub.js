@@ -36,7 +36,7 @@ export const TieredMenuSub = React.memo(
                     DomHandler.getWindowScrollTop();
 
                 if (top > viewport.height) {
-                    elementRef.current.style.top = viewport.height - top + "px";
+                    elementRef.current.style.top = `${viewport.height - top}px`;
                 } else {
                     elementRef.current.style.top = "0px";
                 }
@@ -75,8 +75,7 @@ export const TieredMenuSub = React.memo(
                 });
             }
 
-            props.onItemClick &&
-                props.onItemClick({ originalEvent: event, processedItem });
+            props.onItemClick?.({ originalEvent: event, processedItem });
         };
 
         const getItemId = (processedItem) => {
@@ -84,7 +83,7 @@ export const TieredMenuSub = React.memo(
         };
 
         const getItemProp = (processedItem, name, params) => {
-            return processedItem && processedItem.item
+            return processedItem?.item
                 ? ObjectUtils.getItemValue(processedItem.item[name], params)
                 : undefined;
         };
@@ -112,8 +111,7 @@ export const TieredMenuSub = React.memo(
         };
 
         const onItemMouseEnter = (event, processedItem) => {
-            props.onItemMouseEnter &&
-                props.onItemMouseEnter({ originalEvent: event, processedItem });
+            props.onItemMouseEnter?.({ originalEvent: event, processedItem });
         };
 
         const getAriaSetSize = () => {
@@ -149,7 +147,7 @@ export const TieredMenuSub = React.memo(
         }));
 
         const createSeparator = (index) => {
-            const key = "separator_" + index;
+            const key = `separator_${index}`;
 
             const separatorProps = mergeProps(
                 {
@@ -160,14 +158,14 @@ export const TieredMenuSub = React.memo(
                 ptm("separator", { hostName: props.hostName }),
             );
 
-            return <li {...separatorProps}></li>;
+            return <li {...separatorProps} />;
         };
 
         const createSubmenu = (processedItem, index) => {
             if (isItemGroup(processedItem)) {
                 return (
                     <TieredMenuSub
-                        id={props.id + "_" + index}
+                        id={`${props.id}_${index}`}
                         menuProps={props.menuProps}
                         model={processedItem.items}
                         menuId={props.menuId}

@@ -149,14 +149,14 @@ export const Image = React.memo(
             ZIndexUtils.set(
                 "modal",
                 maskRef.current,
-                (context && context.autoZIndex) || PrimeReact.autoZIndex,
-                (context && context.zIndex["modal"]) ||
-                    PrimeReact.zIndex["modal"],
+                (context?.autoZIndex) || PrimeReact.autoZIndex,
+                (context?.zIndex.modal) ||
+                    PrimeReact.zIndex.modal,
             );
         };
 
         const onEntered = () => {
-            props.onShow && props.onShow();
+            props.onShow?.();
         };
 
         const onExit = () => {
@@ -164,7 +164,7 @@ export const Image = React.memo(
         };
 
         const onExiting = () => {
-            props.onHide && props.onHide();
+            props.onHide?.();
         };
 
         const onExited = () => {

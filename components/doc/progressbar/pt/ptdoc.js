@@ -50,7 +50,7 @@ export default function PTDemo() {
 
     return (
         <>
-            <DocSectionText {...props}></DocSectionText>
+            <DocSectionText {...props} />
             <div className="card">
                 <ProgressBar
                     value={50}
@@ -62,7 +62,7 @@ export default function PTDemo() {
                             },
                         },
                     }}
-                ></ProgressBar>
+                />
             </div>
             <DocSectionCode code={code} />
         </>

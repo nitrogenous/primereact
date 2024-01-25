@@ -70,7 +70,7 @@ export default function TemplateDemo() {
                 <ProgressBar
                     value={40}
                     displayValueTemplate={valueTemplate}
-                ></ProgressBar>
+                />
             </div>
             <DocSectionCode code={code} />
         </>

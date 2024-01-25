@@ -189,7 +189,7 @@ export const TreeTableBody = React.memo((props) => {
             return isSingleSelectionMode
                 ? props.selectionKeys === node.key
                 : props.selectionKeys[node.key] !== undefined;
-        else return false;
+        return false;
     };
 
     const createRow = (node, index) => {
@@ -249,15 +249,14 @@ export const TreeTableBody = React.memo((props) => {
             }
 
             return rows;
-        } else {
-            return props.value.map(createRow);
         }
+            return props.value.map(createRow);
     };
 
     const createEmptyMessage = () => {
         if (props.loading) {
             return null;
-        } else {
+        }
             const colSpan = props.columns ? props.columns.length : null;
             const content =
                 ObjectUtils.getJSXElement(props.emptyMessage, {
@@ -281,11 +280,10 @@ export const TreeTableBody = React.memo((props) => {
                     <td {...emptyMessageCellProps}>{content}</td>
                 </tr>
             );
-        }
     };
 
     const content =
-        props.value && props.value.length ? createRows() : createEmptyMessage();
+        props.value?.length ? createRows() : createEmptyMessage();
     const tbodyProps = mergeProps(
         {
             role: "rowgroup",

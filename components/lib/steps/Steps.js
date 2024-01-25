@@ -172,7 +172,7 @@ export const Steps = React.memo(
                 return null;
             }
 
-            const key = item.id || idState + "_" + index;
+            const key = item.id || `${idState}_${index}`;
             const active = index === props.activeIndex;
             const disabled =
                 item.disabled ||

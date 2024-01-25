@@ -125,13 +125,13 @@ export const Menu = React.memo(
                 } else changeFocusedOptionIndex(0);
             }
 
-            props.onFocus && props.onFocus(event);
+            props.onFocus?.(event);
         };
 
         const onListBlur = (event) => {
             setFocused(false);
             setFocusedOptionIndex(-1);
-            props.onBlur && props.onBlur(event);
+            props.onBlur?.(event);
         };
 
         const onListKeyDown = (event) => {
@@ -220,7 +220,7 @@ export const Menu = React.memo(
                 DomHandler.findSingle(element, 'a[data-pc-section="action"]');
 
             props.popup && DomHandler.focus(targetRef.current);
-            anchorElement ? anchorElement.click() : element && element.click();
+            anchorElement ? anchorElement.click() : element?.click();
 
             event.preventDefault();
         };
@@ -282,13 +282,13 @@ export const Menu = React.memo(
         const show = (event) => {
             targetRef.current = event.currentTarget;
             setVisibleState(true);
-            props.onShow && props.onShow(event);
+            props.onShow?.(event);
         };
 
         const hide = (event) => {
             targetRef.current = event.currentTarget;
             setVisibleState(false);
-            props.onHide && props.onHide(event);
+            props.onHide?.(event);
         };
 
         const onEnter = () => {
@@ -300,10 +300,10 @@ export const Menu = React.memo(
             ZIndexUtils.set(
                 "menu",
                 menuRef.current,
-                (context && context.autoZIndex) || PrimeReact.autoZIndex,
+                (context?.autoZIndex) || PrimeReact.autoZIndex,
                 props.baseZIndex ||
-                    (context && context.zIndex["menu"]) ||
-                    PrimeReact.zIndex["menu"],
+                    (context?.zIndex.menu) ||
+                    PrimeReact.zIndex.menu,
             );
             DomHandler.absolutePosition(
                 menuRef.current,
@@ -350,7 +350,7 @@ export const Menu = React.memo(
         }));
 
         const createSubmenu = (submenu, index) => {
-            const key = idState + "_sub_" + index;
+            const key = `${idState}_sub_${index}`;
             const items = submenu.items.map((item, index) =>
                 createMenuItem(item, index, key),
             );
@@ -378,7 +378,7 @@ export const Menu = React.memo(
         };
 
         const createSeparator = (index) => {
-            const key = idState + "_separator_" + index;
+            const key = `${idState}_separator_${index}`;
             const separatorProps = mergeProps(
                 {
                     id: key,
@@ -389,7 +389,7 @@ export const Menu = React.memo(
                 ptm("separator"),
             );
 
-            return <li {...separatorProps}></li>;
+            return <li {...separatorProps} />;
         };
 
         const createMenuItem = (item, index, parentId = null) => {
@@ -421,7 +421,7 @@ export const Menu = React.memo(
             const label = item.label && (
                 <span {...labelProps}>{item.label}</span>
             );
-            const key = item.id || (parentId || idState) + "_" + index;
+            const key = item.id || `${parentId || idState}_${index}`;
             const contentProps = mergeProps(
                 {
                     onClick: (event) => onItemClick(event, item, key),
@@ -525,7 +525,7 @@ export const Menu = React.memo(
                     {
                         ref: listRef,
                         className: cx("menu"),
-                        id: idState + "_list",
+                        id: `${idState}_list`,
                         tabIndex: props.tabIndex || "0",
                         role: "menu",
                         "aria-label": props.ariaLabel,

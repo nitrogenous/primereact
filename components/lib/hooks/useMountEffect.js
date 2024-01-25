@@ -11,7 +11,7 @@ export const useMountEffect = (fn) => {
     return React.useEffect(() => {
         if (!mounted.current) {
             mounted.current = true;
-            return fn && fn();
+            return fn?.();
         }
     }, []);
 };

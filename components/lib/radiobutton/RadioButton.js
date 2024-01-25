@@ -72,7 +72,7 @@ export const RadioButton = React.memo(
                     },
                 };
 
-                props.onClick && props.onClick(eventData);
+                props.onClick?.(eventData);
 
                 // do not continue if the user defined click wants to prevent
                 if (event.defaultPrevented) {
@@ -80,7 +80,7 @@ export const RadioButton = React.memo(
                 }
 
                 if (isInputToggled || isRadioToggled) {
-                    props.onChange && props.onChange(eventData);
+                    props.onChange?.(eventData);
 
                     if (isRadioToggled) {
                         inputRef.current.checked = value;
@@ -200,7 +200,7 @@ export const RadioButton = React.memo(
                         />
                     </div>
                     <div {...inputProps}>
-                        <div {...iconProps}></div>
+                        <div {...iconProps} />
                     </div>
                 </div>
                 {hasTooltip && (

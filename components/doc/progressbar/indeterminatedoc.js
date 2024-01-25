@@ -45,7 +45,7 @@ export default function IndeterminateDemo() {
                 <ProgressBar
                     mode="indeterminate"
                     style={{ height: "6px" }}
-                ></ProgressBar>
+                />
             </div>
             <DocSectionCode code={code} />
         </>

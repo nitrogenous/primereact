@@ -88,7 +88,7 @@ export const TreeTableRow = React.memo((props) => {
     const isLeaf = () => {
         return props.node.leaf === false
             ? false
-            : !(props.node.children && props.node.children.length);
+            : !(props.node.children?.length);
     };
 
     const onTogglerClick = (event) => {
@@ -292,7 +292,7 @@ export const TreeTableRow = React.memo((props) => {
             selectionKeys[node.key] = { checked: true, partialChecked: false };
         else delete selectionKeys[node.key];
 
-        if (node.children && node.children.length) {
+        if (node.children?.length) {
             for (let i = 0; i < node.children.length; i++) {
                 propagateDown(node.children[i], check, selectionKeys);
             }
@@ -597,10 +597,10 @@ export const TreeTableRow = React.memo((props) => {
                 onClick: (e) => onTogglerClick(e),
                 tabIndex: -1,
                 style: {
-                    marginLeft: props.level * 16 + "px",
+                    marginLeft: `${props.level * 16}px`,
                     visibility:
                         props.node.leaf === false ||
-                        (props.node.children && props.node.children.length)
+                        (props.node.children?.length)
                             ? "visible"
                             : "hidden",
                 },
@@ -625,10 +625,10 @@ export const TreeTableRow = React.memo((props) => {
                 props,
                 expanded,
                 buttonStyle: {
-                    marginLeft: props.level * 16 + "px",
+                    marginLeft: `${props.level * 16}px`,
                     visibility:
                         props.node.leaf === false ||
-                        (props.node.children && props.node.children.length)
+                        (props.node.children?.length)
                             ? "visible"
                             : "hidden",
                 },
@@ -709,13 +709,13 @@ export const TreeTableRow = React.memo((props) => {
                     </div>
                 </div>
             );
-        } else {
-            return null;
         }
+            return null;
     };
 
     const createCell = (column, index) => {
-        let toggler, checkbox;
+        let toggler;
+        let checkbox;
 
         if (getColumnProp(column, "hidden")) {
             return null;
@@ -739,7 +739,7 @@ export const TreeTableRow = React.memo((props) => {
                 selectOnEdit={props.selectOnEdit}
                 selected={isSelected()}
                 node={props.node}
-                rowData={props.node && props.node.data}
+                rowData={props.node?.data}
                 rowIndex={props.rowIndex}
                 ptCallbacks={props.ptCallbacks}
                 metaData={props.metaData}
@@ -760,7 +760,7 @@ export const TreeTableRow = React.memo((props) => {
                             childNode.key || JSON.stringify(childNode.data)
                         }_${index}`}
                         level={props.level + 1}
-                        rowIndex={props.rowIndex + "_" + index}
+                        rowIndex={`${props.rowIndex}_${index}`}
                         node={childNode}
                         originalOptions={props.originalOptions}
                         checkboxIcon={props.checkboxIcon}
@@ -794,9 +794,8 @@ export const TreeTableRow = React.memo((props) => {
                     />
                 );
             });
-        } else {
-            return null;
         }
+            return null;
     };
 
     const cells = props.columns.map(createCell);

@@ -24,7 +24,7 @@ export function FilterDoc(props) {
         return (
             <div className="flex justify-content-end">
                 <div className="p-input-icon-left">
-                    <i className="pi pi-search"></i>
+                    <i className="pi pi-search" />
                     <InputText
                         type="search"
                         onInput={(e) => setGlobalFilter(e.target.value)}
@@ -215,19 +215,19 @@ export default function FilterDemo() {
                         expander
                         filter
                         filterPlaceholder="Filter by name"
-                    ></Column>
+                    />
                     <Column
                         field="size"
                         header="Size"
                         filter
                         filterPlaceholder="Filter by size"
-                    ></Column>
+                    />
                     <Column
                         field="type"
                         header="Type"
                         filter
                         filterPlaceholder="Filter by type"
-                    ></Column>
+                    />
                 </TreeTable>
             </div>
             <DocSectionCode code={code} service={["NodeService"]} />

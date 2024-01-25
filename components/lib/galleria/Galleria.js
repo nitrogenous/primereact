@@ -103,10 +103,10 @@ export const Galleria = React.memo(
             ZIndexUtils.set(
                 "modal",
                 maskRef.current,
-                (context && context.autoZIndex) || PrimeReact.autoZIndex,
+                (context?.autoZIndex) || PrimeReact.autoZIndex,
                 props.baseZIndex ||
-                    (context && context.zIndex["modal"]) ||
-                    PrimeReact.zIndex["modal"],
+                    (context?.zIndex.modal) ||
+                    PrimeReact.zIndex.modal,
             );
             !isUnstyled() &&
                 DomHandler.addMultipleClasses(
@@ -116,7 +116,7 @@ export const Galleria = React.memo(
         };
 
         const onEntered = () => {
-            props.onShow && props.onShow();
+            props.onShow?.();
         };
 
         const onExit = () => {
@@ -131,7 +131,7 @@ export const Galleria = React.memo(
         const onExited = () => {
             ZIndexUtils.clear(maskRef.current);
 
-            props.onHide && props.onHide();
+            props.onHide?.();
         };
 
         const isAutoPlayActive = () => {

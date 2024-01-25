@@ -132,12 +132,12 @@ const styles = `
 
 const inlineStyles = {
     menu: ({ subProps: props }) => ({
-        width: props.menuWidth + "px",
+        width: `${props.menuWidth}px`,
         left: props.root
-            ? -1 * props.level * props.menuWidth + "px"
-            : props.menuWidth + "px",
+            ? `${-1 * props.level * props.menuWidth}px`
+            : `${props.menuWidth}px`,
         transitionProperty: props.root ? "left" : "none",
-        transitionDuration: props.effectDuration + "ms",
+        transitionDuration: `${props.effectDuration}ms`,
         transitionTimingFunction: props.easing,
     }),
 };

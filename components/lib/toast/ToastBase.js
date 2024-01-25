@@ -89,7 +89,7 @@ const styles = `
 const classes = {
     root: ({ props, context }) =>
         classNames(
-            "p-toast p-component p-toast-" + props.position,
+            `p-toast p-component p-toast-${props.position}`,
             props.className,
             {
                 "p-input-filled":

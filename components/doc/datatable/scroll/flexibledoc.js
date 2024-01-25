@@ -181,16 +181,16 @@ export default function FlexibleScrollDemo() {
                             scrollHeight="flex"
                             tableStyle={{ minWidth: "50rem" }}
                         >
-                            <Column field="name" header="Name"></Column>
+                            <Column field="name" header="Name" />
                             <Column
                                 field="country.name"
                                 header="Country"
-                            ></Column>
+                            />
                             <Column
                                 field="representative.name"
                                 header="Representative"
-                            ></Column>
-                            <Column field="company" header="Company"></Column>
+                            />
+                            <Column field="company" header="Company" />
                         </DataTable>
                     </Dialog>
                 </div>

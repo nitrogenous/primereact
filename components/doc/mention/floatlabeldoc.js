@@ -14,7 +14,7 @@ export function FloatLabelDoc(props) {
         CustomerService.getCustomersSmall().then((data) => {
             data.forEach(
                 (d) =>
-                    (d["nickname"] = `${d.name
+                    (d.nickname = `${d.name
                         .replace(/\s+/g, "")
                         .toLowerCase()}_${d.id}`),
             );
@@ -44,8 +44,7 @@ export function FloatLabelDoc(props) {
 
     const itemTemplate = (suggestion) => {
         const src =
-            "https://primefaces.org/cdn/primereact/images/avatar/" +
-            suggestion.representative.image;
+            `https://primefaces.org/cdn/primereact/images/avatar/${suggestion.representative.image}`;
 
         return (
             <div className="flex align-items-center">

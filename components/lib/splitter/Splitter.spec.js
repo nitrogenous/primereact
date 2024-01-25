@@ -83,7 +83,7 @@ describe("Splitter", () => {
     );
     snapshot(
         <>
-            <Splitter style={{ height: "300px" }} layout="vertical"></Splitter>
+            <Splitter style={{ height: "300px" }} layout="vertical" />
         </>,
         "Without panels",
     );

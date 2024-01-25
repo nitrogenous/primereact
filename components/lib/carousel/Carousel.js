@@ -453,8 +453,8 @@ export const Carousel = React.memo(
         const createStyle = () => {
             if (!carouselStyle.current) {
                 carouselStyle.current = DomHandler.createInlineStyle(
-                    (context && context.nonce) || PrimeReact.nonce,
-                    context && context.styleContainer,
+                    (context?.nonce) || PrimeReact.nonce,
+                    context?.styleContainer,
                 );
             }
 
@@ -466,7 +466,7 @@ export const Carousel = React.memo(
 
             if (props.responsiveOptions) {
                 const comparator = ObjectUtils.localeComparator(
-                    (context && context.locale) || PrimeReact.locale,
+                    (context?.locale) || PrimeReact.locale,
                 );
 
                 responsiveOptions.current = [...props.responsiveOptions];
@@ -479,7 +479,7 @@ export const Carousel = React.memo(
                         value2,
                         -1,
                         comparator,
-                        (context && context.nullSortOrder) ||
+                        (context?.nullSortOrder) ||
                             PrimeReact.nullSortOrder,
                     );
                 });
@@ -520,7 +520,7 @@ export const Carousel = React.memo(
 
         const changePage = (page) => {
             !isControlled && setPageState(page);
-            props.onPageChange && props.onPageChange({ page });
+            props.onPageChange?.({ page });
         };
 
         React.useImperativeHandle(ref, () => ({
@@ -649,7 +649,7 @@ export const Carousel = React.memo(
         };
 
         const createItems = () => {
-            if (props.value && props.value.length) {
+            if (props.value?.length) {
                 let clonedItemsForStarting = null;
                 let clonedItemsForFinishing = null;
 
@@ -664,7 +664,7 @@ export const Carousel = React.memo(
                                 props.value.length + numVisibleState;
                             const start = index === 0;
                             const end = index === clonedElements.length - 1;
-                            const key = index + "_scloned";
+                            const key = `${index}_scloned`;
 
                             return (
                                 <CarouselItem
@@ -688,7 +688,7 @@ export const Carousel = React.memo(
                             const isActive = totalShiftedItemsState === 0;
                             const start = index === 0;
                             const end = index === clonedElements.length - 1;
-                            const key = index + "_fcloned";
+                            const key = `${index}_fcloned`;
 
                             return (
                                 <CarouselItem
@@ -948,7 +948,7 @@ export const Carousel = React.memo(
                 });
             };
 
-            const key = "carousel-indicator-" + index;
+            const key = `carousel-indicator-${index}`;
             const indicatorProps = mergeProps(
                 {
                     key,

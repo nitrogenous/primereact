@@ -304,7 +304,7 @@ export const PickList = React.memo(
                 ) ||
                 DomHandler.findSingle(listElement, '[data-pc-section="item"]');
             const itemList =
-                listElement && listElement.children
+                listElement?.children
                     ? [...listElement.children]
                     : [];
 
@@ -324,14 +324,14 @@ export const PickList = React.memo(
                           : -1;
 
                 changeFocusedOptionIndex(index, type);
-                props.onFocus && props.onFocus(event);
+                props.onFocus?.(event);
             }
         };
 
         const onListBlur = (event, type) => {
             setFocused({ ...focused, [type]: false });
             setFocusedOptionIndex(-1);
-            props.onBlur && props.onBlur(event);
+            props.onBlur?.(event);
         };
 
         const onItemClick = (event, type, arrowKeyClick = false) => {
@@ -495,7 +495,7 @@ export const PickList = React.memo(
                 listElement,
                 `[data-pc-section="item"][id=${focusedOptionIndex}]`,
             );
-            const id = focusedItem && focusedItem.getAttribute("id");
+            const id = focusedItem?.getAttribute("id");
             const matchedOptionIndex = [...items].findIndex(
                 (item) => item === focusedItem,
             );
@@ -518,7 +518,7 @@ export const PickList = React.memo(
             event.preventDefault();
 
             const isSource = type === "source";
-            const selection = isSource
+            let selection = isSource
                 ? sourceSelectionState
                 : targetSelectionState;
 
@@ -701,8 +701,7 @@ export const PickList = React.memo(
             );
 
             if (element) {
-                element.scrollIntoView &&
-                    element.scrollIntoView({
+                element.scrollIntoView?.({
                         block: "nearest",
                         inline: "start",
                     });
@@ -718,8 +717,8 @@ export const PickList = React.memo(
         const createStyle = () => {
             if (!styleElementRef.current) {
                 styleElementRef.current = DomHandler.createInlineStyle(
-                    (context && context.nonce) || PrimeReact.nonce,
-                    context && context.styleContainer,
+                    (context?.nonce) || PrimeReact.nonce,
+                    context?.styleContainer,
                 );
 
                 const innerHTML = `
@@ -852,9 +851,9 @@ export const PickList = React.memo(
                         onOptionMouseDown(index, "source")
                     }
                     onItemClick={(e) => onItemClick(e, "source")}
-                    focusedOptionId={focused["source"] ? focusedOptionId : null}
+                    focusedOptionId={focused.source ? focusedOptionId : null}
                     ariaActivedescendant={
-                        focused["source"] ? focusedOptionId : null
+                        focused.source ? focusedOptionId : null
                     }
                     itemTemplate={sourceItemTemplate}
                     header={props.sourceHeader}
@@ -916,9 +915,9 @@ export const PickList = React.memo(
                         onOptionMouseDown(index, "target")
                     }
                     onItemClick={(e) => onItemClick(e, "target")}
-                    focusedOptionId={focused["target"] ? focusedOptionId : null}
+                    focusedOptionId={focused.target ? focusedOptionId : null}
                     ariaActivedescendant={
-                        focused["target"] ? focusedOptionId : null
+                        focused.target ? focusedOptionId : null
                     }
                     itemTemplate={targetItemTemplate}
                     header={props.targetHeader}

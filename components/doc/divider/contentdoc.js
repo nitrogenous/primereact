@@ -142,7 +142,7 @@ export default function ContentDemo() {
                 </p>
                 <Divider align="left">
                     <div className="inline-flex align-items-center">
-                        <i className="pi pi-user mr-2"></i>
+                        <i className="pi pi-user mr-2" />
                         <b>Text</b>
                     </div>
                 </Divider>
@@ -174,7 +174,7 @@ export default function ContentDemo() {
                         label="Button"
                         icon="pi pi-search"
                         className="p-button-outlined"
-                    ></Button>
+                    />
                 </Divider>
                 <p>
                     Temporibus autem quibusdam et aut officiis debitis aut rerum

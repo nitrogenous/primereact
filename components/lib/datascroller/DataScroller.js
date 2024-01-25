@@ -92,9 +92,9 @@ export const DataScroller = React.memo(
         const bindScrollListener = () => {
             if (props.inline) {
                 scrollFunction.current = () => {
-                    const scrollTop = contentRef.current.scrollTop,
-                        scrollHeight = contentRef.current.scrollHeight,
-                        viewportHeight = contentRef.current.clientHeight;
+                    const scrollTop = contentRef.current.scrollTop;
+                    const scrollHeight = contentRef.current.scrollHeight;
+                    const viewportHeight = contentRef.current.clientHeight;
 
                     if (
                         scrollTop >=
@@ -110,13 +110,13 @@ export const DataScroller = React.memo(
                 );
             } else {
                 scrollFunction.current = () => {
-                    const docBody = document.body,
-                        docElement = document.documentElement,
-                        scrollTop =
+                    const docBody = document.body;
+                    const docElement = document.documentElement;
+                    const scrollTop =
                             window.pageYOffset ||
-                            document.documentElement.scrollTop,
-                        winHeight = docElement.clientHeight,
-                        docHeight = Math.max(
+                            document.documentElement.scrollTop;
+                    const winHeight = docElement.clientHeight;
+                    const docHeight = Math.max(
                             docBody.scrollHeight,
                             docBody.offsetHeight,
                             winHeight,
@@ -225,7 +225,7 @@ export const DataScroller = React.memo(
         const createItem = (_value, index) => {
             const itemProps = mergeProps(
                 {
-                    key: index + "_datascrollitem",
+                    key: `${index}_datascrollitem`,
                 },
                 ptm("item"),
             );

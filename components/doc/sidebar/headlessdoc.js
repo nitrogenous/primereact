@@ -706,7 +706,7 @@ export default function HeadlessDemo() {
                                                 rounded
                                                 outlined
                                                 className="h-2rem w-2rem"
-                                            ></Button>
+                                            />
                                         </span>
                                     </div>
                                     <div className="overflow-y-auto">
@@ -727,14 +727,14 @@ export default function HeadlessDemo() {
                                                         <span className="font-medium">
                                                             FAVORITES
                                                         </span>
-                                                        <i className="pi pi-chevron-down"></i>
+                                                        <i className="pi pi-chevron-down" />
                                                         <Ripple />
                                                     </div>
                                                 </StyleClass>
                                                 <ul className="list-none p-0 m-0 overflow-hidden">
                                                     <li>
                                                         <a className="p-ripple flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors w-full">
-                                                            <i className="pi pi-home mr-2"></i>
+                                                            <i className="pi pi-home mr-2" />
                                                             <span className="font-medium">
                                                                 Dashboard
                                                             </span>
@@ -743,7 +743,7 @@ export default function HeadlessDemo() {
                                                     </li>
                                                     <li>
                                                         <a className="p-ripple flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors w-full">
-                                                            <i className="pi pi-bookmark mr-2"></i>
+                                                            <i className="pi pi-bookmark mr-2" />
                                                             <span className="font-medium">
                                                                 Bookmarks
                                                             </span>
@@ -763,11 +763,11 @@ export default function HeadlessDemo() {
                                                                 ref={btnRef2}
                                                                 className="p-ripple flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors w-full"
                                                             >
-                                                                <i className="pi pi-chart-line mr-2"></i>
+                                                                <i className="pi pi-chart-line mr-2" />
                                                                 <span className="font-medium">
                                                                     Reports
                                                                 </span>
-                                                                <i className="pi pi-chevron-down ml-auto mr-1"></i>
+                                                                <i className="pi pi-chevron-down ml-auto mr-1" />
                                                                 <Ripple />
                                                             </a>
                                                         </StyleClass>
@@ -789,18 +789,18 @@ export default function HeadlessDemo() {
                                                                         }
                                                                         className="p-ripple flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors w-full"
                                                                     >
-                                                                        <i className="pi pi-chart-line mr-2"></i>
+                                                                        <i className="pi pi-chart-line mr-2" />
                                                                         <span className="font-medium">
                                                                             Revenue
                                                                         </span>
-                                                                        <i className="pi pi-chevron-down ml-auto mr-1"></i>
+                                                                        <i className="pi pi-chevron-down ml-auto mr-1" />
                                                                         <Ripple />
                                                                     </a>
                                                                 </StyleClass>
                                                                 <ul className="list-none py-0 pl-3 pr-0 m-0 hidden overflow-y-hidden transition-all transition-duration-400 transition-ease-in-out">
                                                                     <li>
                                                                         <a className="p-ripple flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors w-full">
-                                                                            <i className="pi pi-table mr-2"></i>
+                                                                            <i className="pi pi-table mr-2" />
                                                                             <span className="font-medium">
                                                                                 View
                                                                             </span>
@@ -809,7 +809,7 @@ export default function HeadlessDemo() {
                                                                     </li>
                                                                     <li>
                                                                         <a className="p-ripple flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors w-full">
-                                                                            <i className="pi pi-search mr-2"></i>
+                                                                            <i className="pi pi-search mr-2" />
                                                                             <span className="font-medium">
                                                                                 Search
                                                                             </span>
@@ -820,7 +820,7 @@ export default function HeadlessDemo() {
                                                             </li>
                                                             <li>
                                                                 <a className="p-ripple flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors w-full">
-                                                                    <i className="pi pi-chart-line mr-2"></i>
+                                                                    <i className="pi pi-chart-line mr-2" />
                                                                     <span className="font-medium">
                                                                         Expenses
                                                                     </span>
@@ -831,7 +831,7 @@ export default function HeadlessDemo() {
                                                     </li>
                                                     <li>
                                                         <a className="p-ripple flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors w-full">
-                                                            <i className="pi pi-users mr-2"></i>
+                                                            <i className="pi pi-users mr-2" />
                                                             <span className="font-medium">
                                                                 Team
                                                             </span>
@@ -840,7 +840,7 @@ export default function HeadlessDemo() {
                                                     </li>
                                                     <li>
                                                         <a className="p-ripple flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors w-full">
-                                                            <i className="pi pi-comments mr-2"></i>
+                                                            <i className="pi pi-comments mr-2" />
                                                             <span className="font-medium">
                                                                 Messages
                                                             </span>
@@ -859,7 +859,7 @@ export default function HeadlessDemo() {
                                                     </li>
                                                     <li>
                                                         <a className="p-ripple flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors w-full">
-                                                            <i className="pi pi-calendar mr-2"></i>
+                                                            <i className="pi pi-calendar mr-2" />
                                                             <span className="font-medium">
                                                                 Calendar
                                                             </span>
@@ -868,7 +868,7 @@ export default function HeadlessDemo() {
                                                     </li>
                                                     <li>
                                                         <a className="p-ripple flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors w-full">
-                                                            <i className="pi pi-cog mr-2"></i>
+                                                            <i className="pi pi-cog mr-2" />
                                                             <span className="font-medium">
                                                                 Settings
                                                             </span>
@@ -895,14 +895,14 @@ export default function HeadlessDemo() {
                                                         <span className="font-medium">
                                                             APPLICATION
                                                         </span>
-                                                        <i className="pi pi-chevron-down"></i>
+                                                        <i className="pi pi-chevron-down" />
                                                         <Ripple />
                                                     </div>
                                                 </StyleClass>
                                                 <ul className="list-none p-0 m-0 overflow-hidden">
                                                     <li>
                                                         <a className="p-ripple flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors w-full">
-                                                            <i className="pi pi-folder mr-2"></i>
+                                                            <i className="pi pi-folder mr-2" />
                                                             <span className="font-medium">
                                                                 Projects
                                                             </span>
@@ -911,7 +911,7 @@ export default function HeadlessDemo() {
                                                     </li>
                                                     <li>
                                                         <a className="p-ripple flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors w-full">
-                                                            <i className="pi pi-chart-bar mr-2"></i>
+                                                            <i className="pi pi-chart-bar mr-2" />
                                                             <span className="font-medium">
                                                                 Performance
                                                             </span>
@@ -920,7 +920,7 @@ export default function HeadlessDemo() {
                                                     </li>
                                                     <li>
                                                         <a className="p-ripple flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors w-full">
-                                                            <i className="pi pi-cog mr-2"></i>
+                                                            <i className="pi pi-cog mr-2" />
                                                             <span className="font-medium">
                                                                 Settings
                                                             </span>
@@ -950,7 +950,7 @@ export default function HeadlessDemo() {
                             </div>
                         </div>
                     )}
-                ></Sidebar>
+                />
                 <Button icon="pi pi-bars" onClick={() => setVisible(true)} />
             </div>
             <DocSectionCode code={code} />

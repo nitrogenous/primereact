@@ -17,18 +17,17 @@ export function DataTableDoc(props) {
             <div className="relative">
                 <img
                     src={
-                        "https://primefaces.org/cdn/primereact/images/product/" +
-                        selectedProduct.image
+                        `https://primefaces.org/cdn/primereact/images/product/${selectedProduct.image}`
                     }
                     alt={selectedProduct.name}
-                ></img>
+                />
             </div>
             <div className="flex align-items-center justify-content-between mt-3 mb-2">
                 <span className="text-900 font-medium text-xl">
                     {selectedProduct.name}
                 </span>
                 <span className="text-900 text-xl ml-3">
-                    {"$" + selectedProduct.price}
+                    {`$${selectedProduct.price}`}
                 </span>
             </div>
             <span className="text-600">{selectedProduct.category}</span>

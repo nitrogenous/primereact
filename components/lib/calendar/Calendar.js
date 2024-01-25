@@ -85,7 +85,7 @@ export const Calendar = React.memo(
             props.inline ||
             (props.onVisibleChange ? props.visible : overlayVisibleState);
         const attributeSelector = UniqueComponentId();
-        const panelId = idState + "_panel";
+        const panelId = `${idState}_panel`;
 
         const [bindOverlayListener, unbindOverlayListener] = useOverlayListener(
             {
@@ -120,13 +120,13 @@ export const Calendar = React.memo(
                 }
 
                 setFocusedState(true);
-                props.onFocus && props.onFocus(event);
+                props.onFocus?.(event);
             }
         };
 
         const onInputBlur = (event) => {
             !props.keepInvalid && updateInputfield(props.value);
-            props.onBlur && props.onBlur(event);
+            props.onBlur?.(event);
             setFocusedState(false);
         };
 
@@ -151,7 +151,7 @@ export const Calendar = React.memo(
                 }
 
                 case "Tab": {
-                    if (overlayRef && overlayRef.current) {
+                    if (overlayRef?.current) {
                         DomHandler.getFocusableElements(
                             overlayRef.current,
                         ).forEach((el) => (el.tabIndex = "-1"));
@@ -170,7 +170,7 @@ export const Calendar = React.memo(
 
         const onUserInput = (event) => {
             updateValueOnInput(event, event.target.value);
-            props.onInput && props.onInput(event);
+            props.onInput?.(event);
         };
 
         const updateValueOnInput = (event, rawValue, invalidCallback) => {
@@ -437,7 +437,7 @@ export const Calendar = React.memo(
 
                 if (cell) {
                     cell.tabIndex = "0";
-                    cell && cell.focus();
+                    cell?.focus();
                 }
             }
         };
@@ -618,7 +618,7 @@ export const Calendar = React.memo(
             updateViewDate(event, today);
             onDateSelect(event, dateMeta, timeMeta);
 
-            props.onTodayButtonClick && props.onTodayButtonClick(event);
+            props.onTodayButtonClick?.(event);
         };
 
         const onClearButtonClick = (event) => {
@@ -628,7 +628,7 @@ export const Calendar = React.memo(
             updateInputfield(null);
             hide();
 
-            props.onClearButtonClick && props.onClearButtonClick(event);
+            props.onClearButtonClick?.(event);
         };
 
         const onPanelClick = (event) => {
@@ -1231,12 +1231,12 @@ export const Calendar = React.memo(
                 return props.value && props.value instanceof Date
                     ? cloneDate(props.value)
                     : getViewDate();
-            } else if (isMultipleSelection()) {
-                if (props.value && props.value.length) {
+            }if (isMultipleSelection()) {
+                if (props.value?.length) {
                     return cloneDate(props.value[props.value.length - 1]);
                 }
             } else if (isRangeSelection()) {
-                if (props.value && props.value.length) {
+                if (props.value?.length) {
                     const startDate = cloneDate(props.value[0]);
                     const endDate = cloneDate(props.value[1]);
 
@@ -1252,11 +1252,11 @@ export const Calendar = React.memo(
         };
 
         const isValidDate = (date) => {
-            return date instanceof Date && !isNaN(date);
+            return date instanceof Date && !Number.isNaN(date);
         };
 
         const convertTo24Hour = (hour, pm) => {
-            if (props.hourFormat == "12") {
+            if (props.hourFormat === "12") {
                 return hour === 12 ? (pm ? 12 : 0) : pm ? hour + 12 : hour;
             }
 
@@ -1456,7 +1456,7 @@ export const Calendar = React.memo(
             newDateTime.setMilliseconds(millisecond);
 
             if (isMultipleSelection()) {
-                if (props.value && props.value.length) {
+                if (props.value?.length) {
                     const value = [...props.value];
 
                     value[value.length - 1] = newDateTime;
@@ -1466,7 +1466,7 @@ export const Calendar = React.memo(
                     newDateTime = [newDateTime];
                 }
             } else if (isRangeSelection()) {
-                if (props.value && props.value.length) {
+                if (props.value?.length) {
                     const startDate = props.value[0];
                     const endDate = props.value[1];
 
@@ -1990,8 +1990,8 @@ export const Calendar = React.memo(
 
                 case "ArrowDown": {
                     cell.tabIndex = "-1";
-                    var cells = cell.parentElement.children;
-                    var cellIndex = DomHandler.index(cell);
+                    const cells = cell.parentElement.children;
+                    const cellIndex = DomHandler.index(cell);
                     const nextCell =
                         cells[
                             event.code === "ArrowDown"
@@ -2138,7 +2138,10 @@ export const Calendar = React.memo(
 
         const selectTime = (date, timeMeta) => {
             if (props.showTime) {
-                let hours, minutes, seconds, milliseconds;
+                let hours;
+                let minutes;
+                let seconds;
+                let milliseconds;
 
                 if (timeMeta) {
                     ({ hours, minutes, seconds, milliseconds } = timeMeta);
@@ -2181,7 +2184,7 @@ export const Calendar = React.memo(
                 selectedValues = props.value ? [...props.value, date] : [date];
                 updateModel(event, selectedValues);
             } else if (isRangeSelection()) {
-                if (props.value && props.value.length) {
+                if (props.value?.length) {
                     let startDate = props.value[0];
                     let endDate = props.value[1];
 
@@ -2233,8 +2236,7 @@ export const Calendar = React.memo(
 
         const switchToMonthView = (event) => {
             if (
-                event &&
-                event.code &&
+                event?.code &&
                 (event.code === "Enter" || event.code === "Space")
             ) {
                 viewChangedWithKeyDown.current = true;
@@ -2246,8 +2248,7 @@ export const Calendar = React.memo(
 
         const switchToYearView = (event) => {
             if (
-                event &&
-                event.code &&
+                event?.code &&
                 (event.code === "Enter" || event.code === "Space")
             ) {
                 viewChangedWithKeyDown.current = true;
@@ -2277,8 +2278,7 @@ export const Calendar = React.memo(
 
                 setViewDateState(currentDate);
                 setCurrentView("date");
-                props.onMonthChange &&
-                    props.onMonthChange({
+                props.onMonthChange?.({
                         month: month + 1,
                         year: currentYear,
                     });
@@ -2298,8 +2298,7 @@ export const Calendar = React.memo(
             } else {
                 setCurrentYear(year);
                 setCurrentView("month");
-                props.onMonthChange &&
-                    props.onMonthChange({
+                props.onMonthChange?.({
                         month: currentMonth + 1,
                         year: year,
                     });
@@ -2358,7 +2357,7 @@ export const Calendar = React.memo(
                 ignoreFocusFunctionality.current = false;
                 isOverlayClicked.current = false;
 
-                callback && callback();
+                callback?.();
 
                 OverlayService.off(
                     "overlay-click",
@@ -2401,9 +2400,9 @@ export const Calendar = React.memo(
                 ZIndexUtils.set(
                     key,
                     overlayRef.current,
-                    (context && context.autoZIndex) || PrimeReact.autoZIndex,
+                    (context?.autoZIndex) || PrimeReact.autoZIndex,
                     props.baseZIndex ||
-                        (context && context.zIndex[key]) ||
+                        (context?.zIndex[key]) ||
                         PrimeReact.zIndex[key],
                 );
             }
@@ -2425,11 +2424,11 @@ export const Calendar = React.memo(
 
                 if (props.view === "date") {
                     overlayRef.current.style.width =
-                        DomHandler.getOuterWidth(overlayRef.current) + "px";
-                    overlayRef.current.style.minWidth = inputWidth + "px";
+                        `${DomHandler.getOuterWidth(overlayRef.current)}px`;
+                    overlayRef.current.style.minWidth = `${inputWidth}px`;
                 } else {
-                    overlayRef.current.style.minWidth = inputWidth + "px";
-                    overlayRef.current.style.width = inputWidth + "px";
+                    overlayRef.current.style.minWidth = `${inputWidth}px`;
+                    overlayRef.current.style.width = `${inputWidth}px`;
                 }
             }
 
@@ -2438,7 +2437,7 @@ export const Calendar = React.memo(
 
         const onOverlayEntered = () => {
             bindOverlayListener();
-            props.onShow && props.onShow();
+            props.onShow?.();
             setFocusedState(false);
         };
 
@@ -2449,13 +2448,13 @@ export const Calendar = React.memo(
         const onOverlayExited = () => {
             ZIndexUtils.clear(overlayRef.current);
 
-            props.onHide && props.onHide();
+            props.onHide?.();
         };
 
         const appendDisabled = () => {
             const appendTo =
                 props.appendTo ||
-                (context && context.appendTo) ||
+                (context?.appendTo) ||
                 PrimeReact.appendTo;
 
             return appendTo === "self" || props.inline;
@@ -2465,8 +2464,7 @@ export const Calendar = React.memo(
             if (props.touchUI) {
                 enableModality();
             } else if (
-                overlayRef &&
-                overlayRef.current &&
+                overlayRef?.current &&
                 inputRef &&
                 inputRef.current
             ) {
@@ -2474,7 +2472,7 @@ export const Calendar = React.memo(
                     overlayRef.current,
                     inputRef.current,
                     props.appendTo ||
-                        (context && context.appendTo) ||
+                        (context?.appendTo) ||
                         PrimeReact.appendTo,
                 );
 
@@ -2575,8 +2573,7 @@ export const Calendar = React.memo(
                     elementRef.current.isSameNode(event.target) ||
                     isNavIconClicked(event.target) ||
                     elementRef.current.contains(event.target) ||
-                    (overlayRef.current &&
-                        overlayRef.current.contains(event.target))
+                    (overlayRef.current?.contains(event.target))
                 )
             );
         };
@@ -2627,7 +2624,8 @@ export const Calendar = React.memo(
         };
 
         const getPreviousMonthAndYear = (month, year) => {
-            let m, y;
+            let m;
+            let y;
 
             if (month === 0) {
                 m = 11;
@@ -2641,7 +2639,8 @@ export const Calendar = React.memo(
         };
 
         const getNextMonthAndYear = (month, year) => {
-            let m, y;
+            let m;
+            let y;
 
             if (month === 11) {
                 m = 0;
@@ -2942,7 +2941,7 @@ export const Calendar = React.memo(
             if (props.value) {
                 if (isSingleSelection()) {
                     return isDateEquals(props.value, dateMeta);
-                } else if (isMultipleSelection()) {
+                }if (isMultipleSelection()) {
                     let selected = false;
 
                     for (const date of props.value) {
@@ -2954,7 +2953,7 @@ export const Calendar = React.memo(
                     }
 
                     return selected;
-                } else if (isRangeSelection()) {
+                }if (isRangeSelection()) {
                     if (props.value[1])
                         return (
                             isDateEquals(props.value[0], dateMeta) ||
@@ -2965,9 +2964,8 @@ export const Calendar = React.memo(
                                 dateMeta,
                             )
                         );
-                    else {
+                    
                         return isDateEquals(props.value[0], dateMeta);
-                    }
                 }
             } else {
                 return false;
@@ -2988,12 +2986,11 @@ export const Calendar = React.memo(
                             currentValue.getMonth() === month &&
                             currentValue.getFullYear() === currentYear,
                     );
-                } else {
+                }
                     return (
                         value.getMonth() === month &&
                         value.getFullYear() === currentYear
                     );
-                }
             }
 
             return false;
@@ -3007,9 +3004,8 @@ export const Calendar = React.memo(
                     return value.some(
                         (currentValue) => currentValue.getFullYear() === year,
                     );
-                } else {
-                    return value.getFullYear() === year;
                 }
+                    return value.getFullYear() === year;
             }
 
             return false;
@@ -3026,7 +3022,7 @@ export const Calendar = React.memo(
                     value.getMonth() === dateMeta.month &&
                     value.getFullYear() === dateMeta.year
                 );
-            else return false;
+            return false;
         };
 
         const isDateBetween = (start, end, dateMeta) => {
@@ -3158,7 +3154,7 @@ export const Calendar = React.memo(
                             }
                         }
                     } else if (isRangeSelection()) {
-                        if (value && value.length) {
+                        if (value?.length) {
                             const startDate = value[0];
                             const endDate = value[1];
 
@@ -3168,7 +3164,7 @@ export const Calendar = React.memo(
 
                             if (endDate) {
                                 formattedValue += isValidDate(endDate)
-                                    ? " - " + formatDateTime(endDate)
+                                    ? ` - ${formatDateTime(endDate)}`
                                     : "";
                             }
                         }
@@ -3195,7 +3191,7 @@ export const Calendar = React.memo(
                     formattedValue = formatDate(date, getDateFormat());
 
                     if (props.showTime) {
-                        formattedValue += " " + formatTime(date);
+                        formattedValue += ` ${formatTime(date)}`;
                     }
                 }
             }
@@ -3220,19 +3216,19 @@ export const Calendar = React.memo(
                     }
 
                     return matches;
-                },
-                formatNumber = (match, value, len) => {
-                    let num = "" + value;
+                };
+            const formatNumber = (match, value, len) => {
+                    let num = `${value}`;
 
                     if (lookAhead(match)) {
                         while (num.length < len) {
-                            num = "0" + num;
+                            num = `0${num}`;
                         }
                     }
 
                     return num;
-                },
-                formatName = (match, value, shortNames, longNames) => {
+                };
+            const formatName = (match, value, shortNames, longNames) => {
                     return lookAhead(match)
                         ? longNames[value]
                         : shortNames[value];
@@ -3346,17 +3342,17 @@ export const Calendar = React.memo(
             }
 
             if (props.hourFormat === "12") {
-                output += hours === 0 ? 12 : hours < 10 ? "0" + hours : hours;
+                output += hours === 0 ? 12 : hours < 10 ? `0${hours}` : hours;
             } else {
-                output += hours < 10 ? "0" + hours : hours;
+                output += hours < 10 ? `0${hours}` : hours;
             }
 
             output += ":";
-            output += minutes < 10 ? "0" + minutes : minutes;
+            output += minutes < 10 ? `0${minutes}` : minutes;
 
             if (props.showSeconds) {
                 output += ":";
-                output += seconds < 10 ? "0" + seconds : seconds;
+                output += seconds < 10 ? `0${seconds}` : seconds;
             }
 
             if (props.showMillisec) {
@@ -3465,16 +3461,18 @@ export const Calendar = React.memo(
             const ms = props.showMillisec ? parseInt(tokens[3], 10) : null;
 
             if (
+                Number.
                 isNaN(h) ||
+                Number.
                 isNaN(m) ||
                 h > 23 ||
                 m > 59 ||
                 (props.hourFormat === "12" && h > 12) ||
-                (props.showSeconds && (isNaN(s) || s > 59)) ||
-                (props.showMillisec && (isNaN(s) || s > 1000))
+                (props.showSeconds && (Number.isNaN(s) || s > 59)) ||
+                (props.showMillisec && (Number.isNaN(s) || s > 1000))
             ) {
                 throw new Error("Invalid time");
-            } else {
+            }
                 if (props.hourFormat === "12") {
                     if (h !== 12 && ampm === "PM") {
                         h += 12;
@@ -3486,7 +3484,6 @@ export const Calendar = React.memo(
                 }
 
                 return { hour: h, minute: m, second: s, millisecond: ms };
-            }
         };
 
         // Ported from jquery-ui datepicker parseDate
@@ -3495,28 +3492,28 @@ export const Calendar = React.memo(
                 throw new Error("Invalid arguments");
             }
 
-            value = typeof value === "object" ? value.toString() : value + "";
+            value = typeof value === "object" ? value.toString() : `${value}`;
 
             if (value === "") {
                 return null;
             }
 
-            let iFormat,
-                dim,
-                extra,
-                iValue = 0,
-                shortYearCutoff =
+            let iFormat;
+            let dim;
+            let extra;
+            let iValue = 0;
+            const shortYearCutoff =
                     typeof props.shortYearCutoff !== "string"
                         ? props.shortYearCutoff
                         : (new Date().getFullYear() % 100) +
-                          parseInt(props.shortYearCutoff, 10),
-                year = -1,
-                month = -1,
-                day = -1,
-                doy = -1,
-                literal = false,
-                date,
-                lookAhead = (match) => {
+                          parseInt(props.shortYearCutoff, 10);
+            let year = -1;
+            let month = -1;
+            let day = -1;
+            let doy = -1;
+            let literal = false;
+            let date;
+            const lookAhead = (match) => {
                     const matches =
                         iFormat + 1 < format.length &&
                         format.charAt(iFormat + 1) === match;
@@ -3526,10 +3523,10 @@ export const Calendar = React.memo(
                     }
 
                     return matches;
-                },
-                getNumber = (match) => {
-                    const isDoubled = lookAhead(match),
-                        size =
+                };
+            const getNumber = (match) => {
+                    const isDoubled = lookAhead(match);
+                    const size =
                             match === "@"
                                 ? 14
                                 : match === "!"
@@ -3538,22 +3535,22 @@ export const Calendar = React.memo(
                                       ? 4
                                       : match === "o"
                                           ? 3
-                                          : 2,
-                        minSize = match === "y" ? size : 1,
-                        digits = new RegExp(
-                            "^\\d{" + minSize + "," + size + "}",
-                        ),
-                        num = value.substring(iValue).match(digits);
+                                          : 2;
+                    const minSize = match === "y" ? size : 1;
+                    const digits = new RegExp(
+                            `^\\d{${minSize},${size}}`,
+                        );
+                    const num = value.substring(iValue).match(digits);
 
                     if (!num) {
-                        throw new Error("Missing number at position " + iValue);
+                        throw new Error(`Missing number at position ${iValue}`);
                     }
 
                     iValue += num[0].length;
 
                     return parseInt(num[0], 10);
-                },
-                getName = (match, shortNames, longNames) => {
+                };
+            const getName = (match, shortNames, longNames) => {
                     let index = -1;
                     const arr = lookAhead(match) ? longNames : shortNames;
                     const names = [];
@@ -3581,14 +3578,13 @@ export const Calendar = React.memo(
 
                     if (index !== -1) {
                         return index + 1;
-                    } else {
-                        throw new Error("Unknown name at position " + iValue);
                     }
-                },
-                checkLiteral = () => {
+                        throw new Error(`Unknown name at position ${iValue}`);
+                };
+            const checkLiteral = () => {
                     if (value.charAt(iValue) !== format.charAt(iFormat)) {
                         throw new Error(
-                            "Unexpected literal at position " + iValue,
+                            `Unexpected literal at position ${iValue}`,
                         );
                     }
 
@@ -3667,7 +3663,7 @@ export const Calendar = React.memo(
 
                 if (!/^\s+/.test(extra)) {
                     throw new Error(
-                        "Extra/unparsed characters found in date: " + extra,
+                        `Extra/unparsed characters found in date: ${extra}`,
                     );
                 }
             }
@@ -3745,15 +3741,14 @@ export const Calendar = React.memo(
             }
 
             if (props.inline) {
-                overlayRef &&
-                    overlayRef.current.setAttribute(attributeSelector, "");
+                overlayRef?.current.setAttribute(attributeSelector, "");
 
                 if (!props.disabled) {
                     initFocusableCell();
 
                     if (props.numberOfMonths === 1) {
                         overlayRef.current.style.width =
-                            DomHandler.getOuterWidth(overlayRef.current) + "px";
+                            `${DomHandler.getOuterWidth(overlayRef.current)}px`;
                     }
                 }
             } else {
@@ -4363,7 +4358,7 @@ export const Calendar = React.memo(
                             className="p-hidden-accessible"
                             data-p-hidden-accessible={true}
                             pt={ptm("hiddenSelectedDay")}
-                        ></div>
+                        />
                     )}
                 </span>
             );
@@ -4428,7 +4423,7 @@ export const Calendar = React.memo(
                 );
 
                 const weekNumberCell = (
-                    <td {...weekNumberProps} key={"wn" + weekNumber}>
+                    <td {...weekNumberProps} key={`wn${weekNumber}`}>
                         <span {...weekLabelContainerProps}>{weekNumber}</span>
                     </td>
                 );
@@ -4503,7 +4498,7 @@ export const Calendar = React.memo(
                 index,
             );
             const header = props.headerTemplate ? props.headerTemplate() : null;
-            const monthKey = monthMetaData.month + "-" + monthMetaData.year;
+            const monthKey = `${monthMetaData.month}-${monthMetaData.year}`;
             const groupProps = mergeProps(
                 {
                     className: cx("group"),
@@ -4638,9 +4633,8 @@ export const Calendar = React.memo(
             if (!props.timeOnly) {
                 if (props.view === "date") {
                     return createDateView();
-                } else {
-                    return createMonthYearView();
                 }
+                    return createMonthYearView();
             }
 
             return null;
@@ -4674,7 +4668,7 @@ export const Calendar = React.memo(
 
             const hourProps = mergeProps(ptm("hour"));
             const { nextHour, prevHour } = localeOptions(props.locale);
-            const hourDisplay = hour < 10 ? "0" + hour : hour;
+            const hourDisplay = hour < 10 ? `0${hour}` : hour;
             const hourPickerProps = mergeProps(
                 {
                     className: cx("hourPicker"),
@@ -4732,7 +4726,7 @@ export const Calendar = React.memo(
             minute = minute > 59 ? minute - 60 : minute;
             const minuteProps = mergeProps(ptm("minute"));
             const { nextMinute, prevMinute } = localeOptions(props.locale);
-            const minuteDisplay = minute < 10 ? "0" + minute : minute;
+            const minuteDisplay = minute < 10 ? `0${minute}` : minute;
             const minutePickerProps = mergeProps(
                 {
                     className: cx("minutePicker"),
@@ -4789,7 +4783,7 @@ export const Calendar = React.memo(
                 const { nextSecond, prevSecond } = localeOptions(props.locale);
                 const secondProps = mergeProps(ptm("second"));
                 const second = currentTime.getSeconds();
-                const secondDisplay = second < 10 ? "0" + second : second;
+                const secondDisplay = second < 10 ? `0${second}` : second;
                 const secondPickerProps = mergeProps(
                     {
                         className: cx("secondPicker"),

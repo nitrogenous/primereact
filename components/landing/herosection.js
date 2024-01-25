@@ -128,7 +128,7 @@ const HeroSection = () => {
                         <Link href="/installation">
                             <a className="linkbox active font-semibold py-3 px-4">
                                 <span>Get Started</span>
-                                <i className="pi pi-arrow-right ml-3"></i>
+                                <i className="pi pi-arrow-right ml-3" />
                             </a>
                         </Link>
                         <a
@@ -138,7 +138,7 @@ const HeroSection = () => {
                             className="linkbox font-semibold py-3 px-4"
                         >
                             <span>Give a Star</span>
-                            <i className="pi pi-star-fill ml-3 text-yellow-500"></i>
+                            <i className="pi pi-star-fill ml-3 text-yellow-500" />
                         </a>
                     </div>
                 </div>
@@ -301,7 +301,7 @@ const HeroSection = () => {
                                     icon="pi pi-shopping-cart"
                                     outlined
                                     className="w-full"
-                                ></Button>
+                                />
                             </div>
                             <div className="box p-4 fadein animation-duration-500">
                                 <ul className="list-none p-0 m-0">
@@ -327,7 +327,7 @@ const HeroSection = () => {
                                             className="flex align-items-center p-3 border-round w-full hover:surface-hover transition-colors transition-duration-150 cursor-pointer"
                                             style={{ borderRadius: "10px" }}
                                         >
-                                            <i className="pi pi-home text-xl mr-3"></i>
+                                            <i className="pi pi-home text-xl mr-3" />
                                             <span className="flex flex-column">
                                                 <span className="font-bold mb-1">
                                                     Dashboard
@@ -343,7 +343,7 @@ const HeroSection = () => {
                                             className="flex align-items-center p-3 border-round w-full hover:surface-hover transition-colors transition-duration-150 cursor-pointer"
                                             style={{ borderRadius: "10px" }}
                                         >
-                                            <i className="pi pi-envelope text-xl mr-3"></i>
+                                            <i className="pi pi-envelope text-xl mr-3" />
                                             <span className="flex flex-column">
                                                 <span className="font-bold mb-1">
                                                     Inbox
@@ -355,7 +355,7 @@ const HeroSection = () => {
                                             <Badge
                                                 value="3"
                                                 className="ml-auto"
-                                            ></Badge>
+                                            />
                                         </a>
                                     </li>
                                 </ul>

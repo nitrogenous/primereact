@@ -91,10 +91,10 @@ export function SortingDoc(props) {
                                 value={product.rating}
                                 readOnly
                                 cancel={false}
-                            ></Rating>
+                            />
                             <div className="flex align-items-center gap-3">
                                 <span className="flex align-items-center gap-2">
-                                    <i className="pi pi-tag"></i>
+                                    <i className="pi pi-tag" />
                                     <span className="font-semibold">
                                         {product.category}
                                     </span>
@@ -102,7 +102,7 @@ export function SortingDoc(props) {
                                 <Tag
                                     value={product.inventoryStatus}
                                     severity={getSeverity(product)}
-                                ></Tag>
+                                />
                             </div>
                         </div>
                         <div className="flex sm:flex-column align-items-center sm:align-items-end gap-3 sm:gap-2">
@@ -115,7 +115,7 @@ export function SortingDoc(props) {
                                 disabled={
                                     product.inventoryStatus === "OUTOFSTOCK"
                                 }
-                            ></Button>
+                            />
                         </div>
                     </div>
                 </div>

@@ -172,13 +172,13 @@ export const useLocale = () => {
         }
 
         return {
-            locale: (context && context.locale) || PrimeReact.locale,
-            options: locales[(context && context.locale) || PrimeReact.locale],
+            locale: (context?.locale) || PrimeReact.locale,
+            options: locales[(context?.locale) || PrimeReact.locale],
         };
     };
 
     const addLocale = (locale, options) => {
-        locales[locale] = { ...locales["en"], ...options };
+        locales[locale] = { ...locales.en, ...options };
     };
 
     const updateLocaleOption = (key, value, locale) => {
@@ -187,14 +187,14 @@ export const useLocale = () => {
 
     const updateLocaleOptions = (options, locale) => {
         const _locale =
-            locale || (context && context.locale) || PrimeReact.locale;
+            locale || (context?.locale) || PrimeReact.locale;
 
         locales[_locale] = { ...locales[_locale], ...options };
     };
 
     const localeOption = (key, locale) => {
         const _locale =
-            locale || (context && context.locale) || PrimeReact.locale;
+            locale || (context?.locale) || PrimeReact.locale;
 
         try {
             return localeOptions(_locale)[key];
@@ -218,10 +218,10 @@ export const useLocale = () => {
      * @returns the ARIA label with replaced values
      */
     const ariaLabel = (ariaKey, options) => {
-        const _locale = (context && context.locale) || PrimeReact.locale;
+        const _locale = (context?.locale) || PrimeReact.locale;
 
         try {
-            let ariaLabel = localeOptions(_locale)["aria"][ariaKey];
+            let ariaLabel = localeOptions(_locale).aria[ariaKey];
 
             if (ariaLabel) {
                 for (const key in options) {
@@ -241,7 +241,7 @@ export const useLocale = () => {
 
     const localeOptions = (locale) => {
         const _locale =
-            locale || (context && context.locale) || PrimeReact.locale;
+            locale || (context?.locale) || PrimeReact.locale;
 
         return locales[_locale];
     };

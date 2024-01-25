@@ -31,7 +31,7 @@ export const Splitter = React.memo(
         const [panelSizes, setPanelSizes] = React.useState([]);
         const [nested, setNested] = React.useState(false);
         const isStateful = props.stateKey != null;
-        const childrenLength = (props.children && props.children.length) || 1;
+        const childrenLength = (props.children?.length) || 1;
         const panelSize = (sizes, index) =>
             index in sizes
                 ? sizes[index]
@@ -45,7 +45,7 @@ export const Splitter = React.memo(
                 panelSizes: panelSizes,
                 nested:
                     DomHandler.getAttribute(
-                        elementRef.current && elementRef.current.parentElement,
+                        elementRef.current?.parentElement,
                         "data-p-splitter-panel-nested",
                     ) === true,
             },
@@ -143,8 +143,7 @@ export const Splitter = React.memo(
 
                 default:
                     throw new Error(
-                        props.stateStorage +
-                            ' is not a valid value for the state storage, supported values are "local" and "session".',
+                        `${props.stateStorage} is not a valid value for the state storage, supported values are "local" and "session".`,
                     );
             }
         }, [props.stateStorage]);
@@ -233,7 +232,9 @@ export const Splitter = React.memo(
         };
 
         const onResize = (event, step = 0, isKeyDown = false) => {
-            let newPos, newNextPanelSize, newPrevPanelSize;
+            let newPos;
+            let newNextPanelSize;
+            let newPrevPanelSize;
             const horizontal = props.layout === "horizontal";
             const pageX =
                 event.type === "touchmove"
@@ -274,17 +275,9 @@ export const Splitter = React.memo(
                 prevPanelSizeNew.current = newPrevPanelSize;
                 nextPanelSizeNew.current = newNextPanelSize;
                 prevPanelElement.current.style.flexBasis =
-                    "calc(" +
-                    newPrevPanelSize +
-                    "% - " +
-                    (props.children.length - 1) * props.gutterSize +
-                    "px)";
+                    `calc(${newPrevPanelSize}% - ${(props.children.length - 1) * props.gutterSize}px)`;
                 nextPanelElement.current.style.flexBasis =
-                    "calc(" +
-                    newNextPanelSize +
-                    "% - " +
-                    (props.children.length - 1) * props.gutterSize +
-                    "px)";
+                    `calc(${newNextPanelSize}% - ${(props.children.length - 1) * props.gutterSize}px)`;
                 prevSize.current = parseFloat(newPrevPanelSize).toFixed(4);
             }
         };
@@ -482,8 +475,8 @@ export const Splitter = React.memo(
                     className: cx("gutter"),
                     style:
                         props.layout === "horizontal"
-                            ? { width: props.gutterSize + "px" }
-                            : { height: props.gutterSize + "px" },
+                            ? { width: `${props.gutterSize}px` }
+                            : { height: `${props.gutterSize}px` },
                     onMouseDown: (event) => onGutterMouseDown(event, index),
                     onKeyDown: (event) => onGutterKeyDown(event, index),
                     onKeyUp: onGutterKeyUp,
@@ -507,16 +500,12 @@ export const Splitter = React.memo(
 
             const gutter = index !== props.children.length - 1 && (
                 <div {...gutterProps}>
-                    <div {...gutterHandlerProps}></div>
+                    <div {...gutterHandlerProps} />
                 </div>
             );
 
             const flexBasis =
-                "calc(" +
-                panelSize(panelSizes, index) +
-                "% - " +
-                (childrenLength - 1) * props.gutterSize +
-                "px)";
+                `calc(${panelSize(panelSizes, index)}% - ${(childrenLength - 1) * props.gutterSize}px)`;
 
             const rootProps = mergeProps(
                 {

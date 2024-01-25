@@ -21,7 +21,7 @@ export function DocSectionText(props) {
         <>
             {label}
             <Link
-                href={router.basePath + router.pathname + "#" + id}
+                href={`${router.basePath + router.pathname}#${id}`}
                 target="_self"
             >
                 <a id={id} onClick={onClick}>

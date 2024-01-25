@@ -66,7 +66,7 @@ export default function PTDemo() {
 
     return (
         <>
-            <DocSectionText {...props}></DocSectionText>
+            <DocSectionText {...props} />
             <div className="card flex justify-content-center">
                 <Checkbox
                     checked={checked}
@@ -78,7 +78,7 @@ export default function PTDemo() {
                                 : undefined,
                         }),
                     }}
-                ></Checkbox>
+                />
             </div>
             <DocSectionCode code={code} />
         </>

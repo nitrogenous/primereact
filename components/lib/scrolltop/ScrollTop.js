@@ -34,7 +34,7 @@ export const ScrollTop = React.memo(
         const isTargetParent = props.target === "parent";
 
         const [bindParentScrollListener] = useEventListener({
-            target: () => helperRef.current && helperRef.current.parentElement,
+            target: () => helperRef.current?.parentElement,
             type: "scroll",
             listener: (event) => {
                 checkVisibility(event.currentTarget.scrollTop);
@@ -69,20 +69,20 @@ export const ScrollTop = React.memo(
             ZIndexUtils.set(
                 "overlay",
                 scrollElementRef.current,
-                (context && context.autoZIndex) || PrimeReact.autoZIndex,
-                (context && context.zIndex["overlay"]) ||
-                    PrimeReact.zIndex["overlay"],
+                (context?.autoZIndex) || PrimeReact.autoZIndex,
+                (context?.zIndex.overlay) ||
+                    PrimeReact.zIndex.overlay,
             );
         };
 
         const onEntered = () => {
-            props.onShow && props.onShow();
+            props.onShow?.();
         };
 
         const onExited = () => {
             ZIndexUtils.clear(scrollElementRef.current);
 
-            props.onHide && props.onHide();
+            props.onHide?.();
         };
 
         React.useImperativeHandle(ref, () => ({
@@ -150,7 +150,7 @@ export const ScrollTop = React.memo(
                     </button>
                 </CSSTransition>
                 {isTargetParent && (
-                    <span ref={helperRef} className="p-scrolltop-helper"></span>
+                    <span ref={helperRef} className="p-scrolltop-helper" />
                 )}
             </>
         );

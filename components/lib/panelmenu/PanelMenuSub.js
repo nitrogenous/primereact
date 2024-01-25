@@ -35,7 +35,7 @@ export const PanelMenuSub = React.memo(
         };
 
         const getItemProp = (processedItem, name, params) => {
-            return processedItem && processedItem.item
+            return processedItem?.item
                 ? ObjectUtils.getItemValue(processedItem.item[name], params)
                 : undefined;
         };
@@ -46,8 +46,7 @@ export const PanelMenuSub = React.memo(
 
         const isItemActive = (processedItem) => {
             return (
-                props.activeItemPath &&
-                props.activeItemPath.some(
+                props.activeItemPath?.some(
                     (path) => path.key === processedItem.key,
                 )
             );
@@ -115,7 +114,7 @@ export const PanelMenuSub = React.memo(
         }));
 
         const createSeparator = (index) => {
-            const key = props.id + "_sep_" + index;
+            const key = `${props.id}_sep_${index}`;
 
             const separatorProps = mergeProps(
                 {
@@ -127,7 +126,7 @@ export const PanelMenuSub = React.memo(
                 _ptm("separator"),
             );
 
-            return <li {...separatorProps}></li>;
+            return <li {...separatorProps} />;
         };
 
         const createSubmenu = (processedItem, active) => {
@@ -155,7 +154,7 @@ export const PanelMenuSub = React.memo(
                     <CSSTransition nodeRef={submenuRef} {...transitionProps}>
                         <div ref={submenuRef} {...toggleableContentProps}>
                             <PanelMenuSub
-                                id={getItemId(processedItem) + "_list"}
+                                id={`${getItemId(processedItem)}_list`}
                                 role="group"
                                 panelId={props.panelId}
                                 level={props.level + 1}

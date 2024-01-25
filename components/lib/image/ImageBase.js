@@ -113,7 +113,7 @@ const styles = `
 
 const inlineStyles = {
     preview: ({ rotateState, scaleState }) => ({
-        transform: "rotate(" + rotateState + "deg) scale(" + scaleState + ")",
+        transform: `rotate(${rotateState}deg) scale(${scaleState})`,
     }),
 };
 

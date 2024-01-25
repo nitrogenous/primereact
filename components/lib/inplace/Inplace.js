@@ -33,7 +33,7 @@ export const Inplace = React.forwardRef((inProps, ref) => {
             return;
         }
 
-        props.onOpen && props.onOpen(event);
+        props.onOpen?.(event);
 
         if (props.onToggle) {
             props.onToggle({
@@ -50,7 +50,7 @@ export const Inplace = React.forwardRef((inProps, ref) => {
             return;
         }
 
-        props.onClose && props.onClose(event);
+        props.onClose?.(event);
 
         if (props.onToggle) {
             props.onToggle({
@@ -105,7 +105,7 @@ export const Inplace = React.forwardRef((inProps, ref) => {
                 },
             });
 
-            return <Button {...closeButtonProps}></Button>;
+            return <Button {...closeButtonProps} />;
         }
 
         return null;
@@ -142,7 +142,7 @@ export const Inplace = React.forwardRef((inProps, ref) => {
                 )
             ) {
                 return createContent(child);
-            } else if (
+            }if (
                 !active &&
                 ObjectUtils.isValidChild(
                     child,

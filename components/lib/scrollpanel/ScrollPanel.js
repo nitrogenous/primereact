@@ -39,14 +39,14 @@ export const ScrollPanel = React.forwardRef((inProps, ref) => {
     const frame = React.useRef(null);
     const initialized = React.useRef(false);
     const timer = React.useRef(null);
-    const contentId = idState + "_content";
+    const contentId = `${idState}_content`;
 
     const calculateContainerHeight = () => {
         const containerStyles = getComputedStyle(containerRef.current);
         const xBarStyles = getComputedStyle(xBarRef.current);
         const pureContainerHeight =
             DomHandler.getHeight(containerRef.current) -
-            parseInt(xBarStyles["height"], 10);
+            parseInt(xBarStyles.height, 10);
 
         if (
             containerStyles["max-height"] !== "none" &&
@@ -54,19 +54,18 @@ export const ScrollPanel = React.forwardRef((inProps, ref) => {
         ) {
             if (
                 contentRef.current.offsetHeight +
-                    parseInt(xBarStyles["height"], 10) >
+                    parseInt(xBarStyles.height, 10) >
                 parseInt(containerStyles["max-height"], 10)
             ) {
                 containerRef.current.style.height =
                     containerStyles["max-height"];
             } else {
                 containerRef.current.style.height =
-                    contentRef.current.offsetHeight +
+                    `${contentRef.current.offsetHeight +
                     parseFloat(containerStyles.paddingTop) +
                     parseFloat(containerStyles.paddingBottom) +
                     parseFloat(containerStyles.borderTopWidth) +
-                    parseFloat(containerStyles.borderBottomWidth) +
-                    "px";
+                    parseFloat(containerStyles.borderBottomWidth)}px`;
             }
         }
     };
@@ -96,13 +95,7 @@ export const ScrollPanel = React.forwardRef((inProps, ref) => {
             } else {
                 DomHandler.removeClass(xBarRef.current, "p-scrollpanel-hidden");
                 xBarRef.current.style.cssText =
-                    "width:" +
-                    Math.max(scrollXRatio.current * 100, 10) +
-                    "%; left:" +
-                    (contentRef.current.scrollLeft / totalWidth) * 100 +
-                    "%;bottom:" +
-                    bottom +
-                    "px;";
+                    `width:${Math.max(scrollXRatio.current * 100, 10)}%; left:${(contentRef.current.scrollLeft / totalWidth) * 100}%;bottom:${bottom}px;`;
             }
 
             if (scrollYRatio.current >= 1) {
@@ -110,15 +103,7 @@ export const ScrollPanel = React.forwardRef((inProps, ref) => {
             } else {
                 DomHandler.removeClass(yBarRef.current, "p-scrollpanel-hidden");
                 yBarRef.current.style.cssText =
-                    "height:" +
-                    Math.max(scrollYRatio.current * 100, 10) +
-                    "%; top: calc(" +
-                    (contentRef.current.scrollTop / totalHeight) * 100 +
-                    "% - " +
-                    xBarRef.current.clientHeight +
-                    "px);right:" +
-                    right +
-                    "px;";
+                    `height:${Math.max(scrollYRatio.current * 100, 10)}%; top: calc(${(contentRef.current.scrollTop / totalHeight) * 100}% - ${xBarRef.current.clientHeight}px);right:${right}px;`;
             }
         });
     };
@@ -393,8 +378,8 @@ export const ScrollPanel = React.forwardRef((inProps, ref) => {
                     {props.children}
                 </div>
             </div>
-            <div {...barXProps}></div>
-            <div {...barYProps}></div>
+            <div {...barXProps} />
+            <div {...barYProps} />
         </div>
     );
 });

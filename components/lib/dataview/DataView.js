@@ -121,7 +121,7 @@ export const DataView = React.memo(
 
         const createPaginator = (position) => {
             const className = classNames(
-                "p-paginator-" + position,
+                `p-paginator-${position}`,
                 props.paginatorClassName,
             );
             const totalRecords = getTotalRecords();
@@ -174,7 +174,7 @@ export const DataView = React.memo(
                 // performance optimization to prevent resolving field data in each loop
                 const lookupMap = new Map();
                 const comparator = ObjectUtils.localeComparator(
-                    (context && context.locale) || PrimeReact.locale,
+                    (context?.locale) || PrimeReact.locale,
                 );
                 const value = [...props.value];
 
@@ -194,7 +194,7 @@ export const DataView = React.memo(
                         value2,
                         props.sortOrder,
                         comparator,
-                        (context && context.nullSortOrder) ||
+                        (context?.nullSortOrder) ||
                             PrimeReact.nullSortOrder,
                     );
                 });

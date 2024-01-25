@@ -167,13 +167,13 @@ export default function ListDemo() {
                                     shape="circle"
                                     size="4rem"
                                     className="mr-2"
-                                ></Skeleton>
+                                />
                                 <div style={{ flex: "1" }}>
                                     <Skeleton
                                         width="100%"
                                         className="mb-2"
-                                    ></Skeleton>
-                                    <Skeleton width="75%"></Skeleton>
+                                    />
+                                    <Skeleton width="75%" />
                                 </div>
                             </div>
                         </li>
@@ -183,13 +183,13 @@ export default function ListDemo() {
                                     shape="circle"
                                     size="4rem"
                                     className="mr-2"
-                                ></Skeleton>
+                                />
                                 <div style={{ flex: "1" }}>
                                     <Skeleton
                                         width="100%"
                                         className="mb-2"
-                                    ></Skeleton>
-                                    <Skeleton width="75%"></Skeleton>
+                                    />
+                                    <Skeleton width="75%" />
                                 </div>
                             </div>
                         </li>
@@ -199,13 +199,13 @@ export default function ListDemo() {
                                     shape="circle"
                                     size="4rem"
                                     className="mr-2"
-                                ></Skeleton>
+                                />
                                 <div style={{ flex: "1" }}>
                                     <Skeleton
                                         width="100%"
                                         className="mb-2"
-                                    ></Skeleton>
-                                    <Skeleton width="75%"></Skeleton>
+                                    />
+                                    <Skeleton width="75%" />
                                 </div>
                             </div>
                         </li>
@@ -215,13 +215,13 @@ export default function ListDemo() {
                                     shape="circle"
                                     size="4rem"
                                     className="mr-2"
-                                ></Skeleton>
+                                />
                                 <div style={{ flex: "1" }}>
                                     <Skeleton
                                         width="100%"
                                         className="mb-2"
-                                    ></Skeleton>
-                                    <Skeleton width="75%"></Skeleton>
+                                    />
+                                    <Skeleton width="75%" />
                                 </div>
                             </div>
                         </li>

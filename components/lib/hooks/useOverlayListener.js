@@ -26,8 +26,7 @@ export const useOverlayListener = ({
             target: "window",
             type: "click",
             listener: (event) => {
-                listener &&
-                    listener(event, {
+                listener?.(event, {
                         type: "outside",
                         valid: event.which !== 3 && isOutsideClicked(event),
                     });
@@ -37,8 +36,7 @@ export const useOverlayListener = ({
         useResizeListener({
             target: "window",
             listener: (event) => {
-                listener &&
-                    listener(event, {
+                listener?.(event, {
                         type: "resize",
                         valid: !DomHandler.isTouchDevice(),
                     });
@@ -51,15 +49,14 @@ export const useOverlayListener = ({
         target: "window",
         type: "orientationchange",
         listener: (event) => {
-            listener &&
-                listener(event, { type: "orientationchange", valid: true });
+            listener?.(event, { type: "orientationchange", valid: true });
         },
     });
     const [bindOverlayScrollListener, unbindOverlayScrollListener] =
         useOverlayScrollListener({
             target,
             listener: (event) => {
-                listener && listener(event, { type: "scroll", valid: true });
+                listener?.(event, { type: "scroll", valid: true });
             },
         });
 
@@ -69,8 +66,7 @@ export const useOverlayListener = ({
             !(
                 targetRef.current.isSameNode(event.target) ||
                 targetRef.current.contains(event.target) ||
-                (overlayRef.current &&
-                    overlayRef.current.contains(event.target))
+                (overlayRef.current?.contains(event.target))
             )
         );
     };

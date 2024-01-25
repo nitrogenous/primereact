@@ -12,46 +12,38 @@ export const CSSTransition = React.forwardRef((inProps, ref) => {
 
     const disabled =
         props.disabled ||
-        (props.options && props.options.disabled) ||
+        (props.options?.disabled) ||
         (context && !context.cssTransition) ||
         !PrimeReact.cssTransition;
 
     const onEnter = (node, isAppearing) => {
-        props.onEnter && props.onEnter(node, isAppearing); // component
-        props.options &&
-            props.options.onEnter &&
-            props.options.onEnter(node, isAppearing); // user option
+        props.onEnter?.(node, isAppearing); // component
+        props.options?.onEnter?.(node, isAppearing); // user option
     };
 
     const onEntering = (node, isAppearing) => {
-        props.onEntering && props.onEntering(node, isAppearing); // component
-        props.options &&
-            props.options.onEntering &&
-            props.options.onEntering(node, isAppearing); // user option
+        props.onEntering?.(node, isAppearing); // component
+        props.options?.onEntering?.(node, isAppearing); // user option
     };
 
     const onEntered = (node, isAppearing) => {
-        props.onEntered && props.onEntered(node, isAppearing); // component
-        props.options &&
-            props.options.onEntered &&
-            props.options.onEntered(node, isAppearing); // user option
+        props.onEntered?.(node, isAppearing); // component
+        props.options?.onEntered?.(node, isAppearing); // user option
     };
 
     const onExit = (node) => {
-        props.onExit && props.onExit(node); // component
-        props.options && props.options.onExit && props.options.onExit(node); // user option
+        props.onExit?.(node); // component
+        props.options?.onExit?.(node); // user option
     };
 
     const onExiting = (node) => {
-        props.onExiting && props.onExiting(node); // component
-        props.options &&
-            props.options.onExiting &&
-            props.options.onExiting(node); // user option
+        props.onExiting?.(node); // component
+        props.options?.onExiting?.(node); // user option
     };
 
     const onExited = (node) => {
-        props.onExited && props.onExited(node); // component
-        props.options && props.options.onExited && props.options.onExited(node); // user option
+        props.onExited?.(node); // component
+        props.options?.onExited?.(node); // user option
     };
 
     useUpdateEffect(() => {
@@ -73,7 +65,7 @@ export const CSSTransition = React.forwardRef((inProps, ref) => {
 
     if (disabled) {
         return props.in ? props.children : null;
-    } else {
+    }
         const immutableProps = {
             nodeRef: props.nodeRef,
             in: props.in,
@@ -100,7 +92,6 @@ export const CSSTransition = React.forwardRef((inProps, ref) => {
                 {props.children}
             </ReactCSSTransition>
         );
-    }
 });
 
 CSSTransition.displayName = "CSSTransition";

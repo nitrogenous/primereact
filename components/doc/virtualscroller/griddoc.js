@@ -19,13 +19,13 @@ export function GridDoc(props) {
         return (
             <div
                 className={className}
-                style={{ height: options.props.itemSize[0] + "px" }}
+                style={{ height: `${options.props.itemSize[0]}px` }}
             >
                 {items.map((item, i) => {
                     return (
                         <div
                             key={i}
-                            style={{ width: options.props.itemSize[1] + "px" }}
+                            style={{ width: `${options.props.itemSize[1]}px` }}
                         >
                             {item}
                         </div>

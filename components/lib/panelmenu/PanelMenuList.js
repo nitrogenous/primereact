@@ -2,7 +2,7 @@ import * as React from "react";
 import { useUpdateEffect } from "../hooks/useUpdateEffect";
 import { DomHandler, ObjectUtils } from "../utils/Utils";
 import { PanelMenuSub } from "./PanelMenuSub";
-``;
+"";
 
 export const PanelMenuList = React.memo((props) => {
     const { ptm, cx } = props;
@@ -19,7 +19,7 @@ export const PanelMenuList = React.memo((props) => {
     const elementRef = React.useRef(null);
 
     const getItemProp = (processedItem, name) => {
-        return processedItem && processedItem.item
+        return processedItem?.item
             ? ObjectUtils.getItemValue(processedItem.item[name])
             : undefined;
     };
@@ -38,8 +38,7 @@ export const PanelMenuList = React.memo((props) => {
 
     const isItemActive = (processedItem) => {
         return (
-            activeItemPath &&
-            activeItemPath.some((path) => path.key === processedItem.parentKey)
+            activeItemPath?.some((path) => path.key === processedItem.parentKey)
         );
     };
 
@@ -48,7 +47,7 @@ export const PanelMenuList = React.memo((props) => {
     };
 
     const getListElement = () => {
-        return elementRef.current && elementRef.current.getElement();
+        return elementRef.current?.getElement();
     };
 
     const onFocus = (event) => {
@@ -227,7 +226,7 @@ export const PanelMenuList = React.memo((props) => {
                 (DomHandler.findSingle(element, '[data-pc-section="action"]') ||
                     DomHandler.findSingle(element, "a,button"));
 
-            anchorElement ? anchorElement.click() : element && element.click();
+            anchorElement ? anchorElement.click() : element?.click();
         }
 
         event.preventDefault();
@@ -241,8 +240,7 @@ export const PanelMenuList = React.memo((props) => {
         const { processedItem, expanded } = event;
 
         if (props.expandedKeys) {
-            props.onToggle &&
-                props.onToggle({ item: processedItem.item, expanded });
+            props.onToggle?.({ item: processedItem.item, expanded });
         } else {
             const _activeItemPath = activeItemPath.filter(
                 (p) => p.parentKey !== processedItem.parentKey,
@@ -259,7 +257,7 @@ export const PanelMenuList = React.memo((props) => {
     const isElementInPanel = (event, element) => {
         const panel = event.currentTarget.closest('[data-pc-section="panel"]');
 
-        return panel && panel.contains(element);
+        return panel?.contains(element);
     };
 
     const isItemMatched = (processedItem) => {
@@ -397,8 +395,7 @@ export const PanelMenuList = React.memo((props) => {
             setFocusedItem(processedItem);
             scrollInView();
         } else if (allowHeaderFocus) {
-            props.onHeaderFocus &&
-                props.onHeaderFocus({ originalEvent, focusOnNext, selfCheck });
+            props.onHeaderFocus?.({ originalEvent, focusOnNext, selfCheck });
         }
     };
 
@@ -409,8 +406,7 @@ export const PanelMenuList = React.memo((props) => {
         );
 
         if (element) {
-            element.scrollIntoView &&
-                element.scrollIntoView({ block: "nearest", inline: "start" });
+            element.scrollIntoView?.({ block: "nearest", inline: "start" });
         }
     };
 
@@ -463,11 +459,10 @@ export const PanelMenuList = React.memo((props) => {
     ) => {
         const processedItems = [];
 
-        items &&
-            items.forEach((item, index) => {
+        items?.forEach((item, index) => {
                 const key = item.key
                     ? item.key
-                    : (parentKey !== "" ? parentKey + "_" : "") + index;
+                    : (parentKey !== "" ? `${parentKey}_` : "") + index;
                 const newItem = {
                     item,
                     index,
@@ -477,7 +472,7 @@ export const PanelMenuList = React.memo((props) => {
                     parentKey,
                 };
 
-                newItem["items"] = createProcessedItems(
+                newItem.items = createProcessedItems(
                     item.items,
                     level + 1,
                     newItem,
@@ -490,8 +485,7 @@ export const PanelMenuList = React.memo((props) => {
     };
 
     const flatItems = (processedItems, processedFlattenItems = []) => {
-        processedItems &&
-            processedItems.forEach((processedItem) => {
+        processedItems?.forEach((processedItem) => {
                 if (isVisibleItem(processedItem)) {
                     processedFlattenItems.push(processedItem);
                     flatItems(processedItem.items, processedFlattenItems);
@@ -531,7 +525,7 @@ export const PanelMenuList = React.memo((props) => {
     return (
         <PanelMenuSub
             hostName="PanelMenu"
-            id={props.panelId + "_list"}
+            id={`${props.panelId}_list`}
             ref={elementRef}
             role="tree"
             tabIndex={-1}

@@ -52,7 +52,7 @@ export function TemplateDoc(props) {
         const { className, chooseButton, uploadButton, cancelButton } = options;
         const value = totalSize / 10000;
         const formatedValue =
-            fileUploadRef && fileUploadRef.current
+            fileUploadRef?.current
                 ? fileUploadRef.current.formatSize(totalSize)
                 : "0 B";
 
@@ -74,7 +74,7 @@ export function TemplateDoc(props) {
                         value={value}
                         showValue={false}
                         style={{ width: "10rem", height: "12px" }}
-                    ></ProgressBar>
+                    />
                 </div>
             </div>
         );
@@ -124,7 +124,7 @@ export function TemplateDoc(props) {
                         backgroundColor: "var(--surface-b)",
                         color: "var(--surface-d)",
                     }}
-                ></i>
+                />
                 <span
                     style={{
                         fontSize: "1.2em",
@@ -406,7 +406,7 @@ echo '<p>Fake Upload Process</p>'; ?>
                 <p>Uploader UI can be customized with templating.</p>
             </DocSectionText>
             <div className="card">
-                <Toast ref={toast}></Toast>
+                <Toast ref={toast} />
 
                 <Tooltip
                     target=".custom-choose-btn"

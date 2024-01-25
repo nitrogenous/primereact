@@ -121,7 +121,7 @@ export const CustomersDoc = (props) => {
         const value = e.target.value;
         const _filters = { ...filters };
 
-        _filters["global"].value = value;
+        _filters.global.value = value;
 
         setFilters(_filters);
         setGlobalFilterValue(value);
@@ -267,7 +267,7 @@ export const CustomersDoc = (props) => {
                 value={rowData.activity}
                 showValue={false}
                 style={{ height: "6px" }}
-            ></ProgressBar>
+            />
         );
     };
 
@@ -279,7 +279,7 @@ export const CustomersDoc = (props) => {
                     onChange={(e) => options.filterCallback(e.value)}
                     range
                     className="m-3"
-                ></Slider>
+                />
                 <div className="flex align-items-center justify-content-between px-2">
                     <span>{options.value ? options.value[0] : 0}</span>
                     <span>{options.value ? options.value[1] : 100}</span>
@@ -289,7 +289,7 @@ export const CustomersDoc = (props) => {
     };
 
     const actionBodyTemplate = () => {
-        return <Button type="button" icon="pi pi-cog" rounded></Button>;
+        return <Button type="button" icon="pi pi-cog" rounded />;
     };
 
     const header = renderHeader();
@@ -837,7 +837,7 @@ export default function CustomersDemo() {
                         <Column
                             selectionMode="multiple"
                             headerStyle={{ width: "3rem" }}
-                        ></Column>
+                        />
                         <Column
                             field="name"
                             header="Name"

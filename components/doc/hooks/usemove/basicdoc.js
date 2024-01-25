@@ -112,14 +112,14 @@ export default function BasicDemo() {
                             cursor: "grab",
                         }}
                     >
-                        <i className="pi pi-arrows-alt"></i>
+                        <i className="pi pi-arrows-alt" />
                     </div>
                 </div>
                 <Button
                     onClick={reset}
                     label="Reset"
                     className="p-button-outlined"
-                ></Button>
+                />
             </div>
             <DocSectionCode code={code} />
         </>

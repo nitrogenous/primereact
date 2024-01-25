@@ -17,13 +17,13 @@ export function TemplateDoc(props) {
     const actionTemplate = () => {
         return (
             <div className="flex flex-wrap gap-2">
-                <Button type="button" icon="pi pi-search" rounded></Button>
+                <Button type="button" icon="pi pi-search" rounded />
                 <Button
                     type="button"
                     icon="pi pi-pencil"
                     severity="success"
                     rounded
-                ></Button>
+                />
             </div>
         );
     };
@@ -47,7 +47,7 @@ export function TemplateDoc(props) {
                 tabIndex={-1}
                 onClick={options.onClick}
             >
-                <span className={iconClassName} aria-hidden="true"></span>
+                <span className={iconClassName} aria-hidden="true" />
             </button>
         );
     };
@@ -237,9 +237,9 @@ export default function TemplateDemo() {
                     togglerTemplate={togglerTemplate}
                     tableStyle={{ minWidth: "50rem" }}
                 >
-                    <Column field="name" header="Name" expander></Column>
-                    <Column field="size" header="Size"></Column>
-                    <Column field="type" header="Type"></Column>
+                    <Column field="name" header="Name" expander />
+                    <Column field="size" header="Size" />
+                    <Column field="type" header="Type" />
                     <Column body={actionTemplate} headerClassName="w-10rem" />
                 </TreeTable>
             </div>

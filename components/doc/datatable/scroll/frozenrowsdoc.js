@@ -54,7 +54,8 @@ export function FrozenRowsDoc(props) {
     };
 
     const toggleLock = (data, frozen, index) => {
-        let _lockedCustomers, _unlockedCustomers;
+        let _lockedCustomers;
+        let _unlockedCustomers;
 
         if (frozen) {
             _lockedCustomers = lockedCustomers.filter((c, i) => i !== index);
@@ -281,17 +282,17 @@ export default function FrozenRowsDemo() {
                         scrollHeight="400px"
                         tableStyle={{ minWidth: "50rem" }}
                     >
-                        <Column field="name" header="Name"></Column>
-                        <Column field="country.name" header="Country"></Column>
+                        <Column field="name" header="Name" />
+                        <Column field="country.name" header="Country" />
                         <Column
                             field="representative.name"
                             header="Representative"
-                        ></Column>
-                        <Column field="status" header="Status"></Column>
+                        />
+                        <Column field="status" header="Status" />
                         <Column
                             style={{ flex: "0 0 4rem" }}
                             body={lockTemplate}
-                        ></Column>
+                        />
                     </DataTable>
                 </div>
             </DeferredDemo>

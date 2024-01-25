@@ -84,7 +84,7 @@ export default function BasicDemo() {
                                 "w-full h-8rem border-round p-3 text-white font-bold bg-primary flex align-items-center justify-content-center",
                             )}
                         >
-                            <i className="pi pi-prime text-4xl"></i>
+                            <i className="pi pi-prime text-4xl" />
                         </div>
                     </div>
                 </div>

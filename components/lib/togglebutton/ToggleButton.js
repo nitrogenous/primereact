@@ -60,12 +60,12 @@ export const ToggleButton = React.memo(
 
         const onFocus = (event) => {
             setFocusedState(true);
-            props.onFocus && props.onFocus(event);
+            props.onFocus?.(event);
         };
 
         const onBlur = (event) => {
             setFocusedState(false);
-            props.onBlur && props.onBlur(event);
+            props.onBlur?.(event);
         };
 
         const onKeyDown = (event) => {

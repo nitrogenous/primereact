@@ -17,8 +17,7 @@ function MenuItem(props) {
             !rootItem.children.some(
                 (item) =>
                     item.to === router.pathname ||
-                    (item.children &&
-                        item.children.some((it) => it.to === router.pathname)),
+                    (item.children?.some((it) => it.to === router.pathname)),
             )
         );
     };
@@ -36,10 +35,10 @@ function MenuItem(props) {
                 >
                     <button ref={btnRef} type="button" className="px-link">
                         <span className="menu-icon">
-                            <i className={menuItem.icon}></i>
+                            <i className={menuItem.icon} />
                         </span>
                         <span>{menuItem.name}</span>
-                        <i className="menu-toggle-icon pi pi-angle-down"></i>
+                        <i className="menu-toggle-icon pi pi-angle-down" />
                     </button>
                 </StyleClass>
             )}
@@ -48,7 +47,7 @@ function MenuItem(props) {
                     <a target="_blank" rel="noopener noreferrer">
                         {menuItem?.icon && root && (
                             <span className="menu-icon">
-                                <i className={menuItem?.icon}></i>
+                                <i className={menuItem?.icon} />
                             </span>
                         )}
                         <span>{menuItem?.name}</span>
@@ -56,7 +55,7 @@ function MenuItem(props) {
                             <Badge
                                 value={menuItem?.badge}
                                 className="ml-auto"
-                            ></Badge>
+                            />
                         )}
                     </a>
                 </Link>
@@ -71,7 +70,7 @@ function MenuItem(props) {
                     >
                         {menuItem?.icon && root && (
                             <span className="menu-icon">
-                                <i className={menuItem.icon}></i>
+                                <i className={menuItem.icon} />
                             </span>
                         )}
                         <span>{menuItem?.name}</span>
@@ -79,7 +78,7 @@ function MenuItem(props) {
                             <Badge
                                 value={menuItem.badge}
                                 className="ml-auto"
-                            ></Badge>
+                            />
                         )}
                     </a>
                 </Link>
@@ -105,7 +104,7 @@ function MenuItem(props) {
                                 root={false}
                                 menuItem={item}
                                 key={`_root${index}`}
-                            ></MenuItem>
+                            />
                         ))}
                     </ol>
                 </div>
