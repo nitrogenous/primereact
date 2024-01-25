@@ -86,9 +86,7 @@ export const TreeTableRow = React.memo((props) => {
     };
 
     const isLeaf = () => {
-        return props.node.leaf === false
-            ? false
-            : !(props.node.children?.length);
+        return props.node.leaf === false ? false : !props.node.children?.length;
     };
 
     const onTogglerClick = (event) => {
@@ -599,8 +597,7 @@ export const TreeTableRow = React.memo((props) => {
                 style: {
                     marginLeft: `${props.level * 16}px`,
                     visibility:
-                        props.node.leaf === false ||
-                        (props.node.children?.length)
+                        props.node.leaf === false || props.node.children?.length
                             ? "visible"
                             : "hidden",
                 },
@@ -627,8 +624,7 @@ export const TreeTableRow = React.memo((props) => {
                 buttonStyle: {
                     marginLeft: `${props.level * 16}px`,
                     visibility:
-                        props.node.leaf === false ||
-                        (props.node.children?.length)
+                        props.node.leaf === false || props.node.children?.length
                             ? "visible"
                             : "hidden",
                 },
@@ -710,7 +706,7 @@ export const TreeTableRow = React.memo((props) => {
                 </div>
             );
         }
-            return null;
+        return null;
     };
 
     const createCell = (column, index) => {
@@ -795,7 +791,7 @@ export const TreeTableRow = React.memo((props) => {
                 );
             });
         }
-            return null;
+        return null;
     };
 
     const cells = props.columns.map(createCell);

@@ -31,7 +31,7 @@ export const Splitter = React.memo(
         const [panelSizes, setPanelSizes] = React.useState([]);
         const [nested, setNested] = React.useState(false);
         const isStateful = props.stateKey != null;
-        const childrenLength = (props.children?.length) || 1;
+        const childrenLength = props.children?.length || 1;
         const panelSize = (sizes, index) =>
             index in sizes
                 ? sizes[index]
@@ -274,10 +274,12 @@ export const Splitter = React.memo(
             if (validateResize(newPrevPanelSize, newNextPanelSize)) {
                 prevPanelSizeNew.current = newPrevPanelSize;
                 nextPanelSizeNew.current = newNextPanelSize;
-                prevPanelElement.current.style.flexBasis =
-                    `calc(${newPrevPanelSize}% - ${(props.children.length - 1) * props.gutterSize}px)`;
-                nextPanelElement.current.style.flexBasis =
-                    `calc(${newNextPanelSize}% - ${(props.children.length - 1) * props.gutterSize}px)`;
+                prevPanelElement.current.style.flexBasis = `calc(${newPrevPanelSize}% - ${
+                    (props.children.length - 1) * props.gutterSize
+                }px)`;
+                nextPanelElement.current.style.flexBasis = `calc(${newNextPanelSize}% - ${
+                    (props.children.length - 1) * props.gutterSize
+                }px)`;
                 prevSize.current = parseFloat(newPrevPanelSize).toFixed(4);
             }
         };
@@ -504,8 +506,9 @@ export const Splitter = React.memo(
                 </div>
             );
 
-            const flexBasis =
-                `calc(${panelSize(panelSizes, index)}% - ${(childrenLength - 1) * props.gutterSize}px)`;
+            const flexBasis = `calc(${panelSize(panelSizes, index)}% - ${
+                (childrenLength - 1) * props.gutterSize
+            }px)`;
 
             const rootProps = mergeProps(
                 {

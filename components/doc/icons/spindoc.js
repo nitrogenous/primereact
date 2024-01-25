@@ -22,10 +22,7 @@ export function SpinDoc(props) {
                     className="pi pi-spin pi-spinner"
                     style={{ fontSize: "2rem" }}
                 />
-                <i
-                    className="pi pi-spin pi-cog"
-                    style={{ fontSize: "2rem" }}
-                />
+                <i className="pi pi-spin pi-cog" style={{ fontSize: "2rem" }} />
             </div>
             <DocSectionCode
                 code={code}

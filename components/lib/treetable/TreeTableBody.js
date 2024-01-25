@@ -250,40 +250,39 @@ export const TreeTableBody = React.memo((props) => {
 
             return rows;
         }
-            return props.value.map(createRow);
+        return props.value.map(createRow);
     };
 
     const createEmptyMessage = () => {
         if (props.loading) {
             return null;
         }
-            const colSpan = props.columns ? props.columns.length : null;
-            const content =
-                ObjectUtils.getJSXElement(props.emptyMessage, {
-                    props: props.tableProps,
-                }) || localeOption("emptyMessage");
-            const emptyMessageProps = mergeProps(
-                {
-                    className: cx("emptyMessage"),
-                },
-                getPTOptions("emptyMessage"),
-            );
-            const emptyMessageCellProps = mergeProps(
-                {
-                    colSpan,
-                },
-                getPTOptions("emptyMessageCell"),
-            );
+        const colSpan = props.columns ? props.columns.length : null;
+        const content =
+            ObjectUtils.getJSXElement(props.emptyMessage, {
+                props: props.tableProps,
+            }) || localeOption("emptyMessage");
+        const emptyMessageProps = mergeProps(
+            {
+                className: cx("emptyMessage"),
+            },
+            getPTOptions("emptyMessage"),
+        );
+        const emptyMessageCellProps = mergeProps(
+            {
+                colSpan,
+            },
+            getPTOptions("emptyMessageCell"),
+        );
 
-            return (
-                <tr {...emptyMessageProps}>
-                    <td {...emptyMessageCellProps}>{content}</td>
-                </tr>
-            );
+        return (
+            <tr {...emptyMessageProps}>
+                <td {...emptyMessageCellProps}>{content}</td>
+            </tr>
+        );
     };
 
-    const content =
-        props.value?.length ? createRows() : createEmptyMessage();
+    const content = props.value?.length ? createRows() : createEmptyMessage();
     const tbodyProps = mergeProps(
         {
             role: "rowgroup",

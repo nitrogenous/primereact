@@ -33,9 +33,9 @@ export const MenubarSub = React.memo(
             }
 
             props.onItemMouseEnter?.({
-                    originalEvent: event,
-                    processedItem: item,
-                });
+                originalEvent: event,
+                processedItem: item,
+            });
         };
 
         const onItemClick = (event, processedItem) => {

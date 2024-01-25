@@ -303,10 +303,9 @@ export const PickList = React.memo(
                     '[data-p-highlight="true"]',
                 ) ||
                 DomHandler.findSingle(listElement, '[data-pc-section="item"]');
-            const itemList =
-                listElement?.children
-                    ? [...listElement.children]
-                    : [];
+            const itemList = listElement?.children
+                ? [...listElement.children]
+                : [];
 
             if (selectedFirstItem) {
                 const findIndex = ObjectUtils.findIndexInList(
@@ -702,9 +701,9 @@ export const PickList = React.memo(
 
             if (element) {
                 element.scrollIntoView?.({
-                        block: "nearest",
-                        inline: "start",
-                    });
+                    block: "nearest",
+                    inline: "start",
+                });
             }
         };
 
@@ -717,7 +716,7 @@ export const PickList = React.memo(
         const createStyle = () => {
             if (!styleElementRef.current) {
                 styleElementRef.current = DomHandler.createInlineStyle(
-                    (context?.nonce) || PrimeReact.nonce,
+                    context?.nonce || PrimeReact.nonce,
                     context?.styleContainer,
                 );
 

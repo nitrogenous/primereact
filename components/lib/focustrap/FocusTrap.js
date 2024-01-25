@@ -36,9 +36,7 @@ export const FocusTrap = React.memo(
         });
 
         const getTarget = () => {
-            return (
-                firstFocusableElementRef.current?.parentElement
-            );
+            return firstFocusableElementRef.current?.parentElement;
         };
 
         const setAutoFocus = (target) => {

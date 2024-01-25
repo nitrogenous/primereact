@@ -36,9 +36,7 @@ export const Portal = React.memo((inProps) => {
 
     if (element && mountedState) {
         let appendTo =
-            props.appendTo ||
-            (context?.appendTo) ||
-            PrimeReact.appendTo;
+            props.appendTo || context?.appendTo || PrimeReact.appendTo;
 
         if (ObjectUtils.isFunction(appendTo)) {
             appendTo = appendTo();

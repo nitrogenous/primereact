@@ -120,12 +120,7 @@ export default function MultipleColumnsDemo() {
                     sortMode="multiple"
                     tableStyle={{ minWidth: "50rem" }}
                 >
-                    <Column
-                        field="name"
-                        header="Name"
-                        expander
-                        sortable
-                    />
+                    <Column field="name" header="Name" expander sortable />
                     <Column field="size" header="Size" sortable />
                     <Column field="type" header="Type" sortable />
                 </TreeTable>

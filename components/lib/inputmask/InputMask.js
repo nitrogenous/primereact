@@ -58,9 +58,7 @@ export const InputMask = React.memo(
                 if (inputEl.setSelectionRange) {
                     begin = inputEl.selectionStart;
                     end = inputEl.selectionEnd;
-                } else if (
-                    document.selection?.createRange
-                ) {
+                } else if (document.selection?.createRange) {
                     range = document.selection.createRange();
                     begin =
                         0 - range.duplicate().moveStart("character", -100000);
@@ -295,7 +293,8 @@ export const InputMask = React.memo(
             if (e.ctrlKey || e.altKey || e.metaKey || k < 32) {
                 //Ignore
                 return;
-            }if (k && k !== 13) {
+            }
+            if (k && k !== 13) {
                 if (pos.end - pos.begin !== 0) {
                     clearBuffer(pos.begin, pos.end);
                     shiftL(pos.begin, pos.end - 1);
@@ -506,9 +505,7 @@ export const InputMask = React.memo(
 
         const updateModel = (e) => {
             if (props.onChange) {
-                const val = props.unmask
-                    ? getUnmaskedValue()
-                    : e?.target.value;
+                const val = props.unmask ? getUnmaskedValue() : e?.target.value;
 
                 props.onChange({
                     originalEvent: e,

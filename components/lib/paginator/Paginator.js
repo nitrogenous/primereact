@@ -294,51 +294,48 @@ export const Paginator = React.memo(
         if (!props.alwaysShow && pageCount <= 1) {
             return null;
         }
-            const leftContent = ObjectUtils.getJSXElement(
-                props.leftContent,
-                props,
-            );
-            const rightContent = ObjectUtils.getJSXElement(
-                props.rightContent,
-                props,
-            );
+        const leftContent = ObjectUtils.getJSXElement(props.leftContent, props);
+        const rightContent = ObjectUtils.getJSXElement(
+            props.rightContent,
+            props,
+        );
 
-            const elements = createElements();
-            const leftProps = mergeProps(
-                {
-                    className: cx("left"),
-                },
-                ptm("left"),
-            );
-            const leftElement = leftContent && (
-                <div {...leftProps}>{leftContent}</div>
-            );
-            const endProps = mergeProps(
-                {
-                    className: cx("end"),
-                },
-                ptm("end"),
-            );
-            const rightElement = rightContent && (
-                <div {...endProps}>{rightContent}</div>
-            );
-            const rootProps = mergeProps(
-                {
-                    ref: elementRef,
-                    className: classNames(props.className, cx("root")),
-                    style: props.style,
-                },
-                PaginatorBase.getOtherProps(props),
-                ptm("root"),
-            );
+        const elements = createElements();
+        const leftProps = mergeProps(
+            {
+                className: cx("left"),
+            },
+            ptm("left"),
+        );
+        const leftElement = leftContent && (
+            <div {...leftProps}>{leftContent}</div>
+        );
+        const endProps = mergeProps(
+            {
+                className: cx("end"),
+            },
+            ptm("end"),
+        );
+        const rightElement = rightContent && (
+            <div {...endProps}>{rightContent}</div>
+        );
+        const rootProps = mergeProps(
+            {
+                ref: elementRef,
+                className: classNames(props.className, cx("root")),
+                style: props.style,
+            },
+            PaginatorBase.getOtherProps(props),
+            ptm("root"),
+        );
 
-            return (
-                <div {...rootProps}>
-                    {leftElement}
-                    {elements}
-                    {rightElement}
-                </div>
-            );
+        return (
+            <div {...rootProps}>
+                {leftElement}
+                {elements}
+                {rightElement}
+            </div>
+        );
     }),
 );
 

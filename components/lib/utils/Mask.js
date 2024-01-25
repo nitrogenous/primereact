@@ -53,9 +53,7 @@ export function mask(el, options) {
             if (el.setSelectionRange) {
                 begin = el.selectionStart;
                 end = el.selectionEnd;
-            } else if (
-                document.selection?.createRange
-            ) {
+            } else if (document.selection?.createRange) {
                 range = document.selection.createRange();
                 begin = 0 - range.duplicate().moveStart("character", -100000);
                 end = begin + range.text.length;
@@ -245,7 +243,8 @@ export function mask(el, options) {
         if (e.ctrlKey || e.altKey || e.metaKey || k < 32) {
             //Ignore
             return;
-        }if (k && k !== 13) {
+        }
+        if (k && k !== 13) {
             if (pos.end - pos.begin !== 0) {
                 clearBuffer(pos.begin, pos.end);
                 shiftL(pos.begin, pos.end - 1);

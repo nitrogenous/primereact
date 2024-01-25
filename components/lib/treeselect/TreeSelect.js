@@ -363,9 +363,8 @@ export const TreeSelect = React.memo(
             ZIndexUtils.set(
                 "overlay",
                 overlayRef.current,
-                (context?.autoZIndex) || PrimeReact.autoZIndex,
-                (context?.zIndex.overlay) ||
-                    PrimeReact.zIndex.overlay,
+                context?.autoZIndex || PrimeReact.autoZIndex,
+                context?.zIndex.overlay || PrimeReact.zIndex.overlay,
             );
             DomHandler.addStyles(overlayRef.current, {
                 position: "absolute",
@@ -408,9 +407,7 @@ export const TreeSelect = React.memo(
             DomHandler.alignOverlay(
                 overlayRef.current,
                 triggerRef.current.parentElement,
-                props.appendTo ||
-                    (context?.appendTo) ||
-                    PrimeReact.appendTo,
+                props.appendTo || context?.appendTo || PrimeReact.appendTo,
             );
         };
 
@@ -665,17 +662,17 @@ export const TreeSelect = React.memo(
                     content = (
                         <>
                             {selectedNodes?.map((node, index) => {
-                                    return (
-                                        <div
-                                            {...tokenProps}
-                                            key={`${node.key}_${index}`}
-                                        >
-                                            <span {...tokenLabelProps}>
-                                                {node.label}
-                                            </span>
-                                        </div>
-                                    );
-                                })}
+                                return (
+                                    <div
+                                        {...tokenProps}
+                                        key={`${node.key}_${index}`}
+                                    >
+                                        <span {...tokenLabelProps}>
+                                            {node.label}
+                                        </span>
+                                    </div>
+                                );
+                            })}
 
                             {isValueEmpty && (props.placeholder || "empty")}
                         </>
@@ -1007,14 +1004,10 @@ export const TreeSelect = React.memo(
                     hide={hide}
                     footer={footer}
                     firstHiddenFocusableElementOnOverlay={
-                        <span
-                            {...firstHiddenFocusableElementOnOverlayProps}
-                        />
+                        <span {...firstHiddenFocusableElementOnOverlayProps} />
                     }
                     lastHiddenFocusableElementOnOverlay={
-                        <span
-                            {...lastHiddenFocusableElementOnOverlayProps}
-                        />
+                        <span {...lastHiddenFocusableElementOnOverlayProps} />
                     }
                     transitionOptions={props.transitionOptions}
                     in={overlayVisibleState}

@@ -118,9 +118,7 @@ export const FileUpload = React.memo(
             }
 
             const i = Math.floor(Math.log(bytes) / Math.log(k));
-            const formattedSize = parseFloat(
-                (bytes / k ** i).toFixed(dm),
-            );
+            const formattedSize = parseFloat((bytes / k ** i).toFixed(dm));
 
             return `${formattedSize} ${sizes[i]}`;
         };
@@ -613,10 +611,9 @@ export const FileUpload = React.memo(
                 severity: "success",
                 value: localeOption("completed") || "Completed",
             };
-            const content =
-                uploadedFilesState?.map((file, index) =>
-                    createFile(file, index, badgeOptions),
-                );
+            const content = uploadedFilesState?.map((file, index) =>
+                createFile(file, index, badgeOptions),
+            );
 
             return <div>{content}</div>;
         };

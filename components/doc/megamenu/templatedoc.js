@@ -18,7 +18,8 @@ export function TemplateDoc(props) {
                     <Ripple />
                 </a>
             );
-        }if (!item.image) {
+        }
+        if (!item.image) {
             return (
                 <a className="flex align-items-center p-3 cursor-pointer mb-2 gap-2 ">
                     <span className="inline-flex align-items-center justify-content-center border-circle bg-primary w-3rem h-3rem">
@@ -35,20 +36,16 @@ export function TemplateDoc(props) {
                 </a>
             );
         }
-            return (
-                <div className="flex flex-column align-items-start gap-3">
-                    <img
-                        alt="megamenu-demo"
-                        src={item.image}
-                        className="w-full"
-                    />
-                    <span>{item.subtext}</span>
-                    <Button
-                        className="p-button p-component p-button-outlined"
-                        label={item.label}
-                    />
-                </div>
-            );
+        return (
+            <div className="flex flex-column align-items-start gap-3">
+                <img alt="megamenu-demo" src={item.image} className="w-full" />
+                <span>{item.subtext}</span>
+                <Button
+                    className="p-button p-component p-button-outlined"
+                    label={item.label}
+                />
+            </div>
+        );
     };
 
     const items = [

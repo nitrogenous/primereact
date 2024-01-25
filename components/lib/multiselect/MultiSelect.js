@@ -369,9 +369,8 @@ export const MultiSelect = React.memo(
             ZIndexUtils.set(
                 "overlay",
                 overlayRef.current,
-                (context?.autoZIndex) || PrimeReact.autoZIndex,
-                (context?.zIndex.overlay) ||
-                    PrimeReact.zIndex.overlay,
+                context?.autoZIndex || PrimeReact.autoZIndex,
+                context?.zIndex.overlay || PrimeReact.zIndex.overlay,
             );
             DomHandler.addStyles(overlayRef.current, {
                 position: "absolute",
@@ -407,9 +406,7 @@ export const MultiSelect = React.memo(
             DomHandler.alignOverlay(
                 overlayRef.current,
                 labelRef.current.parentElement,
-                props.appendTo ||
-                    (context?.appendTo) ||
-                    PrimeReact.appendTo,
+                props.appendTo || context?.appendTo || PrimeReact.appendTo,
             );
         };
 
@@ -428,9 +425,7 @@ export const MultiSelect = React.memo(
         };
 
         const isPanelClicked = (event) => {
-            return (
-                overlayRef.current?.contains(event.target)
-            );
+            return overlayRef.current?.contains(event.target);
         };
 
         const onCloseClick = (event) => {
@@ -457,7 +452,7 @@ export const MultiSelect = React.memo(
                         ? { group: groupIndex, option: optionIndex }
                         : -1;
                 }
-                    return findOptionIndexInList(props.value, props.options);
+                return findOptionIndexInList(props.value, props.options);
             }
 
             return -1;
@@ -535,35 +530,34 @@ export const MultiSelect = React.memo(
             if (props.onSelectAll) {
                 return props.selectAll;
             }
-                if (ObjectUtils.isEmpty(visibleOptions)) {
-                    return false;
-                }
+            if (ObjectUtils.isEmpty(visibleOptions)) {
+                return false;
+            }
 
-                const options = visibleOptions.filter(
-                    (option) => !isOptionDisabled(option),
-                );
+            const options = visibleOptions.filter(
+                (option) => !isOptionDisabled(option),
+            );
 
-                if (props.optionGroupLabel) {
-                    let areAllSelected = true;
+            if (props.optionGroupLabel) {
+                let areAllSelected = true;
 
-                    for (const optionGroup of options) {
-                        const visibleOptionsGroupChildren =
-                            getOptionGroupChildren(optionGroup).filter(
-                                (option) => !isOptionDisabled(option),
-                            );
+                for (const optionGroup of options) {
+                    const visibleOptionsGroupChildren = getOptionGroupChildren(
+                        optionGroup,
+                    ).filter((option) => !isOptionDisabled(option));
 
-                        if (
-                            visibleOptionsGroupChildren.some(
-                                (option) => !isSelected(option),
-                            ) === true
-                        ) {
-                            areAllSelected = false;
-                        }
+                    if (
+                        visibleOptionsGroupChildren.some(
+                            (option) => !isSelected(option),
+                        ) === true
+                    ) {
+                        areAllSelected = false;
                     }
-
-                    return areAllSelected;
                 }
-                    return !options.some((option) => !isSelected(option));
+
+                return areAllSelected;
+            }
+            return !options.some((option) => !isSelected(option));
         };
 
         const getOptionLabel = (option) => {
@@ -588,9 +582,7 @@ export const MultiSelect = React.memo(
                 return data !== null ? data : option;
             }
 
-            return option && option.value !== undefined
-                ? option.value
-                : option;
+            return option && option.value !== undefined ? option.value : option;
         };
 
         const getOptionRenderKey = (option) => {
@@ -684,16 +676,16 @@ export const MultiSelect = React.memo(
                 ) {
                     return getSelectedItemsLabel();
                 }
-                    if (ObjectUtils.isArray(props.value)) {
-                        return props.value.reduce(
-                            (acc, value, index) =>
-                                acc +
-                                (index !== 0 ? ", " : "") +
-                                getLabelByValue(value),
-                            "",
-                        );
-                    }
-                        return "";
+                if (ObjectUtils.isArray(props.value)) {
+                    return props.value.reduce(
+                        (acc, value, index) =>
+                            acc +
+                            (index !== 0 ? ", " : "") +
+                            getLabelByValue(value),
+                        "",
+                    );
+                }
+                return "";
             }
 
             return label;
@@ -708,76 +700,72 @@ export const MultiSelect = React.memo(
                     ) {
                         return getSelectedItemsLabel();
                     }
-                        return props.value.map((val, index) => {
-                            const item = ObjectUtils.getJSXElement(
-                                props.selectedItemTemplate,
-                                val,
-                            );
-
-                            return (
-                                <React.Fragment key={index}>
-                                    {item}
-                                </React.Fragment>
-                            );
-                        });
-                }
-                    return ObjectUtils.getJSXElement(
-                        props.selectedItemTemplate,
-                    );
-            }
-                if (props.display === "chip" && !empty) {
-                    const value = props.value.slice(
-                        0,
-                        props.maxSelectedLabels || props.value.length,
-                    );
-
-                    return value.map((val, i) => {
-                        const label = getLabelByValue(val);
-                        const iconProps = mergeProps(
-                            {
-                                key: i,
-                                className: cx("removeTokenIcon"),
-                                onClick: (e) => removeChip(e, val),
-                            },
-                            ptm("removeTokenIcon"),
-                        );
-                        const icon =
-                            !props.disabled &&
-                            (props.removeIcon ? (
-                                IconUtils.getJSXIcon(
-                                    props.removeIcon,
-                                    { ...iconProps },
-                                    { props },
-                                )
-                            ) : (
-                                <TimesCircleIcon {...iconProps} />
-                            ));
-
-                        const tokenProps = mergeProps(
-                            {
-                                className: cx("token"),
-                            },
-                            ptm("token"),
-                        );
-
-                        const tokenLabelProps = mergeProps(
-                            {
-                                key: label + i,
-                                className: cx("tokenLabel"),
-                            },
-                            ptm("tokenLabel"),
+                    return props.value.map((val, index) => {
+                        const item = ObjectUtils.getJSXElement(
+                            props.selectedItemTemplate,
+                            val,
                         );
 
                         return (
-                            <div {...tokenProps} key={label}>
-                                <span {...tokenLabelProps}>{label}</span>
-                                {icon}
-                            </div>
+                            <React.Fragment key={index}>{item}</React.Fragment>
                         );
                     });
                 }
+                return ObjectUtils.getJSXElement(props.selectedItemTemplate);
+            }
+            if (props.display === "chip" && !empty) {
+                const value = props.value.slice(
+                    0,
+                    props.maxSelectedLabels || props.value.length,
+                );
 
-                return getLabel();
+                return value.map((val, i) => {
+                    const label = getLabelByValue(val);
+                    const iconProps = mergeProps(
+                        {
+                            key: i,
+                            className: cx("removeTokenIcon"),
+                            onClick: (e) => removeChip(e, val),
+                        },
+                        ptm("removeTokenIcon"),
+                    );
+                    const icon =
+                        !props.disabled &&
+                        (props.removeIcon ? (
+                            IconUtils.getJSXIcon(
+                                props.removeIcon,
+                                { ...iconProps },
+                                { props },
+                            )
+                        ) : (
+                            <TimesCircleIcon {...iconProps} />
+                        ));
+
+                    const tokenProps = mergeProps(
+                        {
+                            className: cx("token"),
+                        },
+                        ptm("token"),
+                    );
+
+                    const tokenLabelProps = mergeProps(
+                        {
+                            key: label + i,
+                            className: cx("tokenLabel"),
+                        },
+                        ptm("tokenLabel"),
+                    );
+
+                    return (
+                        <div {...tokenProps} key={label}>
+                            <span {...tokenLabelProps}>{label}</span>
+                            {icon}
+                        </div>
+                    );
+                });
+            }
+
+            return getLabel();
         };
 
         const getVisibleOptions = () => {
@@ -814,15 +802,15 @@ export const MultiSelect = React.memo(
 
                     return filteredGroups;
                 }
-                    return FilterService.filter(
-                        props.options,
-                        searchFields,
-                        filterValue,
-                        props.filterMatchMode,
-                        props.filterLocale,
-                    );
+                return FilterService.filter(
+                    props.options,
+                    searchFields,
+                    filterValue,
+                    props.filterMatchMode,
+                    props.filterLocale,
+                );
             }
-                return props.options;
+            return props.options;
         };
 
         React.useImperativeHandle(ref, () => ({

@@ -172,8 +172,8 @@ export const useLocale = () => {
         }
 
         return {
-            locale: (context?.locale) || PrimeReact.locale,
-            options: locales[(context?.locale) || PrimeReact.locale],
+            locale: context?.locale || PrimeReact.locale,
+            options: locales[context?.locale || PrimeReact.locale],
         };
     };
 
@@ -186,15 +186,13 @@ export const useLocale = () => {
     };
 
     const updateLocaleOptions = (options, locale) => {
-        const _locale =
-            locale || (context?.locale) || PrimeReact.locale;
+        const _locale = locale || context?.locale || PrimeReact.locale;
 
         locales[_locale] = { ...locales[_locale], ...options };
     };
 
     const localeOption = (key, locale) => {
-        const _locale =
-            locale || (context?.locale) || PrimeReact.locale;
+        const _locale = locale || context?.locale || PrimeReact.locale;
 
         try {
             return localeOptions(_locale)[key];
@@ -218,7 +216,7 @@ export const useLocale = () => {
      * @returns the ARIA label with replaced values
      */
     const ariaLabel = (ariaKey, options) => {
-        const _locale = (context?.locale) || PrimeReact.locale;
+        const _locale = context?.locale || PrimeReact.locale;
 
         try {
             let ariaLabel = localeOptions(_locale).aria[ariaKey];
@@ -240,8 +238,7 @@ export const useLocale = () => {
     };
 
     const localeOptions = (locale) => {
-        const _locale =
-            locale || (context?.locale) || PrimeReact.locale;
+        const _locale = locale || context?.locale || PrimeReact.locale;
 
         return locales[_locale];
     };

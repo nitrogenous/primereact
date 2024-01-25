@@ -320,31 +320,36 @@ export const ColorPicker = React.memo(
                     b: 100,
                 });
 
-                colorSelectorRef.current.style.backgroundColor =
-                    `#${HSBtoHEX(newHsbValue)}`;
+                colorSelectorRef.current.style.backgroundColor = `#${HSBtoHEX(
+                    newHsbValue,
+                )}`;
             }
         };
 
         const updateColorHandle = () => {
             if (colorHandleRef.current) {
-                colorHandleRef.current.style.left =
-                    `${Math.floor((150 * hsbValue.current.s) / 100)}px`;
-                colorHandleRef.current.style.top =
-                    `${Math.floor((150 * (100 - hsbValue.current.b)) / 100)}px`;
+                colorHandleRef.current.style.left = `${Math.floor(
+                    (150 * hsbValue.current.s) / 100,
+                )}px`;
+                colorHandleRef.current.style.top = `${Math.floor(
+                    (150 * (100 - hsbValue.current.b)) / 100,
+                )}px`;
             }
         };
 
         const updateHue = () => {
             if (hueHandleRef.current) {
-                hueHandleRef.current.style.top =
-                    `${Math.floor(150 - (150 * hsbValue.current.h) / 360)}px`;
+                hueHandleRef.current.style.top = `${Math.floor(
+                    150 - (150 * hsbValue.current.h) / 360,
+                )}px`;
             }
         };
 
         const updateInput = () => {
             if (inputRef.current) {
-                inputRef.current.style.backgroundColor =
-                    `#${HSBtoHEX(hsbValue.current)}`;
+                inputRef.current.style.backgroundColor = `#${HSBtoHEX(
+                    hsbValue.current,
+                )}`;
             }
         };
 
@@ -364,9 +369,8 @@ export const ColorPicker = React.memo(
             ZIndexUtils.set(
                 "overlay",
                 overlayRef.current,
-                (context?.autoZIndex) || PrimeReact.autoZIndex,
-                (context?.zIndex.overlay) ||
-                    PrimeReact.zIndex.overlay,
+                context?.autoZIndex || PrimeReact.autoZIndex,
+                context?.zIndex.overlay || PrimeReact.zIndex.overlay,
             );
             DomHandler.addStyles(overlayRef.current, styles);
             alignOverlay();
@@ -595,9 +599,7 @@ export const ColorPicker = React.memo(
                 DomHandler.alignOverlay(
                     overlayRef.current,
                     inputRef.current.parentElement,
-                    props.appendTo ||
-                        (context?.appendTo) ||
-                        PrimeReact.appendTo,
+                    props.appendTo || context?.appendTo || PrimeReact.appendTo,
                 );
             }
         };

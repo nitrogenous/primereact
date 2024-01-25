@@ -95,11 +95,13 @@ export const TabMenu = React.memo(
                     const tab = tabs[i];
 
                     if (DomHandler.getAttribute(tab, "data-p-highlight")) {
-                        inkbarRef.current.style.width =
-                            `${DomHandler.getWidth(tab)}px`;
-                        inkbarRef.current.style.left =
-                            `${DomHandler.getOffset(tab).left -
-                            DomHandler.getOffset(navRef.current).left}px`;
+                        inkbarRef.current.style.width = `${DomHandler.getWidth(
+                            tab,
+                        )}px`;
+                        inkbarRef.current.style.left = `${
+                            DomHandler.getOffset(tab).left -
+                            DomHandler.getOffset(navRef.current).left
+                        }px`;
                         inkHighlighted = true;
                     }
                 }

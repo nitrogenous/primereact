@@ -168,9 +168,8 @@ export const OverlayPanel = React.forwardRef((inProps, ref) => {
         ZIndexUtils.set(
             "overlay",
             overlayRef.current,
-            (context?.autoZIndex) || PrimeReact.autoZIndex,
-            (context?.zIndex.overlay) ||
-                PrimeReact.zIndex.overlay,
+            context?.autoZIndex || PrimeReact.autoZIndex,
+            context?.zIndex.overlay || PrimeReact.zIndex.overlay,
         );
         DomHandler.addStyles(overlayRef.current, {
             position: "absolute",
@@ -243,7 +242,7 @@ export const OverlayPanel = React.forwardRef((inProps, ref) => {
     const createStyle = () => {
         if (!styleElement.current) {
             styleElement.current = DomHandler.createInlineStyle(
-                (context?.nonce) || PrimeReact.nonce,
+                context?.nonce || PrimeReact.nonce,
                 context?.styleContainer,
             );
 

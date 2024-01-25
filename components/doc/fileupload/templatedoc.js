@@ -51,10 +51,9 @@ export function TemplateDoc(props) {
     const headerTemplate = (options) => {
         const { className, chooseButton, uploadButton, cancelButton } = options;
         const value = totalSize / 10000;
-        const formatedValue =
-            fileUploadRef?.current
-                ? fileUploadRef.current.formatSize(totalSize)
-                : "0 B";
+        const formatedValue = fileUploadRef?.current
+            ? fileUploadRef.current.formatSize(totalSize)
+            : "0 B";
 
         return (
             <div

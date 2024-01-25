@@ -68,9 +68,7 @@ export const OrderList = React.memo(
         const visibleList = getVisibleList();
 
         const getListElement = () => {
-            return (
-                listElementRef.current?.getElement()
-            );
+            return listElementRef.current?.getElement();
         };
 
         const onItemClick = (event) => {
@@ -122,10 +120,9 @@ export const OrderList = React.memo(
                     '[data-p-highlight="true"]',
                 ) ||
                 DomHandler.findSingle(listElement, '[data-pc-section="item"]');
-            const itemList =
-                listElement?.children
-                    ? [...listElement.children]
-                    : [];
+            const itemList = listElement?.children
+                ? [...listElement.children]
+                : [];
 
             if (selectedFirstItem && itemList.length > 0) {
                 const findIndex = ObjectUtils.findIndexInList(
@@ -388,9 +385,9 @@ export const OrderList = React.memo(
 
             if (element) {
                 element.scrollIntoView?.({
-                        block: "nearest",
-                        inline: "start",
-                    });
+                    block: "nearest",
+                    inline: "start",
+                });
             }
         };
 
@@ -461,7 +458,7 @@ export const OrderList = React.memo(
         const createStyle = () => {
             if (!styleElementRef.current) {
                 styleElementRef.current = DomHandler.createInlineStyle(
-                    (context?.nonce) || PrimeReact.nonce,
+                    context?.nonce || PrimeReact.nonce,
                     context?.styleContainer,
                 );
 

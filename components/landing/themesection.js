@@ -80,8 +80,7 @@ const ThemeSection = () => {
     };
 
     const changeTheme = (name, color) => {
-        const newTheme =
-            `${name}-${darkMode ? "dark" : "light"}-${color}`;
+        const newTheme = `${name}-${darkMode ? "dark" : "light"}-${color}`;
 
         replaceTableTheme(newTheme);
     };
@@ -215,11 +214,7 @@ const ThemeSection = () => {
 
     const actionBodyTemplate = () => {
         return (
-            <Button
-                type="button"
-                icon="pi pi-cog"
-                className="p-button-text"
-            />
+            <Button type="button" icon="pi pi-cog" className="p-button-text" />
         );
     };
 
@@ -274,8 +269,7 @@ const ThemeSection = () => {
                 <button
                     type="button"
                     className={classNames("font-medium linkbox mr-3 mt-4", {
-                        active:
-                            tableTheme?.startsWith("bootstrap4"),
+                        active: tableTheme?.startsWith("bootstrap4"),
                     })}
                     onClick={() => changeTheme("bootstrap4", "blue")}
                 >

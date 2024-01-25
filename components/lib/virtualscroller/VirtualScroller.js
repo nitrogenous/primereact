@@ -430,17 +430,18 @@ export const VirtualScroller = React.memo(
                         ];
 
                         (both || horizontal) &&
-                            (elementRef.current.style.width =
-                                `${width < defaultWidth.current
+                            (elementRef.current.style.width = `${
+                                width < defaultWidth.current
                                     ? width
-                                    : props.scrollWidth ||
-                                      defaultWidth.current}px`);
+                                    : props.scrollWidth || defaultWidth.current
+                            }px`);
                         (both || vertical) &&
-                            (elementRef.current.style.height =
-                                `${height < defaultHeight.current
+                            (elementRef.current.style.height = `${
+                                height < defaultHeight.current
                                     ? height
                                     : props.scrollHeight ||
-                                      defaultHeight.current}px`);
+                                      defaultHeight.current
+                            }px`);
 
                         contentRef.current.style.minHeight =
                             contentRef.current.style.minWidth = "";
@@ -527,8 +528,9 @@ export const VirtualScroller = React.memo(
                     (spacerStyle.current = {
                         ...spacerStyle.current,
                         ...{
-                            [`${_name}`]:
-                                `${(_value || []).length * _size + _cpos}px`,
+                            [`${_name}`]: `${
+                                (_value || []).length * _size + _cpos
+                            }px`,
                         },
                     });
 
@@ -623,17 +625,17 @@ export const VirtualScroller = React.memo(
                 _isScrollDownOrRight,
             ) => {
                 if (_currentIndex <= _numT) return 0;
-                
-                    return Math.max(
-                        0,
-                        _isScrollDownOrRight
-                            ? _currentIndex < _triggerIndex
-                                ? _first
-                                : _currentIndex - _numT
-                            : _currentIndex > _triggerIndex
-                              ? _first
-                              : _currentIndex - 2 * _numT,
-                    );
+
+                return Math.max(
+                    0,
+                    _isScrollDownOrRight
+                        ? _currentIndex < _triggerIndex
+                            ? _first
+                            : _currentIndex - _numT
+                        : _currentIndex > _triggerIndex
+                          ? _first
+                          : _currentIndex - 2 * _numT,
+                );
             };
 
             const calculateLast = (
@@ -974,11 +976,11 @@ export const VirtualScroller = React.memo(
                                   ),
                         );
                 if (horizontal && props.columns) return items;
-                
-                    return items.slice(
-                        props.appendOnly ? 0 : firstState,
-                        lastState,
-                    );
+
+                return items.slice(
+                    props.appendOnly ? 0 : firstState,
+                    lastState,
+                );
             }
 
             return [];
@@ -1238,39 +1240,38 @@ export const VirtualScroller = React.memo(
                 </React.Fragment>
             );
         }
-            const className = classNames(
-                "p-virtualscroller",
-                {
-                    "p-virtualscroller-inline": props.inline,
-                    "p-virtualscroller-both p-both-scroll": both,
-                    "p-virtualscroller-horizontal p-horizontal-scroll":
-                        horizontal,
-                },
-                props.className,
-            );
+        const className = classNames(
+            "p-virtualscroller",
+            {
+                "p-virtualscroller-inline": props.inline,
+                "p-virtualscroller-both p-both-scroll": both,
+                "p-virtualscroller-horizontal p-horizontal-scroll": horizontal,
+            },
+            props.className,
+        );
 
-            const loader = createLoader();
-            const content = createContent();
-            const spacer = createSpacer();
-            const rootProps = mergeProps(
-                {
-                    ref: elementRef,
-                    className,
-                    tabIndex: props.tabIndex,
-                    style: props.style,
-                    onScroll: (e) => onScroll(e),
-                },
-                VirtualScrollerBase.getOtherProps(props),
-                ptm("root"),
-            );
+        const loader = createLoader();
+        const content = createContent();
+        const spacer = createSpacer();
+        const rootProps = mergeProps(
+            {
+                ref: elementRef,
+                className,
+                tabIndex: props.tabIndex,
+                style: props.style,
+                onScroll: (e) => onScroll(e),
+            },
+            VirtualScrollerBase.getOtherProps(props),
+            ptm("root"),
+        );
 
-            return (
-                <div {...rootProps}>
-                    {content}
-                    {spacer}
-                    {loader}
-                </div>
-            );
+        return (
+            <div {...rootProps}>
+                {content}
+                {spacer}
+                {loader}
+            </div>
+        );
     }),
 );
 

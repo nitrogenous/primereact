@@ -142,7 +142,8 @@ export const Inplace = React.forwardRef((inProps, ref) => {
                 )
             ) {
                 return createContent(child);
-            }if (
+            }
+            if (
                 !active &&
                 ObjectUtils.isValidChild(
                     child,

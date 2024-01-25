@@ -41,7 +41,7 @@ export const useStyle = (css, options = {}) => {
 
             DomHandler.addNonce(
                 styleRef.current,
-                (context?.nonce) || PrimeReact.nonce,
+                context?.nonce || PrimeReact.nonce,
             );
             styleContainer.appendChild(styleRef.current);
             name &&

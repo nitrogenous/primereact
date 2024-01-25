@@ -426,9 +426,7 @@ export const TieredMenu = React.memo(
                     );
 
                 props.popup && DomHandler.focus(targetRef.current);
-                anchorElement
-                    ? anchorElement.click()
-                    : element?.click();
+                anchorElement ? anchorElement.click() : element?.click();
             }
 
             event.preventDefault();
@@ -633,9 +631,9 @@ export const TieredMenu = React.memo(
 
             if (element) {
                 element.scrollIntoView?.({
-                        block: "nearest",
-                        inline: "start",
-                    });
+                    block: "nearest",
+                    inline: "start",
+                });
             }
         };
 
@@ -644,25 +642,25 @@ export const TieredMenu = React.memo(
                 const processedItems = [];
 
                 items?.forEach((item, index) => {
-                        const key =
-                            (parentKey !== "" ? `${parentKey}_` : "") + index;
-                        const newItem = {
-                            item,
-                            index,
-                            level,
-                            key,
-                            parent,
-                            parentKey,
-                        };
+                    const key =
+                        (parentKey !== "" ? `${parentKey}_` : "") + index;
+                    const newItem = {
+                        item,
+                        index,
+                        level,
+                        key,
+                        parent,
+                        parentKey,
+                    };
 
-                        newItem.items = createProcessedItems(
-                            item.items,
-                            level + 1,
-                            newItem,
-                            key,
-                        );
-                        processedItems.push(newItem);
-                    });
+                    newItem.items = createProcessedItems(
+                        item.items,
+                        level + 1,
+                        newItem,
+                        key,
+                    );
+                    processedItems.push(newItem);
+                });
 
                 return processedItems;
             },
@@ -672,7 +670,7 @@ export const TieredMenu = React.memo(
         const createStyle = () => {
             if (!styleElementRef.current) {
                 styleElementRef.current = DomHandler.createInlineStyle(
-                    (context?.nonce) || PrimeReact.nonce,
+                    context?.nonce || PrimeReact.nonce,
                     context?.styleContainer,
                 );
 
@@ -725,8 +723,9 @@ export const TieredMenu = React.memo(
             const targetWidth = DomHandler.getOuterWidth(targetRef.current);
 
             if (targetWidth > DomHandler.getOuterWidth(containerRef.current)) {
-                containerRef.current.style.minWidth =
-                    `${DomHandler.getOuterWidth(targetRef.current)}px`;
+                containerRef.current.style.minWidth = `${DomHandler.getOuterWidth(
+                    targetRef.current,
+                )}px`;
             }
         };
 
@@ -735,9 +734,9 @@ export const TieredMenu = React.memo(
                 ZIndexUtils.set(
                     "menu",
                     containerRef.current,
-                    (context?.autoZIndex) || PrimeReact.autoZIndex,
+                    context?.autoZIndex || PrimeReact.autoZIndex,
                     props.baseZIndex ||
-                        (context?.zIndex.menu) ||
+                        context?.zIndex.menu ||
                         PrimeReact.zIndex.menu,
                 );
             }

@@ -149,11 +149,7 @@ export default function ConditionalStyleDemo() {
                     tableStyle={{ minWidth: "50rem" }}
                 >
                     <Column field="name" header="Name" expander />
-                    <Column
-                        field="size"
-                        header="Size"
-                        body={sizeTemplate}
-                    />
+                    <Column field="size" header="Size" body={sizeTemplate} />
                     <Column field="type" header="Type" />
                 </TreeTable>
             </div>

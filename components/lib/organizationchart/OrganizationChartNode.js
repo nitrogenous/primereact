@@ -8,10 +8,8 @@ export const OrganizationChartNode = React.memo((props) => {
     const mergeProps = useMergeProps();
     const node = props.node;
     const [expandedState, setExpandedState] = React.useState(node.expanded);
-    const leaf =
-        node.leaf === false ? false : !(node.children?.length);
-    const colspan =
-        node.children?.length ? node.children.length * 2 : null;
+    const leaf = node.leaf === false ? false : !node.children?.length;
+    const colspan = node.children?.length ? node.children.length * 2 : null;
     const selected = props.isSelected(node);
     const visibility = !leaf && expandedState ? "inherit" : "hidden";
     const { ptm, cx, sx } = props;
@@ -80,22 +78,22 @@ export const OrganizationChartNode = React.memo((props) => {
         return (
             <tr {...nodesProps}>
                 {node.children?.map((child, index) => {
-                        return (
-                            <td key={index} {...nodeCellProps}>
-                                <OrganizationChartNode
-                                    node={child}
-                                    nodeTemplate={props.nodeTemplate}
-                                    selectionMode={props.selectionMode}
-                                    onNodeClick={props.onNodeClick}
-                                    isSelected={props.isSelected}
-                                    togglerIcon={props.togglerIcon}
-                                    ptm={ptm}
-                                    cx={cx}
-                                    sx={sx}
-                                />
-                            </td>
-                        );
-                    })}
+                    return (
+                        <td key={index} {...nodeCellProps}>
+                            <OrganizationChartNode
+                                node={child}
+                                nodeTemplate={props.nodeTemplate}
+                                selectionMode={props.selectionMode}
+                                onNodeClick={props.onNodeClick}
+                                isSelected={props.isSelected}
+                                togglerIcon={props.togglerIcon}
+                                ptm={ptm}
+                                cx={cx}
+                                sx={sx}
+                            />
+                        </td>
+                    );
+                })}
             </tr>
         );
     };

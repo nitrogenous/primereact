@@ -24,7 +24,7 @@ export const useInterval = (fn, delay = 0, when = true) => {
             timeout.current = setInterval(callback, delay);
             return clear;
         }
-            clear();
+        clear();
     }, [delay, when]);
 
     useUnmountEffect(() => {

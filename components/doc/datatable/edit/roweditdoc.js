@@ -62,10 +62,7 @@ export function RowEditDoc(props) {
                 placeholder="Select a Status"
                 itemTemplate={(option) => {
                     return (
-                        <Tag
-                            value={option}
-                            severity={getSeverity(option)}
-                        />
+                        <Tag value={option} severity={getSeverity(option)} />
                     );
                 }}
             />

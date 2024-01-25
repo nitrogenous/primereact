@@ -300,9 +300,10 @@ export const TabView = React.forwardRef((inProps, ref) => {
         const tabHeader = tabsRef.current[`tab_${activeIndex}`];
 
         inkbarRef.current.style.width = `${DomHandler.getWidth(tabHeader)}px`;
-        inkbarRef.current.style.left =
-            `${DomHandler.getOffset(tabHeader).left -
-            DomHandler.getOffset(navRef.current).left}px`;
+        inkbarRef.current.style.left = `${
+            DomHandler.getOffset(tabHeader).left -
+            DomHandler.getOffset(navRef.current).left
+        }px`;
     };
 
     const updateScrollBar = ({ index, element }) => {

@@ -27,9 +27,9 @@ export const useOverlayListener = ({
             type: "click",
             listener: (event) => {
                 listener?.(event, {
-                        type: "outside",
-                        valid: event.which !== 3 && isOutsideClicked(event),
-                    });
+                    type: "outside",
+                    valid: event.which !== 3 && isOutsideClicked(event),
+                });
             },
         });
     const [bindWindowResizeListener, unbindWindowResizeListener] =
@@ -37,9 +37,9 @@ export const useOverlayListener = ({
             target: "window",
             listener: (event) => {
                 listener?.(event, {
-                        type: "resize",
-                        valid: !DomHandler.isTouchDevice(),
-                    });
+                    type: "resize",
+                    valid: !DomHandler.isTouchDevice(),
+                });
             },
         });
     const [
@@ -66,7 +66,7 @@ export const useOverlayListener = ({
             !(
                 targetRef.current.isSameNode(event.target) ||
                 targetRef.current.contains(event.target) ||
-                (overlayRef.current?.contains(event.target))
+                overlayRef.current?.contains(event.target)
             )
         );
     };

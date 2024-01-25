@@ -113,16 +113,16 @@ export const DataScroller = React.memo(
                     const docBody = document.body;
                     const docElement = document.documentElement;
                     const scrollTop =
-                            window.pageYOffset ||
-                            document.documentElement.scrollTop;
+                        window.pageYOffset ||
+                        document.documentElement.scrollTop;
                     const winHeight = docElement.clientHeight;
                     const docHeight = Math.max(
-                            docBody.scrollHeight,
-                            docBody.offsetHeight,
-                            winHeight,
-                            docElement.scrollHeight,
-                            docElement.offsetHeight,
-                        );
+                        docBody.scrollHeight,
+                        docBody.offsetHeight,
+                        winHeight,
+                        docElement.scrollHeight,
+                        docElement.offsetHeight,
+                    );
 
                     if (scrollTop >= docHeight * props.buffer - winHeight) {
                         load();

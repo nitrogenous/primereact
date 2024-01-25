@@ -30,10 +30,10 @@ const getConfiguredDependencies = (isUnstyled) => {
             autoprefixer: app_dependencies.autoprefixer || "latest",
         };
     }
-        return {
-            ...defaultDependencies,
-            primeflex: app_dependencies.primeflex || "latest",
-        };
+    return {
+        ...defaultDependencies,
+        primeflex: app_dependencies.primeflex || "latest",
+    };
 };
 
 const getUnstyledFiles = (path) => {

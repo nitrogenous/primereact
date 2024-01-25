@@ -56,7 +56,9 @@ const TemplateFeatures = ({ featuresData, displayType }) => {
                                 ).map((data, j) => (
                                     <div
                                         key={j}
-                                        className={"template-features-vertical-card "}
+                                        className={
+                                            "template-features-vertical-card "
+                                        }
                                     >
                                         <div className="template-features-vertical-card-image">
                                             {ObjectUtils.getJSXElement(

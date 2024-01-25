@@ -101,10 +101,8 @@ export const Tree = React.memo(
         const cloneValue = (value) => {
             if (Array.isArray(value)) {
                 return value.map(cloneValue);
-            }if (
-                !!value &&
-                Object.getPrototypeOf(value) === Object.prototype
-            ) {
+            }
+            if (!!value && Object.getPrototypeOf(value) === Object.prototype) {
                 const result = {};
 
                 // Leave data property alone and clone children
@@ -117,7 +115,8 @@ export const Tree = React.memo(
                 }
 
                 return result;
-            }return value;
+            }
+            return value;
         };
 
         const onDrop = (event) => {
@@ -208,17 +207,17 @@ export const Tree = React.memo(
             if (!dragPath) {
                 return false;
             }
-                //same node
-                if (dragPath === dropPath) {
-                    return false;
-                }
+            //same node
+            if (dragPath === dropPath) {
+                return false;
+            }
 
-                //parent dropped on an descendant
-                if (dropPath.indexOf(dragPath) === 0) {
-                    return false;
-                }
+            //parent dropped on an descendant
+            if (dropPath.indexOf(dragPath) === 0) {
+                return false;
+            }
 
-                return true;
+            return true;
         };
 
         const validateDropNode = (dragPath, dropPath) => {
@@ -236,7 +235,7 @@ export const Tree = React.memo(
 
                 return true;
             }
-                return false;
+            return false;
         };
 
         const validateDropPoint = (event) => {
@@ -257,39 +256,37 @@ export const Tree = React.memo(
 
                 return true;
             }
-                return false;
+            return false;
         };
 
         const areSiblings = (path1, path2) => {
             if (path1.length === 1 && path2.length === 1) return true;
-            
-                return (
-                    path1.substring(0, path1.lastIndexOf("-")) ===
-                    path2.substring(0, path2.lastIndexOf("-"))
-                );
+
+            return (
+                path1.substring(0, path1.lastIndexOf("-")) ===
+                path2.substring(0, path2.lastIndexOf("-"))
+            );
         };
 
         const findNode = (value, path) => {
             if (path.length === 0) {
                 return null;
             }
-                const index = parseInt(path[0], 10);
-                const nextSearchRoot = value.children
-                    ? value.children[index]
-                    : value[index];
+            const index = parseInt(path[0], 10);
+            const nextSearchRoot = value.children
+                ? value.children[index]
+                : value[index];
 
-                if (path.length === 1) {
-                    return nextSearchRoot;
-                }
-                    path.shift();
+            if (path.length === 1) {
+                return nextSearchRoot;
+            }
+            path.shift();
 
-                    return findNode(nextSearchRoot, path);
+            return findNode(nextSearchRoot, path);
         };
 
         const isNodeLeaf = (node) => {
-            return node.leaf === false
-                ? false
-                : !(node.children?.length);
+            return node.leaf === false ? false : !node.children?.length;
         };
 
         const onFilterInputKeyDown = (event) => {
@@ -534,9 +531,9 @@ export const Tree = React.memo(
 
                     return createRootChildrenContainer(rootNodes);
                 }
-                    const emptyMessageNode = createEmptyMessageNode();
+                const emptyMessageNode = createEmptyMessageNode();
 
-                    return createRootChildrenContainer(emptyMessageNode);
+                return createRootChildrenContainer(emptyMessageNode);
             }
 
             return null;

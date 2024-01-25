@@ -187,7 +187,7 @@ export function ProductsDoc(props) {
     };
 
     const onInputChange = (e, name) => {
-        const val = (e.target?.value) || "";
+        const val = e.target?.value || "";
         const _product = { ...product };
 
         _product[`${name}`] = val;
@@ -1158,10 +1158,7 @@ export default function ProductsDemo() {
                         globalFilter={globalFilter}
                         header={header}
                     >
-                        <Column
-                            selectionMode="multiple"
-                            exportable={false}
-                        />
+                        <Column selectionMode="multiple" exportable={false} />
                         <Column
                             field="code"
                             header="Code"

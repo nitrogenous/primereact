@@ -107,9 +107,7 @@ export const SplitButton = React.memo(
             DomHandler.alignOverlay(
                 overlayRef.current,
                 defaultButtonRef.current.parentElement,
-                props.appendTo ||
-                    (context?.appendTo) ||
-                    PrimeReact.appendTo,
+                props.appendTo || context?.appendTo || PrimeReact.appendTo,
             );
         };
 

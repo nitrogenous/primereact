@@ -151,15 +151,15 @@ export const FilterService = {
 
             if (value.getTime && filter.getTime)
                 return value.getTime() === filter.getTime();
-            
-                return (
-                    ObjectUtils.removeAccents(
-                        value.toString(),
-                    ).toLocaleLowerCase(filterLocale) ===
-                    ObjectUtils.removeAccents(
-                        filter.toString(),
-                    ).toLocaleLowerCase(filterLocale)
-                );
+
+            return (
+                ObjectUtils.removeAccents(value.toString()).toLocaleLowerCase(
+                    filterLocale,
+                ) ===
+                ObjectUtils.removeAccents(filter.toString()).toLocaleLowerCase(
+                    filterLocale,
+                )
+            );
         },
         notEquals(value, filter, filterLocale) {
             if (
@@ -176,15 +176,15 @@ export const FilterService = {
 
             if (value.getTime && filter.getTime)
                 return value.getTime() !== filter.getTime();
-            
-                return (
-                    ObjectUtils.removeAccents(
-                        value.toString(),
-                    ).toLocaleLowerCase(filterLocale) !==
-                    ObjectUtils.removeAccents(
-                        filter.toString(),
-                    ).toLocaleLowerCase(filterLocale)
-                );
+
+            return (
+                ObjectUtils.removeAccents(value.toString()).toLocaleLowerCase(
+                    filterLocale,
+                ) !==
+                ObjectUtils.removeAccents(filter.toString()).toLocaleLowerCase(
+                    filterLocale,
+                )
+            );
         },
         in(value, filter) {
             if (

@@ -29,8 +29,7 @@ export function ListDoc(props) {
         IconService.getIcons().then((data) => {
             data.sort((icon1, icon2) => {
                 if (icon1.properties.name < icon2.properties.name) return -1;
-                if (icon1.properties.name < icon2.properties.name)
-                    return 1;
+                if (icon1.properties.name < icon2.properties.name) return 1;
                 return 0;
             });
 
@@ -61,24 +60,22 @@ export function ListDoc(props) {
             <div className="card">
                 <div className="grid text-center">
                     {filteredIcons?.map((iconMeta) => {
-                            const { icon, properties } = iconMeta;
+                        const { icon, properties } = iconMeta;
 
-                            return (
-                                icon.tags.indexOf("deprecate") === -1 && (
-                                    <div
-                                        className="col-12 md:col-2 mb-5"
-                                        key={properties.name}
-                                    >
-                                        <i
-                                            className={
-                                                `text-2xl mb-3 text-color-secondary pi pi-${properties.name}`
-                                            }
-                                        />
-                                        <div>pi-{properties.name}</div>
-                                    </div>
-                                )
-                            );
-                        })}
+                        return (
+                            icon.tags.indexOf("deprecate") === -1 && (
+                                <div
+                                    className="col-12 md:col-2 mb-5"
+                                    key={properties.name}
+                                >
+                                    <i
+                                        className={`text-2xl mb-3 text-color-secondary pi pi-${properties.name}`}
+                                    />
+                                    <div>pi-{properties.name}</div>
+                                </div>
+                            )
+                        );
+                    })}
                 </div>
             </div>
         </>

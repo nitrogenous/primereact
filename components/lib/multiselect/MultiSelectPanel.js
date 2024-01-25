@@ -62,10 +62,7 @@ export const MultiSelectPanel = React.memo(
         };
 
         const isEmptyFilter = () => {
-            return (
-                !(props.visibleOptions?.length) &&
-                props.hasFilter
-            );
+            return !props.visibleOptions?.length && props.hasFilter;
         };
 
         const createHeader = () => {
@@ -205,41 +202,38 @@ export const MultiSelectPanel = React.memo(
                     </React.Fragment>
                 );
             }
-                const optionLabel = props.getOptionLabel(option);
-                const optionKey =
-                    `${index}_${props.getOptionRenderKey(option)}`;
-                const disabled = props.isOptionDisabled(option);
-                const tabIndex = disabled ? null : props.tabIndex || 0;
-                const selected = props.isSelected(option);
+            const optionLabel = props.getOptionLabel(option);
+            const optionKey = `${index}_${props.getOptionRenderKey(option)}`;
+            const disabled = props.isOptionDisabled(option);
+            const tabIndex = disabled ? null : props.tabIndex || 0;
+            const selected = props.isSelected(option);
 
-                return (
-                    <MultiSelectItem
-                        hostName={props.hostName}
-                        key={optionKey}
-                        label={optionLabel}
-                        option={option}
-                        style={style}
-                        template={props.itemTemplate}
-                        selected={selected}
-                        onClick={props.onOptionSelect}
-                        onKeyDown={props.onOptionKeyDown}
-                        tabIndex={tabIndex}
-                        disabled={disabled}
-                        className={props.itemClassName}
-                        checkboxIcon={props.checkboxIcon}
-                        ptm={ptm}
-                        cx={cx}
-                    />
-                );
+            return (
+                <MultiSelectItem
+                    hostName={props.hostName}
+                    key={optionKey}
+                    label={optionLabel}
+                    option={option}
+                    style={style}
+                    template={props.itemTemplate}
+                    selected={selected}
+                    onClick={props.onOptionSelect}
+                    onKeyDown={props.onOptionKeyDown}
+                    tabIndex={tabIndex}
+                    disabled={disabled}
+                    className={props.itemClassName}
+                    checkboxIcon={props.checkboxIcon}
+                    ptm={ptm}
+                    cx={cx}
+                />
+            );
         };
 
         const createItems = () => {
             if (ObjectUtils.isNotEmpty(props.visibleOptions)) {
                 return props.visibleOptions.map(createItem);
             }
-                return props.hasFilter
-                    ? createEmptyFilter()
-                    : createEmptyContent();
+            return props.hasFilter ? createEmptyFilter() : createEmptyContent();
         };
 
         const createContent = () => {
@@ -300,30 +294,30 @@ export const MultiSelectPanel = React.memo(
                     />
                 );
             }
-                const items = createItems();
+            const items = createItems();
 
-                const wrapperProps = mergeProps(
-                    {
-                        className: cx("wrapper"),
-                        style: { maxHeight: props.scrollHeight },
-                    },
-                    getPTOptions("wrapper"),
-                );
+            const wrapperProps = mergeProps(
+                {
+                    className: cx("wrapper"),
+                    style: { maxHeight: props.scrollHeight },
+                },
+                getPTOptions("wrapper"),
+            );
 
-                const listProps = mergeProps(
-                    {
-                        className: cx("list"),
-                        role: "listbox",
-                        "aria-multiselectable": true,
-                    },
-                    getPTOptions("list"),
-                );
+            const listProps = mergeProps(
+                {
+                    className: cx("list"),
+                    role: "listbox",
+                    "aria-multiselectable": true,
+                },
+                getPTOptions("list"),
+            );
 
-                return (
-                    <div {...wrapperProps}>
-                        <ul {...listProps}>{items}</ul>
-                    </div>
-                );
+            return (
+                <div {...wrapperProps}>
+                    <ul {...listProps}>{items}</ul>
+                </div>
+            );
         };
 
         const createElement = () => {

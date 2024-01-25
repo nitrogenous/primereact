@@ -130,35 +130,34 @@ export const AutoCompletePanel = React.memo(
                     </React.Fragment>
                 );
             }
-                const content = props.itemTemplate
-                    ? ObjectUtils.getJSXElement(
-                          props.itemTemplate,
-                          suggestion,
-                          index,
-                      )
-                    : props.field
-                      ? ObjectUtils.resolveFieldData(suggestion, props.field)
-                      : suggestion;
-                const itemProps = mergeProps(
-                    {
-                        index,
-                        role: "option",
-                        className: cx("item", { suggestion }),
-                        style,
-                        onClick: (e) => props.onItemClick(e, suggestion),
-                        "aria-selected":
-                            props.selectedItem.current === suggestion,
-                        "data-p-disabled": suggestion.disabled,
-                    },
-                    getPTOptions(suggestion, "item"),
-                );
+            const content = props.itemTemplate
+                ? ObjectUtils.getJSXElement(
+                      props.itemTemplate,
+                      suggestion,
+                      index,
+                  )
+                : props.field
+                  ? ObjectUtils.resolveFieldData(suggestion, props.field)
+                  : suggestion;
+            const itemProps = mergeProps(
+                {
+                    index,
+                    role: "option",
+                    className: cx("item", { suggestion }),
+                    style,
+                    onClick: (e) => props.onItemClick(e, suggestion),
+                    "aria-selected": props.selectedItem.current === suggestion,
+                    "data-p-disabled": suggestion.disabled,
+                },
+                getPTOptions(suggestion, "item"),
+            );
 
-                return (
-                    <li key={index} {...itemProps}>
-                        {content}
-                        <Ripple />
-                    </li>
-                );
+            return (
+                <li key={index} {...itemProps}>
+                    {content}
+                    <Ripple />
+                </li>
+            );
         };
 
         const createItems = () => {
@@ -234,29 +233,29 @@ export const AutoCompletePanel = React.memo(
                     />
                 );
             }
-                const items = createItems();
-                const listProps = mergeProps(
-                    {
-                        id: props.listId,
-                        className: cx("list"),
-                        role: "listbox",
-                    },
-                    _ptm("list"),
-                );
+            const items = createItems();
+            const listProps = mergeProps(
+                {
+                    id: props.listId,
+                    className: cx("list"),
+                    role: "listbox",
+                },
+                _ptm("list"),
+            );
 
-                const listWrapperProps = mergeProps(
-                    {
-                        className: cx("listWrapper"),
-                        style: { maxHeight: props.scrollHeight || "auto" },
-                    },
-                    _ptm("listWrapper"),
-                );
+            const listWrapperProps = mergeProps(
+                {
+                    className: cx("listWrapper"),
+                    style: { maxHeight: props.scrollHeight || "auto" },
+                },
+                _ptm("listWrapper"),
+            );
 
-                return (
-                    <div {...listWrapperProps}>
-                        <ul {...listProps}>{items}</ul>
-                    </div>
-                );
+            return (
+                <div {...listWrapperProps}>
+                    <ul {...listProps}>{items}</ul>
+                </div>
+            );
         };
 
         const createElement = () => {

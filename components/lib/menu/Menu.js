@@ -300,9 +300,9 @@ export const Menu = React.memo(
             ZIndexUtils.set(
                 "menu",
                 menuRef.current,
-                (context?.autoZIndex) || PrimeReact.autoZIndex,
+                context?.autoZIndex || PrimeReact.autoZIndex,
                 props.baseZIndex ||
-                    (context?.zIndex.menu) ||
+                    context?.zIndex.menu ||
                     PrimeReact.zIndex.menu,
             );
             DomHandler.absolutePosition(

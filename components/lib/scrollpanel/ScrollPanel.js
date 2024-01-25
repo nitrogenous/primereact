@@ -60,12 +60,13 @@ export const ScrollPanel = React.forwardRef((inProps, ref) => {
                 containerRef.current.style.height =
                     containerStyles["max-height"];
             } else {
-                containerRef.current.style.height =
-                    `${contentRef.current.offsetHeight +
+                containerRef.current.style.height = `${
+                    contentRef.current.offsetHeight +
                     parseFloat(containerStyles.paddingTop) +
                     parseFloat(containerStyles.paddingBottom) +
                     parseFloat(containerStyles.borderTopWidth) +
-                    parseFloat(containerStyles.borderBottomWidth)}px`;
+                    parseFloat(containerStyles.borderBottomWidth)
+                }px`;
             }
         }
     };
@@ -94,16 +95,24 @@ export const ScrollPanel = React.forwardRef((inProps, ref) => {
                 DomHandler.addClass(xBarRef.current, "p-scrollpanel-hidden");
             } else {
                 DomHandler.removeClass(xBarRef.current, "p-scrollpanel-hidden");
-                xBarRef.current.style.cssText =
-                    `width:${Math.max(scrollXRatio.current * 100, 10)}%; left:${(contentRef.current.scrollLeft / totalWidth) * 100}%;bottom:${bottom}px;`;
+                xBarRef.current.style.cssText = `width:${Math.max(
+                    scrollXRatio.current * 100,
+                    10,
+                )}%; left:${
+                    (contentRef.current.scrollLeft / totalWidth) * 100
+                }%;bottom:${bottom}px;`;
             }
 
             if (scrollYRatio.current >= 1) {
                 DomHandler.addClass(yBarRef.current, "p-scrollpanel-hidden");
             } else {
                 DomHandler.removeClass(yBarRef.current, "p-scrollpanel-hidden");
-                yBarRef.current.style.cssText =
-                    `height:${Math.max(scrollYRatio.current * 100, 10)}%; top: calc(${(contentRef.current.scrollTop / totalHeight) * 100}% - ${xBarRef.current.clientHeight}px);right:${right}px;`;
+                yBarRef.current.style.cssText = `height:${Math.max(
+                    scrollYRatio.current * 100,
+                    10,
+                )}%; top: calc(${
+                    (contentRef.current.scrollTop / totalHeight) * 100
+                }% - ${xBarRef.current.clientHeight}px);right:${right}px;`;
             }
         });
     };

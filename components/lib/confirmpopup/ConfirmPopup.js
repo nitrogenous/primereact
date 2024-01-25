@@ -181,9 +181,8 @@ export const ConfirmPopup = React.memo(
             ZIndexUtils.set(
                 "overlay",
                 overlayRef.current,
-                (context?.autoZIndex) || PrimeReact.autoZIndex,
-                (context?.zIndex.overlay) ||
-                    PrimeReact.zIndex.overlay,
+                context?.autoZIndex || PrimeReact.autoZIndex,
+                context?.zIndex.overlay || PrimeReact.zIndex.overlay,
             );
             DomHandler.addStyles(overlayRef.current, {
                 position: "absolute",

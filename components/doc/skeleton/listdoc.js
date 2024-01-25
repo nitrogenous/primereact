@@ -169,10 +169,7 @@ export default function ListDemo() {
                                     className="mr-2"
                                 />
                                 <div style={{ flex: "1" }}>
-                                    <Skeleton
-                                        width="100%"
-                                        className="mb-2"
-                                    />
+                                    <Skeleton width="100%" className="mb-2" />
                                     <Skeleton width="75%" />
                                 </div>
                             </div>
@@ -185,10 +182,7 @@ export default function ListDemo() {
                                     className="mr-2"
                                 />
                                 <div style={{ flex: "1" }}>
-                                    <Skeleton
-                                        width="100%"
-                                        className="mb-2"
-                                    />
+                                    <Skeleton width="100%" className="mb-2" />
                                     <Skeleton width="75%" />
                                 </div>
                             </div>
@@ -201,10 +195,7 @@ export default function ListDemo() {
                                     className="mr-2"
                                 />
                                 <div style={{ flex: "1" }}>
-                                    <Skeleton
-                                        width="100%"
-                                        className="mb-2"
-                                    />
+                                    <Skeleton width="100%" className="mb-2" />
                                     <Skeleton width="75%" />
                                 </div>
                             </div>
@@ -217,10 +208,7 @@ export default function ListDemo() {
                                     className="mr-2"
                                 />
                                 <div style={{ flex: "1" }}>
-                                    <Skeleton
-                                        width="100%"
-                                        className="mb-2"
-                                    />
+                                    <Skeleton width="100%" className="mb-2" />
                                     <Skeleton width="75%" />
                                 </div>
                             </div>

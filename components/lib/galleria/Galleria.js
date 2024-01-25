@@ -103,9 +103,9 @@ export const Galleria = React.memo(
             ZIndexUtils.set(
                 "modal",
                 maskRef.current,
-                (context?.autoZIndex) || PrimeReact.autoZIndex,
+                context?.autoZIndex || PrimeReact.autoZIndex,
                 props.baseZIndex ||
-                    (context?.zIndex.modal) ||
+                    context?.zIndex.modal ||
                     PrimeReact.zIndex.modal,
             );
             !isUnstyled() &&

@@ -453,7 +453,7 @@ export const Carousel = React.memo(
         const createStyle = () => {
             if (!carouselStyle.current) {
                 carouselStyle.current = DomHandler.createInlineStyle(
-                    (context?.nonce) || PrimeReact.nonce,
+                    context?.nonce || PrimeReact.nonce,
                     context?.styleContainer,
                 );
             }
@@ -466,7 +466,7 @@ export const Carousel = React.memo(
 
             if (props.responsiveOptions) {
                 const comparator = ObjectUtils.localeComparator(
-                    (context?.locale) || PrimeReact.locale,
+                    context?.locale || PrimeReact.locale,
                 );
 
                 responsiveOptions.current = [...props.responsiveOptions];
@@ -479,8 +479,7 @@ export const Carousel = React.memo(
                         value2,
                         -1,
                         comparator,
-                        (context?.nullSortOrder) ||
-                            PrimeReact.nullSortOrder,
+                        context?.nullSortOrder || PrimeReact.nullSortOrder,
                     );
                 });
 

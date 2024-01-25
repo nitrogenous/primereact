@@ -9,12 +9,11 @@ const Menu = memo((props) => {
     const menu = MenuData.data.map((data) => {
         const rootItem = { ...data };
 
-        rootItem.expanded =
-            rootItem.children?.some(
-                (item) =>
-                    item.to === router.pathname ||
-                    (item.children?.some((it) => it.to === router.pathname)),
-            );
+        rootItem.expanded = rootItem.children?.some(
+            (item) =>
+                item.to === router.pathname ||
+                item.children?.some((it) => it.to === router.pathname),
+        );
 
         return rootItem;
     });

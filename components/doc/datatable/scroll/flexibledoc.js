@@ -182,10 +182,7 @@ export default function FlexibleScrollDemo() {
                             tableStyle={{ minWidth: "50rem" }}
                         >
                             <Column field="name" header="Name" />
-                            <Column
-                                field="country.name"
-                                header="Country"
-                            />
+                            <Column field="country.name" header="Country" />
                             <Column
                                 field="representative.name"
                                 header="Representative"

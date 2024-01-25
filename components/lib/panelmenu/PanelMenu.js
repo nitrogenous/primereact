@@ -70,11 +70,11 @@ export const PanelMenu = React.memo(
             if (props.expandedKeys) {
                 return props.expandedKeys[getItemProp(item, "key")];
             }
-                return props.multiple
-                    ? activeItemsState.some((subItem) =>
-                          ObjectUtils.equals(item, subItem),
-                      )
-                    : ObjectUtils.equals(item, activeItemState);
+            return props.multiple
+                ? activeItemsState.some((subItem) =>
+                      ObjectUtils.equals(item, subItem),
+                  )
+                : ObjectUtils.equals(item, activeItemState);
         };
 
         const isItemVisible = (item) => {
@@ -328,11 +328,11 @@ export const PanelMenu = React.memo(
             setAnimationDisabled(true);
 
             props.model?.forEach((item) => {
-                    if (item.expanded) {
-                        changeActiveItem(null, item);
-                        item.expanded = false;
-                    }
-                });
+                if (item.expanded) {
+                    changeActiveItem(null, item);
+                    item.expanded = false;
+                }
+            });
             // eslint-disable-next-line react-hooks/exhaustive-deps
         }, [props.model]);
 

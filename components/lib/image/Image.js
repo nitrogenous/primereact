@@ -149,9 +149,8 @@ export const Image = React.memo(
             ZIndexUtils.set(
                 "modal",
                 maskRef.current,
-                (context?.autoZIndex) || PrimeReact.autoZIndex,
-                (context?.zIndex.modal) ||
-                    PrimeReact.zIndex.modal,
+                context?.autoZIndex || PrimeReact.autoZIndex,
+                context?.zIndex.modal || PrimeReact.zIndex.modal,
             );
         };
 

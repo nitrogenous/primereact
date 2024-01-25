@@ -20,9 +20,9 @@ const DocApiTable = (props) => {
             const element = document.getElementById(id);
 
             element?.parentElement.scrollIntoView({
-                    block: "start",
-                    behavior,
-                });
+                block: "start",
+                behavior,
+            });
         };
 
         const createContent = (value, isLinkableOption, deprecated) => {
@@ -48,10 +48,9 @@ const DocApiTable = (props) => {
                             <React.Fragment key={i}>
                                 {i !== 0 ? "|" : ""}
                                 <Link
-                                    href={
-                                        `${router.basePath +
-                                        router.pathname}#${apiId}`
-                                    }
+                                    href={`${
+                                        router.basePath + router.pathname
+                                    }#${apiId}`}
                                     target="_self"
                                 >
                                     <a onClick={() => onClick(apiId, "smooth")}>
@@ -76,10 +75,9 @@ const DocApiTable = (props) => {
                                 >
                                     {sValue}
                                     <Link
-                                        href={
-                                            `${router.basePath +
-                                            router.pathname}#${`${id}.${sValue}`}`
-                                        }
+                                        href={`${
+                                            router.basePath + router.pathname
+                                        }#${`${id}.${sValue}`}`}
                                         target="_self"
                                     >
                                         <a
@@ -100,10 +98,9 @@ const DocApiTable = (props) => {
                 });
             }
 
-            const val =
-                value?.includes('": "')
-                    ? value.replace(/['"]+/g, "").replace(/\.,/gm, ".")
-                    : value;
+            const val = value?.includes('": "')
+                ? value.replace(/['"]+/g, "").replace(/\.,/gm, ".")
+                : value;
 
             return isLinkableOption ? (
                 <span
@@ -115,10 +112,9 @@ const DocApiTable = (props) => {
                 >
                     {val}
                     <Link
-                        href={
-                            `${router.basePath +
-                            router.pathname}#${`${id}.${val}`}`
-                        }
+                        href={`${
+                            router.basePath + router.pathname
+                        }#${`${id}.${val}`}`}
                         target="_self"
                     >
                         <a
@@ -149,102 +145,96 @@ const DocApiTable = (props) => {
                                 </tr>
                             );
                         }
-                            return (
-                                <tr key={i}>
-                                    {Object.entries(d).map(
-                                        ([k, v], index) =>
-                                            k !== "readonly" &&
-                                            k !== "optional" &&
-                                            k !== "deprecated" && (
-                                                <td key={index}>
-                                                    {k === "parameters" ? (
-                                                        v.map((_v, i) => {
-                                                            return (
-                                                                <div
-                                                                    className="doc-option-params"
-                                                                    key={i}
-                                                                >
-                                                                    <span className="doc-option-parameter-name">
-                                                                        {
-                                                                            _v.name
-                                                                        }
-                                                                        :{" "}
-                                                                    </span>
-                                                                    <span className="doc-option-parameter-type">
-                                                                        {createContent(
-                                                                            _v.type,
-                                                                        )}
-                                                                    </span>
-                                                                    <br />
-                                                                </div>
-                                                            );
-                                                        })
-                                                    ) : k === "default" ? (
-                                                        <div
-                                                            className={classNames(
-                                                                "doc-option-default",
-                                                                {
-                                                                    "doc-option-dark":
-                                                                        appContentContext.darkTheme,
-                                                                    "doc-option-light":
-                                                                        !appContentContext.darkTheme,
-                                                                },
-                                                            )}
-                                                        >
-                                                            {ObjectUtils.isEmpty(
-                                                                v,
-                                                            )
-                                                                ? "null"
-                                                                : createContent(
-                                                                      v,
-                                                                      k ===
-                                                                          "name",
-                                                                      d.deprecated,
-                                                                  )}
-                                                        </div>
-                                                    ) : k === "type" ? (
-                                                        <span className="doc-option-type">
-                                                            {createContent(
-                                                                v,
-                                                                k === "name",
-                                                                d.deprecated,
-                                                            )}
-                                                        </span>
-                                                    ) : k === "returnType" ? (
-                                                        <div
-                                                            className={classNames(
-                                                                "doc-option-returnType",
-                                                                {
-                                                                    "doc-option-dark":
-                                                                        appContentContext.darkTheme,
-                                                                    "doc-option-light":
-                                                                        !appContentContext.darkTheme,
-                                                                },
-                                                            )}
-                                                        >
-                                                            {createContent(
-                                                                v,
-                                                                k === "name",
-                                                                d.deprecated,
-                                                            )}
-                                                        </div>
-                                                    ) : k === "description" ||
-                                                      k === "values" ? (
-                                                        <span className="doc-option-description">
-                                                            {v}
-                                                        </span>
-                                                    ) : (
-                                                        createContent(
+                        return (
+                            <tr key={i}>
+                                {Object.entries(d).map(
+                                    ([k, v], index) =>
+                                        k !== "readonly" &&
+                                        k !== "optional" &&
+                                        k !== "deprecated" && (
+                                            <td key={index}>
+                                                {k === "parameters" ? (
+                                                    v.map((_v, i) => {
+                                                        return (
+                                                            <div
+                                                                className="doc-option-params"
+                                                                key={i}
+                                                            >
+                                                                <span className="doc-option-parameter-name">
+                                                                    {_v.name}:{" "}
+                                                                </span>
+                                                                <span className="doc-option-parameter-type">
+                                                                    {createContent(
+                                                                        _v.type,
+                                                                    )}
+                                                                </span>
+                                                                <br />
+                                                            </div>
+                                                        );
+                                                    })
+                                                ) : k === "default" ? (
+                                                    <div
+                                                        className={classNames(
+                                                            "doc-option-default",
+                                                            {
+                                                                "doc-option-dark":
+                                                                    appContentContext.darkTheme,
+                                                                "doc-option-light":
+                                                                    !appContentContext.darkTheme,
+                                                            },
+                                                        )}
+                                                    >
+                                                        {ObjectUtils.isEmpty(v)
+                                                            ? "null"
+                                                            : createContent(
+                                                                  v,
+                                                                  k === "name",
+                                                                  d.deprecated,
+                                                              )}
+                                                    </div>
+                                                ) : k === "type" ? (
+                                                    <span className="doc-option-type">
+                                                        {createContent(
                                                             v,
                                                             k === "name",
                                                             d.deprecated,
-                                                        )
-                                                    )}
-                                                </td>
-                                            ),
-                                    )}
-                                </tr>
-                            );
+                                                        )}
+                                                    </span>
+                                                ) : k === "returnType" ? (
+                                                    <div
+                                                        className={classNames(
+                                                            "doc-option-returnType",
+                                                            {
+                                                                "doc-option-dark":
+                                                                    appContentContext.darkTheme,
+                                                                "doc-option-light":
+                                                                    !appContentContext.darkTheme,
+                                                            },
+                                                        )}
+                                                    >
+                                                        {createContent(
+                                                            v,
+                                                            k === "name",
+                                                            d.deprecated,
+                                                        )}
+                                                    </div>
+                                                ) : k === "description" ||
+                                                  k === "values" ? (
+                                                    <span className="doc-option-description">
+                                                        {v}
+                                                    </span>
+                                                ) : (
+                                                    createContent(
+                                                        v,
+                                                        k === "name",
+                                                        d.deprecated,
+                                                    )
+                                                )}
+                                            </td>
+                                        ),
+                                )}
+                            </tr>
+                        );
                     })}
                 </React.Fragment>
             );

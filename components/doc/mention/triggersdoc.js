@@ -65,8 +65,7 @@ export function TriggersDoc(props) {
     };
 
     const itemTemplate = (suggestion) => {
-        const src =
-            `https://primefaces.org/cdn/primereact/images/avatar/${suggestion.representative.image}`;
+        const src = `https://primefaces.org/cdn/primereact/images/avatar/${suggestion.representative.image}`;
 
         return (
             <div className="flex align-items-center">
@@ -91,7 +90,8 @@ export function TriggersDoc(props) {
 
         if (trigger === "@" && suggestion.nickname) {
             return itemTemplate(suggestion);
-        }if (trigger === "#" && !suggestion.nickname) {
+        }
+        if (trigger === "#" && !suggestion.nickname) {
             return <span>{suggestion}</span>;
         }
 

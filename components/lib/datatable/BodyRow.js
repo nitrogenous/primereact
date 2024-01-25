@@ -103,7 +103,8 @@ export const BodyRow = React.memo((props) => {
     const shouldRenderBodyCell = (value, column, i) => {
         if (getColumnProp(column, "hidden")) {
             return false;
-        }if (
+        }
+        if (
             props.rowGroupMode &&
             props.rowGroupMode === "rowspan" &&
             isGrouped(column)
@@ -152,7 +153,7 @@ export const BodyRow = React.memo((props) => {
 
             return groupRowSpan === 1 ? null : groupRowSpan;
         }
-            return null;
+        return null;
     };
 
     const onClick = (event) => {

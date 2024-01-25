@@ -181,20 +181,20 @@ export default function CustomContentDemo() {
                 />
                 <div className="grid" style={{ maxWidth: "400px" }}>
                     {images?.map((image, index) => {
-                            return (
-                                <div className="col-4" key={index}>
-                                    <img
-                                        src={image.thumbnailImageSrc}
-                                        alt={image.alt}
-                                        style={{ cursor: "pointer" }}
-                                        onClick={() => {
-                                            setActiveIndex(index);
-                                            galleria.current.show();
-                                        }}
-                                    />
-                                </div>
-                            );
-                        })}
+                        return (
+                            <div className="col-4" key={index}>
+                                <img
+                                    src={image.thumbnailImageSrc}
+                                    alt={image.alt}
+                                    style={{ cursor: "pointer" }}
+                                    onClick={() => {
+                                        setActiveIndex(index);
+                                        galleria.current.show();
+                                    }}
+                                />
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
             <DocSectionCode code={code} service={["PhotoService"]} />

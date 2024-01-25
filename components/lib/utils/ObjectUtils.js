@@ -95,23 +95,25 @@ export default class ObjectUtils {
         if (Object.keys(data).length) {
             if (ObjectUtils.isFunction(field)) {
                 return field(data);
-            }if (ObjectUtils.isNotEmpty(data[field])) {
-                return data[field];
-            }if (field.indexOf(".") === -1) {
+            }
+            if (ObjectUtils.isNotEmpty(data[field])) {
                 return data[field];
             }
-                const fields = field.split(".");
-                let value = data;
+            if (field.indexOf(".") === -1) {
+                return data[field];
+            }
+            const fields = field.split(".");
+            let value = data;
 
-                for (let i = 0, len = fields.length; i < len; ++i) {
-                    if (value == null) {
-                        return null;
-                    }
-
-                    value = value[fields[i]];
+            for (let i = 0, len = fields.length; i < len; ++i) {
+                if (value == null) {
+                    return null;
                 }
 
-                return value;
+                value = value[fields[i]];
+            }
+
+            return value;
         }
 
         return null;
@@ -169,7 +171,9 @@ export default class ObjectUtils {
     static findIndexInList(value, list, dataKey) {
         if (list) {
             return dataKey
-                ? list.findIndex((item) => ObjectUtils.equals(item, value, dataKey))
+                ? list.findIndex((item) =>
+                      ObjectUtils.equals(item, value, dataKey),
+                  )
                 : list.findIndex((item) => item === value);
         }
 
@@ -194,7 +198,10 @@ export default class ObjectUtils {
         const fkey = ObjectUtils.toFlatCase(prop);
 
         for (const key in props) {
-            if (props.hasOwnProperty(key) && ObjectUtils.toFlatCase(key) === fkey) {
+            if (
+                props.hasOwnProperty(key) &&
+                ObjectUtils.toFlatCase(key) === fkey
+            ) {
                 return props[key];
             }
         }
@@ -398,7 +405,11 @@ export default class ObjectUtils {
     }
 
     static isPrintableCharacter(char = "") {
-        return ObjectUtils.isNotEmpty(char) && char.length === 1 && char.match(/\S| /);
+        return (
+            ObjectUtils.isNotEmpty(char) &&
+            char.length === 1 &&
+            char.match(/\S| /)
+        );
     }
 
     static isLetter(char) {
@@ -477,8 +488,12 @@ export default class ObjectUtils {
         for (const item of data) {
             if (item.key === key) {
                 return item.children || [];
-            }if (item.children) {
-                const result = ObjectUtils.findChildrenByKey(item.children, key);
+            }
+            if (item.children) {
+                const result = ObjectUtils.findChildrenByKey(
+                    item.children,
+                    key,
+                );
 
                 if (result.length > 0) {
                     return result;

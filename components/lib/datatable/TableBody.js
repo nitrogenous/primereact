@@ -73,19 +73,19 @@ export const TableBody = React.memo(
                     (data1.field === data2.field ||
                         data1.cellIndex === data2.cellIndex)
                 );
-            
-                return props.compareSelectionBy === "equals"
-                    ? data1 === data2
-                    : ObjectUtils.equals(data1, data2, props.dataKey);
+
+            return props.compareSelectionBy === "equals"
+                ? data1 === data2
+                : ObjectUtils.equals(data1, data2, props.dataKey);
         };
 
         const isSelectionEnabled = () => {
             return (
                 props.selectionMode ||
                 props.selectionModeInColumn !== null ||
-                (props.columns?.some(
-                        (col) => col && !!getColumnProp(col, "selectionMode"),
-                    ))
+                props.columns?.some(
+                    (col) => col && !!getColumnProp(col, "selectionMode"),
+                )
             );
         };
 
@@ -142,31 +142,30 @@ export const TableBody = React.memo(
                 if (isSubheaderGrouping && props.expandableRowGroups) {
                     return isRowGroupExpanded(rowData);
                 }
-                    if (props.dataKey) {
-                        const rowId = ObjectUtils.resolveFieldData(
-                            rowData,
-                            props.dataKey,
-                        );
-                        let expanded = false;
+                if (props.dataKey) {
+                    const rowId = ObjectUtils.resolveFieldData(
+                        rowData,
+                        props.dataKey,
+                    );
+                    let expanded = false;
 
-                        if (props.expandedRows) {
-                            if (Array.isArray(props.expandedRows)) {
-                                expanded = props.expandedRows.some(
-                                    (row) =>
-                                        ObjectUtils.resolveFieldData(
-                                            row,
-                                            props.dataKey,
-                                        ) === rowId,
-                                );
-                            } else {
-                                expanded =
-                                    props.expandedRows[rowId] !== undefined;
-                            }
+                    if (props.expandedRows) {
+                        if (Array.isArray(props.expandedRows)) {
+                            expanded = props.expandedRows.some(
+                                (row) =>
+                                    ObjectUtils.resolveFieldData(
+                                        row,
+                                        props.dataKey,
+                                    ) === rowId,
+                            );
+                        } else {
+                            expanded = props.expandedRows[rowId] !== undefined;
                         }
-
-                        return expanded;
                     }
-                        return findIndex(props.expandedRows, rowData) !== -1;
+
+                    return expanded;
+                }
+                return findIndex(props.expandedRows, rowData) !== -1;
             }
 
             return false;
@@ -180,10 +179,10 @@ export const TableBody = React.memo(
                         ObjectUtils.resolveFieldData(rowData, props.dataKey),
                     ),
                 );
-            
-                return props.expandedRows.some((data) =>
-                    ObjectUtils.equals(data, rowData, props.groupRowsBy),
-                );
+
+            return props.expandedRows.some((data) =>
+                ObjectUtils.equals(data, rowData, props.groupRowsBy),
+            );
         };
 
         const isRowEditing = (rowData) => {
@@ -312,38 +311,37 @@ export const TableBody = React.memo(
                     previousRowFieldData,
                 );
             }
-                return true;
+            return true;
         };
 
         const shouldRenderRowGroupFooter = (value, rowData, i, expanded) => {
             if (props.expandableRowGroups && !expanded) {
                 return false;
             }
-                const currentRowFieldData = ObjectUtils.resolveFieldData(
-                    rowData,
+            const currentRowFieldData = ObjectUtils.resolveFieldData(
+                rowData,
+                props.groupRowsBy,
+            );
+            const nextRowData = value[i + 1];
+
+            if (nextRowData) {
+                const nextRowFieldData = ObjectUtils.resolveFieldData(
+                    nextRowData,
                     props.groupRowsBy,
                 );
-                const nextRowData = value[i + 1];
 
-                if (nextRowData) {
-                    const nextRowFieldData = ObjectUtils.resolveFieldData(
-                        nextRowData,
-                        props.groupRowsBy,
-                    );
-
-                    return !ObjectUtils.deepEquals(
-                        currentRowFieldData,
-                        nextRowFieldData,
-                    );
-                }
-                    return true;
+                return !ObjectUtils.deepEquals(
+                    currentRowFieldData,
+                    nextRowFieldData,
+                );
+            }
+            return true;
         };
 
         const updateFrozenRowStickyPosition = () => {
-            elementRef.current.style.top =
-                `${DomHandler.getOuterHeight(
-                    elementRef.current.previousElementSibling,
-                )}px`;
+            elementRef.current.style.top = `${DomHandler.getOuterHeight(
+                elementRef.current.previousElementSibling,
+            )}px`;
         };
 
         const updateFrozenRowGroupHeaderStickyPosition = () => {
@@ -566,20 +564,20 @@ export const TableBody = React.memo(
         const onSelect = (event) => {
             if (allowCellSelection())
                 props.onCellSelect?.({
-                        originalEvent: event.originalEvent,
-                        ...event.data,
-                        type: event.type,
-                    });
+                    originalEvent: event.originalEvent,
+                    ...event.data,
+                    type: event.type,
+                });
             else props.onRowSelect?.(event);
         };
 
         const onUnselect = (event) => {
             if (allowCellSelection())
                 props.onCellUnselect?.({
-                        originalEvent: event.originalEvent,
-                        ...event.data,
-                        type: event.type,
-                    });
+                    originalEvent: event.originalEvent,
+                    ...event.data,
+                    type: event.type,
+                });
             else props.onRowUnselect?.(event);
         };
 
@@ -658,7 +656,7 @@ export const TableBody = React.memo(
         const onRowClick = (event) => {
             if (
                 event.defaultPrevented ||
-                (event.originalEvent?.defaultPrevented) ||
+                event.originalEvent?.defaultPrevented ||
                 allowCellSelection() ||
                 !allowSelection(event)
             ) {
@@ -1451,46 +1449,43 @@ export const TableBody = React.memo(
         };
 
         const createContent = () => {
-            return (
-                props.value?.map((rowData, index) => {
-                    const rowIndex = getVirtualScrollerOption("getItemOptions")
-                        ? getVirtualScrollerOption("getItemOptions")(index)
-                              .index
-                        : props.first + index;
-                    const key = getRowKey(rowData, rowIndex);
-                    const expanded = isRowExpanded(rowData);
-                    const colSpan = getColumnsLength();
+            return props.value?.map((rowData, index) => {
+                const rowIndex = getVirtualScrollerOption("getItemOptions")
+                    ? getVirtualScrollerOption("getItemOptions")(index).index
+                    : props.first + index;
+                const key = getRowKey(rowData, rowIndex);
+                const expanded = isRowExpanded(rowData);
+                const colSpan = getColumnsLength();
 
-                    const groupHeader = createGroupHeader(
-                        rowData,
-                        rowIndex,
-                        expanded,
-                        colSpan,
-                    );
-                    const row = createRow(rowData, rowIndex, index, expanded);
-                    const expansion = createExpansion(
-                        rowData,
-                        rowIndex,
-                        expanded,
-                        colSpan,
-                    );
-                    const groupFooter = createGroupFooter(
-                        rowData,
-                        rowIndex,
-                        expanded,
-                        colSpan,
-                    );
+                const groupHeader = createGroupHeader(
+                    rowData,
+                    rowIndex,
+                    expanded,
+                    colSpan,
+                );
+                const row = createRow(rowData, rowIndex, index, expanded);
+                const expansion = createExpansion(
+                    rowData,
+                    rowIndex,
+                    expanded,
+                    colSpan,
+                );
+                const groupFooter = createGroupFooter(
+                    rowData,
+                    rowIndex,
+                    expanded,
+                    colSpan,
+                );
 
-                    return (
-                        <React.Fragment key={key}>
-                            {groupHeader}
-                            {row}
-                            {expansion}
-                            {groupFooter}
-                        </React.Fragment>
-                    );
-                })
-            );
+                return (
+                    <React.Fragment key={key}>
+                        {groupHeader}
+                        {row}
+                        {expansion}
+                        {groupFooter}
+                    </React.Fragment>
+                );
+            });
         };
 
         const content = props.empty ? createEmptyContent() : createContent();

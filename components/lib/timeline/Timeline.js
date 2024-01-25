@@ -35,76 +35,74 @@ export const Timeline = React.memo(
         };
 
         const createEvents = () => {
-            return (
-                props.value?.map((item, index) => {
-                    const opposite = ObjectUtils.getJSXElement(
-                        props.opposite,
-                        item,
-                        index,
-                    );
-                    const markerProps = mergeProps(
-                        {
-                            className: cx("marker"),
-                        },
-                        getPTOptions("marker", index),
-                    );
-                    const marker = ObjectUtils.getJSXElement(
-                        props.marker,
-                        item,
-                        index,
-                    ) || <div {...markerProps} />;
-                    const connectorProps = mergeProps(
-                        {
-                            className: cx("connector"),
-                        },
-                        getPTOptions("connector", index),
-                    );
-                    const connector = index !== props.value.length - 1 && (
-                        <div {...connectorProps} />
-                    );
-                    const content = ObjectUtils.getJSXElement(
-                        props.content,
-                        item,
-                        index,
-                    );
+            return props.value?.map((item, index) => {
+                const opposite = ObjectUtils.getJSXElement(
+                    props.opposite,
+                    item,
+                    index,
+                );
+                const markerProps = mergeProps(
+                    {
+                        className: cx("marker"),
+                    },
+                    getPTOptions("marker", index),
+                );
+                const marker = ObjectUtils.getJSXElement(
+                    props.marker,
+                    item,
+                    index,
+                ) || <div {...markerProps} />;
+                const connectorProps = mergeProps(
+                    {
+                        className: cx("connector"),
+                    },
+                    getPTOptions("connector", index),
+                );
+                const connector = index !== props.value.length - 1 && (
+                    <div {...connectorProps} />
+                );
+                const content = ObjectUtils.getJSXElement(
+                    props.content,
+                    item,
+                    index,
+                );
 
-                    const eventProps = mergeProps(
-                        {
-                            className: cx("event"),
-                        },
-                        getPTOptions("event", index),
-                    );
-                    const oppositeProps = mergeProps(
-                        {
-                            className: cx("opposite"),
-                        },
-                        getPTOptions("opposite", index),
-                    );
-                    const separatorProps = mergeProps(
-                        {
-                            className: cx("separator"),
-                        },
-                        getPTOptions("separator", index),
-                    );
-                    const contentProps = mergeProps(
-                        {
-                            className: cx("content"),
-                        },
-                        getPTOptions("content", index),
-                    );
+                const eventProps = mergeProps(
+                    {
+                        className: cx("event"),
+                    },
+                    getPTOptions("event", index),
+                );
+                const oppositeProps = mergeProps(
+                    {
+                        className: cx("opposite"),
+                    },
+                    getPTOptions("opposite", index),
+                );
+                const separatorProps = mergeProps(
+                    {
+                        className: cx("separator"),
+                    },
+                    getPTOptions("separator", index),
+                );
+                const contentProps = mergeProps(
+                    {
+                        className: cx("content"),
+                    },
+                    getPTOptions("content", index),
+                );
 
-                    return (
-                        <div key={getKey(item, index)} {...eventProps}>
-                            <div {...oppositeProps}>{opposite}</div>
-                            <div {...separatorProps}>
-                                {marker}
-                                {connector}
-                            </div>
-                            <div {...contentProps}>{content}</div>
+                return (
+                    <div key={getKey(item, index)} {...eventProps}>
+                        <div {...oppositeProps}>{opposite}</div>
+                        <div {...separatorProps}>
+                            {marker}
+                            {connector}
                         </div>
-                    );
-                })
-            );
+                        <div {...contentProps}>{content}</div>
+                    </div>
+                );
+            });
         };
 
         React.useImperativeHandle(ref, () => ({

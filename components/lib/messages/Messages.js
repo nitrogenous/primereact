@@ -135,27 +135,27 @@ export const Messages = React.memo(
             <div ref={elementRef} {...rootProps}>
                 <TransitionGroup>
                     {messagesState?.map((message, index) => {
-                            const messageRef = React.createRef();
+                        const messageRef = React.createRef();
 
-                            return (
-                                <CSSTransition
-                                    nodeRef={messageRef}
-                                    key={message._pId}
-                                    {...transitionProps}
-                                >
-                                    <UIMessage
-                                        hostName="Messages"
-                                        ref={messageRef}
-                                        message={message}
-                                        onClick={props.onClick}
-                                        onClose={onClose}
-                                        ptCallbacks={ptCallbacks}
-                                        metaData={metaData}
-                                        index={index}
-                                    />
-                                </CSSTransition>
-                            );
-                        })}
+                        return (
+                            <CSSTransition
+                                nodeRef={messageRef}
+                                key={message._pId}
+                                {...transitionProps}
+                            >
+                                <UIMessage
+                                    hostName="Messages"
+                                    ref={messageRef}
+                                    message={message}
+                                    onClick={props.onClick}
+                                    onClose={onClose}
+                                    ptCallbacks={ptCallbacks}
+                                    metaData={metaData}
+                                    index={index}
+                                />
+                            </CSSTransition>
+                        );
+                    })}
                 </TransitionGroup>
             </div>
         );

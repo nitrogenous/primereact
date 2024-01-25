@@ -466,9 +466,7 @@ export const Menubar = React.memo(
                         'a[data-pc-section="action"]',
                     );
 
-                anchorElement
-                    ? anchorElement.click()
-                    : element?.click();
+                anchorElement ? anchorElement.click() : element?.click();
             }
 
             event.preventDefault();
@@ -642,9 +640,9 @@ export const Menubar = React.memo(
 
             if (element) {
                 element.scrollIntoView?.({
-                        block: "nearest",
-                        inline: "start",
-                    });
+                    block: "nearest",
+                    inline: "start",
+                });
             }
         };
 
@@ -653,25 +651,25 @@ export const Menubar = React.memo(
                 const _processedItems = [];
 
                 items?.forEach((item, index) => {
-                        const key =
-                            (parentKey !== "" ? `${parentKey}_` : "") + index;
-                        const newItem = {
-                            item,
-                            index,
-                            level,
-                            key,
-                            parent,
-                            parentKey,
-                        };
+                    const key =
+                        (parentKey !== "" ? `${parentKey}_` : "") + index;
+                    const newItem = {
+                        item,
+                        index,
+                        level,
+                        key,
+                        parent,
+                        parentKey,
+                    };
 
-                        newItem.items = createProcessedItems(
-                            item.items,
-                            level + 1,
-                            newItem,
-                            key,
-                        );
-                        _processedItems.push(newItem);
-                    });
+                    newItem.items = createProcessedItems(
+                        item.items,
+                        level + 1,
+                        newItem,
+                        key,
+                    );
+                    _processedItems.push(newItem);
+                });
 
                 return _processedItems;
             },
@@ -691,9 +689,8 @@ export const Menubar = React.memo(
                 ZIndexUtils.set(
                     "menu",
                     rootMenuRef.current,
-                    (context?.autoZIndex) || PrimeReact.autoZIndex,
-                    (context?.zIndex.menu) ||
-                        PrimeReact.zIndex.menu,
+                    context?.autoZIndex || PrimeReact.autoZIndex,
+                    context?.zIndex.menu || PrimeReact.zIndex.menu,
                 );
             } else {
                 unbindResizeListener();

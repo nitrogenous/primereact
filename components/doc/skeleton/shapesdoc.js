@@ -148,10 +148,7 @@ export default function ShapesDemo() {
                     </div>
                     <div className="w-full md:w-6 p-3">
                         <h5>Rounded</h5>
-                        <Skeleton
-                            className="mb-2"
-                            borderRadius="16px"
-                        />
+                        <Skeleton className="mb-2" borderRadius="16px" />
                         <Skeleton
                             width="10rem"
                             className="mb-2"

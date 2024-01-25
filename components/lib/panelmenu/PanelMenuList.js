@@ -2,7 +2,7 @@ import * as React from "react";
 import { useUpdateEffect } from "../hooks/useUpdateEffect";
 import { DomHandler, ObjectUtils } from "../utils/Utils";
 import { PanelMenuSub } from "./PanelMenuSub";
-"";
+("");
 
 export const PanelMenuList = React.memo((props) => {
     const { ptm, cx } = props;
@@ -37,8 +37,8 @@ export const PanelMenuList = React.memo((props) => {
     };
 
     const isItemActive = (processedItem) => {
-        return (
-            activeItemPath?.some((path) => path.key === processedItem.parentKey)
+        return activeItemPath?.some(
+            (path) => path.key === processedItem.parentKey,
         );
     };
 
@@ -460,37 +460,37 @@ export const PanelMenuList = React.memo((props) => {
         const processedItems = [];
 
         items?.forEach((item, index) => {
-                const key = item.key
-                    ? item.key
-                    : (parentKey !== "" ? `${parentKey}_` : "") + index;
-                const newItem = {
-                    item,
-                    index,
-                    level,
-                    key,
-                    parent,
-                    parentKey,
-                };
+            const key = item.key
+                ? item.key
+                : (parentKey !== "" ? `${parentKey}_` : "") + index;
+            const newItem = {
+                item,
+                index,
+                level,
+                key,
+                parent,
+                parentKey,
+            };
 
-                newItem.items = createProcessedItems(
-                    item.items,
-                    level + 1,
-                    newItem,
-                    key,
-                );
-                processedItems.push(newItem);
-            });
+            newItem.items = createProcessedItems(
+                item.items,
+                level + 1,
+                newItem,
+                key,
+            );
+            processedItems.push(newItem);
+        });
 
         return processedItems;
     };
 
     const flatItems = (processedItems, processedFlattenItems = []) => {
         processedItems?.forEach((processedItem) => {
-                if (isVisibleItem(processedItem)) {
-                    processedFlattenItems.push(processedItem);
-                    flatItems(processedItem.items, processedFlattenItems);
-                }
-            });
+            if (isVisibleItem(processedItem)) {
+                processedFlattenItems.push(processedItem);
+                flatItems(processedItem.items, processedFlattenItems);
+            }
+        });
 
         return processedFlattenItems;
     };

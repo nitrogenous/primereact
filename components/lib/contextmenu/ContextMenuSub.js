@@ -126,10 +126,8 @@ export const ContextMenuSub = React.memo(
         };
 
         const isItemActive = (processedItem) => {
-            return (
-                props.activeItemPath?.some(
-                    (path) => path.key === processedItem.key,
-                )
+            return props.activeItemPath?.some(
+                (path) => path.key === processedItem.key,
             );
         };
 

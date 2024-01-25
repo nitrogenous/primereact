@@ -185,10 +185,9 @@ export const Tooltip = React.memo(
                     ZIndexUtils.set(
                         "tooltip",
                         elementRef.current,
-                        (context?.autoZIndex) ||
-                            PrimeReact.autoZIndex,
+                        context?.autoZIndex || PrimeReact.autoZIndex,
                         props.baseZIndex ||
-                            (context?.zIndex.tooltip) ||
+                            context?.zIndex.tooltip ||
                             PrimeReact.zIndex.tooltip,
                     );
                 }
@@ -333,8 +332,9 @@ export const Tooltip = React.memo(
                     containerSize.current.width > _containerSize.width
                 ) {
                     elementRef.current.style.left = "0px";
-                    elementRef.current.style.right =
-                        `${window.innerWidth - _containerSize.width - left}px`;
+                    elementRef.current.style.right = `${
+                        window.innerWidth - _containerSize.width - left
+                    }px`;
                 } else {
                     elementRef.current.style.right = "";
                     elementRef.current.style.left = `${left}px`;
@@ -381,13 +381,14 @@ export const Tooltip = React.memo(
                 const style = getComputedStyle(elementRef.current);
 
                 if (position === "left")
-                    elementRef.current.style.left =
-                        `${parseFloat(style.left) -
-                        parseFloat(style.paddingLeft) * 2}px`;
+                    elementRef.current.style.left = `${
+                        parseFloat(style.left) -
+                        parseFloat(style.paddingLeft) * 2
+                    }px`;
                 else if (position === "top")
-                    elementRef.current.style.top =
-                        `${parseFloat(style.top) -
-                        parseFloat(style.paddingTop) * 2}px`;
+                    elementRef.current.style.top = `${
+                        parseFloat(style.top) - parseFloat(style.paddingTop) * 2
+                    }px`;
             }
         };
 
@@ -492,8 +493,9 @@ export const Tooltip = React.memo(
 
                         return wrapper;
                     }
-                        return target.parentElement;
-                }if (target.hasWrapper) {
+                    return target.parentElement;
+                }
+                if (target.hasWrapper) {
                     target.parentElement.replaceWith(
                         ...target.parentElement.childNodes,
                     );

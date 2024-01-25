@@ -115,12 +115,7 @@ export default function SingleColumnDemo() {
             </DocSectionText>
             <div className="card">
                 <TreeTable value={nodes} tableStyle={{ minWidth: "50rem" }}>
-                    <Column
-                        field="name"
-                        header="Name"
-                        expander
-                        sortable
-                    />
+                    <Column field="name" header="Name" expander sortable />
                     <Column field="size" header="Size" sortable />
                     <Column field="type" header="Type" sortable />
                 </TreeTable>

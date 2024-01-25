@@ -12,7 +12,7 @@ export const CSSTransition = React.forwardRef((inProps, ref) => {
 
     const disabled =
         props.disabled ||
-        (props.options?.disabled) ||
+        props.options?.disabled ||
         (context && !context.cssTransition) ||
         !PrimeReact.cssTransition;
 
@@ -66,32 +66,32 @@ export const CSSTransition = React.forwardRef((inProps, ref) => {
     if (disabled) {
         return props.in ? props.children : null;
     }
-        const immutableProps = {
-            nodeRef: props.nodeRef,
-            in: props.in,
-            onEnter: onEnter,
-            onEntering: onEntering,
-            onEntered: onEntered,
-            onExit: onExit,
-            onExiting: onExiting,
-            onExited: onExited,
-        };
-        const mutableProps = {
-            classNames: props.classNames,
-            timeout: props.timeout,
-            unmountOnExit: props.unmountOnExit,
-        };
-        const mergedProps = {
-            ...mutableProps,
-            ...(props.options || {}),
-            ...immutableProps,
-        };
+    const immutableProps = {
+        nodeRef: props.nodeRef,
+        in: props.in,
+        onEnter: onEnter,
+        onEntering: onEntering,
+        onEntered: onEntered,
+        onExit: onExit,
+        onExiting: onExiting,
+        onExited: onExited,
+    };
+    const mutableProps = {
+        classNames: props.classNames,
+        timeout: props.timeout,
+        unmountOnExit: props.unmountOnExit,
+    };
+    const mergedProps = {
+        ...mutableProps,
+        ...(props.options || {}),
+        ...immutableProps,
+    };
 
-        return (
-            <ReactCSSTransition {...mergedProps}>
-                {props.children}
-            </ReactCSSTransition>
-        );
+    return (
+        <ReactCSSTransition {...mergedProps}>
+            {props.children}
+        </ReactCSSTransition>
+    );
 });
 
 CSSTransition.displayName = "CSSTransition";

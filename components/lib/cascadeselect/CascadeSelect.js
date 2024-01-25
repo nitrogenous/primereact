@@ -262,9 +262,8 @@ export const CascadeSelect = React.memo(
             ZIndexUtils.set(
                 "overlay",
                 overlayRef.current,
-                (context?.autoZIndex) || PrimeReact.autoZIndex,
-                (context?.zIndex.overlay) ||
-                    PrimeReact.zIndex.overlay,
+                context?.autoZIndex || PrimeReact.autoZIndex,
+                context?.zIndex.overlay || PrimeReact.zIndex.overlay,
             );
             DomHandler.addStyles(overlayRef.current, {
                 position: "absolute",
@@ -303,16 +302,14 @@ export const CascadeSelect = React.memo(
             DomHandler.alignOverlay(
                 overlayRef.current,
                 labelRef.current.parentElement,
-                props.appendTo ||
-                    (context?.appendTo) ||
-                    PrimeReact.appendTo,
+                props.appendTo || context?.appendTo || PrimeReact.appendTo,
             );
         };
 
         const createStyle = () => {
             if (!styleElementRef.current) {
                 styleElementRef.current = DomHandler.createInlineStyle(
-                    (context?.nonce) || PrimeReact.nonce,
+                    context?.nonce || PrimeReact.nonce,
                     context?.styleContainer,
                 );
 

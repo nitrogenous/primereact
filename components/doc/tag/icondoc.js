@@ -55,16 +55,8 @@ export default function IconDemo() {
             </DocSectionText>
             <div className="card flex flex-wrap justify-content-center gap-2">
                 <Tag icon="pi pi-user" value="Primary" />
-                <Tag
-                    icon="pi pi-check"
-                    severity="success"
-                    value="Success"
-                />
-                <Tag
-                    icon="pi pi-info-circle"
-                    severity="info"
-                    value="Info"
-                />
+                <Tag icon="pi pi-check" severity="success" value="Success" />
+                <Tag icon="pi pi-info-circle" severity="info" value="Info" />
                 <Tag
                     icon="pi pi-exclamation-triangle"
                     severity="warning"

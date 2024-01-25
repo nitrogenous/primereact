@@ -35,7 +35,8 @@ export const Avatar = React.forwardRef((inProps, ref) => {
             );
 
             return <img alt={props.imageAlt} {...imageProps} />;
-        }if (props.label) {
+        }
+        if (props.label) {
             const labelProps = mergeProps(
                 {
                     className: cx("label"),
@@ -44,7 +45,8 @@ export const Avatar = React.forwardRef((inProps, ref) => {
             );
 
             return <span {...labelProps}>{props.label}</span>;
-        }if (props.icon) {
+        }
+        if (props.icon) {
             const iconProps = mergeProps(
                 {
                     className: cx("icon"),

@@ -17,7 +17,7 @@ function MenuItem(props) {
             !rootItem.children.some(
                 (item) =>
                     item.to === router.pathname ||
-                    (item.children?.some((it) => it.to === router.pathname)),
+                    item.children?.some((it) => it.to === router.pathname),
             )
         );
     };
@@ -75,10 +75,7 @@ function MenuItem(props) {
                         )}
                         <span>{menuItem?.name}</span>
                         {menuItem?.badge && (
-                            <Badge
-                                value={menuItem.badge}
-                                className="ml-auto"
-                            />
+                            <Badge value={menuItem.badge} className="ml-auto" />
                         )}
                     </a>
                 </Link>

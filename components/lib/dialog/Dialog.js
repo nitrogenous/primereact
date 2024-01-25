@@ -451,10 +451,9 @@ export const Dialog = React.forwardRef((inProps, ref) => {
         }
         // Or remove it from global registry if unmounted or invisible:
         else {
-            document.primeDialogParams =
-                document.primeDialogParams?.filter(
-                    (param) => param.id !== idState,
-                );
+            document.primeDialogParams = document.primeDialogParams?.filter(
+                (param) => param.id !== idState,
+            );
         }
 
         // Always update scroll blocker after dialog registry - this way we ensure that
@@ -486,7 +485,7 @@ export const Dialog = React.forwardRef((inProps, ref) => {
 
     const createStyle = () => {
         styleElement.current = DomHandler.createInlineStyle(
-            (context?.nonce) || PrimeReact.nonce,
+            context?.nonce || PrimeReact.nonce,
             context?.styleContainer,
         );
 
@@ -551,9 +550,9 @@ export const Dialog = React.forwardRef((inProps, ref) => {
             ZIndexUtils.set(
                 "modal",
                 maskRef.current,
-                (context?.autoZIndex) || PrimeReact.autoZIndex,
+                context?.autoZIndex || PrimeReact.autoZIndex,
                 props.baseZIndex ||
-                    (context?.zIndex.modal) ||
+                    context?.zIndex.modal ||
                     PrimeReact.zIndex.modal,
             );
             setVisibleState(true);
@@ -766,7 +765,8 @@ export const Dialog = React.forwardRef((inProps, ref) => {
             if (obj.hasOwnProperty(key)) {
                 if (key === "message") {
                     return obj[key];
-                }if (typeof obj[key] === "object") {
+                }
+                if (typeof obj[key] === "object") {
                     const result = findMessageProperty(obj[key]);
 
                     if (result !== undefined) {
@@ -899,15 +899,13 @@ export const Dialog = React.forwardRef((inProps, ref) => {
                 />
             );
         }
-            const element = createElement({
-                maskProps,
-                rootProps,
-                transitionProps,
-            });
+        const element = createElement({
+            maskProps,
+            rootProps,
+            transitionProps,
+        });
 
-            return (
-                <Portal element={element} appendTo={props.appendTo} visible />
-            );
+        return <Portal element={element} appendTo={props.appendTo} visible />;
     };
 
     return maskVisibleState && createDialog();

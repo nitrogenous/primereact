@@ -419,8 +419,9 @@ export const GalleriaItem = React.memo(
             return null;
         };
 
-        const content =
-            props.itemTemplate?.(props.value[props.activeItemIndex]);
+        const content = props.itemTemplate?.(
+            props.value[props.activeItemIndex],
+        );
         const backwardNavigator = createBackwardNavigator();
         const forwardNavigator = createForwardNavigator();
         const caption = createCaption();

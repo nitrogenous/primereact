@@ -40,13 +40,10 @@ export const Dropdown = React.memo(
         const searchTimeout = React.useRef(null);
         const searchValue = React.useRef(null);
         const currentSearchChar = React.useRef(null);
-        const isLazy =
-            props.virtualScrollerOptions?.lazy;
+        const isLazy = props.virtualScrollerOptions?.lazy;
         const hasFilter = ObjectUtils.isNotEmpty(filterState);
         const appendTo =
-            props.appendTo ||
-            (context?.appendTo) ||
-            PrimeReact.appendTo;
+            props.appendTo || context?.appendTo || PrimeReact.appendTo;
         const { ptm, cx, sx, isUnstyled } = DropdownBase.setMetaData({
             props,
             ...props.__parentMetadata,
@@ -110,15 +107,15 @@ export const Dropdown = React.memo(
 
                     return filteredGroups;
                 }
-                    return FilterService.filter(
-                        props.options,
-                        searchFields,
-                        filterValue,
-                        props.filterMatchMode,
-                        props.filterLocale,
-                    );
+                return FilterService.filter(
+                    props.options,
+                    searchFields,
+                    filterValue,
+                    props.filterMatchMode,
+                    props.filterLocale,
+                );
             }
-                return props.options;
+            return props.options;
         };
 
         const isClearClicked = (event) => {
@@ -150,11 +147,10 @@ export const Dropdown = React.memo(
 
             if (isClearClicked(event) || event.target.tagName === "INPUT") {
                 return;
-            }if (
+            }
+            if (
                 !overlayRef.current ||
-                !(
-                    overlayRef.current?.contains(event.target)
-                )
+                !overlayRef.current?.contains(event.target)
             ) {
                 DomHandler.focus(focusInputRef.current);
                 overlayVisibleState ? hide() : show();
@@ -645,9 +641,8 @@ export const Dropdown = React.memo(
             ZIndexUtils.set(
                 "overlay",
                 overlayRef.current,
-                (context?.autoZIndex) || PrimeReact.autoZIndex,
-                (context?.zIndex.overlay) ||
-                    PrimeReact.zIndex.overlay,
+                context?.autoZIndex || PrimeReact.autoZIndex,
+                context?.zIndex.overlay || PrimeReact.zIndex.overlay,
             );
             DomHandler.addStyles(overlayRef.current, {
                 position: "absolute",
@@ -683,9 +678,7 @@ export const Dropdown = React.memo(
             DomHandler.alignOverlay(
                 overlayRef.current,
                 inputRef.current.parentElement,
-                props.appendTo ||
-                    (context?.appendTo) ||
-                    PrimeReact.appendTo,
+                props.appendTo || context?.appendTo || PrimeReact.appendTo,
             );
         };
 
@@ -956,23 +949,23 @@ export const Dropdown = React.memo(
 
                 return <input {...inputProps} />;
             }
-                const content = props.valueTemplate
-                    ? ObjectUtils.getJSXElement(
-                          props.valueTemplate,
-                          selectedOption,
-                          props,
-                      )
-                    : label || props.placeholder || "empty";
-                const inputProps = mergeProps(
-                    {
-                        ref: inputRef,
-                        className: cx("input", { label }),
-                        tabIndex: "-1",
-                    },
-                    ptm("input"),
-                );
+            const content = props.valueTemplate
+                ? ObjectUtils.getJSXElement(
+                      props.valueTemplate,
+                      selectedOption,
+                      props,
+                  )
+                : label || props.placeholder || "empty";
+            const inputProps = mergeProps(
+                {
+                    ref: inputRef,
+                    className: cx("input", { label }),
+                    tabIndex: "-1",
+                },
+                ptm("input"),
+            );
 
-                return <span {...inputProps}>{content}</span>;
+            return <span {...inputProps}>{content}</span>;
         };
 
         const createClearIcon = () => {

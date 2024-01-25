@@ -117,8 +117,7 @@ export const StyleClass = React.forwardRef((inProps, ref) => {
                 if (props.enterActiveClassName === "slidedown") {
                     targetRef.current.style.height = "0px";
                     DomHandler.removeClass(targetRef.current, "hidden");
-                    targetRef.current.style.maxHeight =
-                        `${targetRef.current.scrollHeight}px`;
+                    targetRef.current.style.maxHeight = `${targetRef.current.scrollHeight}px`;
                     DomHandler.addClass(targetRef.current, "hidden");
                     targetRef.current.style.height = "";
                 }
@@ -192,22 +191,16 @@ export const StyleClass = React.forwardRef((inProps, ref) => {
 
         switch (props.selector) {
             case "@next":
-                return (
-                    elementRef.current?.nextElementSibling
-                );
+                return elementRef.current?.nextElementSibling;
 
             case "@prev":
-                return (
-                    elementRef.current?.previousElementSibling
-                );
+                return elementRef.current?.previousElementSibling;
 
             case "@parent":
                 return elementRef.current?.parentElement;
 
             case "@grandparent":
-                return (
-                    elementRef.current?.parentElement.parentElement
-                );
+                return elementRef.current?.parentElement.parentElement;
 
             default:
                 return document.querySelector(props.selector);

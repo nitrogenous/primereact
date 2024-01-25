@@ -82,9 +82,8 @@ export const Mention = React.memo(
             ZIndexUtils.set(
                 "overlay",
                 overlayRef.current,
-                (context?.autoZIndex) || PrimeReact.autoZIndex,
-                (context?.zIndex.overlay) ||
-                    PrimeReact.zIndex.overlay,
+                context?.autoZIndex || PrimeReact.autoZIndex,
+                context?.zIndex.overlay || PrimeReact.zIndex.overlay,
             );
             DomHandler.addStyles(overlayRef.current, {
                 position: "absolute",
@@ -497,8 +496,7 @@ export const Mention = React.memo(
         }, [inputRef, props.inputRef]);
 
         useUpdateEffect(() => {
-            const hasSuggestions =
-                props.suggestions?.length;
+            const hasSuggestions = props.suggestions?.length;
 
             if (hasSuggestions) {
                 const newState = props.suggestions.map(() => false);

@@ -16,9 +16,7 @@ export const DropdownPanel = React.memo(
         const context = React.useContext(PrimeReactContext);
         const virtualScrollerRef = React.useRef(null);
         const filterInputRef = React.useRef(null);
-        const isEmptyFilter =
-            !(props.visibleOptions?.length) &&
-            props.hasFilter;
+        const isEmptyFilter = !props.visibleOptions?.length && props.hasFilter;
         const filterOptions = {
             filter: (e) => onFilterInputChange(e),
             reset: () => props.resetFilter(),
@@ -157,31 +155,31 @@ export const DropdownPanel = React.memo(
                     </React.Fragment>
                 );
             }
-                const optionLabel = props.getOptionLabel(option);
-                const optionKey =
-                    `${index}_${props.getOptionRenderKey(option)}`;
-                const disabled = props.isOptionDisabled(option);
+            const optionLabel = props.getOptionLabel(option);
+            const optionKey = `${index}_${props.getOptionRenderKey(option)}`;
+            const disabled = props.isOptionDisabled(option);
 
-                return (
-                    <DropdownItem
-                        key={optionKey}
-                        label={optionLabel}
-                        option={option}
-                        style={style}
-                        template={props.itemTemplate}
-                        selected={props.isSelected(option)}
-                        disabled={disabled}
-                        onClick={props.onOptionClick}
-                        ptm={ptm}
-                        cx={cx}
-                    />
-                );
+            return (
+                <DropdownItem
+                    key={optionKey}
+                    label={optionLabel}
+                    option={option}
+                    style={style}
+                    template={props.itemTemplate}
+                    selected={props.isSelected(option)}
+                    disabled={disabled}
+                    onClick={props.onOptionClick}
+                    ptm={ptm}
+                    cx={cx}
+                />
+            );
         };
 
         const createItems = () => {
             if (ObjectUtils.isNotEmpty(props.visibleOptions)) {
                 return props.visibleOptions.map(createItem);
-            }if (props.hasFilter) {
+            }
+            if (props.hasFilter) {
                 return createEmptyMessage(props.emptyFilterMessage, true);
             }
 
@@ -352,28 +350,28 @@ export const DropdownPanel = React.memo(
                     />
                 );
             }
-                const items = createItems();
-                const wrapperProps = mergeProps(
-                    {
-                        className: cx("wrapper"),
-                        style: sx("wrapper"),
-                    },
-                    getPTOptions("wrapper"),
-                );
+            const items = createItems();
+            const wrapperProps = mergeProps(
+                {
+                    className: cx("wrapper"),
+                    style: sx("wrapper"),
+                },
+                getPTOptions("wrapper"),
+            );
 
-                const listProps = mergeProps(
-                    {
-                        className: cx("list"),
-                        role: "listbox",
-                    },
-                    getPTOptions("list"),
-                );
+            const listProps = mergeProps(
+                {
+                    className: cx("list"),
+                    role: "listbox",
+                },
+                getPTOptions("list"),
+            );
 
-                return (
-                    <div {...wrapperProps}>
-                        <ul {...listProps}>{items}</ul>
-                    </div>
-                );
+            return (
+                <div {...wrapperProps}>
+                    <ul {...listProps}>{items}</ul>
+                </div>
+            );
         };
 
         const createElement = () => {

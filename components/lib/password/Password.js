@@ -157,9 +157,7 @@ export const Password = React.memo(
                 DomHandler.alignOverlay(
                     overlayRef.current,
                     inputRef.current.parentElement,
-                    props.appendTo ||
-                        (context?.appendTo) ||
-                        PrimeReact.appendTo,
+                    props.appendTo || context?.appendTo || PrimeReact.appendTo,
                 );
             }
         };
@@ -168,9 +166,8 @@ export const Password = React.memo(
             ZIndexUtils.set(
                 "overlay",
                 overlayRef.current,
-                (context?.autoZIndex) || PrimeReact.autoZIndex,
-                (context?.zIndex.overlay) ||
-                    PrimeReact.zIndex.overlay,
+                context?.autoZIndex || PrimeReact.autoZIndex,
+                context?.zIndex.overlay || PrimeReact.zIndex.overlay,
             );
             DomHandler.addStyles(overlayRef.current, {
                 position: "absolute",

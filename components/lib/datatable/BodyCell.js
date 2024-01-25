@@ -64,7 +64,7 @@ export const BodyCell = React.memo((props) => {
 
     const field = getColumnProp("field") || `field_${props.index}`;
     const editingKey = props.dataKey
-        ? (props.rowData?.[props.dataKey]) || props.rowIndex
+        ? props.rowData?.[props.dataKey] || props.rowIndex
         : props.rowIndex;
 
     const [bindDocumentClickListener, unbindDocumentClickListener] =
@@ -331,8 +331,7 @@ export const BodyCell = React.memo((props) => {
 
             if (align === "right") {
                 let right = 0;
-                const next =
-                    elementRef.current?.nextElementSibling;
+                const next = elementRef.current?.nextElementSibling;
 
                 if (next) {
                     right =
@@ -343,8 +342,7 @@ export const BodyCell = React.memo((props) => {
                 styleObject.right = `${right}px`;
             } else {
                 let left = 0;
-                const prev =
-                    elementRef.current?.previousElementSibling;
+                const prev = elementRef.current?.previousElementSibling;
 
                 if (prev) {
                     left =

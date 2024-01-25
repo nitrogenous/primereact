@@ -110,7 +110,7 @@ export const UITreeNode = React.memo((props) => {
 
             return findLastVisibleDescendant(lastChildElement);
         }
-            return nodeElement;
+        return nodeElement;
     };
 
     const getParentNodeElement = (nodeElement) => {

@@ -424,7 +424,8 @@ export const SpeedDial = React.memo(
                             radius * Math.sin(step * index)
                         }px + var(--item-diff-y, 0px))`,
                     };
-                }if (type === "semi-circle") {
+                }
+                if (type === "semi-circle") {
                     const direction = props.direction;
                     const step = Math.PI / (length - 1);
                     const x = `calc(${
@@ -436,11 +437,14 @@ export const SpeedDial = React.memo(
 
                     if (direction === "up") {
                         return { left: x, bottom: y };
-                    }if (direction === "down") {
+                    }
+                    if (direction === "down") {
                         return { left: x, top: y };
-                    }if (direction === "left") {
+                    }
+                    if (direction === "left") {
                         return { right: y, top: x };
-                    }if (direction === "right") {
+                    }
+                    if (direction === "right") {
                         return { left: y, top: x };
                     }
                 } else if (type === "quarter-circle") {
@@ -455,11 +459,14 @@ export const SpeedDial = React.memo(
 
                     if (direction === "up-left") {
                         return { right: x, bottom: y };
-                    }if (direction === "up-right") {
+                    }
+                    if (direction === "up-right") {
                         return { left: x, bottom: y };
-                    }if (direction === "down-left") {
+                    }
+                    if (direction === "down-left") {
                         return { right: y, top: x };
-                    }if (direction === "down-right") {
+                    }
+                    if (direction === "down-right") {
                         return { left: y, top: x };
                     }
                 }

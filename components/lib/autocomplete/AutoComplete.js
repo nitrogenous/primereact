@@ -192,14 +192,16 @@ export const AutoComplete = React.memo(
             if (ObjectUtils.isNotEmpty(value)) {
                 if (typeof value === "string") {
                     return value;
-                }if (props.selectedItemTemplate) {
+                }
+                if (props.selectedItemTemplate) {
                     const resolvedFieldData = ObjectUtils.getJSXElement(
                         props.selectedItemTemplate,
                         value,
                     );
 
                     return resolvedFieldData ? resolvedFieldData : value;
-                }if (props.field) {
+                }
+                if (props.field) {
                     const resolvedFieldData = ObjectUtils.resolveFieldData(
                         value,
                         props.field,
@@ -210,7 +212,7 @@ export const AutoComplete = React.memo(
                         ? resolvedFieldData
                         : value;
                 }
-                    return value;
+                return value;
             }
 
             return "";
@@ -233,9 +235,8 @@ export const AutoComplete = React.memo(
             ZIndexUtils.set(
                 "overlay",
                 overlayRef.current,
-                (context?.autoZIndex) || PrimeReact.autoZIndex,
-                (context?.zIndex.overlay) ||
-                    PrimeReact.zIndex.overlay,
+                context?.autoZIndex || PrimeReact.autoZIndex,
+                context?.zIndex.overlay || PrimeReact.zIndex.overlay,
             );
             DomHandler.addStyles(overlayRef.current, {
                 position: "absolute",
@@ -284,9 +285,7 @@ export const AutoComplete = React.memo(
             DomHandler.alignOverlay(
                 overlayRef.current,
                 target,
-                props.appendTo ||
-                    (context?.appendTo) ||
-                    PrimeReact.appendTo,
+                props.appendTo || context?.appendTo || PrimeReact.appendTo,
             );
         };
 
@@ -464,10 +463,7 @@ export const AutoComplete = React.memo(
                 switch (event.which) {
                     //backspace
                     case 8:
-                        if (
-                            props.value?.length &&
-                            !inputRef.current.value
-                        ) {
+                        if (props.value?.length && !inputRef.current.value) {
                             const removedValue =
                                 props.value[props.value.length - 1];
                             const newValue = props.value.slice(0, -1);

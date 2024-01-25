@@ -331,15 +331,15 @@ export const ListBox = React.memo(
 
                     return filteredGroups;
                 }
-                    return FilterService.filter(
-                        props.options,
-                        searchFields,
-                        filterValue,
-                        props.filterMatchMode,
-                        props.filterLocale,
-                    );
+                return FilterService.filter(
+                    props.options,
+                    searchFields,
+                    filterValue,
+                    props.filterMatchMode,
+                    props.filterLocale,
+                );
             }
-                return props.options;
+            return props.options;
         };
 
         const scrollToSelectedIndex = () => {
@@ -450,34 +450,35 @@ export const ListBox = React.memo(
                     </React.Fragment>
                 );
             }
-                const optionLabel = getOptionLabel(option);
-                const optionKey = `${index}_${getOptionRenderKey(option)}`;
-                const disabled = isOptionDisabled(option);
-                const tabIndex = disabled ? null : props.tabIndex || 0;
+            const optionLabel = getOptionLabel(option);
+            const optionKey = `${index}_${getOptionRenderKey(option)}`;
+            const disabled = isOptionDisabled(option);
+            const tabIndex = disabled ? null : props.tabIndex || 0;
 
-                return (
-                    <ListBoxItem
-                        hostName="ListBox"
-                        key={optionKey}
-                        label={optionLabel}
-                        option={option}
-                        style={style}
-                        template={props.itemTemplate}
-                        selected={isSelected(option)}
-                        onClick={onOptionSelect}
-                        onTouchEnd={onOptionTouchEnd}
-                        tabIndex={tabIndex}
-                        disabled={disabled}
-                        ptCallbacks={ptCallbacks}
-                        metaData={metaData}
-                    />
-                );
+            return (
+                <ListBoxItem
+                    hostName="ListBox"
+                    key={optionKey}
+                    label={optionLabel}
+                    option={option}
+                    style={style}
+                    template={props.itemTemplate}
+                    selected={isSelected(option)}
+                    onClick={onOptionSelect}
+                    onTouchEnd={onOptionTouchEnd}
+                    tabIndex={tabIndex}
+                    disabled={disabled}
+                    ptCallbacks={ptCallbacks}
+                    metaData={metaData}
+                />
+            );
         };
 
         const createItems = () => {
             if (ObjectUtils.isNotEmpty(visibleOptions)) {
                 return visibleOptions.map(createItem);
-            }if (hasFilter) {
+            }
+            if (hasFilter) {
                 return createEmptyMessage(props.emptyFilterMessage, true);
             }
 
@@ -540,19 +541,19 @@ export const ListBox = React.memo(
                     />
                 );
             }
-                const items = createItems();
+            const items = createItems();
 
-                const listProps = mergeProps(
-                    {
-                        className: ptCallbacks.cx("list"),
-                        role: "listbox",
-                        "aria-multiselectable": props.multiple,
-                        ...ariaProps,
-                    },
-                    ptCallbacks.ptm("list"),
-                );
+            const listProps = mergeProps(
+                {
+                    className: ptCallbacks.cx("list"),
+                    role: "listbox",
+                    "aria-multiselectable": props.multiple,
+                    ...ariaProps,
+                },
+                ptCallbacks.ptm("list"),
+            );
 
-                return <ul {...listProps}>{items}</ul>;
+            return <ul {...listProps}>{items}</ul>;
         };
 
         const visibleOptions = getVisibleOptions();

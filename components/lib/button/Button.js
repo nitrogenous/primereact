@@ -114,9 +114,7 @@ export const Button = React.memo(
             return null;
         };
 
-        const showTooltip =
-            !disabled ||
-            (props.tooltipOptions?.showOnDisabled);
+        const showTooltip = !disabled || props.tooltipOptions?.showOnDisabled;
         const hasTooltip = ObjectUtils.isNotEmpty(props.tooltip) && showTooltip;
         const sizeMapping = {
             large: "lg",

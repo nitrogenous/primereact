@@ -16,9 +16,7 @@ export function DataTableDoc(props) {
         <div className="p-5 surface-card shadow-2 border-round">
             <div className="relative">
                 <img
-                    src={
-                        `https://primefaces.org/cdn/primereact/images/product/${selectedProduct.image}`
-                    }
+                    src={`https://primefaces.org/cdn/primereact/images/product/${selectedProduct.image}`}
                     alt={selectedProduct.name}
                 />
             </div>

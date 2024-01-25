@@ -282,10 +282,7 @@ export default function TemplateDemo() {
                         tableStyle={{ minWidth: "60rem" }}
                     >
                         <Column field="name" header="Name" />
-                        <Column
-                            header="Image"
-                            body={imageBodyTemplate}
-                        />
+                        <Column header="Image" body={imageBodyTemplate} />
                         <Column
                             field="price"
                             header="Price"
@@ -297,10 +294,7 @@ export default function TemplateDemo() {
                             header="Reviews"
                             body={ratingBodyTemplate}
                         />
-                        <Column
-                            header="Status"
-                            body={statusBodyTemplate}
-                        />
+                        <Column header="Status" body={statusBodyTemplate} />
                     </DataTable>
                 </div>
             </DeferredDemo>

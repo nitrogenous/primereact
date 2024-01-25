@@ -72,10 +72,7 @@ export default function PTDemo() {
                         onClick={() => setBlocked(true)}
                         className="mr-2"
                     />
-                    <Button
-                        label="Unblock"
-                        onClick={() => setBlocked(false)}
-                    />
+                    <Button label="Unblock" onClick={() => setBlocked(false)} />
                 </div>
                 <BlockUI
                     blocked={blocked}

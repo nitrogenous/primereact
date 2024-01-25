@@ -39,8 +39,7 @@ export default class DomHandler {
     static getBrowserLanguage() {
         return (
             navigator.userLanguage ||
-            (navigator.languages?.length &&
-                navigator.languages[0]) ||
+            (navigator.languages?.length && navigator.languages[0]) ||
             navigator.language ||
             navigator.browserLanguage ||
             navigator.systemLanguage ||
@@ -249,10 +248,10 @@ export default class DomHandler {
     static hasClass(element, className) {
         if (element) {
             if (element.classList) return element.classList.contains(className);
-            
-                return new RegExp(`(^| )${className}( |$)`, "gi").test(
-                    element.className,
-                );
+
+            return new RegExp(`(^| )${className}( |$)`, "gi").test(
+                element.className,
+            );
         }
 
         return false;
@@ -367,7 +366,9 @@ export default class DomHandler {
     }
 
     static isAttributeEquals(element, name, value) {
-        return element ? DomHandler.getAttribute(element, name) === value : false;
+        return element
+            ? DomHandler.getAttribute(element, name) === value
+            : false;
     }
 
     static isAttributeNotEquals(element, name, value) {
@@ -414,8 +415,9 @@ export default class DomHandler {
                 DomHandler.relativePosition(overlay, target);
             } else {
                 calculateMinWidth &&
-                    (overlay.style.minWidth =
-                        `${DomHandler.getOuterWidth(target)}px`);
+                    (overlay.style.minWidth = `${DomHandler.getOuterWidth(
+                        target,
+                    )}px`);
                 DomHandler.absolutePosition(overlay, target);
             }
         }
@@ -525,13 +527,7 @@ export default class DomHandler {
         }
     }
 
-    static flipfitCollision(
-        element,
-        target,
-        my,
-        at,
-        callback,
-    ) {
+    static flipfitCollision(element, target, my, at, callback) {
         if (element && target) {
             const targetOffset = target.getBoundingClientRect();
             const viewport = DomHandler.getViewport();
@@ -619,10 +615,11 @@ export default class DomHandler {
                     element.style.left = `${left + scrollLeft}px`;
 
                     if (this.count.x === 2) {
-                        element.style.left =
-                            `${viewport.width -
+                        element.style.left = `${
+                            viewport.width -
                             DomHandler.getOuterWidth(element) +
-                            scrollLeft}px`;
+                            scrollLeft
+                        }px`;
                         this.count.x = 0;
                     } else if (
                         left + DomHandler.getOuterWidth(element) >
@@ -666,10 +663,11 @@ export default class DomHandler {
                     element.style.top = `${top + scrollTop}px`;
 
                     if (this.count.y === 2) {
-                        element.style.left =
-                            `${viewport.height -
+                        element.style.left = `${
+                            viewport.height -
                             DomHandler.getOuterHeight(element) +
-                            scrollTop}px`;
+                            scrollTop
+                        }px`;
                         this.count.y = 0;
                     } else if (
                         top + DomHandler.getOuterHeight(target) >
@@ -691,8 +689,9 @@ export default class DomHandler {
                             myOffset.top() +
                             DomHandler.getOuterHeight(target) / 2;
 
-                        element.style.top =
-                            `${top + DomHandler.getWindowScrollTop()}px`;
+                        element.style.top = `${
+                            top + DomHandler.getWindowScrollTop()
+                        }px`;
 
                         if (top < 0) {
                             this.bottom();
@@ -707,8 +706,9 @@ export default class DomHandler {
                             myOffset.left() +
                             DomHandler.getOuterWidth(target) / 2;
 
-                        element.style.left =
-                            `${left + DomHandler.getWindowScrollLeft()}px`;
+                        element.style.left = `${
+                            left + DomHandler.getWindowScrollLeft()
+                        }px`;
 
                         if (left < 0) {
                             this.left();
@@ -933,9 +933,7 @@ export default class DomHandler {
     }
 
     static isIOS() {
-        return (
-            /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream
-        );
+        return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
     }
 
     static isAndroid() {
@@ -1047,22 +1045,21 @@ export default class DomHandler {
                 parseFloat(style.borderRightWidth)
             );
         }
-            if (DomHandler.calculatedScrollbarWidth != null)
-                return DomHandler.calculatedScrollbarWidth;
+        if (DomHandler.calculatedScrollbarWidth != null)
+            return DomHandler.calculatedScrollbarWidth;
 
-            const scrollDiv = document.createElement("div");
+        const scrollDiv = document.createElement("div");
 
-            scrollDiv.className = "p-scrollbar-measure";
-            document.body.appendChild(scrollDiv);
+        scrollDiv.className = "p-scrollbar-measure";
+        document.body.appendChild(scrollDiv);
 
-            const scrollbarWidth =
-                scrollDiv.offsetWidth - scrollDiv.clientWidth;
+        const scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
 
-            document.body.removeChild(scrollDiv);
+        document.body.removeChild(scrollDiv);
 
-            DomHandler.calculatedScrollbarWidth = scrollbarWidth;
+        DomHandler.calculatedScrollbarWidth = scrollbarWidth;
 
-            return scrollbarWidth;
+        return scrollbarWidth;
     }
 
     static calculateBodyScrollbarWidth() {
@@ -1272,8 +1269,7 @@ export default class DomHandler {
 
     static isClickable(element) {
         const targetNode = element.nodeName;
-        const parentNode =
-            element.parentElement?.nodeName;
+        const parentNode = element.parentElement?.nodeName;
 
         return (
             targetNode === "INPUT" ||
@@ -1387,21 +1383,21 @@ export default class DomHandler {
 
         if (target === "document") {
             return document;
-        }if (target === "window") {
+        }
+        if (target === "window") {
             return window;
-        }if (
-            typeof target === "object" &&
-            target.hasOwnProperty("current")
-        ) {
+        }
+        if (typeof target === "object" && target.hasOwnProperty("current")) {
             return DomHandler.isExist(target.current) ? target.current : null;
         }
-            const isFunction = (obj) =>
-                !!(obj?.constructor && obj.call && obj.apply);
-            const element = isFunction(target) ? target() : target;
+        const isFunction = (obj) =>
+            !!(obj?.constructor && obj.call && obj.apply);
+        const element = isFunction(target) ? target() : target;
 
-            return (element && element.nodeType === 9) || DomHandler.isExist(element)
-                ? element
-                : null;
+        return (element && element.nodeType === 9) ||
+            DomHandler.isExist(element)
+            ? element
+            : null;
     }
 
     /**

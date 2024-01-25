@@ -72,9 +72,9 @@ export const BlockUI = React.forwardRef((inProps, ref) => {
             ZIndexUtils.set(
                 key,
                 maskRef.current,
-                (context?.autoZIndex) || PrimeReact.autoZIndex,
+                context?.autoZIndex || PrimeReact.autoZIndex,
                 props.baseZIndex ||
-                    (context?.zIndex[key]) ||
+                    context?.zIndex[key] ||
                     PrimeReact.zIndex[key],
             );
         }

@@ -148,11 +148,7 @@ export function RowExpansionDoc(props) {
                 <h5>Orders for {data.name}</h5>
                 <DataTable value={data.orders}>
                     <Column field="id" header="Id" sortable />
-                    <Column
-                        field="customer"
-                        header="Customer"
-                        sortable
-                    />
+                    <Column field="customer" header="Customer" sortable />
                     <Column field="date" header="Date" sortable />
                     <Column
                         field="amount"

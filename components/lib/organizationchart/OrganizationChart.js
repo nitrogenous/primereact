@@ -41,9 +41,9 @@ export const OrganizationChart = React.memo(
                     if (selected) {
                         selection = null;
                         props.onNodeUnselect?.({
-                                originalEvent: event,
-                                node,
-                            });
+                            originalEvent: event,
+                            node,
+                        });
                     } else {
                         selection = node;
                         props.onNodeSelect?.({ originalEvent: event, node });
@@ -54,9 +54,9 @@ export const OrganizationChart = React.memo(
                             (_, i) => i !== index,
                         );
                         props.onNodeUnselect?.({
-                                originalEvent: event,
-                                node,
-                            });
+                            originalEvent: event,
+                            node,
+                        });
                     } else {
                         selection = [...(props.selection || []), node];
                         props.onNodeSelect?.({ originalEvent: event, node });

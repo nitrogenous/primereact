@@ -581,10 +581,9 @@ export const ComponentBase = {
 
             const datasetProps = !isTransition && {
                 ...(fkey === "root" && {
-                    [`${datasetPrefix}name`]:
-                        params.props?.__parentMetadata
-                            ? ObjectUtils.toFlatCase(params.props.__TYPE)
-                            : componentName,
+                    [`${datasetPrefix}name`]: params.props?.__parentMetadata
+                        ? ObjectUtils.toFlatCase(params.props.__TYPE)
+                        : componentName,
                 }),
                 [`${datasetPrefix}section`]: fkey,
             };

@@ -124,9 +124,9 @@ export const Toast = React.memo(
             ZIndexUtils.set(
                 "toast",
                 containerRef.current,
-                (context?.autoZIndex) || PrimeReact.autoZIndex,
+                context?.autoZIndex || PrimeReact.autoZIndex,
                 props.baseZIndex ||
-                    (context?.zIndex.toast) ||
+                    context?.zIndex.toast ||
                     PrimeReact.zIndex.toast,
             );
         }, [messagesState, props.baseZIndex]);
@@ -172,44 +172,39 @@ export const Toast = React.memo(
                 <div {...rootProps}>
                     <TransitionGroup>
                         {messagesState?.map((messageInfo, index) => {
-                                const messageRef = React.createRef();
+                            const messageRef = React.createRef();
 
-                                return (
-                                    <CSSTransition
-                                        nodeRef={messageRef}
-                                        key={messageInfo._pId}
-                                        {...transitionProps}
-                                    >
-                                        {inProps.content ? (
-                                            ObjectUtils.getJSXElement(
-                                                inProps.content,
-                                                {
-                                                    message:
-                                                        messageInfo.message,
-                                                },
-                                            )
-                                        ) : (
-                                            <ToastMessage
-                                                hostName="Toast"
-                                                ref={messageRef}
-                                                messageInfo={messageInfo}
-                                                index={index}
-                                                onClick={props.onClick}
-                                                onClose={onClose}
-                                                onMouseEnter={
-                                                    props.onMouseEnter
-                                                }
-                                                onMouseLeave={
-                                                    props.onMouseLeave
-                                                }
-                                                closeIcon={props.closeIcon}
-                                                ptCallbacks={ptCallbacks}
-                                                metaData={metaData}
-                                            />
-                                        )}
-                                    </CSSTransition>
-                                );
-                            })}
+                            return (
+                                <CSSTransition
+                                    nodeRef={messageRef}
+                                    key={messageInfo._pId}
+                                    {...transitionProps}
+                                >
+                                    {inProps.content ? (
+                                        ObjectUtils.getJSXElement(
+                                            inProps.content,
+                                            {
+                                                message: messageInfo.message,
+                                            },
+                                        )
+                                    ) : (
+                                        <ToastMessage
+                                            hostName="Toast"
+                                            ref={messageRef}
+                                            messageInfo={messageInfo}
+                                            index={index}
+                                            onClick={props.onClick}
+                                            onClose={onClose}
+                                            onMouseEnter={props.onMouseEnter}
+                                            onMouseLeave={props.onMouseLeave}
+                                            closeIcon={props.closeIcon}
+                                            ptCallbacks={ptCallbacks}
+                                            metaData={metaData}
+                                        />
+                                    )}
+                                </CSSTransition>
+                            );
+                        })}
                     </TransitionGroup>
                 </div>
             );

@@ -9,14 +9,14 @@ export function PTDoc(props) {
 
     useMountEffect(() => {
         msgs.current?.show([
-                {
-                    sticky: true,
-                    severity: "info",
-                    summary: "Info",
-                    detail: "Message Content",
-                    closable: false,
-                },
-            ]);
+            {
+                sticky: true,
+                severity: "info",
+                summary: "Info",
+                detail: "Message Content",
+                closable: false,
+            },
+        ]);
     });
 
     const code = {

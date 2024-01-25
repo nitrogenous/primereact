@@ -102,7 +102,7 @@ export const ContextMenu = React.memo(
         const createStyle = () => {
             if (!styleElementRef.current) {
                 styleElementRef.current = DomHandler.createInlineStyle(
-                    (context?.nonce) || PrimeReact.nonce,
+                    context?.nonce || PrimeReact.nonce,
                     context?.styleContainer,
                 );
 
@@ -190,9 +190,9 @@ export const ContextMenu = React.memo(
                 ZIndexUtils.set(
                     "menu",
                     menuRef.current,
-                    (context?.autoZIndex) || PrimeReact.autoZIndex,
+                    context?.autoZIndex || PrimeReact.autoZIndex,
                     props.baseZIndex ||
-                        (context?.zIndex.menu) ||
+                        context?.zIndex.menu ||
                         PrimeReact.zIndex.menu,
                 );
             }
@@ -261,26 +261,26 @@ export const ContextMenu = React.memo(
                 const processedItems = [];
 
                 items?.forEach((item, index) => {
-                        const key =
-                            (parentKey !== "" ? `${parentKey}_` : "") + index;
-                        const newItem = {
-                            item,
-                            index,
-                            level,
-                            separator: item.separator,
-                            key,
-                            parent,
-                            parentKey,
-                        };
+                    const key =
+                        (parentKey !== "" ? `${parentKey}_` : "") + index;
+                    const newItem = {
+                        item,
+                        index,
+                        level,
+                        separator: item.separator,
+                        key,
+                        parent,
+                        parentKey,
+                    };
 
-                        newItem.items = createProcessedItems(
-                            item.items,
-                            level + 1,
-                            newItem,
-                            key,
-                        );
-                        processedItems.push(newItem);
-                    });
+                    newItem.items = createProcessedItems(
+                        item.items,
+                        level + 1,
+                        newItem,
+                        key,
+                    );
+                    processedItems.push(newItem);
+                });
 
                 return processedItems;
             },
@@ -374,8 +374,9 @@ export const ContextMenu = React.memo(
         }, [focusedItemInfo]);
 
         useUpdateEffect(() => {
-            const processedItem =
-                activeItemPath?.find((p) => p.key === focusedItemInfo.parentKey);
+            const processedItem = activeItemPath?.find(
+                (p) => p.key === focusedItemInfo.parentKey,
+            );
             const _visibleItems = processedItem
                 ? processedItem.items
                 : processedItems;
@@ -628,9 +629,7 @@ export const ContextMenu = React.memo(
                         'a[data-pc-section="action"]',
                     );
 
-                anchorElement
-                    ? anchorElement.click()
-                    : element?.click();
+                anchorElement ? anchorElement.click() : element?.click();
                 const processedItem = visibleItems[focusedItemInfo.index];
                 const grouped = isProccessedItemGroup(processedItem);
 
@@ -733,9 +732,9 @@ export const ContextMenu = React.memo(
 
             if (element) {
                 element.scrollIntoView?.({
-                        block: "nearest",
-                        inline: "start",
-                    });
+                    block: "nearest",
+                    inline: "start",
+                });
             }
         };
 
@@ -806,9 +805,7 @@ export const ContextMenu = React.memo(
         };
 
         const isSelected = (processedItem) => {
-            return (
-                activeItemPath?.some((p) => p.key === processedItem.key)
-            );
+            return activeItemPath?.some((p) => p.key === processedItem.key);
         };
 
         const isValidSelectedItem = (processedItem) => {

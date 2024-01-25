@@ -191,7 +191,7 @@ export const TreeTableHeader = React.memo((props) => {
             if (sorted && sortOrder > 0) return "ascending";
             return "none";
         }
-            return null;
+        return null;
     };
 
     const createSortIcon = (column, sorted, sortOrder) => {
@@ -223,7 +223,7 @@ export const TreeTableHeader = React.memo((props) => {
 
             return sortIcon;
         }
-            return null;
+        return null;
     };
 
     const createResizer = (column) => {
@@ -238,7 +238,7 @@ export const TreeTableHeader = React.memo((props) => {
 
             return <span {...columnResizerProps} />;
         }
-            return null;
+        return null;
     };
 
     const createSortBadge = (column, sortMetaDataIndex) => {
@@ -337,120 +337,119 @@ export const TreeTableHeader = React.memo((props) => {
 
             return <th {...headerCellProps}>{filterElement}</th>;
         }
-            const headerCellRef = React.createRef(null);
-            const sortMetaDataIndex = getMultiSortMetaDataIndex(column);
-            const multiSortMetaData =
-                sortMetaDataIndex !== -1
-                    ? props.multiSortMeta[sortMetaDataIndex]
-                    : null;
-            const singleSorted =
-                getColumnProp(column, "field") === props.sortField;
-            const multipleSorted = multiSortMetaData !== null;
-            const sorted =
-                getColumnProp(column, "sortable") &&
-                (singleSorted || multipleSorted);
-            const frozen = getColumnProp(column, "frozen");
-            const align = getColumnProp(column, "alignHeader");
-            let sortOrder = 0;
-
-            if (singleSorted) sortOrder = props.sortOrder;
-            else if (multipleSorted) sortOrder = multiSortMetaData.order;
-
-            const sortIconElement = createSortIcon(column, sorted, sortOrder);
-            const ariaSortData = getAriaSort(column, sorted, sortOrder);
-            const sortBadge = createSortBadge(column, sortMetaDataIndex);
-            const ariaSort = sorted
-                ? sortOrder
-                    ? sortOrder < 0
-                        ? "descending"
-                        : "ascending"
-                    : "none"
+        const headerCellRef = React.createRef(null);
+        const sortMetaDataIndex = getMultiSortMetaDataIndex(column);
+        const multiSortMetaData =
+            sortMetaDataIndex !== -1
+                ? props.multiSortMeta[sortMetaDataIndex]
                 : null;
+        const singleSorted = getColumnProp(column, "field") === props.sortField;
+        const multipleSorted = multiSortMetaData !== null;
+        const sorted =
+            getColumnProp(column, "sortable") &&
+            (singleSorted || multipleSorted);
+        const frozen = getColumnProp(column, "frozen");
+        const align = getColumnProp(column, "alignHeader");
+        let sortOrder = 0;
 
-            const headerTooltip = getColumnProp(column, "headerTooltip");
-            const hasTooltip = ObjectUtils.isNotEmpty(headerTooltip);
-            const title = createTitle(column, options);
-            const resizer = createResizer(column);
-            const sortable = getColumnProp(column, "sortable");
-            const headerCellProps = mergeProps(
-                {
-                    role: "columnheader",
-                    className: classNames(
-                        getColumnProp(column, "headerClassName") ||
-                            getColumnProp(column, "className"),
-                        cx("headerCell", {
-                            headerProps: props,
-                            frozen,
-                            column,
-                            options,
-                            getColumnProp,
-                            sorted,
-                            align,
-                        }),
-                    ),
-                    style:
-                        getColumnProp(column, "headerStyle") ||
-                        getColumnProp(column, "style"),
-                    tabIndex: sortable ? props.tabIndex : null,
-                    onClick: (e) => onHeaderClick(e, column),
-                    onMouseDown: (e) => onHeaderMouseDown(e, column),
-                    onKeyDown: (e) => onHeaderKeyDown(e, column),
-                    rowSpan: getColumnProp(column, "rowSpan"),
-                    colSpan: getColumnProp(column, "colSpan"),
-                    "aria-sort": ariaSortData,
-                    onDragStart: (e) => onDragStart(e, column),
-                    onDragOver: (e) => onDragOver(e, column),
-                    onDragLeave: (e) => onDragLeave(e, column),
-                    onDrop: (e) => onDrop(e, column),
-                    "data-p-sortable-column": sortable,
-                    "data-p-resizable-column": props.resizableColumns,
-                    "data-p-highlight": sorted,
-                    "data-p-frozen-column": getColumnProp(column, "frozen"),
-                },
-                getColumnPTOptions(column, "root"),
-                getColumnPTOptions(column, "headerCell", {
-                    context: {
-                        sorted,
+        if (singleSorted) sortOrder = props.sortOrder;
+        else if (multipleSorted) sortOrder = multiSortMetaData.order;
+
+        const sortIconElement = createSortIcon(column, sorted, sortOrder);
+        const ariaSortData = getAriaSort(column, sorted, sortOrder);
+        const sortBadge = createSortBadge(column, sortMetaDataIndex);
+        const ariaSort = sorted
+            ? sortOrder
+                ? sortOrder < 0
+                    ? "descending"
+                    : "ascending"
+                : "none"
+            : null;
+
+        const headerTooltip = getColumnProp(column, "headerTooltip");
+        const hasTooltip = ObjectUtils.isNotEmpty(headerTooltip);
+        const title = createTitle(column, options);
+        const resizer = createResizer(column);
+        const sortable = getColumnProp(column, "sortable");
+        const headerCellProps = mergeProps(
+            {
+                role: "columnheader",
+                className: classNames(
+                    getColumnProp(column, "headerClassName") ||
+                        getColumnProp(column, "className"),
+                    cx("headerCell", {
+                        headerProps: props,
                         frozen,
-                        resizable: props.resizableColumns,
-                    },
-                }),
-            );
-
-            const headerContentProps = mergeProps(
-                {
-                    className: cx("headerContent"),
+                        column,
+                        options,
+                        getColumnProp,
+                        sorted,
+                        align,
+                    }),
+                ),
+                style:
+                    getColumnProp(column, "headerStyle") ||
+                    getColumnProp(column, "style"),
+                tabIndex: sortable ? props.tabIndex : null,
+                onClick: (e) => onHeaderClick(e, column),
+                onMouseDown: (e) => onHeaderMouseDown(e, column),
+                onKeyDown: (e) => onHeaderKeyDown(e, column),
+                rowSpan: getColumnProp(column, "rowSpan"),
+                colSpan: getColumnProp(column, "colSpan"),
+                "aria-sort": ariaSortData,
+                onDragStart: (e) => onDragStart(e, column),
+                onDragOver: (e) => onDragOver(e, column),
+                onDragLeave: (e) => onDragLeave(e, column),
+                onDrop: (e) => onDrop(e, column),
+                "data-p-sortable-column": sortable,
+                "data-p-resizable-column": props.resizableColumns,
+                "data-p-highlight": sorted,
+                "data-p-frozen-column": getColumnProp(column, "frozen"),
+            },
+            getColumnPTOptions(column, "root"),
+            getColumnPTOptions(column, "headerCell", {
+                context: {
+                    sorted,
+                    frozen,
+                    resizable: props.resizableColumns,
                 },
-                getColumnPTOptions(column, "headerContent"),
-            );
+            }),
+        );
 
-            const header = (
-                <div {...headerContentProps}>
-                    {title}
-                    {sortIconElement}
-                    {sortBadge}
-                    {filterElement}
-                </div>
-            );
+        const headerContentProps = mergeProps(
+            {
+                className: cx("headerContent"),
+            },
+            getColumnPTOptions(column, "headerContent"),
+        );
 
-            return (
-                <React.Fragment
-                    key={column.columnKey || column.field || options.index}
-                >
-                    <th ref={headerCellRef} {...headerCellProps}>
-                        {resizer}
-                        {header}
-                    </th>
-                    {hasTooltip && (
-                        <Tooltip
-                            target={headerCellRef}
-                            content={headerTooltip}
-                            {...getColumnProp(column, "headerTooltipOptions")}
-                            unstyled={props.unstyled}
-                        />
-                    )}
-                </React.Fragment>
-            );
+        const header = (
+            <div {...headerContentProps}>
+                {title}
+                {sortIconElement}
+                {sortBadge}
+                {filterElement}
+            </div>
+        );
+
+        return (
+            <React.Fragment
+                key={column.columnKey || column.field || options.index}
+            >
+                <th ref={headerCellRef} {...headerCellProps}>
+                    {resizer}
+                    {header}
+                </th>
+                {hasTooltip && (
+                    <Tooltip
+                        target={headerCellRef}
+                        content={headerTooltip}
+                        {...getColumnProp(column, "headerTooltipOptions")}
+                        unstyled={props.unstyled}
+                    />
+                )}
+            </React.Fragment>
+        );
     };
 
     const createHeaderRow = (row, index) => {
@@ -513,19 +512,19 @@ export const TreeTableHeader = React.memo((props) => {
                     </>
                 );
             }
-                return (
-                    <tr {...headerRowProps}>
-                        {columns.map((col, i) =>
-                            createHeaderCell(col, {
-                                index: i,
-                                filterOnly: false,
-                                renderFilter: false,
-                            }),
-                        )}
-                    </tr>
-                );
+            return (
+                <tr {...headerRowProps}>
+                    {columns.map((col, i) =>
+                        createHeaderCell(col, {
+                            index: i,
+                            filterOnly: false,
+                            renderFilter: false,
+                        }),
+                    )}
+                </tr>
+            );
         }
-            return null;
+        return null;
     };
 
     const content = props.columnGroup

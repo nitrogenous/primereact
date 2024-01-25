@@ -1231,7 +1231,8 @@ export const Calendar = React.memo(
                 return props.value && props.value instanceof Date
                     ? cloneDate(props.value)
                     : getViewDate();
-            }if (isMultipleSelection()) {
+            }
+            if (isMultipleSelection()) {
                 if (props.value?.length) {
                     return cloneDate(props.value[props.value.length - 1]);
                 }
@@ -2279,9 +2280,9 @@ export const Calendar = React.memo(
                 setViewDateState(currentDate);
                 setCurrentView("date");
                 props.onMonthChange?.({
-                        month: month + 1,
-                        year: currentYear,
-                    });
+                    month: month + 1,
+                    year: currentYear,
+                });
 
                 updateViewDate(event, currentDate);
             }
@@ -2299,9 +2300,9 @@ export const Calendar = React.memo(
                 setCurrentYear(year);
                 setCurrentView("month");
                 props.onMonthChange?.({
-                        month: currentMonth + 1,
-                        year: year,
-                    });
+                    month: currentMonth + 1,
+                    year: year,
+                });
             }
         };
 
@@ -2400,9 +2401,9 @@ export const Calendar = React.memo(
                 ZIndexUtils.set(
                     key,
                     overlayRef.current,
-                    (context?.autoZIndex) || PrimeReact.autoZIndex,
+                    context?.autoZIndex || PrimeReact.autoZIndex,
                     props.baseZIndex ||
-                        (context?.zIndex[key]) ||
+                        context?.zIndex[key] ||
                         PrimeReact.zIndex[key],
                 );
             }
@@ -2423,8 +2424,9 @@ export const Calendar = React.memo(
                 }
 
                 if (props.view === "date") {
-                    overlayRef.current.style.width =
-                        `${DomHandler.getOuterWidth(overlayRef.current)}px`;
+                    overlayRef.current.style.width = `${DomHandler.getOuterWidth(
+                        overlayRef.current,
+                    )}px`;
                     overlayRef.current.style.minWidth = `${inputWidth}px`;
                 } else {
                     overlayRef.current.style.minWidth = `${inputWidth}px`;
@@ -2453,9 +2455,7 @@ export const Calendar = React.memo(
 
         const appendDisabled = () => {
             const appendTo =
-                props.appendTo ||
-                (context?.appendTo) ||
-                PrimeReact.appendTo;
+                props.appendTo || context?.appendTo || PrimeReact.appendTo;
 
             return appendTo === "self" || props.inline;
         };
@@ -2463,17 +2463,11 @@ export const Calendar = React.memo(
         const alignOverlay = () => {
             if (props.touchUI) {
                 enableModality();
-            } else if (
-                overlayRef?.current &&
-                inputRef &&
-                inputRef.current
-            ) {
+            } else if (overlayRef?.current && inputRef && inputRef.current) {
                 DomHandler.alignOverlay(
                     overlayRef.current,
                     inputRef.current,
-                    props.appendTo ||
-                        (context?.appendTo) ||
-                        PrimeReact.appendTo,
+                    props.appendTo || context?.appendTo || PrimeReact.appendTo,
                 );
 
                 if (appendDisabled()) {
@@ -2573,7 +2567,7 @@ export const Calendar = React.memo(
                     elementRef.current.isSameNode(event.target) ||
                     isNavIconClicked(event.target) ||
                     elementRef.current.contains(event.target) ||
-                    (overlayRef.current?.contains(event.target))
+                    overlayRef.current?.contains(event.target)
                 )
             );
         };
@@ -2941,7 +2935,8 @@ export const Calendar = React.memo(
             if (props.value) {
                 if (isSingleSelection()) {
                     return isDateEquals(props.value, dateMeta);
-                }if (isMultipleSelection()) {
+                }
+                if (isMultipleSelection()) {
                     let selected = false;
 
                     for (const date of props.value) {
@@ -2953,7 +2948,8 @@ export const Calendar = React.memo(
                     }
 
                     return selected;
-                }if (isRangeSelection()) {
+                }
+                if (isRangeSelection()) {
                     if (props.value[1])
                         return (
                             isDateEquals(props.value[0], dateMeta) ||
@@ -2964,8 +2960,8 @@ export const Calendar = React.memo(
                                 dateMeta,
                             )
                         );
-                    
-                        return isDateEquals(props.value[0], dateMeta);
+
+                    return isDateEquals(props.value[0], dateMeta);
                 }
             } else {
                 return false;
@@ -2987,10 +2983,10 @@ export const Calendar = React.memo(
                             currentValue.getFullYear() === currentYear,
                     );
                 }
-                    return (
-                        value.getMonth() === month &&
-                        value.getFullYear() === currentYear
-                    );
+                return (
+                    value.getMonth() === month &&
+                    value.getFullYear() === currentYear
+                );
             }
 
             return false;
@@ -3005,7 +3001,7 @@ export const Calendar = React.memo(
                         (currentValue) => currentValue.getFullYear() === year,
                     );
                 }
-                    return value.getFullYear() === year;
+                return value.getFullYear() === year;
             }
 
             return false;
@@ -3207,32 +3203,30 @@ export const Calendar = React.memo(
             let iFormat;
 
             const lookAhead = (match) => {
-                    const matches =
-                        iFormat + 1 < format.length &&
-                        format.charAt(iFormat + 1) === match;
+                const matches =
+                    iFormat + 1 < format.length &&
+                    format.charAt(iFormat + 1) === match;
 
-                    if (matches) {
-                        iFormat++;
-                    }
+                if (matches) {
+                    iFormat++;
+                }
 
-                    return matches;
-                };
+                return matches;
+            };
             const formatNumber = (match, value, len) => {
-                    let num = `${value}`;
+                let num = `${value}`;
 
-                    if (lookAhead(match)) {
-                        while (num.length < len) {
-                            num = `0${num}`;
-                        }
+                if (lookAhead(match)) {
+                    while (num.length < len) {
+                        num = `0${num}`;
                     }
+                }
 
-                    return num;
-                };
+                return num;
+            };
             const formatName = (match, value, shortNames, longNames) => {
-                    return lookAhead(match)
-                        ? longNames[value]
-                        : shortNames[value];
-                };
+                return lookAhead(match) ? longNames[value] : shortNames[value];
+            };
 
             let output = "";
             let literal = false;
@@ -3461,10 +3455,8 @@ export const Calendar = React.memo(
             const ms = props.showMillisec ? parseInt(tokens[3], 10) : null;
 
             if (
-                Number.
-                isNaN(h) ||
-                Number.
-                isNaN(m) ||
+                Number.isNaN(h) ||
+                Number.isNaN(m) ||
                 h > 23 ||
                 m > 59 ||
                 (props.hourFormat === "12" && h > 12) ||
@@ -3473,17 +3465,17 @@ export const Calendar = React.memo(
             ) {
                 throw new Error("Invalid time");
             }
-                if (props.hourFormat === "12") {
-                    if (h !== 12 && ampm === "PM") {
-                        h += 12;
-                    }
-
-                    if (h === 12 && ampm === "AM") {
-                        h -= 12;
-                    }
+            if (props.hourFormat === "12") {
+                if (h !== 12 && ampm === "PM") {
+                    h += 12;
                 }
 
-                return { hour: h, minute: m, second: s, millisecond: ms };
+                if (h === 12 && ampm === "AM") {
+                    h -= 12;
+                }
+            }
+
+            return { hour: h, minute: m, second: s, millisecond: ms };
         };
 
         // Ported from jquery-ui datepicker parseDate
@@ -3503,10 +3495,10 @@ export const Calendar = React.memo(
             let extra;
             let iValue = 0;
             const shortYearCutoff =
-                    typeof props.shortYearCutoff !== "string"
-                        ? props.shortYearCutoff
-                        : (new Date().getFullYear() % 100) +
-                          parseInt(props.shortYearCutoff, 10);
+                typeof props.shortYearCutoff !== "string"
+                    ? props.shortYearCutoff
+                    : (new Date().getFullYear() % 100) +
+                      parseInt(props.shortYearCutoff, 10);
             let year = -1;
             let month = -1;
             let day = -1;
@@ -3514,82 +3506,78 @@ export const Calendar = React.memo(
             let literal = false;
             let date;
             const lookAhead = (match) => {
-                    const matches =
-                        iFormat + 1 < format.length &&
-                        format.charAt(iFormat + 1) === match;
+                const matches =
+                    iFormat + 1 < format.length &&
+                    format.charAt(iFormat + 1) === match;
 
-                    if (matches) {
-                        iFormat++;
-                    }
+                if (matches) {
+                    iFormat++;
+                }
 
-                    return matches;
-                };
+                return matches;
+            };
             const getNumber = (match) => {
-                    const isDoubled = lookAhead(match);
-                    const size =
-                            match === "@"
-                                ? 14
-                                : match === "!"
-                                  ? 20
-                                  : match === "y" && isDoubled
-                                      ? 4
-                                      : match === "o"
-                                          ? 3
-                                          : 2;
-                    const minSize = match === "y" ? size : 1;
-                    const digits = new RegExp(
-                            `^\\d{${minSize},${size}}`,
-                        );
-                    const num = value.substring(iValue).match(digits);
+                const isDoubled = lookAhead(match);
+                const size =
+                    match === "@"
+                        ? 14
+                        : match === "!"
+                          ? 20
+                          : match === "y" && isDoubled
+                              ? 4
+                              : match === "o"
+                                  ? 3
+                                  : 2;
+                const minSize = match === "y" ? size : 1;
+                const digits = new RegExp(`^\\d{${minSize},${size}}`);
+                const num = value.substring(iValue).match(digits);
 
-                    if (!num) {
-                        throw new Error(`Missing number at position ${iValue}`);
-                    }
+                if (!num) {
+                    throw new Error(`Missing number at position ${iValue}`);
+                }
 
-                    iValue += num[0].length;
+                iValue += num[0].length;
 
-                    return parseInt(num[0], 10);
-                };
+                return parseInt(num[0], 10);
+            };
             const getName = (match, shortNames, longNames) => {
-                    let index = -1;
-                    const arr = lookAhead(match) ? longNames : shortNames;
-                    const names = [];
+                let index = -1;
+                const arr = lookAhead(match) ? longNames : shortNames;
+                const names = [];
 
-                    for (let i = 0; i < arr.length; i++) {
-                        names.push([i, arr[i]]);
+                for (let i = 0; i < arr.length; i++) {
+                    names.push([i, arr[i]]);
+                }
+
+                names.sort((a, b) => {
+                    return -(a[1].length - b[1].length);
+                });
+
+                for (let i = 0; i < names.length; i++) {
+                    const name = names[i][1];
+
+                    if (
+                        value.substr(iValue, name.length).toLowerCase() ===
+                        name.toLowerCase()
+                    ) {
+                        index = names[i][0];
+                        iValue += name.length;
+                        break;
                     }
+                }
 
-                    names.sort((a, b) => {
-                        return -(a[1].length - b[1].length);
-                    });
-
-                    for (let i = 0; i < names.length; i++) {
-                        const name = names[i][1];
-
-                        if (
-                            value.substr(iValue, name.length).toLowerCase() ===
-                            name.toLowerCase()
-                        ) {
-                            index = names[i][0];
-                            iValue += name.length;
-                            break;
-                        }
-                    }
-
-                    if (index !== -1) {
-                        return index + 1;
-                    }
-                        throw new Error(`Unknown name at position ${iValue}`);
-                };
+                if (index !== -1) {
+                    return index + 1;
+                }
+                throw new Error(`Unknown name at position ${iValue}`);
+            };
             const checkLiteral = () => {
-                    if (value.charAt(iValue) !== format.charAt(iFormat)) {
-                        throw new Error(
-                            `Unexpected literal at position ${iValue}`,
-                        );
-                    }
+                if (value.charAt(iValue) !== format.charAt(iFormat)) {
+                    throw new Error(`Unexpected literal at position ${iValue}`);
+                }
 
-                    iValue++;
-                };
+                iValue++;
+            };
 
             if (props.view === "month") {
                 day = 1;
@@ -3747,8 +3735,9 @@ export const Calendar = React.memo(
                     initFocusableCell();
 
                     if (props.numberOfMonths === 1) {
-                        overlayRef.current.style.width =
-                            `${DomHandler.getOuterWidth(overlayRef.current)}px`;
+                        overlayRef.current.style.width = `${DomHandler.getOuterWidth(
+                            overlayRef.current,
+                        )}px`;
                     }
                 }
             } else {
@@ -4634,7 +4623,7 @@ export const Calendar = React.memo(
                 if (props.view === "date") {
                     return createDateView();
                 }
-                    return createMonthYearView();
+                return createMonthYearView();
             }
 
             return null;

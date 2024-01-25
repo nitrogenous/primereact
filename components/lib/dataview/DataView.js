@@ -174,7 +174,7 @@ export const DataView = React.memo(
                 // performance optimization to prevent resolving field data in each loop
                 const lookupMap = new Map();
                 const comparator = ObjectUtils.localeComparator(
-                    (context?.locale) || PrimeReact.locale,
+                    context?.locale || PrimeReact.locale,
                 );
                 const value = [...props.value];
 
@@ -194,8 +194,7 @@ export const DataView = React.memo(
                         value2,
                         props.sortOrder,
                         comparator,
-                        (context?.nullSortOrder) ||
-                            PrimeReact.nullSortOrder,
+                        context?.nullSortOrder || PrimeReact.nullSortOrder,
                     );
                 });
 

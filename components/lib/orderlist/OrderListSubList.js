@@ -232,34 +232,34 @@ export const OrderListSubList = React.memo(
 
                         return items;
                     }
-                        const itemProps = mergeProps(
-                            {
-                                id: key,
-                                role: "option",
-                                onClick: (e) =>
-                                    props.onItemClick({
-                                        originalEvent: e,
-                                        value: item,
-                                        index: i,
-                                    }),
-                                onMouseDown: props.onOptionMouseDown,
-                                className: classNames(
-                                    props.className,
-                                    cx("item", { selected, focused }),
-                                ),
-                                "aria-selected": selected,
-                                "data-p-highlight": selected,
-                                "data-p-focused": focused,
-                            },
-                            getPTOptions(item, "item"),
-                        );
+                    const itemProps = mergeProps(
+                        {
+                            id: key,
+                            role: "option",
+                            onClick: (e) =>
+                                props.onItemClick({
+                                    originalEvent: e,
+                                    value: item,
+                                    index: i,
+                                }),
+                            onMouseDown: props.onOptionMouseDown,
+                            className: classNames(
+                                props.className,
+                                cx("item", { selected, focused }),
+                            ),
+                            "aria-selected": selected,
+                            "data-p-highlight": selected,
+                            "data-p-focused": focused,
+                        },
+                        getPTOptions(item, "item"),
+                    );
 
-                        return (
-                            <li key={key} {...itemProps}>
-                                {content}
-                                <Ripple />
-                            </li>
-                        );
+                    return (
+                        <li key={key} {...itemProps}>
+                            {content}
+                            <Ripple />
+                        </li>
+                    );
                 });
             }
 

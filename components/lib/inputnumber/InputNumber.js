@@ -47,8 +47,7 @@ export const InputNumber = React.memo(
         const _prefix = React.useRef(null);
         const _index = React.useRef(null);
         const isFocusedByClick = React.useRef(false);
-        const _locale =
-            props.locale || (context?.locale) || PrimeReact.locale;
+        const _locale = props.locale || context?.locale || PrimeReact.locale;
         const stacked = props.showButtons && props.buttonLayout === "stacked";
         const horizontal =
             props.showButtons && props.buttonLayout === "horizontal";
@@ -503,8 +502,10 @@ export const InputNumber = React.memo(
                                     insertedText +
                                     inputValue.slice(selectionStart);
                             } else if (decimalCharIndexWithoutPrefix === 1) {
-                                newValueStr =
-                                    `${inputValue.slice(0, selectionStart - 1)}0${inputValue.slice(selectionStart)}`;
+                                newValueStr = `${inputValue.slice(
+                                    0,
+                                    selectionStart - 1,
+                                )}0${inputValue.slice(selectionStart)}`;
                                 newValueStr =
                                     parseValue(newValueStr) > 0
                                         ? newValueStr
@@ -585,8 +586,10 @@ export const InputNumber = React.memo(
                                     insertedText +
                                     inputValue.slice(selectionStart + 1);
                             } else if (decimalCharIndexWithoutPrefix === 1) {
-                                newValueStr =
-                                    `${inputValue.slice(0, selectionStart)}0${inputValue.slice(selectionStart + 1)}`;
+                                newValueStr = `${inputValue.slice(
+                                    0,
+                                    selectionStart,
+                                )}0${inputValue.slice(selectionStart + 1)}`;
                                 newValueStr =
                                     parseValue(newValueStr) > 0
                                         ? newValueStr
@@ -668,9 +671,9 @@ export const InputNumber = React.memo(
                 return;
             }
 
-            const data = (
-                event.clipboardData || window.clipboardData
-            ).getData("Text");
+            const data = (event.clipboardData || window.clipboardData).getData(
+                "Text",
+            );
 
             if (data) {
                 const filteredData = parseValue(data);
@@ -914,20 +917,23 @@ export const InputNumber = React.memo(
                           formatValue(text) +
                           replaceSuffix(value).slice(end)
                     : value || formatValue(text);
-            }if (end - start === value.length) {
+            }
+            if (end - start === value.length) {
                 return formatValue(text);
-            }if (start === 0) {
+            }
+            if (start === 0) {
                 const suffix = ObjectUtils.isLetter(value[end]) ? end - 1 : end;
 
                 return text + value.slice(suffix);
-            }if (end === value.length) {
+            }
+            if (end === value.length) {
                 return value.slice(0, start) + text;
             }
-                const selectionValue = value.slice(start, end);
-                // Fix: if the suffix starts with a space, the input will be cleared after pasting
-                const space = /\s$/.test(selectionValue) ? " " : "";
+            const selectionValue = value.slice(start, end);
+            // Fix: if the suffix starts with a space, the input will be cleared after pasting
+            const space = /\s$/.test(selectionValue) ? " " : "";
 
-                return value.slice(0, start) + text + space + value.slice(end);
+            return value.slice(0, start) + text + space + value.slice(end);
         };
 
         const deleteRange = (value, start, end) => {
@@ -969,7 +975,7 @@ export const InputNumber = React.memo(
                     index = i + prefixLength;
                     break;
                 }
-                    i--;
+                i--;
             }
 
             if (index !== null) {
@@ -984,7 +990,7 @@ export const InputNumber = React.memo(
                         index = i + prefixLength;
                         break;
                     }
-                        i++;
+                    i++;
                 }
 
                 if (index !== null) {
@@ -1015,7 +1021,7 @@ export const InputNumber = React.memo(
 
                 return true;
             }
-                return false;
+            return false;
         };
 
         const resetRegex = () => {

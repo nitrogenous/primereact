@@ -256,7 +256,7 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
             const lookupMap = new Map();
             const sortField = getSortField();
             const comparator = ObjectUtils.localeComparator(
-                (context?.locale) || PrimeReact.locale,
+                context?.locale || PrimeReact.locale,
             );
 
             for (const node of data) {
@@ -299,7 +299,7 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
         const value = [...data];
 
         const comparator = ObjectUtils.localeComparator(
-            (context?.locale) || PrimeReact.locale,
+            context?.locale || PrimeReact.locale,
         );
 
         value.sort((node1, node2) => {
@@ -359,7 +359,7 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
             value2,
             order,
             comparator,
-            (context?.nullSortOrder) || PrimeReact.nullSortOrder,
+            context?.nullSortOrder || PrimeReact.nullSortOrder,
         );
     };
 
@@ -432,11 +432,11 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
 
         !ptCallbacks.isUnstyled() &&
             DomHandler.addClass(elementRef.current, "p-unselectable-text");
-        resizerHelperRef.current.style.height =
-            `${elementRef.current.offsetHeight}px`;
+        resizerHelperRef.current.style.height = `${elementRef.current.offsetHeight}px`;
         resizerHelperRef.current.style.top = `${0}px`;
-        resizerHelperRef.current.style.left =
-            `${event.pageX - containerLeft + elementRef.current.scrollLeft}px`;
+        resizerHelperRef.current.style.left = `${
+            event.pageX - containerLeft + elementRef.current.scrollLeft
+        }px`;
 
         resizerHelperRef.current.style.display = "block";
     };
@@ -493,8 +493,7 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
                             nextColumnWidth,
                         );
                     } else {
-                        resizeColumn.current.style.width =
-                            `${newColumnWidth}px`;
+                        resizeColumn.current.style.width = `${newColumnWidth}px`;
 
                         if (nextColumn) {
                             nextColumn.style.width = `${nextColumnWidth}px`;
@@ -519,14 +518,17 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
                         'table[data-pc-section="scrollablefootertable"]',
                     );
 
-                    scrollableBodyTable.style.width =
-                        `${scrollableBodyTable.offsetWidth + delta}px`;
-                    scrollableHeaderTable.style.width =
-                        `${scrollableHeaderTable.offsetWidth + delta}px`;
+                    scrollableBodyTable.style.width = `${
+                        scrollableBodyTable.offsetWidth + delta
+                    }px`;
+                    scrollableHeaderTable.style.width = `${
+                        scrollableHeaderTable.offsetWidth + delta
+                    }px`;
 
                     if (scrollableFooterTable) {
-                        scrollableFooterTable.style.width =
-                            `${scrollableHeaderTable.offsetWidth + delta}px`;
+                        scrollableFooterTable.style.width = `${
+                            scrollableHeaderTable.offsetWidth + delta
+                        }px`;
                     }
 
                     const resizeColumnIndex = DomHandler.index(
@@ -552,8 +554,9 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
                         null,
                     );
                 } else {
-                    tableRef.current.style.width =
-                        `${tableRef.current.offsetWidth + delta}px`;
+                    tableRef.current.style.width = `${
+                        tableRef.current.offsetWidth + delta
+                    }px`;
                     resizeColumn.current.style.width = `${newColumnWidth}px`;
                 }
             }
@@ -589,7 +592,7 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
 
             return parent;
         }
-            return null;
+        return null;
     };
 
     const resizeColGroup = (
@@ -672,30 +675,36 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
                 const columnCenter =
                     dropHeaderOffset.left + dropHeader.offsetWidth / 2;
 
-                reorderIndicatorUpRef.current.style.top =
-                    `${dropHeaderOffset.top -
+                reorderIndicatorUpRef.current.style.top = `${
+                    dropHeaderOffset.top -
                     containerOffset.top -
-                    (iconHeight.current - 1)}px`;
-                reorderIndicatorDownRef.current.style.top =
-                    `${dropHeaderOffset.top -
+                    (iconHeight.current - 1)
+                }px`;
+                reorderIndicatorDownRef.current.style.top = `${
+                    dropHeaderOffset.top -
                     containerOffset.top +
-                    dropHeader.offsetHeight}px`;
+                    dropHeader.offsetHeight
+                }px`;
 
                 if (event.pageX > columnCenter) {
-                    reorderIndicatorUpRef.current.style.left =
-                        `${targetLeft +
+                    reorderIndicatorUpRef.current.style.left = `${
+                        targetLeft +
                         dropHeader.offsetWidth -
-                        Math.ceil(iconWidth.current / 2)}px`;
-                    reorderIndicatorDownRef.current.style.left =
-                        `${targetLeft +
+                        Math.ceil(iconWidth.current / 2)
+                    }px`;
+                    reorderIndicatorDownRef.current.style.left = `${
+                        targetLeft +
                         dropHeader.offsetWidth -
-                        Math.ceil(iconWidth.current / 2)}px`;
+                        Math.ceil(iconWidth.current / 2)
+                    }px`;
                     dropPosition.current = 1;
                 } else {
-                    reorderIndicatorUpRef.current.style.left =
-                        `${targetLeft - Math.ceil(iconWidth.current / 2)}px`;
-                    reorderIndicatorDownRef.current.style.left =
-                        `${targetLeft - Math.ceil(iconWidth.current / 2)}px`;
+                    reorderIndicatorUpRef.current.style.left = `${
+                        targetLeft - Math.ceil(iconWidth.current / 2)
+                    }px`;
+                    reorderIndicatorDownRef.current.style.left = `${
+                        targetLeft - Math.ceil(iconWidth.current / 2)
+                    }px`;
                     dropPosition.current = -1;
                 }
 
@@ -796,14 +805,14 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
         if (element.nodeName === "TH") {
             return element;
         }
-            let parent = element.parentElement;
+        let parent = element.parentElement;
 
-            while (parent.nodeName !== "TH") {
-                parent = parent.parentElement;
-                if (!parent) break;
-            }
+        while (parent.nodeName !== "TH") {
+            parent = parent.parentElement;
+            if (!parent) break;
+        }
 
-            return parent;
+        return parent;
     };
 
     const getColumnProp = (column, name) => {
@@ -877,7 +886,7 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
                     }),
                 ];
             }
-                return columns;
+            return columns;
         }
 
         return null;
@@ -1115,9 +1124,7 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
     };
 
     const isNodeLeaf = (node) => {
-        return node.leaf === false
-            ? false
-            : !(node.children?.length);
+        return node.leaf === false ? false : !node.children?.length;
     };
 
     const processedData = (localState) => {
@@ -1125,13 +1132,10 @@ export const TreeTable = React.forwardRef((inProps, ref) => {
 
         if (!props.lazy) {
             if (data?.length) {
-                const filters =
-                    (localState?.filters) || getFilters();
-                const sortField =
-                    (localState?.sortField) || getSortField();
+                const filters = localState?.filters || getFilters();
+                const sortField = localState?.sortField || getSortField();
                 const multiSortMeta =
-                    (localState?.multiSortMeta) ||
-                    getMultiSortMeta();
+                    localState?.multiSortMeta || getMultiSortMeta();
 
                 if (ObjectUtils.isNotEmpty(filters) || props.globalFilter) {
                     data = filterLocal(data, filters);

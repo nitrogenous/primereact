@@ -20,9 +20,7 @@ export function DocApiSection(props) {
         };
 
         const isExcludedAll = (option) => {
-            return (
-                exclude?.[option] && exclude[option] === "excludeAll"
-            );
+            return exclude?.[option] && exclude[option] === "excludeAll";
         };
 
         if (mod) {
@@ -202,8 +200,7 @@ export function DocApiSection(props) {
                         ),
                     });
 
-                    const types =
-                        value.parameters?.map((p) => p.type);
+                    const types = value.parameters?.map((p) => p.type);
 
                     if (
                         ObjectUtils.isNotEmpty(mod.interfaces) &&

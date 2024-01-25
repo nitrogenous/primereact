@@ -310,25 +310,25 @@ export const TableHeader = React.memo((props) => {
                 );
             });
         }
-            const headerRowProps = mergeProps(
-                {
-                    role: "row",
-                },
-                ptm("headerRow", { hostName: props.hostName }),
-            );
-            const headerRow = (
-                <tr {...headerRowProps}>{createHeaderCells(props.columns)}</tr>
-            );
-            const filterRow = props.filterDisplay === "row" && (
-                <tr {...headerRowProps}>{createFilterCells()}</tr>
-            );
+        const headerRowProps = mergeProps(
+            {
+                role: "row",
+            },
+            ptm("headerRow", { hostName: props.hostName }),
+        );
+        const headerRow = (
+            <tr {...headerRowProps}>{createHeaderCells(props.columns)}</tr>
+        );
+        const filterRow = props.filterDisplay === "row" && (
+            <tr {...headerRowProps}>{createFilterCells()}</tr>
+        );
 
-            return (
-                <>
-                    {headerRow}
-                    {filterRow}
-                </>
-            );
+        return (
+            <>
+                {headerRow}
+                {filterRow}
+            </>
+        );
     };
 
     const content = createContent();

@@ -69,9 +69,8 @@ export const ScrollTop = React.memo(
             ZIndexUtils.set(
                 "overlay",
                 scrollElementRef.current,
-                (context?.autoZIndex) || PrimeReact.autoZIndex,
-                (context?.zIndex.overlay) ||
-                    PrimeReact.zIndex.overlay,
+                context?.autoZIndex || PrimeReact.autoZIndex,
+                context?.zIndex.overlay || PrimeReact.zIndex.overlay,
             );
         };
 

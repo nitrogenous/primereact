@@ -187,7 +187,8 @@ export const Panel = React.forwardRef((inProps, ref) => {
                 props.headerTemplate,
                 defaultContentOptions,
             );
-        }if (props.header || props.toggleable) {
+        }
+        if (props.header || props.toggleable) {
             return content;
         }
 
@@ -217,7 +218,8 @@ export const Panel = React.forwardRef((inProps, ref) => {
                 props.footerTemplate,
                 defaultContentOptions,
             );
-        }if (props.footer) {
+        }
+        if (props.footer) {
             return content;
         }
 

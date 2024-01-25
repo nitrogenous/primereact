@@ -69,8 +69,7 @@ export const Sidebar = React.forwardRef((inProps, ref) => {
 
     const isOutsideClicked = (event) => {
         return (
-            sidebarRef?.current &&
-            !sidebarRef.current.contains(event.target)
+            sidebarRef?.current && !sidebarRef.current.contains(event.target)
         );
     };
 
@@ -169,9 +168,9 @@ export const Sidebar = React.forwardRef((inProps, ref) => {
             ZIndexUtils.set(
                 "modal",
                 maskRef.current,
-                (context?.autoZIndex) || PrimeReact.autoZIndex,
+                context?.autoZIndex || PrimeReact.autoZIndex,
                 props.baseZIndex ||
-                    (context?.zIndex.modal) ||
+                    context?.zIndex.modal ||
                     PrimeReact.zIndex.modal,
             );
             setVisibleState(true);

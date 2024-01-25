@@ -18,7 +18,7 @@ export const Ripple = React.memo(
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = RippleBase.getProps(inProps, context);
-        const isRippleActive = (context?.ripple) || PrimeReact.ripple;
+        const isRippleActive = context?.ripple || PrimeReact.ripple;
 
         const metaData = {
             props,

@@ -49,9 +49,9 @@ export function DocSectionNav({ docs = [] }) {
                 );
 
                 activeItem?.scrollIntoView({
-                        block: "nearest",
-                        inline: "start",
-                    });
+                    block: "nearest",
+                    inline: "start",
+                });
             }, 50);
         },
     });

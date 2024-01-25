@@ -65,7 +65,7 @@ export const TreeTableScrollableView = React.memo((props) => {
 
             return el;
         }
-            return null;
+        return null;
     };
 
     const onHeaderScroll = () => {
@@ -107,12 +107,10 @@ export const TreeTableScrollableView = React.memo((props) => {
         if (!props.frozen) {
             const scrollBarWidth = DomHandler.calculateScrollbarWidth();
 
-            scrollHeaderBoxRef.current.style.marginRight =
-                `${scrollBarWidth}px`;
+            scrollHeaderBoxRef.current.style.marginRight = `${scrollBarWidth}px`;
 
             if (scrollFooterBoxRef.current) {
-                scrollFooterBoxRef.current.style.marginRight =
-                    `${scrollBarWidth}px`;
+                scrollFooterBoxRef.current.style.marginRight = `${scrollBarWidth}px`;
             }
         } else {
             scrollBodyRef.current.style.paddingBottom = `${scrollBarWidth}px`;
@@ -137,7 +135,7 @@ export const TreeTableScrollableView = React.memo((props) => {
 
             return <colgroup {...scrollableColgroupProps}>{cols}</colgroup>;
         }
-            return null;
+        return null;
     };
 
     const width = props.frozen
