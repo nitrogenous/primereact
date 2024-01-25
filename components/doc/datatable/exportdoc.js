@@ -1,82 +1,109 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Button } from '@/components/lib/button/Button';
-import { Column } from '@/components/lib/column/Column';
-import { DataTable } from '@/components/lib/datatable/DataTable';
-import { Tooltip } from '@/components/lib/tooltip/Tooltip';
-import { useEffect, useRef, useState } from 'react';
-import { ProductService } from '../../../service/ProductService';
-import DeferredDemo from '@/components/demo/DeferredDemo';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { Button } from "@/components/lib/button/Button";
+import { Column } from "@/components/lib/column/Column";
+import { DataTable } from "@/components/lib/datatable/DataTable";
+import { Tooltip } from "@/components/lib/tooltip/Tooltip";
+import { useEffect, useRef, useState } from "react";
+import { ProductService } from "../../../service/ProductService";
+import DeferredDemo from "@/components/demo/DeferredDemo";
 
 export function ExportDoc(props) {
-    const [products, setProducts] = useState([]);
-    const dt = useRef(null);
+	const [products, setProducts] = useState([]);
+	const dt = useRef(null);
 
-    const cols = [
-        { field: 'code', header: 'Code' },
-        { field: 'name', header: 'Name' },
-        { field: 'category', header: 'Category' },
-        { field: 'quantity', header: 'Quantity' }
-    ];
+	const cols = [
+		{ field: "code", header: "Code" },
+		{ field: "name", header: "Name" },
+		{ field: "category", header: "Category" },
+		{ field: "quantity", header: "Quantity" },
+	];
 
-    const exportColumns = cols.map((col) => ({ title: col.header, dataKey: col.field }));
+	const exportColumns = cols.map((col) => ({
+		title: col.header,
+		dataKey: col.field,
+	}));
 
-    const loadDemoData = () => {
-        ProductService.getProductsMini().then((data) => setProducts(data));
-    };
+	const loadDemoData = () => {
+		ProductService.getProductsMini().then((data) => setProducts(data));
+	};
 
-    const exportCSV = (selectionOnly) => {
-        dt.current.exportCSV({ selectionOnly });
-    };
+	const exportCSV = (selectionOnly) => {
+		dt.current.exportCSV({ selectionOnly });
+	};
 
-    const exportPdf = () => {
-        import('jspdf').then((jsPDF) => {
-            import('jspdf-autotable').then(() => {
-                const doc = new jsPDF.default(0, 0);
+	const exportPdf = () => {
+		import("jspdf").then((jsPDF) => {
+			import("jspdf-autotable").then(() => {
+				const doc = new jsPDF.default(0, 0);
 
-                doc.autoTable(exportColumns, products);
-                doc.save('products.pdf');
-            });
-        });
-    };
+				doc.autoTable(exportColumns, products);
+				doc.save("products.pdf");
+			});
+		});
+	};
 
-    const exportExcel = () => {
-        import('xlsx').then((xlsx) => {
-            const worksheet = xlsx.utils.json_to_sheet(products);
-            const workbook = { Sheets: { data: worksheet }, SheetNames: ['data'] };
-            const excelBuffer = xlsx.write(workbook, {
-                bookType: 'xlsx',
-                type: 'array'
-            });
+	const exportExcel = () => {
+		import("xlsx").then((xlsx) => {
+			const worksheet = xlsx.utils.json_to_sheet(products);
+			const workbook = { Sheets: { data: worksheet }, SheetNames: ["data"] };
+			const excelBuffer = xlsx.write(workbook, {
+				bookType: "xlsx",
+				type: "array",
+			});
 
-            saveAsExcelFile(excelBuffer, 'products');
-        });
-    };
+			saveAsExcelFile(excelBuffer, "products");
+		});
+	};
 
-    const saveAsExcelFile = (buffer, fileName) => {
-        import('file-saver').then((module) => {
-            if (module && module.default) {
-                let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
-                let EXCEL_EXTENSION = '.xlsx';
-                const data = new Blob([buffer], {
-                    type: EXCEL_TYPE
-                });
+	const saveAsExcelFile = (buffer, fileName) => {
+		import("file-saver").then((module) => {
+			if (module && module.default) {
+				const EXCEL_TYPE =
+					"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
+				const EXCEL_EXTENSION = ".xlsx";
+				const data = new Blob([buffer], {
+					type: EXCEL_TYPE,
+				});
 
-                module.default.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
-            }
-        });
-    };
+				module.default.saveAs(
+					data,
+					fileName + "_export_" + new Date().getTime() + EXCEL_EXTENSION,
+				);
+			}
+		});
+	};
 
-    const header = (
-        <div className="flex align-items-center justify-content-end gap-2">
-            <Button type="button" icon="pi pi-file" rounded onClick={() => exportCSV(false)} data-pr-tooltip="CSV" />
-            <Button type="button" icon="pi pi-file-excel" severity="success" rounded onClick={exportExcel} data-pr-tooltip="XLS" />
-            <Button type="button" icon="pi pi-file-pdf" severity="warning" rounded onClick={exportPdf} data-pr-tooltip="PDF" />
-        </div>
-    );
+	const header = (
+		<div className="flex align-items-center justify-content-end gap-2">
+			<Button
+				type="button"
+				icon="pi pi-file"
+				rounded
+				onClick={() => exportCSV(false)}
+				data-pr-tooltip="CSV"
+			/>
+			<Button
+				type="button"
+				icon="pi pi-file-excel"
+				severity="success"
+				rounded
+				onClick={exportExcel}
+				data-pr-tooltip="XLS"
+			/>
+			<Button
+				type="button"
+				icon="pi pi-file-pdf"
+				severity="warning"
+				rounded
+				onClick={exportPdf}
+				data-pr-tooltip="PDF"
+			/>
+		</div>
+	);
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <Button type="button" icon="pi pi-file" rounded onClick={() => exportCSV(false)} data-pr-tooltip="CSV" />
 <Button type="button" icon="pi pi-file-excel" severity="success" rounded onClick={exportExcel} data-pr-tooltip="XLS" />
 <Button type="button" icon="pi pi-file-pdf" severity="warning" rounded onClick={exportPdf} data-pr-tooltip="PDF" />
@@ -87,7 +114,7 @@ export function ExportDoc(props) {
     ))}
 </DataTable>
         `,
-        javascript: `
+		javascript: `
 import React, { useState, useEffect, useRef } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -175,7 +202,7 @@ export default function ExportDemo() {
     );
 }
         `,
-        typescript: `
+		typescript: `
 import React, { useState, useEffect, useRef } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -281,7 +308,7 @@ export default function ExportDemo() {
     );
 }
         `,
-        data: `
+		data: `
 /* ProductService */
 {
     id: '1000',
@@ -296,28 +323,35 @@ export default function ExportDemo() {
     rating: 5
 },
 ...
-        `
-    };
+        `,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}>
-                <p>
-                    CSV export is a built-in feature, in this sample PDF & XLS export are also available using third party libraries like <i>jsPDF</i> and <i>xlsx</i>.
-                </p>
-            </DocSectionText>
-            <DeferredDemo onLoad={loadDemoData}>
-                <div className="card">
-                    <Tooltip target=".export-buttons>button" position="bottom" />
+	return (
+		<>
+			<DocSectionText {...props}>
+				<p>
+					CSV export is a built-in feature, in this sample PDF & XLS export are
+					also available using third party libraries like <i>jsPDF</i> and{" "}
+					<i>xlsx</i>.
+				</p>
+			</DocSectionText>
+			<DeferredDemo onLoad={loadDemoData}>
+				<div className="card">
+					<Tooltip target=".export-buttons>button" position="bottom" />
 
-                    <DataTable ref={dt} value={products} header={header} tableStyle={{ minWidth: '50rem' }}>
-                        {cols.map((col, index) => (
-                            <Column key={index} field={col.field} header={col.header} />
-                        ))}
-                    </DataTable>
-                </div>
-            </DeferredDemo>
-            <DocSectionCode code={code} service={['ProductService']} />
-        </>
-    );
+					<DataTable
+						ref={dt}
+						value={products}
+						header={header}
+						tableStyle={{ minWidth: "50rem" }}
+					>
+						{cols.map((col, index) => (
+							<Column key={index} field={col.field} header={col.header} />
+						))}
+					</DataTable>
+				</div>
+			</DeferredDemo>
+			<DocSectionCode code={code} service={["ProductService"]} />
+		</>
+	);
 }

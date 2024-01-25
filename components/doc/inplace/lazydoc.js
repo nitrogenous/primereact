@@ -1,20 +1,24 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { useState } from 'react';
-import { Column } from '../../../components/lib/column/Column';
-import { DataTable } from '../../../components/lib/datatable/DataTable';
-import { Inplace, InplaceContent, InplaceDisplay } from '../../../components/lib/inplace/Inplace';
-import { ProductService } from '../../../service/ProductService';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { useState } from "react";
+import { Column } from "../../../components/lib/column/Column";
+import { DataTable } from "../../../components/lib/datatable/DataTable";
+import {
+	Inplace,
+	InplaceContent,
+	InplaceDisplay,
+} from "../../../components/lib/inplace/Inplace";
+import { ProductService } from "../../../service/ProductService";
 
 export function LazyDoc(props) {
-    const [products, setProducts] = useState([]);
+	const [products, setProducts] = useState([]);
 
-    const onOpen = () => {
-        ProductService.getProductsSmall().then((data) => setProducts(data));
-    };
+	const onOpen = () => {
+		ProductService.getProductsSmall().then((data) => setProducts(data));
+	};
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <Inplace onOpen={onOpen}>
     <InplaceDisplay>
         View Data
@@ -29,7 +33,7 @@ export function LazyDoc(props) {
     </InplaceContent>
 </Inplace>
         `,
-        javascript: `
+		javascript: `
 import React, { useState } from 'react';
 import { Inplace, InplaceDisplay, InplaceContent } from 'primereact/inplace';
 import { DataTable } from 'primereact/datatable';
@@ -60,7 +64,7 @@ export default function LazyDemo() {
     );
 }
         `,
-        typescript: `
+		typescript: `
 import React, { useState } from 'react';
 import { Inplace, InplaceDisplay, InplaceContent } from 'primereact/inplace';
 import { DataTable } from 'primereact/datatable';
@@ -91,7 +95,7 @@ export default function LazyDemo() {
     );
 }
         `,
-        data: `
+		data: `
 /* ProductService */        
 {
     id: '1000',
@@ -106,30 +110,31 @@ export default function LazyDemo() {
     rating: 5
 },
 ...
-        `
-    };
+        `,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}>
-                <p>
-                    Using the <i>onOpen</i> event, data can be loaded in a lazy manner before displaying it in a table.
-                </p>
-            </DocSectionText>
-            <div className="card">
-                <Inplace onOpen={onOpen}>
-                    <InplaceDisplay>View Data</InplaceDisplay>
-                    <InplaceContent>
-                        <DataTable value={products}>
-                            <Column field="code" header="Code"></Column>
-                            <Column field="name" header="Name"></Column>
-                            <Column field="category" header="Category"></Column>
-                            <Column field="quantity" header="Quantity"></Column>
-                        </DataTable>
-                    </InplaceContent>
-                </Inplace>
-            </div>
-            <DocSectionCode code={code} service={['ProductService']} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}>
+				<p>
+					Using the <i>onOpen</i> event, data can be loaded in a lazy manner
+					before displaying it in a table.
+				</p>
+			</DocSectionText>
+			<div className="card">
+				<Inplace onOpen={onOpen}>
+					<InplaceDisplay>View Data</InplaceDisplay>
+					<InplaceContent>
+						<DataTable value={products}>
+							<Column field="code" header="Code"></Column>
+							<Column field="name" header="Name"></Column>
+							<Column field="category" header="Category"></Column>
+							<Column field="quantity" header="Quantity"></Column>
+						</DataTable>
+					</InplaceContent>
+				</Inplace>
+			</div>
+			<DocSectionCode code={code} service={["ProductService"]} />
+		</>
+	);
 }

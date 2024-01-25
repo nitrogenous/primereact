@@ -1,34 +1,34 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Tree } from '@/components/lib/tree/Tree';
-import { useEffect, useState } from 'react';
-import { NodeService } from '../../../../service/NodeService';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { Tree } from "@/components/lib/tree/Tree";
+import { useEffect, useState } from "react";
+import { NodeService } from "../../../../service/NodeService";
 
 export function CheckboxSelectionDoc(props) {
-    const [nodes, setNodes] = useState([]);
-    const [selectedKeys, setSelectedKeys] = useState(null);
+	const [nodes, setNodes] = useState([]);
+	const [selectedKeys, setSelectedKeys] = useState(null);
 
-    useEffect(() => {
-        NodeService.getTreeNodes().then((data) => setNodes(data));
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+	useEffect(() => {
+		NodeService.getTreeNodes().then((data) => setNodes(data));
+	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-    const introCode = {
-        basic: `
+	const introCode = {
+		basic: `
 {
     '0-0': {
         partialChecked: false,
         checked: true
     }
 }
-        `
-    };
+        `,
+	};
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <Tree value={nodes} selectionMode="checkbox" selectionKeys={selectedKeys} 
     onSelectionChange={(e) => setSelectedKeys(e.value)} className="w-full md:w-30rem" />
         `,
-        javascript: `
+		javascript: `
 import React, { useState, useEffect } from 'react';
 import { Tree } from 'primereact/tree';
 import { NodeService } from './service/NodeService';
@@ -48,7 +48,7 @@ export default function CheckboxSelectionDemo() {
     )
 }
         `,
-        typescript: `
+		typescript: `
 import React, { useState, useEffect } from 'react';
 import { Tree, TreeCheckboxSelectionKeys } from 'primereact/tree';
 import { TreeNode } from 'primereact/treenode';
@@ -69,7 +69,7 @@ export default function CheckboxSelectionDemo() {
     )
 }
         `,
-        data: `
+		data: `
 {
     key: '0',
     label: 'Documents',
@@ -96,24 +96,40 @@ export default function CheckboxSelectionDemo() {
     ]
 },
 ...
-`
-    };
+`,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}>
-                <p>
-                    Selection of multiple nodes via checkboxes is enabled by configuring <i>selectionMode</i> as <i>checkbox</i>.
-                </p>
-                <p>
-                    In checkbox selection mode, value binding should be a key-value pair where key is the node key and value is an object that has <i>checked</i> and <i>partialChecked</i> properties to represent the checked state of a node.
-                </p>
-            </DocSectionText>
-            <DocSectionCode code={introCode} hideToggleCode import hideCodeSandbox hideStackBlitz />
-            <div className="card flex justify-content-center">
-                <Tree value={nodes} selectionMode="checkbox" selectionKeys={selectedKeys} onSelectionChange={(e) => setSelectedKeys(e.value)} className="w-full md:w-30rem" />
-            </div>
-            <DocSectionCode code={code} service={['NodeService']} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}>
+				<p>
+					Selection of multiple nodes via checkboxes is enabled by configuring{" "}
+					<i>selectionMode</i> as <i>checkbox</i>.
+				</p>
+				<p>
+					In checkbox selection mode, value binding should be a key-value pair
+					where key is the node key and value is an object that has{" "}
+					<i>checked</i> and <i>partialChecked</i> properties to represent the
+					checked state of a node.
+				</p>
+			</DocSectionText>
+			<DocSectionCode
+				code={introCode}
+				hideToggleCode
+				import
+				hideCodeSandbox
+				hideStackBlitz
+			/>
+			<div className="card flex justify-content-center">
+				<Tree
+					value={nodes}
+					selectionMode="checkbox"
+					selectionKeys={selectedKeys}
+					onSelectionChange={(e) => setSelectedKeys(e.value)}
+					className="w-full md:w-30rem"
+				/>
+			</div>
+			<DocSectionCode code={code} service={["NodeService"]} />
+		</>
+	);
 }

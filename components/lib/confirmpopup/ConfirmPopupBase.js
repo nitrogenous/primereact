@@ -1,6 +1,6 @@
-import PrimeReact from '../api/Api';
-import { ComponentBase } from '../componentbase/ComponentBase';
-import { classNames } from '../utils/Utils';
+import PrimeReact from "../api/Api";
+import { ComponentBase } from "../componentbase/ComponentBase";
+import { classNames } from "../utils/Utils";
 
 const styles = `
 @layer primereact {
@@ -50,57 +50,64 @@ const styles = `
 `;
 
 const classes = {
-    root: ({ context, getPropValue }) =>
-        classNames('p-confirm-popup p-component', getPropValue('className'), {
-            'p-input-filled': (context && context.inputStyle === 'filled') || PrimeReact.inputStyle === 'filled',
-            'p-ripple-disabled': (context && context.ripple === false) || PrimeReact.ripple === false
-        }),
-    acceptButton: ({ getPropValue }) => classNames('p-confirm-popup-accept p-button-sm', getPropValue('acceptClassName')),
-    rejectButton: ({ getPropValue }) =>
-        classNames(
-            'p-confirm-popup-reject p-button-sm',
-            {
-                'p-button-text': !getPropValue('rejectClassName')
-            },
-            getPropValue('rejectClassName')
-        ),
-    content: 'p-confirm-popup-content',
-    icon: 'p-confirm-popup-icon',
-    message: 'p-confirm-popup-message',
-    footer: 'p-confirm-popup-footer',
-    transition: 'p-connected-overlay'
+	root: ({ context, getPropValue }) =>
+		classNames("p-confirm-popup p-component", getPropValue("className"), {
+			"p-input-filled":
+				(context && context.inputStyle === "filled") ||
+				PrimeReact.inputStyle === "filled",
+			"p-ripple-disabled":
+				(context && context.ripple === false) || PrimeReact.ripple === false,
+		}),
+	acceptButton: ({ getPropValue }) =>
+		classNames(
+			"p-confirm-popup-accept p-button-sm",
+			getPropValue("acceptClassName"),
+		),
+	rejectButton: ({ getPropValue }) =>
+		classNames(
+			"p-confirm-popup-reject p-button-sm",
+			{
+				"p-button-text": !getPropValue("rejectClassName"),
+			},
+			getPropValue("rejectClassName"),
+		),
+	content: "p-confirm-popup-content",
+	icon: "p-confirm-popup-icon",
+	message: "p-confirm-popup-message",
+	footer: "p-confirm-popup-footer",
+	transition: "p-connected-overlay",
 };
 
 export const ConfirmPopupBase = ComponentBase.extend({
-    defaultProps: {
-        __TYPE: 'ConfirmPopup',
-        accept: null,
-        acceptClassName: null,
-        acceptIcon: null,
-        acceptLabel: null,
-        appendTo: null,
-        children: undefined,
-        className: null,
-        closeOnEscape: true,
-        defaultFocus: 'accept',
-        dismissable: true,
-        footer: null,
-        icon: null,
-        message: null,
-        onHide: null,
-        onShow: null,
-        reject: null,
-        rejectClassName: null,
-        rejectIcon: null,
-        rejectLabel: null,
-        style: null,
-        tagKey: undefined,
-        target: null,
-        transitionOptions: null,
-        visible: false
-    },
-    css: {
-        classes,
-        styles
-    }
+	defaultProps: {
+		__TYPE: "ConfirmPopup",
+		accept: null,
+		acceptClassName: null,
+		acceptIcon: null,
+		acceptLabel: null,
+		appendTo: null,
+		children: undefined,
+		className: null,
+		closeOnEscape: true,
+		defaultFocus: "accept",
+		dismissable: true,
+		footer: null,
+		icon: null,
+		message: null,
+		onHide: null,
+		onShow: null,
+		reject: null,
+		rejectClassName: null,
+		rejectIcon: null,
+		rejectLabel: null,
+		style: null,
+		tagKey: undefined,
+		target: null,
+		transitionOptions: null,
+		visible: false,
+	},
+	css: {
+		classes,
+		styles,
+	},
 });

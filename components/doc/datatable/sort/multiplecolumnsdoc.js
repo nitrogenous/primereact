@@ -1,20 +1,20 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Column } from '@/components/lib/column/Column';
-import { DataTable } from '@/components/lib/datatable/DataTable';
-import { useEffect, useState } from 'react';
-import { ProductService } from '../../../../service/ProductService';
-import DeferredDemo from '@/components/demo/DeferredDemo';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { Column } from "@/components/lib/column/Column";
+import { DataTable } from "@/components/lib/datatable/DataTable";
+import { useEffect, useState } from "react";
+import { ProductService } from "../../../../service/ProductService";
+import DeferredDemo from "@/components/demo/DeferredDemo";
 
 export function MultipleColumnsDoc(props) {
-    const [products, setProducts] = useState([]);
+	const [products, setProducts] = useState([]);
 
-    const loadDemoData = () => {
-        ProductService.getProductsMini().then((data) => setProducts(data));
-    };
+	const loadDemoData = () => {
+		ProductService.getProductsMini().then((data) => setProducts(data));
+	};
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <DataTable value={products} sortMode="multiple" tableStyle={{ minWidth: '50rem' }}>
     <Column field="code" header="Code" sortable style={{ width: '25%' }}></Column>
     <Column field="name" header="Name" sortable style={{ width: '25%' }}></Column>
@@ -22,7 +22,7 @@ export function MultipleColumnsDoc(props) {
     <Column field="quantity" header="Quantity" sortable style={{ width: '25%' }}></Column>
 </DataTable>
         `,
-        javascript: `
+		javascript: `
 import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -47,7 +47,7 @@ export default function MultipleColumnsDemo() {
     );
 }
         `,
-        typescript: `
+		typescript: `
 import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -85,7 +85,7 @@ export default function MultipleColumnsDemo() {
     );
 }
         `,
-        data: `
+		data: `
 {
     id: '1000',
     code: 'f230fh0g3',
@@ -99,27 +99,53 @@ export default function MultipleColumnsDemo() {
     rating: 5
 },
 ...
-        `
-    };
+        `,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}>
-                <p>
-                    Multiple columns can be sorted by defining <i>sortMode</i> as <i>multiple</i>. This mode requires metaKey (e.g. <i>⌘</i>) to be pressed when clicking a header.
-                </p>
-            </DocSectionText>
-            <DeferredDemo onLoad={loadDemoData}>
-                <div className="card">
-                    <DataTable value={products} sortMode="multiple" tableStyle={{ minWidth: '50rem' }}>
-                        <Column field="code" header="Code" sortable style={{ width: '25%' }}></Column>
-                        <Column field="name" header="Name" sortable style={{ width: '25%' }}></Column>
-                        <Column field="category" header="Category" sortable style={{ width: '25%' }}></Column>
-                        <Column field="quantity" header="Quantity" sortable style={{ width: '25%' }}></Column>
-                    </DataTable>
-                </div>
-            </DeferredDemo>
-            <DocSectionCode code={code} service={['ProductService']} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}>
+				<p>
+					Multiple columns can be sorted by defining <i>sortMode</i> as{" "}
+					<i>multiple</i>. This mode requires metaKey (e.g. <i>⌘</i>) to be
+					pressed when clicking a header.
+				</p>
+			</DocSectionText>
+			<DeferredDemo onLoad={loadDemoData}>
+				<div className="card">
+					<DataTable
+						value={products}
+						sortMode="multiple"
+						tableStyle={{ minWidth: "50rem" }}
+					>
+						<Column
+							field="code"
+							header="Code"
+							sortable
+							style={{ width: "25%" }}
+						></Column>
+						<Column
+							field="name"
+							header="Name"
+							sortable
+							style={{ width: "25%" }}
+						></Column>
+						<Column
+							field="category"
+							header="Category"
+							sortable
+							style={{ width: "25%" }}
+						></Column>
+						<Column
+							field="quantity"
+							header="Quantity"
+							sortable
+							style={{ width: "25%" }}
+						></Column>
+					</DataTable>
+				</div>
+			</DeferredDemo>
+			<DocSectionCode code={code} service={["ProductService"]} />
+		</>
+	);
 }

@@ -1,38 +1,38 @@
-import { ComponentBase } from '../componentbase/ComponentBase';
-import { classNames } from '../utils/Utils';
+import { ComponentBase } from "../componentbase/ComponentBase";
+import { classNames } from "../utils/Utils";
 
 export const TimelineBase = ComponentBase.extend({
-    defaultProps: {
-        __TYPE: 'Timeline',
-        align: 'left',
-        className: null,
-        content: null,
-        dataKey: null,
-        layout: 'vertical',
-        marker: null,
-        opposite: null,
-        value: null,
-        children: undefined
-    },
-    css: {
-        classes: {
-            marker: 'p-timeline-event-marker',
-            connector: 'p-timeline-event-connector',
-            event: 'p-timeline-event',
-            opposite: 'p-timeline-event-opposite',
-            separator: 'p-timeline-event-separator',
-            content: 'p-timeline-event-content',
-            root: ({ props }) =>
-                classNames(
-                    'p-timeline p-component',
-                    {
-                        [`p-timeline-${props.align}`]: true,
-                        [`p-timeline-${props.layout}`]: true
-                    },
-                    props.className
-                )
-        },
-        styles: `
+	defaultProps: {
+		__TYPE: "Timeline",
+		align: "left",
+		className: null,
+		content: null,
+		dataKey: null,
+		layout: "vertical",
+		marker: null,
+		opposite: null,
+		value: null,
+		children: undefined,
+	},
+	css: {
+		classes: {
+			marker: "p-timeline-event-marker",
+			connector: "p-timeline-event-connector",
+			event: "p-timeline-event",
+			opposite: "p-timeline-event-opposite",
+			separator: "p-timeline-event-separator",
+			content: "p-timeline-event-content",
+			root: ({ props }) =>
+				classNames(
+					"p-timeline p-component",
+					{
+						[`p-timeline-${props.align}`]: true,
+						[`p-timeline-${props.layout}`]: true,
+					},
+					props.className,
+				),
+		},
+		styles: `
         @layer primereact {
             .p-timeline {
                 display: flex;
@@ -145,6 +145,6 @@ export const TimelineBase = ComponentBase.extend({
                 flex-direction: column-reverse;
             }
         }
-    `
-    }
+    `,
+	},
 });

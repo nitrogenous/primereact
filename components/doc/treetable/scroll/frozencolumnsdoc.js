@@ -1,19 +1,19 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Column } from '@/components/lib/column/Column';
-import { TreeTable } from '@/components/lib/treetable/TreeTable';
-import { useEffect, useState } from 'react';
-import { NodeService } from '../../../../service/NodeService';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { Column } from "@/components/lib/column/Column";
+import { TreeTable } from "@/components/lib/treetable/TreeTable";
+import { useEffect, useState } from "react";
+import { NodeService } from "../../../../service/NodeService";
 
 export function FrozenColumnsDoc(props) {
-    const [nodes, setNodes] = useState([]);
+	const [nodes, setNodes] = useState([]);
 
-    useEffect(() => {
-        NodeService.getTreeTableNodes().then((data) => setNodes(data));
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+	useEffect(() => {
+		NodeService.getTreeTableNodes().then((data) => setNodes(data));
+	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <TreeTable value={nodes} scrollable frozenWidth="200px" scrollHeight="250px">
     <Column field="name" header="Name" expander frozen style={{ width: '250px', height: '57px' }}></Column>
     <Column field="size" header="Size" style={{ width: '250px', height: '57px' }} columnKey="size_0"></Column>
@@ -24,7 +24,7 @@ export function FrozenColumnsDoc(props) {
     <Column field="type" header="Type" style={{ width: '250px', height: '57px' }} columnKey="type_2"></Column>
 </TreeTable>
         `,
-        javascript: `
+		javascript: `
 import React, { useState, useEffect } from 'react';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
@@ -52,7 +52,7 @@ export default function FrozenColumnsDemo() {
     );
 }
         `,
-        typescript: `
+		typescript: `
 import React, { useState, useEffect } from 'react';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
@@ -81,7 +81,7 @@ export default function FrozenColumnsDemo() {
     );
 }
         `,
-        data: `
+		data: `
 {
     key: '0',
     label: 'Documents',
@@ -108,28 +108,71 @@ export default function FrozenColumnsDemo() {
     ]
 },
 ...
-`
-    };
+`,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}>
-                <p>
-                    A column can be fixed during horizontal scrolling by enabling the <i>frozen</i> property on a Column. The location is defined with the <i>alignFrozen</i> that can be <i>left</i> or <i>right</i>.
-                </p>
-            </DocSectionText>
-            <div className="card">
-                <TreeTable value={nodes} scrollable frozenWidth="200px" scrollHeight="250px">
-                    <Column field="name" header="Name" expander frozen style={{ width: '250px', height: '57px' }}></Column>
-                    <Column field="size" header="Size" style={{ width: '250px', height: '57px' }} columnKey="size_0"></Column>
-                    <Column field="type" header="Type" style={{ width: '250px', height: '57px' }} columnKey="type_0"></Column>
-                    <Column field="size" header="Size" style={{ width: '250px', height: '57px' }} columnKey="size_1"></Column>
-                    <Column field="type" header="Type" style={{ width: '250px', height: '57px' }} columnKey="type_1"></Column>
-                    <Column field="size" header="Size" style={{ width: '250px', height: '57px' }} columnKey="size_2"></Column>
-                    <Column field="type" header="Type" style={{ width: '250px', height: '57px' }} columnKey="type_2"></Column>
-                </TreeTable>
-            </div>
-            <DocSectionCode code={code} service={['NodeService']} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}>
+				<p>
+					A column can be fixed during horizontal scrolling by enabling the{" "}
+					<i>frozen</i> property on a Column. The location is defined with the{" "}
+					<i>alignFrozen</i> that can be <i>left</i> or <i>right</i>.
+				</p>
+			</DocSectionText>
+			<div className="card">
+				<TreeTable
+					value={nodes}
+					scrollable
+					frozenWidth="200px"
+					scrollHeight="250px"
+				>
+					<Column
+						field="name"
+						header="Name"
+						expander
+						frozen
+						style={{ width: "250px", height: "57px" }}
+					></Column>
+					<Column
+						field="size"
+						header="Size"
+						style={{ width: "250px", height: "57px" }}
+						columnKey="size_0"
+					></Column>
+					<Column
+						field="type"
+						header="Type"
+						style={{ width: "250px", height: "57px" }}
+						columnKey="type_0"
+					></Column>
+					<Column
+						field="size"
+						header="Size"
+						style={{ width: "250px", height: "57px" }}
+						columnKey="size_1"
+					></Column>
+					<Column
+						field="type"
+						header="Type"
+						style={{ width: "250px", height: "57px" }}
+						columnKey="type_1"
+					></Column>
+					<Column
+						field="size"
+						header="Size"
+						style={{ width: "250px", height: "57px" }}
+						columnKey="size_2"
+					></Column>
+					<Column
+						field="type"
+						header="Type"
+						style={{ width: "250px", height: "57px" }}
+						columnKey="type_2"
+					></Column>
+				</TreeTable>
+			</div>
+			<DocSectionCode code={code} service={["NodeService"]} />
+		</>
+	);
 }

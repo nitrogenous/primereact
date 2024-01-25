@@ -1,46 +1,49 @@
-import PrimeReact from '../api/Api';
-import { ComponentBase } from '../componentbase/ComponentBase';
-import { classNames } from '../utils/Utils';
+import PrimeReact from "../api/Api";
+import { ComponentBase } from "../componentbase/ComponentBase";
+import { classNames } from "../utils/Utils";
 
 const classes = {
-    root: ({ props, focusedState, overlayVisibleState, isValueEmpty }) =>
-        classNames(
-            'p-treeselect p-component p-inputwrapper',
-            {
-                'p-treeselect-chip': props.display === 'chip',
-                'p-treeselect-clearable': props.showClear && !props.disabled,
-                'p-disabled': props.disabled,
-                'p-focus': focusedState,
-                'p-inputwrapper-filled': !isValueEmpty,
-                'p-inputwrapper-focus': focusedState || overlayVisibleState
-            },
-            props.className
-        ),
-    label: ({ props, isValueEmpty, getLabel }) =>
-        classNames('p-treeselect-label', {
-            'p-placeholder': getLabel() === props.placeholder,
-            'p-treeselect-label-empty': !props.placeholder && isValueEmpty
-        }),
-    panel: ({ panelProps: props, context }) =>
-        classNames('p-treeselect-panel p-component', props.panelClassName, {
-            'p-input-filled': (context && context.inputStyle === 'filled') || PrimeReact.inputStyle === 'filled',
-            'p-ripple-disabled': (context && context.ripple === false) || PrimeReact.ripple === false
-        }),
-    labelContainer: 'p-treeselect-label-container',
-    tokenLabel: 'p-treeselect-token-label',
-    token: 'p-treeselect-token',
-    trigger: 'p-treeselect-trigger',
-    triggerIcon: 'p-treeselect-trigger-icon p-clickable',
-    emptyMessage: 'p-treeselect-empty-message',
-    filterContainer: 'p-treeselect-filter-container',
-    filter: 'p-treeselect-filter p-inputtext p-component',
-    filterIcon: 'p-treeselect-filter-icon',
-    closeIcon: 'p-treeselect-close-icon',
-    clearIcon: 'p-treeselect-clear-icon p-clickable',
-    closeButton: 'p-treeselect-close p-link',
-    header: 'p-treeselect-header',
-    wrapper: 'p-treeselect-items-wrapper',
-    transition: 'p-connected-overlay'
+	root: ({ props, focusedState, overlayVisibleState, isValueEmpty }) =>
+		classNames(
+			"p-treeselect p-component p-inputwrapper",
+			{
+				"p-treeselect-chip": props.display === "chip",
+				"p-treeselect-clearable": props.showClear && !props.disabled,
+				"p-disabled": props.disabled,
+				"p-focus": focusedState,
+				"p-inputwrapper-filled": !isValueEmpty,
+				"p-inputwrapper-focus": focusedState || overlayVisibleState,
+			},
+			props.className,
+		),
+	label: ({ props, isValueEmpty, getLabel }) =>
+		classNames("p-treeselect-label", {
+			"p-placeholder": getLabel() === props.placeholder,
+			"p-treeselect-label-empty": !props.placeholder && isValueEmpty,
+		}),
+	panel: ({ panelProps: props, context }) =>
+		classNames("p-treeselect-panel p-component", props.panelClassName, {
+			"p-input-filled":
+				(context && context.inputStyle === "filled") ||
+				PrimeReact.inputStyle === "filled",
+			"p-ripple-disabled":
+				(context && context.ripple === false) || PrimeReact.ripple === false,
+		}),
+	labelContainer: "p-treeselect-label-container",
+	tokenLabel: "p-treeselect-token-label",
+	token: "p-treeselect-token",
+	trigger: "p-treeselect-trigger",
+	triggerIcon: "p-treeselect-trigger-icon p-clickable",
+	emptyMessage: "p-treeselect-empty-message",
+	filterContainer: "p-treeselect-filter-container",
+	filter: "p-treeselect-filter p-inputtext p-component",
+	filterIcon: "p-treeselect-filter-icon",
+	closeIcon: "p-treeselect-close-icon",
+	clearIcon: "p-treeselect-clear-icon p-clickable",
+	closeButton: "p-treeselect-close p-link",
+	header: "p-treeselect-header",
+	wrapper: "p-treeselect-items-wrapper",
+	transition: "p-connected-overlay",
 };
 
 const styles = `
@@ -137,63 +140,63 @@ const styles = `
 `;
 
 export const TreeSelectBase = ComponentBase.extend({
-    defaultProps: {
-        __TYPE: 'TreeSelect',
-        appendTo: null,
-        ariaLabel: null,
-        ariaLabelledBy: null,
-        className: null,
-        closeIcon: null,
-        clearIcon: null,
-        disabled: false,
-        display: 'comma',
-        dropdownIcon: null,
-        emptyMessage: null,
-        expandedKeys: null,
-        filter: false,
-        filterBy: 'label',
-        filterIcon: null,
-        filterInputAutoFocus: true,
-        filterLocale: undefined,
-        filterMode: 'lenient',
-        filterPlaceholder: null,
-        filterTemplate: null,
-        filterValue: null,
-        inputId: null,
-        inputRef: null,
-        metaKeySelection: true,
-        name: null,
-        nodeTemplate: null,
-        onChange: null,
-        onFocus: null,
-        onBlur: null,
-        onFilterValueChange: null,
-        onHide: null,
-        onNodeCollapse: null,
-        onNodeExpand: null,
-        onNodeSelect: null,
-        onNodeUnselect: null,
-        onShow: null,
-        options: null,
-        panelClassName: null,
-        panelFooterTemplate: null,
-        panelHeaderTemplate: null,
-        panelStyle: null,
-        placeholder: null,
-        resetFilterOnHide: false,
-        scrollHeight: '400px',
-        selectionMode: 'single',
-        showClear: false,
-        style: null,
-        tabIndex: null,
-        togglerTemplate: null,
-        transitionOptions: null,
-        value: null,
-        valueTemplate: null,
-        children: undefined
-    },
-    css: {
-        classes,
-        styles
-    }
+	defaultProps: {
+		__TYPE: "TreeSelect",
+		appendTo: null,
+		ariaLabel: null,
+		ariaLabelledBy: null,
+		className: null,
+		closeIcon: null,
+		clearIcon: null,
+		disabled: false,
+		display: "comma",
+		dropdownIcon: null,
+		emptyMessage: null,
+		expandedKeys: null,
+		filter: false,
+		filterBy: "label",
+		filterIcon: null,
+		filterInputAutoFocus: true,
+		filterLocale: undefined,
+		filterMode: "lenient",
+		filterPlaceholder: null,
+		filterTemplate: null,
+		filterValue: null,
+		inputId: null,
+		inputRef: null,
+		metaKeySelection: true,
+		name: null,
+		nodeTemplate: null,
+		onChange: null,
+		onFocus: null,
+		onBlur: null,
+		onFilterValueChange: null,
+		onHide: null,
+		onNodeCollapse: null,
+		onNodeExpand: null,
+		onNodeSelect: null,
+		onNodeUnselect: null,
+		onShow: null,
+		options: null,
+		panelClassName: null,
+		panelFooterTemplate: null,
+		panelHeaderTemplate: null,
+		panelStyle: null,
+		placeholder: null,
+		resetFilterOnHide: false,
+		scrollHeight: "400px",
+		selectionMode: "single",
+		showClear: false,
+		style: null,
+		tabIndex: null,
+		togglerTemplate: null,
+		transitionOptions: null,
+		value: null,
+		valueTemplate: null,
+		children: undefined,
+	},
+	css: {
+		classes,
+		styles,
+	},
 });

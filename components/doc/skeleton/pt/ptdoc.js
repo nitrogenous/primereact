@@ -1,17 +1,17 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Skeleton } from '@/components/lib/skeleton/Skeleton';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { Skeleton } from "@/components/lib/skeleton/Skeleton";
 
 export function PTDoc(props) {
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <Skeleton
     pt={{
         root: { className: 'w-3rem h-3rem' }
     }}
 />
         `,
-        javascript: `
+		javascript: `
 import React from 'react';
 import { Skeleton } from 'primereact/skeleton';
 
@@ -27,7 +27,7 @@ export default function PTDemo() {
     );
 }
         `,
-        typescript: `
+		typescript: `
 import React from 'react';
 import { Skeleton } from 'primereact/skeleton';
 
@@ -42,20 +42,20 @@ export default function PTDemo() {
         </div>
     );
 }
-        `
-    };
+        `,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}></DocSectionText>
-            <div className="card flex justify-content-center">
-                <Skeleton
-                    pt={{
-                        root: { className: 'w-3rem h-3rem' }
-                    }}
-                />
-            </div>
-            <DocSectionCode code={code} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}></DocSectionText>
+			<div className="card flex justify-content-center">
+				<Skeleton
+					pt={{
+						root: { className: "w-3rem h-3rem" },
+					}}
+				/>
+			</div>
+			<DocSectionCode code={code} />
+		</>
+	);
 }

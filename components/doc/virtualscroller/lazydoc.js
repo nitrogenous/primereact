@@ -1,75 +1,78 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Skeleton } from '@/components/lib/skeleton/Skeleton';
-import { classNames } from '@/components/lib/utils/Utils';
-import { VirtualScroller } from '@/components/lib/virtualscroller/VirtualScroller';
-import { useEffect, useRef, useState } from 'react';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { Skeleton } from "@/components/lib/skeleton/Skeleton";
+import { classNames } from "@/components/lib/utils/Utils";
+import { VirtualScroller } from "@/components/lib/virtualscroller/VirtualScroller";
+import { useEffect, useRef, useState } from "react";
 
 export function LazyDoc(props) {
-    const [lazyItems, setLazyItems] = useState([]);
-    const [lazyLoading, setLazyLoading] = useState(true);
-    const loadLazyTimeout = useRef(null);
+	const [lazyItems, setLazyItems] = useState([]);
+	const [lazyLoading, setLazyLoading] = useState(true);
+	const loadLazyTimeout = useRef(null);
 
-    useEffect(() => {
-        setLazyItems(Array.from({ length: 100000 }));
-        setLazyLoading(false);
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+	useEffect(() => {
+		setLazyItems(Array.from({ length: 100000 }));
+		setLazyLoading(false);
+	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-    const onLazyLoad = (event) => {
-        setLazyLoading(true);
+	const onLazyLoad = (event) => {
+		setLazyLoading(true);
 
-        if (loadLazyTimeout.current) {
-            clearTimeout(loadLazyTimeout.current);
-        }
+		if (loadLazyTimeout.current) {
+			clearTimeout(loadLazyTimeout.current);
+		}
 
-        //imitate delay of a backend call
-        loadLazyTimeout.current = setTimeout(
-            () => {
-                const { first, last } = event;
-                const _lazyItems = [...lazyItems];
+		//imitate delay of a backend call
+		loadLazyTimeout.current = setTimeout(
+			() => {
+				const { first, last } = event;
+				const _lazyItems = [...lazyItems];
 
-                for (let i = first; i < last; i++) {
-                    _lazyItems[i] = `Item #${i}`;
-                }
+				for (let i = first; i < last; i++) {
+					_lazyItems[i] = `Item #${i}`;
+				}
 
-                setLazyItems(_lazyItems);
-                setLazyLoading(false);
-            },
-            Math.random() * 1000 + 250
-        );
-    };
+				setLazyItems(_lazyItems);
+				setLazyLoading(false);
+			},
+			Math.random() * 1000 + 250,
+		);
+	};
 
-    const itemTemplate = (item, options) => {
-        const className = classNames('flex align-items-center p-2', {
-            'surface-hover': options.odd
-        });
+	const itemTemplate = (item, options) => {
+		const className = classNames("flex align-items-center p-2", {
+			"surface-hover": options.odd,
+		});
 
-        return (
-            <div className={className} style={{ height: options.props.itemSize + 'px' }}>
-                {item}
-            </div>
-        );
-    };
+		return (
+			<div
+				className={className}
+				style={{ height: options.props.itemSize + "px" }}
+			>
+				{item}
+			</div>
+		);
+	};
 
-    const loadingTemplate = (options) => {
-        const className = classNames('flex align-items-center p-2', {
-            odd: options.odd
-        });
+	const loadingTemplate = (options) => {
+		const className = classNames("flex align-items-center p-2", {
+			odd: options.odd,
+		});
 
-        return (
-            <div className={className} style={{ height: '50px' }}>
-                <Skeleton width={options.even ? '60%' : '50%'} height="1.3rem" />
-            </div>
-        );
-    };
+		return (
+			<div className={className} style={{ height: "50px" }}>
+				<Skeleton width={options.even ? "60%" : "50%"} height="1.3rem" />
+			</div>
+		);
+	};
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <VirtualScroller items={lazyItems} itemSize={50} itemTemplate={itemTemplate} lazy onLazyLoad={onLazyLoad} 
     loadingTemplate={loadingTemplate} showLoader loading={lazyLoading} 
     className="border-1 surface-border border-round" style={{ width: '200px', height: '200px' }} />
         `,
-        javascript: `
+		javascript: `
 import React, { useState, useEffect, useRef } from 'react';
 import { VirtualScroller } from 'primereact/virtualscroller';
 import { Skeleton } from 'primereact/skeleton';
@@ -138,7 +141,7 @@ export default function LazyDemo() {
     );
 }
         `,
-        typescript: `
+		typescript: `
 import React, { useState, useEffect, useRef } from 'react';
 import { VirtualScroller, VirtualScrollerTemplateOptions, VirtualScrollerLazyEvent } from 'primereact/virtualscroller';
 import { Skeleton } from 'primereact/skeleton';
@@ -206,32 +209,34 @@ export default function LazyDemo() {
         </div>
     );
 }
-        `
-    };
+        `,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}>
-                <p>
-                    Lazy mode is handy to deal with large datasets, instead of loading the entire data, small chunks of data is loaded on demand. To implement lazy loading, enable the <i>lazy</i>
-                    property and implement <i>onLazyLoad</i> callback to return data.
-                </p>
-            </DocSectionText>
-            <div className="card flex justify-content-center">
-                <VirtualScroller
-                    items={lazyItems}
-                    itemSize={50}
-                    itemTemplate={itemTemplate}
-                    lazy
-                    onLazyLoad={onLazyLoad}
-                    loadingTemplate={loadingTemplate}
-                    showLoader
-                    loading={lazyLoading}
-                    className="border-1 surface-border border-round"
-                    style={{ width: '200px', height: '200px' }}
-                />
-            </div>
-            <DocSectionCode code={code} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}>
+				<p>
+					Lazy mode is handy to deal with large datasets, instead of loading the
+					entire data, small chunks of data is loaded on demand. To implement
+					lazy loading, enable the <i>lazy</i>
+					property and implement <i>onLazyLoad</i> callback to return data.
+				</p>
+			</DocSectionText>
+			<div className="card flex justify-content-center">
+				<VirtualScroller
+					items={lazyItems}
+					itemSize={50}
+					itemTemplate={itemTemplate}
+					lazy
+					onLazyLoad={onLazyLoad}
+					loadingTemplate={loadingTemplate}
+					showLoader
+					loading={lazyLoading}
+					className="border-1 surface-border border-round"
+					style={{ width: "200px", height: "200px" }}
+				/>
+			</div>
+			<DocSectionCode code={code} />
+		</>
+	);
 }

@@ -1,27 +1,28 @@
-import { ComponentBase } from '../componentbase/ComponentBase';
-import { classNames } from '../utils/Utils';
+import { ComponentBase } from "../componentbase/ComponentBase";
+import { classNames } from "../utils/Utils";
 
 const classes = {
-    icon: 'p-dock-action-icon',
-    action: ({ disabled }) => classNames('p-dock-action', { 'p-disabled': disabled }),
-    menuitem: ({ currentIndexState, index, active }) =>
-        classNames('p-dock-item', {
-            'p-dock-item-second-prev': currentIndexState - 2 === index,
-            'p-dock-item-prev': currentIndexState - 1 === index,
-            'p-dock-item-current': currentIndexState === index,
-            'p-dock-item-next': currentIndexState + 1 === index,
-            'p-dock-item-second-next': currentIndexState + 2 === index,
-            'p-focus': active
-        }),
-    content: 'p-menuitem-content',
-    header: 'p-dock-header',
-    menu: 'p-dock-list',
-    footer: 'p-dock-footer',
-    root: ({ props }) =>
-        classNames(`p-dock p-component p-dock-${props.position}`, {
-            'p-dock-magnification': props.magnification
-        }),
-    container: 'p-dock-list-container'
+	icon: "p-dock-action-icon",
+	action: ({ disabled }) =>
+		classNames("p-dock-action", { "p-disabled": disabled }),
+	menuitem: ({ currentIndexState, index, active }) =>
+		classNames("p-dock-item", {
+			"p-dock-item-second-prev": currentIndexState - 2 === index,
+			"p-dock-item-prev": currentIndexState - 1 === index,
+			"p-dock-item-current": currentIndexState === index,
+			"p-dock-item-next": currentIndexState + 1 === index,
+			"p-dock-item-second-next": currentIndexState + 2 === index,
+			"p-focus": active,
+		}),
+	content: "p-menuitem-content",
+	header: "p-dock-header",
+	menu: "p-dock-list",
+	footer: "p-dock-footer",
+	root: ({ props }) =>
+		classNames(`p-dock p-component p-dock-${props.position}`, {
+			"p-dock-magnification": props.magnification,
+		}),
+	container: "p-dock-list-container",
 };
 
 const styles = `
@@ -148,23 +149,23 @@ const styles = `
 `;
 
 export const DockBase = ComponentBase.extend({
-    defaultProps: {
-        __TYPE: 'Dock',
-        id: null,
-        style: null,
-        className: null,
-        model: null,
-        tabIndex: 0,
-        onFocus: null,
-        onBlur: null,
-        position: 'bottom',
-        magnification: true,
-        header: null,
-        footer: null,
-        children: undefined
-    },
-    css: {
-        classes,
-        styles
-    }
+	defaultProps: {
+		__TYPE: "Dock",
+		id: null,
+		style: null,
+		className: null,
+		model: null,
+		tabIndex: 0,
+		onFocus: null,
+		onBlur: null,
+		position: "bottom",
+		magnification: true,
+		header: null,
+		footer: null,
+		children: undefined,
+	},
+	css: {
+		classes,
+		styles,
+	},
 });

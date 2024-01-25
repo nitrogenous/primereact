@@ -1,18 +1,18 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Tree } from '@/components/lib/tree/Tree';
-import { useEffect, useState } from 'react';
-import { NodeService } from '../../../../service/NodeService';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { Tree } from "@/components/lib/tree/Tree";
+import { useEffect, useState } from "react";
+import { NodeService } from "../../../../service/NodeService";
 
 export function PTDoc(props) {
-    const [nodes, setNodes] = useState([]);
+	const [nodes, setNodes] = useState([]);
 
-    useEffect(() => {
-        NodeService.getTreeNodes().then((data) => setNodes(data));
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+	useEffect(() => {
+		NodeService.getTreeNodes().then((data) => setNodes(data));
+	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <Tree
     value={nodes}
     pt={{
@@ -23,7 +23,7 @@ export function PTDoc(props) {
     }}
 />
         `,
-        javascript: `
+		javascript: `
 import React, { useState, useEffect } from 'react';
 import { Tree } from 'primereact/tree';
 import { NodeService } from './service/NodeService';
@@ -50,7 +50,7 @@ export default function PTDemo() {
     )
 }
         `,
-        typescript: `
+		typescript: `
 import React, { useState, useEffect } from 'react';
 import { Tree } from 'primereact/tree';
 import { TreeNode } from 'primereact/treenode';
@@ -78,7 +78,7 @@ export default function PTDemo() {
     )
 }
         `,
-        data: `
+		data: `
 {
     key: '0',
     label: 'Documents',
@@ -105,24 +105,24 @@ export default function PTDemo() {
     ]
 },
 ...
-`
-    };
+`,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}></DocSectionText>
-            <div className="card flex justify-content-center">
-                <Tree
-                    value={nodes}
-                    pt={{
-                        root: { className: 'w-full md:w-30rem' },
-                        content: ({ context }) => ({
-                            className: context.expanded ? 'bg-blue-100' : 'undefined'
-                        })
-                    }}
-                />
-            </div>
-            <DocSectionCode code={code} service={['NodeService']} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}></DocSectionText>
+			<div className="card flex justify-content-center">
+				<Tree
+					value={nodes}
+					pt={{
+						root: { className: "w-full md:w-30rem" },
+						content: ({ context }) => ({
+							className: context.expanded ? "bg-blue-100" : "undefined",
+						}),
+					}}
+				/>
+			</div>
+			<DocSectionCode code={code} service={["NodeService"]} />
+		</>
+	);
 }

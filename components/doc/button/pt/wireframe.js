@@ -1,12 +1,16 @@
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
 
 export const Wireframe = (props) => {
-    return (
-        <>
-            <DocSectionText {...props} />
-            <div>
-                <img className="w-full" src="https://primefaces.org/cdn/primereact/images/pt/button.jpg" alt="button" />
-            </div>
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props} />
+			<div>
+				<img
+					className="w-full"
+					src="https://primefaces.org/cdn/primereact/images/pt/button.jpg"
+					alt="button"
+				/>
+			</div>
+		</>
+	);
 };

@@ -1,17 +1,20 @@
-import PrimeReact from '../api/Api';
-import { ComponentBase } from '../componentbase/ComponentBase';
-import { classNames } from '../utils/Utils';
+import PrimeReact from "../api/Api";
+import { ComponentBase } from "../componentbase/ComponentBase";
+import { classNames } from "../utils/Utils";
 
 const classes = {
-    root: ({ props, context }) =>
-        classNames('p-overlaypanel p-component', props.className, {
-            'p-input-filled': (context && context.inputStyle === 'filled') || PrimeReact.inputStyle === 'filled',
-            'p-ripple-disabled': (context && context.ripple === false) || PrimeReact.ripple === false
-        }),
-    closeIcon: 'p-overlaypanel-close-icon',
-    closeButton: 'p-overlaypanel-close p-link',
-    content: 'p-overlaypanel-content',
-    transition: 'p-overlaypanel'
+	root: ({ props, context }) =>
+		classNames("p-overlaypanel p-component", props.className, {
+			"p-input-filled":
+				(context && context.inputStyle === "filled") ||
+				PrimeReact.inputStyle === "filled",
+			"p-ripple-disabled":
+				(context && context.ripple === false) || PrimeReact.ripple === false,
+		}),
+	closeIcon: "p-overlaypanel-close-icon",
+	closeButton: "p-overlaypanel-close p-link",
+	content: "p-overlaypanel-content",
+	transition: "p-overlaypanel",
 };
 
 const styles = `
@@ -98,25 +101,25 @@ const styles = `
 `;
 
 export const OverlayPanelBase = ComponentBase.extend({
-    defaultProps: {
-        __TYPE: 'OverlayPanel',
-        id: null,
-        dismissable: true,
-        showCloseIcon: false,
-        closeIcon: null,
-        style: null,
-        className: null,
-        appendTo: null,
-        breakpoints: null,
-        ariaCloseLabel: null,
-        transitionOptions: null,
-        onShow: null,
-        onHide: null,
-        children: undefined,
-        closeOnEscape: true
-    },
-    css: {
-        classes,
-        styles
-    }
+	defaultProps: {
+		__TYPE: "OverlayPanel",
+		id: null,
+		dismissable: true,
+		showCloseIcon: false,
+		closeIcon: null,
+		style: null,
+		className: null,
+		appendTo: null,
+		breakpoints: null,
+		ariaCloseLabel: null,
+		transitionOptions: null,
+		onShow: null,
+		onHide: null,
+		children: undefined,
+		closeOnEscape: true,
+	},
+	css: {
+		classes,
+		styles,
+	},
 });

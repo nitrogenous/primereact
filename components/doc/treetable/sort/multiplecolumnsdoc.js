@@ -1,28 +1,28 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Column } from '@/components/lib/column/Column';
-import { TreeTable } from '@/components/lib/treetable/TreeTable';
-import { useEffect, useState } from 'react';
-import { NodeService } from '../../../../service/NodeService';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { Column } from "@/components/lib/column/Column";
+import { TreeTable } from "@/components/lib/treetable/TreeTable";
+import { useEffect, useState } from "react";
+import { NodeService } from "../../../../service/NodeService";
 
 export function MultipleColumnsDoc(props) {
-    const [nodes, setNodes] = useState([]);
+	const [nodes, setNodes] = useState([]);
 
-    useEffect(() => {
-        NodeService.getTreeTableNodes().then((data) => {
-            setNodes(data);
-        });
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+	useEffect(() => {
+		NodeService.getTreeTableNodes().then((data) => {
+			setNodes(data);
+		});
+	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <TreeTable value={nodes} sortMode="multiple" tableStyle={{ minWidth: '50rem' }}>
     <Column field="name" header="Name" expander sortable></Column>
     <Column field="size" header="Size" sortable></Column>
     <Column field="type" header="Type" sortable></Column>
 </TreeTable>
         `,
-        javascript: `
+		javascript: `
 import React, { useState, useEffect } from 'react';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
@@ -48,7 +48,7 @@ export default function MultipleColumnsDemo() {
     );
 }
         `,
-        typescript: `
+		typescript: `
 import React, { useState, useEffect } from 'react';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
@@ -75,7 +75,7 @@ export default function MultipleColumnsDemo() {
     );
 }
         `,
-        data: `
+		data: `
 {
     key: '0',
     label: 'Documents',
@@ -102,24 +102,30 @@ export default function MultipleColumnsDemo() {
     ]
 },
 ...
-`
-    };
+`,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}>
-                <p>
-                    Multiple columns can be sorted by defining <i>sortMode</i> as <i>multiple</i>. This mode requires metaKey (e.g. <i>⌘</i>) to be pressed when clicking a header.
-                </p>
-            </DocSectionText>
-            <div className="card">
-                <TreeTable value={nodes} sortMode="multiple" tableStyle={{ minWidth: '50rem' }}>
-                    <Column field="name" header="Name" expander sortable></Column>
-                    <Column field="size" header="Size" sortable></Column>
-                    <Column field="type" header="Type" sortable></Column>
-                </TreeTable>
-            </div>
-            <DocSectionCode code={code} service={['NodeService']} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}>
+				<p>
+					Multiple columns can be sorted by defining <i>sortMode</i> as{" "}
+					<i>multiple</i>. This mode requires metaKey (e.g. <i>⌘</i>) to be
+					pressed when clicking a header.
+				</p>
+			</DocSectionText>
+			<div className="card">
+				<TreeTable
+					value={nodes}
+					sortMode="multiple"
+					tableStyle={{ minWidth: "50rem" }}
+				>
+					<Column field="name" header="Name" expander sortable></Column>
+					<Column field="size" header="Size" sortable></Column>
+					<Column field="type" header="Type" sortable></Column>
+				</TreeTable>
+			</div>
+			<DocSectionCode code={code} service={["NodeService"]} />
+		</>
+	);
 }

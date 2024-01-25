@@ -1,19 +1,19 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Paginator } from '@/components/lib/paginator/Paginator';
-import { useState } from 'react';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { Paginator } from "@/components/lib/paginator/Paginator";
+import { useState } from "react";
 
 export function PTDoc(props) {
-    const [first, setFirst] = useState(0);
-    const [rows, setRows] = useState(10);
+	const [first, setFirst] = useState(0);
+	const [rows, setRows] = useState(10);
 
-    const onPageChange = (event) => {
-        setFirst(event.first);
-        setRows(event.rows);
-    };
+	const onPageChange = (event) => {
+		setFirst(event.first);
+		setRows(event.rows);
+	};
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <Paginator
     first={first}
     rows={rows}
@@ -27,7 +27,7 @@ export function PTDoc(props) {
     }}
 />
         `,
-        javascript: `
+		javascript: `
 import React, { useState } from "react";
 import { Paginator } from 'primereact/paginator';
 
@@ -58,7 +58,7 @@ export default function PTDemo() {
     );
 }
         `,
-        typescript: `
+		typescript: `
 import React, { useState } from "react";
 import { Paginator, PaginatorPageChangeEvent } from 'primereact/paginator';
 
@@ -88,27 +88,27 @@ export default function PTDemo() {
         </div>
     );
 }
-        `
-    };
+        `,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}></DocSectionText>
-            <div className="card">
-                <Paginator
-                    first={first}
-                    rows={rows}
-                    totalRecords={120}
-                    rowsPerPageOptions={[10, 20, 30]}
-                    onPageChange={onPageChange}
-                    pt={{
-                        pageButton: ({ context }) => ({
-                            className: context.active ? 'bg-primary' : undefined
-                        })
-                    }}
-                />
-            </div>
-            <DocSectionCode code={code} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}></DocSectionText>
+			<div className="card">
+				<Paginator
+					first={first}
+					rows={rows}
+					totalRecords={120}
+					rowsPerPageOptions={[10, 20, 30]}
+					onPageChange={onPageChange}
+					pt={{
+						pageButton: ({ context }) => ({
+							className: context.active ? "bg-primary" : undefined,
+						}),
+					}}
+				/>
+			</div>
+			<DocSectionCode code={code} />
+		</>
+	);
 }

@@ -1,44 +1,45 @@
-import pkg from 'package.json';
-import { services } from './services';
+import pkg from "package.json";
+import { services } from "./services";
 
 const PrimeReact = {
-    version: 'latest' || pkg.version, // latest
-    description:
-        'PrimeReact is an open source UI library for React featuring a rich set of 80+ components, a theme designer, various theme alternatives such as Material, Bootstrap, Tailwind, premium templates and professional support. In addition, it integrates with PrimeBlock, which has 370+ ready to use UI blocks to build spectacular applications in no time.'
+	version: "latest" || pkg.version, // latest
+	description:
+		"PrimeReact is an open source UI library for React featuring a rich set of 80+ components, a theme designer, various theme alternatives such as Material, Bootstrap, Tailwind, premium templates and professional support. In addition, it integrates with PrimeBlock, which has 370+ ready to use UI blocks to build spectacular applications in no time.",
 };
 
 const app_dependencies = pkg ? pkg.dependencies : {};
 
 const getConfiguredDependencies = (isUnstyled) => {
-    const defaultDependencies = {
-        '@types/react': '^18.2.38', // For stackblitz
-        react: app_dependencies['react'] || 'latest',
-        'react-dom': app_dependencies['react-dom'] || 'latest',
-        'react-transition-group': app_dependencies['react-transition-group'] || 'latest',
-        primereact: PrimeReact.version || 'latest', // latest
-        primeicons: app_dependencies['primeicons'] || 'latest',
-        vite: 'latest',
-        '@vitejs/plugin-react': 'latest'
-    };
+	const defaultDependencies = {
+		"@types/react": "^18.2.38", // For stackblitz
+		react: app_dependencies["react"] || "latest",
+		"react-dom": app_dependencies["react-dom"] || "latest",
+		"react-transition-group":
+			app_dependencies["react-transition-group"] || "latest",
+		primereact: PrimeReact.version || "latest", // latest
+		primeicons: app_dependencies["primeicons"] || "latest",
+		vite: "latest",
+		"@vitejs/plugin-react": "latest",
+	};
 
-    if (isUnstyled) {
-        return {
-            ...defaultDependencies,
-            tailwindcss: app_dependencies['tailwindcss'] || 'latest',
-            postcss: app_dependencies['postcss'] || 'latest',
-            autoprefixer: app_dependencies['autoprefixer'] || 'latest'
-        };
-    } else {
-        return {
-            ...defaultDependencies,
-            primeflex: app_dependencies['primeflex'] || 'latest'
-        };
-    }
+	if (isUnstyled) {
+		return {
+			...defaultDependencies,
+			tailwindcss: app_dependencies["tailwindcss"] || "latest",
+			postcss: app_dependencies["postcss"] || "latest",
+			autoprefixer: app_dependencies["autoprefixer"] || "latest",
+		};
+	} else {
+		return {
+			...defaultDependencies,
+			primeflex: app_dependencies["primeflex"] || "latest",
+		};
+	}
 };
 
 const getUnstyledFiles = (path) => {
-    const tailwindConfig = {
-        content: `/** @type {import('tailwindcss').Config} */
+	const tailwindConfig = {
+		content: `/** @type {import('tailwindcss').Config} */
 export default {
     darkMode: 'class',
     content: [
@@ -50,20 +51,20 @@ export default {
         extend: {},
     },
     plugins: [],
-};`
-    };
+};`,
+	};
 
-    const postcssConfig = {
-        content: `export default {
+	const postcssConfig = {
+		content: `export default {
     plugins: {
         tailwindcss: {},
         autoprefixer: {},
     },
-}`
-    };
+}`,
+	};
 
-    const tailwindCss = {
-        content: `@tailwind base;
+	const tailwindCss = {
+		content: `@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -89,11 +90,11 @@ html.dark body {
 
 html.dark .card {
     background: #071426;
-}`
-    };
+}`,
+	};
 
-    const themeSwitcher = {
-        content: `import React, { useState } from 'react';
+	const themeSwitcher = {
+		content: `import React, { useState } from 'react';
 const ThemeSwitcher = () => {
     const [iconClassName, setIconClassName] = useState('pi-moon');
 
@@ -119,11 +120,11 @@ const ThemeSwitcher = () => {
     );
 };
 
-export default ThemeSwitcher;`
-    };
+export default ThemeSwitcher;`,
+	};
 
-    const mainJsx = {
-        content: `import React from 'react';
+	const mainJsx = {
+		content: `import React from 'react';
 import ReactDOM from 'react-dom/client';
 import 'primeicons/primeicons.css';
 import { PrimeReactProvider } from 'primereact/api';
@@ -142,15 +143,21 @@ root.render(
         <App />
         </PrimeReactProvider>
     </React.StrictMode>
-);`
-    };
+);`,
+	};
 
-    return { 'tailwind.config.js': tailwindConfig, 'postcss.config.js': postcssConfig, [`${path}main.jsx`]: mainJsx, [`${path}index.css`]: tailwindCss, [`${path}components/themeSwitcher.jsx`]: themeSwitcher };
+	return {
+		"tailwind.config.js": tailwindConfig,
+		"postcss.config.js": postcssConfig,
+		[`${path}main.jsx`]: mainJsx,
+		[`${path}index.css`]: tailwindCss,
+		[`${path}components/themeSwitcher.jsx`]: themeSwitcher,
+	};
 };
 
 const getStyledFiles = (path) => {
-    const globalCss = {
-        content: `html {
+	const globalCss = {
+		content: `html {
     font-size: 14px;
 }
 
@@ -169,11 +176,11 @@ body {
     padding: 2rem;
     border-radius: 10px;
     margin-bottom: 1rem;
-}`
-    };
+}`,
+	};
 
-    const mainJsx = {
-        content: `import React from 'react';
+	const mainJsx = {
+		content: `import React from 'react';
 import ReactDOM from 'react-dom/client';
 import 'primeicons/primeicons.css';
 import { PrimeReactProvider } from 'primereact/api';
@@ -192,48 +199,57 @@ root.render(
     <App />
     </PrimeReactProvider>
 </React.StrictMode>
-);`
-    };
+);`,
+	};
 
-    return { [`${path}main.jsx`]: mainJsx, [`${path}index.css`]: globalCss };
+	return { [`${path}main.jsx`]: mainJsx, [`${path}index.css`]: globalCss };
 };
 
-const getVite = (props = {}, template = 'javascript') => {
-    const path = 'src/';
-    const isUnstyled = props.embedded;
+const getVite = (props = {}, template = "javascript") => {
+	const path = "src/";
+	const isUnstyled = props.embedded;
 
-    const { code: sources, title = 'primereact_demo', description = '', dependencies: pDependencies = {} } = props;
+	const {
+		code: sources,
+		title = "primereact_demo",
+		description = "",
+		dependencies: pDependencies = {},
+	} = props;
 
-    const configuredDependencies = getConfiguredDependencies(isUnstyled);
-    const dependencies = { ...configuredDependencies, ...pDependencies, 'react-scripts': '5.0.1' };
+	const configuredDependencies = getConfiguredDependencies(isUnstyled);
+	const dependencies = {
+		...configuredDependencies,
+		...pDependencies,
+		"react-scripts": "5.0.1",
+	};
 
-    const extFiles = {};
+	const extFiles = {};
 
-    sources.extFiles &&
-        Object.entries(sources.extFiles).forEach(([key, value]) => {
-            extFiles[`${path + key}`] = {
-                content: value
-            };
-        });
+	sources.extFiles &&
+		Object.entries(sources.extFiles).forEach(([key, value]) => {
+			extFiles[`${path + key}`] = {
+				content: value,
+			};
+		});
 
-    const packageJson = {
-        content: {
-            name: title.toLowerCase().replaceAll(' ', '_'),
-            description: `**${description}** ${PrimeReact.description}`,
-            type: 'module',
-            scripts: {
-                dev: 'vite',
-                build: 'vite build',
-                preview: 'vite preview'
-            },
-            main: `${path}main.jsx`,
-            keywords: ['primereact', 'react', 'vite', 'starter'],
-            dependencies
-        }
-    };
+	const packageJson = {
+		content: {
+			name: title.toLowerCase().replaceAll(" ", "_"),
+			description: `**${description}** ${PrimeReact.description}`,
+			type: "module",
+			scripts: {
+				dev: "vite",
+				build: "vite build",
+				preview: "vite preview",
+			},
+			main: `${path}main.jsx`,
+			keywords: ["primereact", "react", "vite", "starter"],
+			dependencies,
+		},
+	};
 
-    const viteConfig = {
-        content: `import { fileURLToPath, URL } from 'node:url';
+	const viteConfig = {
+		content: `import { fileURLToPath, URL } from 'node:url';
 
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
@@ -246,11 +262,11 @@ export default defineConfig({
             '@': fileURLToPath(new URL('./src', import.meta.url)),
         },
     },
-});`
-    };
+});`,
+	};
 
-    const indexHtml = {
-        content: `<!doctype html>
+	const indexHtml = {
+		content: `<!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
@@ -263,35 +279,37 @@ export default defineConfig({
         <div id="root"></div>
         <script type="module" src="/src/main.jsx"></script>
     </body>
-</html>`
-    };
+</html>`,
+	};
 
-    const configuredFiles = isUnstyled ? getUnstyledFiles(path) : getStyledFiles(path);
+	const configuredFiles = isUnstyled
+		? getUnstyledFiles(path)
+		: getStyledFiles(path);
 
-    let files = {
-        'package.json': packageJson,
-        'vite.config.js': viteConfig,
-        'index.html': indexHtml,
-        [`${path}flags.css`]: flagsCss,
-        [`${path}App.jsx`]: {
-            content: sources[template].replace(/^\n/, '')
-        },
-        ...configuredFiles
-    };
+	const files = {
+		"package.json": packageJson,
+		"vite.config.js": viteConfig,
+		"index.html": indexHtml,
+		[`${path}flags.css`]: flagsCss,
+		[`${path}App.jsx`]: {
+			content: sources[template].replace(/^\n/, ""),
+		},
+		...configuredFiles,
+	};
 
-    if (props.service) {
-        props.service.forEach((name) => {
-            files[`${path}service/${name}.jsx`] = {
-                content: services[name]
-            };
-        });
-    }
+	if (props.service) {
+		props.service.forEach((name) => {
+			files[`${path}service/${name}.jsx`] = {
+				content: services[name],
+			};
+		});
+	}
 
-    return { files, dependencies, sourceFileName: `${path}App.jsx` };
+	return { files, dependencies, sourceFileName: `${path}App.jsx` };
 };
 
 const flagsCss = {
-    content: `span.flag {
+	content: `span.flag {
     width: 44px;
     height: 30px;
     display: inline-block;
@@ -1031,7 +1049,7 @@ img.flag {
 }
 .flag-zw {
     background-position: 0 100%;
-}`
+}`,
 };
 
 export { getVite };

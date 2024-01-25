@@ -1,20 +1,21 @@
-import { ComponentBase } from '../componentbase/ComponentBase';
-import { classNames } from '../utils/Utils';
+import { ComponentBase } from "../componentbase/ComponentBase";
+import { classNames } from "../utils/Utils";
 
 const classes = {
-    onIcon: 'p-rating-icon',
-    item: ({ active }) => classNames('p-rating-item', { 'p-rating-item-active': active }),
-    cancelIcon: 'p-rating-icon p-rating-cancel',
-    cancelItem: 'p-rating-item p-rating-cancel-item',
-    root: ({ props }) =>
-        classNames(
-            'p-rating',
-            {
-                'p-disabled': props.disabled,
-                'p-readonly': props.readOnly
-            },
-            props.className
-        )
+	onIcon: "p-rating-icon",
+	item: ({ active }) =>
+		classNames("p-rating-item", { "p-rating-item-active": active }),
+	cancelIcon: "p-rating-icon p-rating-cancel",
+	cancelItem: "p-rating-item p-rating-cancel-item",
+	root: ({ props }) =>
+		classNames(
+			"p-rating",
+			{
+				"p-disabled": props.disabled,
+				"p-readonly": props.readOnly,
+			},
+			props.className,
+		),
 };
 
 const styles = `
@@ -37,29 +38,29 @@ const styles = `
 `;
 
 export const RatingBase = ComponentBase.extend({
-    defaultProps: {
-        __TYPE: 'Rating',
-        id: null,
-        value: null,
-        disabled: false,
-        readOnly: false,
-        stars: 5,
-        cancel: true,
-        style: null,
-        className: null,
-        tooltip: null,
-        tooltipOptions: null,
-        onChange: null,
-        onIcon: null,
-        offIcon: null,
-        cancelIcon: null,
-        cancelIconProps: null,
-        onIconProps: null,
-        offIconProps: null,
-        children: undefined
-    },
-    css: {
-        classes,
-        styles
-    }
+	defaultProps: {
+		__TYPE: "Rating",
+		id: null,
+		value: null,
+		disabled: false,
+		readOnly: false,
+		stars: 5,
+		cancel: true,
+		style: null,
+		className: null,
+		tooltip: null,
+		tooltipOptions: null,
+		onChange: null,
+		onIcon: null,
+		offIcon: null,
+		cancelIcon: null,
+		cancelIconProps: null,
+		onIconProps: null,
+		offIconProps: null,
+		children: undefined,
+	},
+	css: {
+		classes,
+		styles,
+	},
 });

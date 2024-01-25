@@ -1,5 +1,5 @@
-import { ComponentBase } from '../componentbase/ComponentBase';
-import { classNames } from '../utils/Utils';
+import { ComponentBase } from "../componentbase/ComponentBase";
+import { classNames } from "../utils/Utils";
 
 const styles = `
 @layer primereact {
@@ -59,44 +59,51 @@ const styles = `
 `;
 
 const classes = {
-    root: 'p-organizationchart p-component',
-    table: 'p-organizationchart-table',
-    node: ({ nodeProps: props, node, selected }) =>
-        classNames(
-            'p-organizationchart-node-content',
-            {
-                'p-organizationchart-selectable-node': props.selectionMode && node.selectable !== false,
-                'p-highlight': selected
-            },
-            node.className
-        ),
-    nodes: 'p-organizationchart-nodes',
-    lines: 'p-organizationchart-lines',
-    lineLeft: ({ index }) => classNames('p-organizationchart-line-left', { 'p-organizationchart-line-top': index !== 0 }),
-    lineRight: ({ index, nodeChildLength }) => classNames('p-organizationchart-line-right', { 'p-organizationchart-line-top': index !== nodeChildLength - 1 }),
-    lineDown: 'p-organizationchart-line-down',
-    nodeTogglerIcon: 'p-node-toggler-icon',
-    nodeToggler: 'p-node-toggler'
+	root: "p-organizationchart p-component",
+	table: "p-organizationchart-table",
+	node: ({ nodeProps: props, node, selected }) =>
+		classNames(
+			"p-organizationchart-node-content",
+			{
+				"p-organizationchart-selectable-node":
+					props.selectionMode && node.selectable !== false,
+				"p-highlight": selected,
+			},
+			node.className,
+		),
+	nodes: "p-organizationchart-nodes",
+	lines: "p-organizationchart-lines",
+	lineLeft: ({ index }) =>
+		classNames("p-organizationchart-line-left", {
+			"p-organizationchart-line-top": index !== 0,
+		}),
+	lineRight: ({ index, nodeChildLength }) =>
+		classNames("p-organizationchart-line-right", {
+			"p-organizationchart-line-top": index !== nodeChildLength - 1,
+		}),
+	lineDown: "p-organizationchart-line-down",
+	nodeTogglerIcon: "p-node-toggler-icon",
+	nodeToggler: "p-node-toggler",
 };
 
 export const OrganizationChartBase = ComponentBase.extend({
-    defaultProps: {
-        __TYPE: 'OrganizationChart',
-        id: null,
-        value: null,
-        style: null,
-        className: null,
-        selectionMode: null,
-        selection: null,
-        nodeTemplate: null,
-        onSelectionChange: null,
-        onNodeSelect: null,
-        onNodeUnselect: null,
-        togglerIcon: null,
-        children: undefined
-    },
-    css: {
-        classes,
-        styles
-    }
+	defaultProps: {
+		__TYPE: "OrganizationChart",
+		id: null,
+		value: null,
+		style: null,
+		className: null,
+		selectionMode: null,
+		selection: null,
+		nodeTemplate: null,
+		onSelectionChange: null,
+		onNodeSelect: null,
+		onNodeUnselect: null,
+		togglerIcon: null,
+		children: undefined,
+	},
+	css: {
+		classes,
+		styles,
+	},
 });

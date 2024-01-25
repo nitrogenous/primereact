@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { IconBaseProps } from '../../iconbase';
+import * as React from "react";
+import { IconBaseProps } from "../../iconbase";
 
 /**
  * Defines valid properties in AngleDoubleUpIcon component. In addition to these, all properties of SVGSVGElement can be used in this component.
@@ -16,4 +16,7 @@ export interface AngleDoubleUpIconProps extends IconBaseProps {}
  *
  * @group Component
  */
-export declare class AngleDoubleUpIcon extends React.Component<AngleDoubleUpIconProps, any> {}
+export declare class AngleDoubleUpIcon extends React.Component<
+	AngleDoubleUpIconProps,
+	any
+> {}

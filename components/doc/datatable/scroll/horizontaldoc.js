@@ -1,28 +1,31 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Column } from '@/components/lib/column/Column';
-import { DataTable } from '@/components/lib/datatable/DataTable';
-import { useEffect, useState } from 'react';
-import { CustomerService } from '../../../../service/CustomerService';
-import DeferredDemo from '@/components/demo/DeferredDemo';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { Column } from "@/components/lib/column/Column";
+import { DataTable } from "@/components/lib/datatable/DataTable";
+import { useEffect, useState } from "react";
+import { CustomerService } from "../../../../service/CustomerService";
+import DeferredDemo from "@/components/demo/DeferredDemo";
 
 export function HorizontalScrollDoc(props) {
-    const [customers, setCustomers] = useState([]);
+	const [customers, setCustomers] = useState([]);
 
-    const balanceTemplate = (rowData) => {
-        return formatCurrency(rowData.balance);
-    };
+	const balanceTemplate = (rowData) => {
+		return formatCurrency(rowData.balance);
+	};
 
-    const formatCurrency = (value) => {
-        return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-    };
+	const formatCurrency = (value) => {
+		return value.toLocaleString("en-US", {
+			style: "currency",
+			currency: "USD",
+		});
+	};
 
-    const loadDemoData = () => {
-        CustomerService.getCustomersMedium().then((data) => setCustomers(data));
-    };
+	const loadDemoData = () => {
+		CustomerService.getCustomersMedium().then((data) => setCustomers(data));
+	};
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <DataTable value={customers} scrollable scrollHeight="400px">
     <Column field="id" header="Id" footer="Id" style={{ minWidth: '100px' }}></Column>
     <Column field="name" header="Name" footer="Name" style={{ minWidth: '200px' }}></Column>
@@ -35,7 +38,7 @@ export function HorizontalScrollDoc(props) {
     <Column field="representative.name" header="Representative" footer="Representative" style={{ minWidth: '200px' }}></Column>
 </DataTable>
         `,
-        javascript: `
+		javascript: `
 import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -73,7 +76,7 @@ export default function HorizontalScrollDemo() {
     );
 }
         `,
-        typescript: `
+		typescript: `
 import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -124,7 +127,7 @@ export default function HorizontalScrollDemo() {
     );
 }
         `,
-        data: `
+		data: `
 {
     id: 1000,
     name: 'James Butt',
@@ -144,30 +147,79 @@ export default function HorizontalScrollDemo() {
     balance: 70663
 },
 ...
-       `
-    };
+       `,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}>
-                <p>Horizontal scrollbar is displayed when table width exceeds the parent width.</p>
-            </DocSectionText>
-            <DeferredDemo onLoad={loadDemoData}>
-                <div className="card">
-                    <DataTable value={customers} scrollable scrollHeight="400px">
-                        <Column field="id" header="Id" footer="Id" style={{ minWidth: '100px' }}></Column>
-                        <Column field="name" header="Name" footer="Name" style={{ minWidth: '200px' }}></Column>
-                        <Column field="country.name" header="Country" footer="Country" style={{ minWidth: '200px' }}></Column>
-                        <Column field="date" header="Date" footer="Date" style={{ minWidth: '200px' }}></Column>
-                        <Column field="balance" header="Balance" footer="Balance" body={balanceTemplate} style={{ minWidth: '200px' }}></Column>
-                        <Column field="company" header="Company" footer="Company" style={{ minWidth: '200px' }}></Column>
-                        <Column field="status" header="Status" footer="Status" style={{ minWidth: '200px' }}></Column>
-                        <Column field="activity" header="Activity" footer="Activity" style={{ minWidth: '200px' }}></Column>
-                        <Column field="representative.name" header="Representative" footer="Representative" style={{ minWidth: '200px' }}></Column>
-                    </DataTable>
-                </div>
-            </DeferredDemo>
-            <DocSectionCode code={code} service={['CustomerService']} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}>
+				<p>
+					Horizontal scrollbar is displayed when table width exceeds the parent
+					width.
+				</p>
+			</DocSectionText>
+			<DeferredDemo onLoad={loadDemoData}>
+				<div className="card">
+					<DataTable value={customers} scrollable scrollHeight="400px">
+						<Column
+							field="id"
+							header="Id"
+							footer="Id"
+							style={{ minWidth: "100px" }}
+						></Column>
+						<Column
+							field="name"
+							header="Name"
+							footer="Name"
+							style={{ minWidth: "200px" }}
+						></Column>
+						<Column
+							field="country.name"
+							header="Country"
+							footer="Country"
+							style={{ minWidth: "200px" }}
+						></Column>
+						<Column
+							field="date"
+							header="Date"
+							footer="Date"
+							style={{ minWidth: "200px" }}
+						></Column>
+						<Column
+							field="balance"
+							header="Balance"
+							footer="Balance"
+							body={balanceTemplate}
+							style={{ minWidth: "200px" }}
+						></Column>
+						<Column
+							field="company"
+							header="Company"
+							footer="Company"
+							style={{ minWidth: "200px" }}
+						></Column>
+						<Column
+							field="status"
+							header="Status"
+							footer="Status"
+							style={{ minWidth: "200px" }}
+						></Column>
+						<Column
+							field="activity"
+							header="Activity"
+							footer="Activity"
+							style={{ minWidth: "200px" }}
+						></Column>
+						<Column
+							field="representative.name"
+							header="Representative"
+							footer="Representative"
+							style={{ minWidth: "200px" }}
+						></Column>
+					</DataTable>
+				</div>
+			</DeferredDemo>
+			<DocSectionCode code={code} service={["CustomerService"]} />
+		</>
+	);
 }

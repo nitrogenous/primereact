@@ -1,21 +1,21 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Tree } from '@/components/lib/tree/Tree';
-import { useEffect, useState } from 'react';
-import { NodeService } from '../../../service/NodeService';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { Tree } from "@/components/lib/tree/Tree";
+import { useEffect, useState } from "react";
+import { NodeService } from "../../../service/NodeService";
 
 export function BasicDoc(props) {
-    const [nodes, setNodes] = useState([]);
+	const [nodes, setNodes] = useState([]);
 
-    useEffect(() => {
-        NodeService.getTreeNodes().then((data) => setNodes(data));
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+	useEffect(() => {
+		NodeService.getTreeNodes().then((data) => setNodes(data));
+	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <Tree value={nodes} className="w-full md:w-30rem" />
         `,
-        javascript: `
+		javascript: `
 import React, { useState, useEffect } from 'react';
 import { Tree } from 'primereact/tree';
 import { NodeService } from './service/NodeService';
@@ -34,7 +34,7 @@ export default function BasicDemo() {
     )
 }
         `,
-        typescript: `
+		typescript: `
 import React, { useState, useEffect } from 'react';
 import { Tree } from 'primereact/tree';
 import { TreeNode } from 'primereact/treenode';
@@ -54,7 +54,7 @@ export default function BasicDemo() {
     )
 }
         `,
-        data: `
+		data: `
 {
     key: '0',
     label: 'Documents',
@@ -81,20 +81,21 @@ export default function BasicDemo() {
     ]
 },
 ...
-`
-    };
+`,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}>
-                <p>
-                    Tree requires a collection of <i>TreeNode</i> instances as a <i>value</i>.
-                </p>
-            </DocSectionText>
-            <div className="card flex justify-content-center">
-                <Tree value={nodes} className="w-full md:w-30rem" />
-            </div>
-            <DocSectionCode code={code} service={['NodeService']} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}>
+				<p>
+					Tree requires a collection of <i>TreeNode</i> instances as a{" "}
+					<i>value</i>.
+				</p>
+			</DocSectionText>
+			<div className="card flex justify-content-center">
+				<Tree value={nodes} className="w-full md:w-30rem" />
+			</div>
+			<DocSectionCode code={code} service={["NodeService"]} />
+		</>
+	);
 }

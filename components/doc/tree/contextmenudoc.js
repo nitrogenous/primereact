@@ -1,46 +1,51 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { ContextMenu } from '@/components/lib/contextmenu/ContextMenu';
-import { Toast } from '@/components/lib/toast/Toast';
-import { Tree } from '@/components/lib/tree/Tree';
-import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
-import { NodeService } from '../../../service/NodeService';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { ContextMenu } from "@/components/lib/contextmenu/ContextMenu";
+import { Toast } from "@/components/lib/toast/Toast";
+import { Tree } from "@/components/lib/tree/Tree";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { NodeService } from "../../../service/NodeService";
 
 export function ContextMenuDoc(props) {
-    const [nodes, setNodes] = useState([]);
-    const [expandedKeys, setExpandedKeys] = useState({});
-    const [selectedNodeKey, setSelectedNodeKey] = useState(null);
-    const toast = useRef(null);
-    const cm = useRef(null);
-    const menu = [
-        {
-            label: 'View Key',
-            icon: 'pi pi-search',
-            command: () => {
-                toast.current.show({ severity: 'success', summary: 'Node Key', detail: selectedNodeKey });
-            }
-        },
-        {
-            label: 'Toggle',
-            icon: 'pi pi-sort',
-            command: () => {
-                let _expandedKeys = { ...expandedKeys };
+	const [nodes, setNodes] = useState([]);
+	const [expandedKeys, setExpandedKeys] = useState({});
+	const [selectedNodeKey, setSelectedNodeKey] = useState(null);
+	const toast = useRef(null);
+	const cm = useRef(null);
+	const menu = [
+		{
+			label: "View Key",
+			icon: "pi pi-search",
+			command: () => {
+				toast.current.show({
+					severity: "success",
+					summary: "Node Key",
+					detail: selectedNodeKey,
+				});
+			},
+		},
+		{
+			label: "Toggle",
+			icon: "pi pi-sort",
+			command: () => {
+				const _expandedKeys = { ...expandedKeys };
 
-                if (_expandedKeys[selectedNodeKey]) delete _expandedKeys[selectedNodeKey];
-                else _expandedKeys[selectedNodeKey] = true;
+				if (_expandedKeys[selectedNodeKey])
+					delete _expandedKeys[selectedNodeKey];
+				else _expandedKeys[selectedNodeKey] = true;
 
-                setExpandedKeys(_expandedKeys);
-            }
-        }
-    ];
+				setExpandedKeys(_expandedKeys);
+			},
+		},
+	];
 
-    useEffect(() => {
-        NodeService.getTreeNodes().then((data) => setNodes(data));
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+	useEffect(() => {
+		NodeService.getTreeNodes().then((data) => setNodes(data));
+	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <Toast ref={toast} />
 
 <ContextMenu model={menu} ref={cm} />
@@ -49,7 +54,7 @@ export function ContextMenuDoc(props) {
     contextMenuSelectionKey={selectedNodeKey} onContextMenuSelectionChange={(e) => setSelectedNodeKey(e.value)} 
     onContextMenu={(e) => cm.current.show(e.originalEvent)} className="w-full md:w-30rem" />
         `,
-        javascript: `
+		javascript: `
 import React, { useState, useEffect, useRef } from 'react';
 import { Tree } from 'primereact/tree';
 import { ContextMenu } from 'primereact/contextmenu';
@@ -103,7 +108,7 @@ export default function ContextMenuDemo() {
     )
 }
         `,
-        typescript: `
+		typescript: `
 import React, { useState, useEffect, useRef } from 'react';
 import { Tree, TreeExpandedKeysType } from 'primereact/tree';
 import { TreeNode } from 'primereact/treenode';
@@ -158,7 +163,7 @@ export default function ContextMenuDemo() {
     )
 }
         `,
-        data: `
+		data: `
 {
     key: '0',
     label: 'Documents',
@@ -185,32 +190,35 @@ export default function ContextMenuDemo() {
     ]
 },
 ...
-`
-    };
+`,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}>
-                <p>
-                    Tree has exclusive integration with <Link href="/contextMenu">ContextMenu</Link> using <i>contextMenuSelectionKey</i>, <i>onContextMenuSelectionChange</i> and <i>onContextMenu</i> properties.
-                </p>
-            </DocSectionText>
-            <Toast ref={toast} />
+	return (
+		<>
+			<DocSectionText {...props}>
+				<p>
+					Tree has exclusive integration with{" "}
+					<Link href="/contextMenu">ContextMenu</Link> using{" "}
+					<i>contextMenuSelectionKey</i>, <i>onContextMenuSelectionChange</i>{" "}
+					and <i>onContextMenu</i> properties.
+				</p>
+			</DocSectionText>
+			<Toast ref={toast} />
 
-            <ContextMenu model={menu} ref={cm} />
+			<ContextMenu model={menu} ref={cm} />
 
-            <div className="card flex justify-content-center">
-                <Tree
-                    value={nodes}
-                    expandedKeys={expandedKeys}
-                    onToggle={(e) => setExpandedKeys(e.value)}
-                    contextMenuSelectionKey={selectedNodeKey}
-                    onContextMenuSelectionChange={(e) => setSelectedNodeKey(e.value)}
-                    onContextMenu={(e) => cm.current.show(e.originalEvent)}
-                    className="w-full md:w-30rem"
-                />
-            </div>
-            <DocSectionCode code={code} service={['NodeService']} />
-        </>
-    );
+			<div className="card flex justify-content-center">
+				<Tree
+					value={nodes}
+					expandedKeys={expandedKeys}
+					onToggle={(e) => setExpandedKeys(e.value)}
+					contextMenuSelectionKey={selectedNodeKey}
+					onContextMenuSelectionChange={(e) => setSelectedNodeKey(e.value)}
+					onContextMenu={(e) => cm.current.show(e.originalEvent)}
+					className="w-full md:w-30rem"
+				/>
+			</div>
+			<DocSectionCode code={code} service={["NodeService"]} />
+		</>
+	);
 }

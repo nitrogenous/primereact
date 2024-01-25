@@ -1,34 +1,45 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Column } from '@/components/lib/column/Column';
-import { MultiSelect } from '@/components/lib/multiselect/MultiSelect';
-import { TreeTable } from '@/components/lib/treetable/TreeTable';
-import { useEffect, useState } from 'react';
-import { NodeService } from '../../../service/NodeService';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { Column } from "@/components/lib/column/Column";
+import { MultiSelect } from "@/components/lib/multiselect/MultiSelect";
+import { TreeTable } from "@/components/lib/treetable/TreeTable";
+import { useEffect, useState } from "react";
+import { NodeService } from "../../../service/NodeService";
 
 export function ColumnToggleDoc(props) {
-    let columns = [
-        { field: 'size', header: 'Size' },
-        { field: 'type', header: 'Type' }
-    ];
-    const [nodes, setNodes] = useState([]);
-    const [visibleColumns, setVisibleColumns] = useState(columns);
+	const columns = [
+		{ field: "size", header: "Size" },
+		{ field: "type", header: "Type" },
+	];
+	const [nodes, setNodes] = useState([]);
+	const [visibleColumns, setVisibleColumns] = useState(columns);
 
-    useEffect(() => {
-        NodeService.getTreeTableNodes().then((data) => setNodes(data));
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+	useEffect(() => {
+		NodeService.getTreeTableNodes().then((data) => setNodes(data));
+	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-    const onColumnToggle = (event) => {
-        let selectedColumns = event.value;
-        let orderedSelectedColumns = columns.filter((col) => selectedColumns.some((sCol) => sCol.field === col.field));
+	const onColumnToggle = (event) => {
+		const selectedColumns = event.value;
+		const orderedSelectedColumns = columns.filter((col) =>
+			selectedColumns.some((sCol) => sCol.field === col.field),
+		);
 
-        setVisibleColumns(orderedSelectedColumns);
-    };
+		setVisibleColumns(orderedSelectedColumns);
+	};
 
-    const header = <MultiSelect value={visibleColumns} options={columns} onChange={onColumnToggle} optionLabel="header" className="w-full sm:w-16rem" display="chip" />;
+	const header = (
+		<MultiSelect
+			value={visibleColumns}
+			options={columns}
+			onChange={onColumnToggle}
+			optionLabel="header"
+			className="w-full sm:w-16rem"
+			display="chip"
+		/>
+	);
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <TreeTable value={nodes} header={header} tableStyle={{ minWidth: '50rem' }}>
     <Column key="name" field="name" header="Name" expander />
     {visibleColumns.map((col) => (
@@ -36,7 +47,7 @@ export function ColumnToggleDoc(props) {
     ))}
 </TreeTable>
         `,
-        javascript: `
+		javascript: `
 import React, {useState, useEffect } from 'react';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
@@ -76,7 +87,7 @@ export default function ColumnToggleDemo() {
     );
 }
         `,
-        typescript: `
+		typescript: `
 import React, {useState, useEffect } from 'react';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
@@ -122,7 +133,7 @@ export default function ColumnToggleDemo() {
     );
 }
         `,
-        data: `
+		data: `
 {
     key: '0',
     label: 'Documents',
@@ -149,23 +160,31 @@ export default function ColumnToggleDemo() {
     ]
 },
 ...
-`
-    };
+`,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}>
-                <p>Column visibility based on a condition can be implemented with dynamic columns, in this sample a MultiSelect is used to manage the visible columns.</p>
-            </DocSectionText>
-            <div className="card">
-                <TreeTable value={nodes} header={header} tableStyle={{ minWidth: '50rem' }}>
-                    <Column key="name" field="name" header="Name" expander />
-                    {visibleColumns.map((col) => (
-                        <Column key={col.field} field={col.field} header={col.header} />
-                    ))}
-                </TreeTable>
-            </div>
-            <DocSectionCode code={code} service={['NodeService']} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}>
+				<p>
+					Column visibility based on a condition can be implemented with dynamic
+					columns, in this sample a MultiSelect is used to manage the visible
+					columns.
+				</p>
+			</DocSectionText>
+			<div className="card">
+				<TreeTable
+					value={nodes}
+					header={header}
+					tableStyle={{ minWidth: "50rem" }}
+				>
+					<Column key="name" field="name" header="Name" expander />
+					{visibleColumns.map((col) => (
+						<Column key={col.field} field={col.field} header={col.header} />
+					))}
+				</TreeTable>
+			</div>
+			<DocSectionCode code={code} service={["NodeService"]} />
+		</>
+	);
 }

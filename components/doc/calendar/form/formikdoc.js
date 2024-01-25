@@ -1,48 +1,57 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Button } from '@/components/lib/button/Button';
-import { Calendar } from '@/components/lib/calendar/Calendar';
-import { Toast } from '@/components/lib/toast/Toast';
-import { classNames } from '@/components/lib/utils/Utils';
-import { useFormik } from 'formik';
-import { useRef } from 'react';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { Button } from "@/components/lib/button/Button";
+import { Calendar } from "@/components/lib/calendar/Calendar";
+import { Toast } from "@/components/lib/toast/Toast";
+import { classNames } from "@/components/lib/utils/Utils";
+import { useFormik } from "formik";
+import { useRef } from "react";
 
 export function FormikDoc(props) {
-    const toast = useRef(null);
+	const toast = useRef(null);
 
-    const show = () => {
-        toast.current.show({ severity: 'success', summary: 'Form Submitted', detail: formik.values.date.toLocaleDateString() });
-    };
+	const show = () => {
+		toast.current.show({
+			severity: "success",
+			summary: "Form Submitted",
+			detail: formik.values.date.toLocaleDateString(),
+		});
+	};
 
-    const formik = useFormik({
-        initialValues: {
-            date: ''
-        },
-        validate: (data) => {
-            let errors = {};
+	const formik = useFormik({
+		initialValues: {
+			date: "",
+		},
+		validate: (data) => {
+			const errors = {};
 
-            if (!data.date) {
-                errors.date = 'Date is required.';
-            }
+			if (!data.date) {
+				errors.date = "Date is required.";
+			}
 
-            return errors;
-        },
-        onSubmit: (data) => {
-            if (!formik.errors.date) {
-                data && show(data);
-                formik.resetForm();
-            }
-        }
-    });
+			return errors;
+		},
+		onSubmit: (data) => {
+			if (!formik.errors.date) {
+				data && show(data);
+				formik.resetForm();
+			}
+		},
+	});
 
-    const isFormFieldInvalid = (name) => !!(formik.touched[name] && formik.errors[name]);
+	const isFormFieldInvalid = (name) =>
+		!!(formik.touched[name] && formik.errors[name]);
 
-    const getFormErrorMessage = (name) => {
-        return isFormFieldInvalid(name) ? <small className="p-error">{formik.errors[name]}</small> : <small className="p-error">&nbsp;</small>;
-    };
+	const getFormErrorMessage = (name) => {
+		return isFormFieldInvalid(name) ? (
+			<small className="p-error">{formik.errors[name]}</small>
+		) : (
+			<small className="p-error">&nbsp;</small>
+		);
+	};
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <form onSubmit={formik.handleSubmit} className="flex flex-column gap-2">
     <label htmlFor="cal_date">Date</label>
     <Toast ref={toast} />
@@ -59,7 +68,7 @@ export function FormikDoc(props) {
     <Button type="submit" label="Submit" />
 </form>
         `,
-        javascript: `
+		javascript: `
 import React, {useRef} from 'react';
 import { useFormik } from 'formik';
 import { Calendar } from "primereact/calendar";
@@ -122,7 +131,7 @@ export default function FormikDoc() {
     )
 }
         `,
-        typescript: `
+		typescript: `
 import React, {useRef} from 'react';
 import { useFormik } from 'formik';
 import { Calendar } from "primereact/calendar";
@@ -184,34 +193,35 @@ export default function FormikDoc() {
         </div>
     )
 }
-        `
-    };
+        `,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}>
-                <p>
-                    <a href="https://formik.org/">Formik</a> is a popular library for handling forms in React.
-                </p>
-            </DocSectionText>
-            <div className="card flex justify-content-center">
-                <form onSubmit={formik.handleSubmit} className="flex flex-column gap-2">
-                    <label htmlFor="cal_date">Date</label>
-                    <Toast ref={toast} />
-                    <Calendar
-                        inputId="cal_date"
-                        name="date"
-                        value={formik.values.date}
-                        className={classNames({ 'p-invalid': isFormFieldInvalid('date') })}
-                        onChange={(e) => {
-                            formik.setFieldValue('date', e.target.value);
-                        }}
-                    />
-                    {getFormErrorMessage('date')}
-                    <Button type="submit" label="Submit" />
-                </form>
-            </div>
-            <DocSectionCode code={code} dependencies={{ formik: '^2.1.4' }} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}>
+				<p>
+					<a href="https://formik.org/">Formik</a> is a popular library for
+					handling forms in React.
+				</p>
+			</DocSectionText>
+			<div className="card flex justify-content-center">
+				<form onSubmit={formik.handleSubmit} className="flex flex-column gap-2">
+					<label htmlFor="cal_date">Date</label>
+					<Toast ref={toast} />
+					<Calendar
+						inputId="cal_date"
+						name="date"
+						value={formik.values.date}
+						className={classNames({ "p-invalid": isFormFieldInvalid("date") })}
+						onChange={(e) => {
+							formik.setFieldValue("date", e.target.value);
+						}}
+					/>
+					{getFormErrorMessage("date")}
+					<Button type="submit" label="Submit" />
+				</form>
+			</div>
+			<DocSectionCode code={code} dependencies={{ formik: "^2.1.4" }} />
+		</>
+	);
 }

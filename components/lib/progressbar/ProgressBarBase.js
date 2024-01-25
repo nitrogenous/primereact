@@ -1,11 +1,14 @@
-import { ComponentBase } from '../componentbase/ComponentBase';
-import { classNames } from '../utils/Utils';
+import { ComponentBase } from "../componentbase/ComponentBase";
+import { classNames } from "../utils/Utils";
 
 const classes = {
-    root: ({ props }) => (props.mode === 'indeterminate' ? classNames('p-progressbar p-component p-progressbar-indeterminate') : classNames('p-progressbar p-component p-progressbar-determinate')),
-    value: 'p-progressbar-value p-progressbar-value-animate',
-    label: 'p-progressbar-label',
-    container: 'p-progressbar-indeterminate-container'
+	root: ({ props }) =>
+		props.mode === "indeterminate"
+			? classNames("p-progressbar p-component p-progressbar-indeterminate")
+			: classNames("p-progressbar p-component p-progressbar-determinate"),
+	value: "p-progressbar-value p-progressbar-value-animate",
+	label: "p-progressbar-label",
+	container: "p-progressbar-indeterminate-container",
 };
 
 const styles = `
@@ -110,32 +113,38 @@ const styles = `
 `;
 
 const inlineStyles = {
-    value: ({ props }) => {
-        const valueWidth = Math.max(props.value, 2); // min 2 to display full label of 0% and 1%
-        const valueColor = props.value ? props.color : 'transparent';
+	value: ({ props }) => {
+		const valueWidth = Math.max(props.value, 2); // min 2 to display full label of 0% and 1%
+		const valueColor = props.value ? props.color : "transparent";
 
-        return props.mode === 'indeterminate' ? { backgroundColor: props.color } : { width: valueWidth + '%', display: 'flex', backgroundColor: valueColor };
-    }
+		return props.mode === "indeterminate"
+			? { backgroundColor: props.color }
+			: {
+					width: valueWidth + "%",
+					display: "flex",
+					backgroundColor: valueColor,
+			  };
+	},
 };
 
 export const ProgressBarBase = ComponentBase.extend({
-    defaultProps: {
-        __TYPE: 'ProgressBar',
-        __parentMetadata: null,
-        id: null,
-        value: null,
-        showValue: true,
-        unit: '%',
-        style: null,
-        className: null,
-        mode: 'determinate',
-        displayValueTemplate: null,
-        color: null,
-        children: undefined
-    },
-    css: {
-        classes,
-        styles,
-        inlineStyles
-    }
+	defaultProps: {
+		__TYPE: "ProgressBar",
+		__parentMetadata: null,
+		id: null,
+		value: null,
+		showValue: true,
+		unit: "%",
+		style: null,
+		className: null,
+		mode: "determinate",
+		displayValueTemplate: null,
+		color: null,
+		children: undefined,
+	},
+	css: {
+		classes,
+		styles,
+		inlineStyles,
+	},
 });

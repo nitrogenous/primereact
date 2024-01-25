@@ -1,13 +1,13 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Chips } from '@/components/lib/chips/Chips';
-import { useState } from 'react';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { Chips } from "@/components/lib/chips/Chips";
+import { useState } from "react";
 
 export function PTDoc(props) {
-    const [value, setValue] = useState([]);
+	const [value, setValue] = useState([]);
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <Chips
     value={value}
     onChange={(e) => setValue(e.value)}
@@ -18,7 +18,7 @@ export function PTDoc(props) {
     }}
 />
         `,
-        javascript: `
+		javascript: `
 import React, { useState } from "react";
 import { Chips } from "primereact/chips";
 
@@ -40,7 +40,7 @@ export default function PTDemo() {
     )
 }
         `,
-        typescript: `
+		typescript: `
 import React, { useState } from "react";
 import { Chips, ChipsChangeEvent } from "primereact/chips";
 
@@ -61,24 +61,24 @@ export default function PTDemo() {
         </div>
     )
 }
-        `
-    };
+        `,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}></DocSectionText>
-            <div className="card p-fluid">
-                <Chips
-                    value={value}
-                    onChange={(e) => setValue(e.value)}
-                    pt={{
-                        root: { className: 'flex' },
-                        container: { className: 'flex-1' },
-                        token: { className: 'bg-primary' }
-                    }}
-                />
-            </div>
-            <DocSectionCode code={code} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}></DocSectionText>
+			<div className="card p-fluid">
+				<Chips
+					value={value}
+					onChange={(e) => setValue(e.value)}
+					pt={{
+						root: { className: "flex" },
+						container: { className: "flex-1" },
+						token: { className: "bg-primary" },
+					}}
+				/>
+			</div>
+			<DocSectionCode code={code} />
+		</>
+	);
 }

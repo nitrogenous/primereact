@@ -1,26 +1,26 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Column } from '@/components/lib/column/Column';
-import { TreeTable } from '@/components/lib/treetable/TreeTable';
-import { useEffect, useState } from 'react';
-import { NodeService } from '../../../../service/NodeService';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { Column } from "@/components/lib/column/Column";
+import { TreeTable } from "@/components/lib/treetable/TreeTable";
+import { useEffect, useState } from "react";
+import { NodeService } from "../../../../service/NodeService";
 
 export function ExpandModeDoc(props) {
-    const [nodes, setNodes] = useState([]);
+	const [nodes, setNodes] = useState([]);
 
-    useEffect(() => {
-        NodeService.getTreeTableNodes().then((data) => setNodes(data));
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+	useEffect(() => {
+		NodeService.getTreeTableNodes().then((data) => setNodes(data));
+	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <TreeTable value={nodes} resizableColumns showGridlines columnResizeMode="expand" tableStyle={{ minWidth: '50rem' }}>
     <Column field="name" header="Name" expander></Column>
     <Column field="size" header="Size"></Column>
     <Column field="type" header="Type"></Column>
 </TreeTable>
         `,
-        javascript: `
+		javascript: `
 import React, { useState, useEffect } from 'react';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
@@ -44,7 +44,7 @@ export default function ExpandModeDemo() {
     );
 }
         `,
-        typescript: `
+		typescript: `
 import React, { useState, useEffect } from 'react';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
@@ -69,7 +69,7 @@ export default function ExpandModeDemo() {
     );
 }
         `,
-        data: `
+		data: `
 {
     key: '0',
     label: 'Documents',
@@ -96,24 +96,31 @@ export default function ExpandModeDemo() {
     ]
 },
 ...
-`
-    };
+`,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}>
-                <p>
-                    Setting <i>columnResizeMode</i> as <i>expand</i> changes the table width as well.
-                </p>
-            </DocSectionText>
-            <div className="card">
-                <TreeTable value={nodes} resizableColumns showGridlines columnResizeMode="expand" tableStyle={{ minWidth: '50rem' }}>
-                    <Column field="name" header="Name" expander></Column>
-                    <Column field="size" header="Size"></Column>
-                    <Column field="type" header="Type"></Column>
-                </TreeTable>
-            </div>
-            <DocSectionCode code={code} service={['NodeService']} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}>
+				<p>
+					Setting <i>columnResizeMode</i> as <i>expand</i> changes the table
+					width as well.
+				</p>
+			</DocSectionText>
+			<div className="card">
+				<TreeTable
+					value={nodes}
+					resizableColumns
+					showGridlines
+					columnResizeMode="expand"
+					tableStyle={{ minWidth: "50rem" }}
+				>
+					<Column field="name" header="Name" expander></Column>
+					<Column field="size" header="Size"></Column>
+					<Column field="type" header="Type"></Column>
+				</TreeTable>
+			</div>
+			<DocSectionCode code={code} service={["NodeService"]} />
+		</>
+	);
 }

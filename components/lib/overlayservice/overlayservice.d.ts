@@ -7,43 +7,43 @@
  * @module overlayservice
  *
  */
-import * as React from 'react';
+import * as React from "react";
 
 /**
  * Overlay service event.
  */
 export interface OverlayServiceEvent {
-    /**
-     * Original event that triggered the overlay.
-     */
-    originalEvent: React.SyntheticEvent;
-    /**
-     * Target element that the overlay is bound to.
-     */
-    target: HTMLElement;
+	/**
+	 * Original event that triggered the overlay.
+	 */
+	originalEvent: React.SyntheticEvent;
+	/**
+	 * Target element that the overlay is bound to.
+	 */
+	target: HTMLElement;
 }
 
 /**
  */
 export interface OverlayServiceOptions {
-    /**
-     * Add event listener for overlay click.
-     * @param {string} action - Custom listener.
-     * @param {*} fn - Custom listener.
-     */
-    on(action: 'overlay-click', fn: any): void;
-    /**
-     * Trigger overlay click event.
-     * @param {string} action - Custom listener.
-     * @param {*} params - Custom listener.
-     */
-    emit(action: 'overlay-click', params?: OverlayServiceEvent): void;
-    /**
-     * Remove event listener for overlay click.
-     * @param {string} action - Custom listener.
-     * @param {*} fn - Custom listener.
-     */
-    off(action: 'overlay-click', fn: any): void;
+	/**
+	 * Add event listener for overlay click.
+	 * @param {string} action - Custom listener.
+	 * @param {*} fn - Custom listener.
+	 */
+	on(action: "overlay-click", fn: any): void;
+	/**
+	 * Trigger overlay click event.
+	 * @param {string} action - Custom listener.
+	 * @param {*} params - Custom listener.
+	 */
+	emit(action: "overlay-click", params?: OverlayServiceEvent): void;
+	/**
+	 * Remove event listener for overlay click.
+	 * @param {string} action - Custom listener.
+	 * @param {*} fn - Custom listener.
+	 */
+	off(action: "overlay-click", fn: any): void;
 }
 
 /**

@@ -1,17 +1,17 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { ColorPicker } from '@/components/lib/colorpicker/ColorPicker';
-import { useState } from 'react';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { ColorPicker } from "@/components/lib/colorpicker/ColorPicker";
+import { useState } from "react";
 
 export function BasicDoc(props) {
-    const [color, setColor] = useState(null);
+	const [color, setColor] = useState(null);
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <ColorPicker value={color} onChange={(e) => setColor(e.value)} />
 
         `,
-        javascript: `
+		javascript: `
 import React, { useState } from "react";
 import { ColorPicker } from 'primereact/colorpicker';
 
@@ -25,7 +25,7 @@ export default function BasicDemo() {
     )
 }
         `,
-        typescript: `
+		typescript: `
 import React, { useState } from "react";
 import { ColorPicker, ColorPickerChangeEvent } from 'primereact/colorpicker';
 
@@ -38,20 +38,21 @@ export default function BasicDemo() {
         </div>
     )
 }
-        `
-    };
+        `,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}>
-                <p>
-                    ColorPicker is used as a controlled input with <i>value</i> and <i>onChange</i> properties.
-                </p>
-            </DocSectionText>
-            <div className="card flex justify-content-center">
-                <ColorPicker value={color} onChange={(e) => setColor(e.value)} />
-            </div>
-            <DocSectionCode code={code} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}>
+				<p>
+					ColorPicker is used as a controlled input with <i>value</i> and{" "}
+					<i>onChange</i> properties.
+				</p>
+			</DocSectionText>
+			<div className="card flex justify-content-center">
+				<ColorPicker value={color} onChange={(e) => setColor(e.value)} />
+			</div>
+			<DocSectionCode code={code} />
+		</>
+	);
 }

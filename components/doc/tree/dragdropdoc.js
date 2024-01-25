@@ -1,21 +1,21 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Tree } from '@/components/lib/tree/Tree';
-import { useEffect, useState } from 'react';
-import { NodeService } from '../../../service/NodeService';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { Tree } from "@/components/lib/tree/Tree";
+import { useEffect, useState } from "react";
+import { NodeService } from "../../../service/NodeService";
 
 export function DragDropDoc(props) {
-    const [nodes, setNodes] = useState([]);
+	const [nodes, setNodes] = useState([]);
 
-    useEffect(() => {
-        NodeService.getTreeNodes().then((data) => setNodes(data));
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+	useEffect(() => {
+		NodeService.getTreeNodes().then((data) => setNodes(data));
+	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <Tree value={nodes} dragdropScope="demo" onDragDrop={(e) => setNodes(e.value)} className="w-full md:w-30rem" />
         `,
-        javascript: `
+		javascript: `
 import React, { useState, useEffect } from 'react';
 import { Tree } from 'primereact/tree';
 import { NodeService } from './service/NodeService';
@@ -34,7 +34,7 @@ export default function DragDropDemo() {
     )
 }
         `,
-        typescript: `
+		typescript: `
 import React, { useState, useEffect } from 'react';
 import { Tree, TreeDragDropEvent } from 'primereact/tree';
 import { TreeNode } from 'primereact/treenode';
@@ -54,7 +54,7 @@ export default function DragDropDemo() {
     )
 }
         `,
-        data: `
+		data: `
 {
     key: '0',
     label: 'Documents',
@@ -81,21 +81,29 @@ export default function DragDropDemo() {
     ]
 },
 ...
-`
-    };
+`,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}>
-                <p>
-                    Nodes can be reordered with dragdrop using <i>dragdropScope</i> and <i>onDragDrop</i> properties. The <i>dragdropScope</i> defines a unique scope of the component so that other drag events do not intervene with the component
-                    whereas <i>onDragDrop</i> is a callback to update the new state after a drop.
-                </p>
-            </DocSectionText>
-            <div className="card flex justify-content-center">
-                <Tree value={nodes} dragdropScope="demo" onDragDrop={(e) => setNodes(e.value)} className="w-full md:w-30rem" />
-            </div>
-            <DocSectionCode code={code} service={['NodeService']} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}>
+				<p>
+					Nodes can be reordered with dragdrop using <i>dragdropScope</i> and{" "}
+					<i>onDragDrop</i> properties. The <i>dragdropScope</i> defines a
+					unique scope of the component so that other drag events do not
+					intervene with the component whereas <i>onDragDrop</i> is a callback
+					to update the new state after a drop.
+				</p>
+			</DocSectionText>
+			<div className="card flex justify-content-center">
+				<Tree
+					value={nodes}
+					dragdropScope="demo"
+					onDragDrop={(e) => setNodes(e.value)}
+					className="w-full md:w-30rem"
+				/>
+			</div>
+			<DocSectionCode code={code} service={["NodeService"]} />
+		</>
+	);
 }

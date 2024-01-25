@@ -1,36 +1,47 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Column } from '@/components/lib/column/Column';
-import { DataTable } from '@/components/lib/datatable/DataTable';
-import { MultiSelect } from '@/components/lib/multiselect/MultiSelect';
-import { useState } from 'react';
-import { ProductService } from '../../../service/ProductService';
-import DeferredDemo from '@/components/demo/DeferredDemo';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { Column } from "@/components/lib/column/Column";
+import { DataTable } from "@/components/lib/datatable/DataTable";
+import { MultiSelect } from "@/components/lib/multiselect/MultiSelect";
+import { useState } from "react";
+import { ProductService } from "../../../service/ProductService";
+import DeferredDemo from "@/components/demo/DeferredDemo";
 
 export function ColumnToggleDoc(props) {
-    const columns = [
-        { field: 'name', header: 'Name' },
-        { field: 'category', header: 'Category' },
-        { field: 'quantity', header: 'Quantity' }
-    ];
-    const [products, setProducts] = useState([]);
-    const [visibleColumns, setVisibleColumns] = useState(columns);
+	const columns = [
+		{ field: "name", header: "Name" },
+		{ field: "category", header: "Category" },
+		{ field: "quantity", header: "Quantity" },
+	];
+	const [products, setProducts] = useState([]);
+	const [visibleColumns, setVisibleColumns] = useState(columns);
 
-    const loadDemoData = () => {
-        ProductService.getProductsMini().then((data) => setProducts(data));
-    };
+	const loadDemoData = () => {
+		ProductService.getProductsMini().then((data) => setProducts(data));
+	};
 
-    const onColumnToggle = (event) => {
-        let selectedColumns = event.value;
-        let orderedSelectedColumns = columns.filter((col) => selectedColumns.some((sCol) => sCol.field === col.field));
+	const onColumnToggle = (event) => {
+		const selectedColumns = event.value;
+		const orderedSelectedColumns = columns.filter((col) =>
+			selectedColumns.some((sCol) => sCol.field === col.field),
+		);
 
-        setVisibleColumns(orderedSelectedColumns);
-    };
+		setVisibleColumns(orderedSelectedColumns);
+	};
 
-    const header = <MultiSelect value={visibleColumns} options={columns} optionLabel="header" onChange={onColumnToggle} className="w-full sm:w-20rem" display="chip" />;
+	const header = (
+		<MultiSelect
+			value={visibleColumns}
+			options={columns}
+			optionLabel="header"
+			onChange={onColumnToggle}
+			className="w-full sm:w-20rem"
+			display="chip"
+		/>
+	);
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <DataTable value={products} header={header} tableStyle={{ minWidth: '50rem' }}>
     <Column field="code" header="Code" />
     {visibleColumns.map((col) => (
@@ -38,7 +49,7 @@ export function ColumnToggleDoc(props) {
     ))}
 </DataTable>
         `,
-        javascript: `
+		javascript: `
 import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -79,7 +90,7 @@ export default function ColumnToggleDemo() {
     );
 }
         `,
-        typescript: `
+		typescript: `
 import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -138,7 +149,7 @@ export default function ColumnToggleDemo() {
     );
 }
         `,
-        data: `
+		data: `
 {
     id: '1000',
     code: 'f230fh0g3',
@@ -152,25 +163,33 @@ export default function ColumnToggleDemo() {
     rating: 5
 },
 ...
-        `
-    };
+        `,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}>
-                <p>Column visibility based on a condition can be implemented with dynamic columns, in this sample a MultiSelect is used to manage the visible columns.</p>
-            </DocSectionText>
-            <DeferredDemo onLoad={loadDemoData}>
-                <div className="card">
-                    <DataTable value={products} header={header} tableStyle={{ minWidth: '50rem' }}>
-                        <Column field="code" header="Code" />
-                        {visibleColumns.map((col) => (
-                            <Column key={col.field} field={col.field} header={col.header} />
-                        ))}
-                    </DataTable>
-                </div>
-            </DeferredDemo>
-            <DocSectionCode code={code} service={['ProductService']} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}>
+				<p>
+					Column visibility based on a condition can be implemented with dynamic
+					columns, in this sample a MultiSelect is used to manage the visible
+					columns.
+				</p>
+			</DocSectionText>
+			<DeferredDemo onLoad={loadDemoData}>
+				<div className="card">
+					<DataTable
+						value={products}
+						header={header}
+						tableStyle={{ minWidth: "50rem" }}
+					>
+						<Column field="code" header="Code" />
+						{visibleColumns.map((col) => (
+							<Column key={col.field} field={col.field} header={col.header} />
+						))}
+					</DataTable>
+				</div>
+			</DeferredDemo>
+			<DocSectionCode code={code} service={["ProductService"]} />
+		</>
+	);
 }

@@ -1,86 +1,99 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Column } from '@/components/lib/column/Column';
-import { DataTable } from '@/components/lib/datatable/DataTable';
-import { Tag } from '@/components/lib/tag/Tag';
-import React, { useEffect, useState } from 'react';
-import { CustomerService } from '../../../../service/CustomerService';
-import DeferredDemo from '@/components/demo/DeferredDemo';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { Column } from "@/components/lib/column/Column";
+import { DataTable } from "@/components/lib/datatable/DataTable";
+import { Tag } from "@/components/lib/tag/Tag";
+import React, { useEffect, useState } from "react";
+import { CustomerService } from "../../../../service/CustomerService";
+import DeferredDemo from "@/components/demo/DeferredDemo";
 
 export function SubHeaderRowGroupDoc(props) {
-    const [customers, setCustomers] = useState([]);
+	const [customers, setCustomers] = useState([]);
 
-    const loadDemoData = () => {
-        CustomerService.getCustomersMedium().then((data) => setCustomers(data));
-    };
+	const loadDemoData = () => {
+		CustomerService.getCustomersMedium().then((data) => setCustomers(data));
+	};
 
-    const headerTemplate = (data) => {
-        return (
-            <div className="flex align-items-center gap-2">
-                <img alt={data.representative.name} src={`https://primefaces.org/cdn/primereact/images/avatar/${data.representative.image}`} width="32" />
-                <span className="font-bold">{data.representative.name}</span>
-            </div>
-        );
-    };
+	const headerTemplate = (data) => {
+		return (
+			<div className="flex align-items-center gap-2">
+				<img
+					alt={data.representative.name}
+					src={`https://primefaces.org/cdn/primereact/images/avatar/${data.representative.image}`}
+					width="32"
+				/>
+				<span className="font-bold">{data.representative.name}</span>
+			</div>
+		);
+	};
 
-    const footerTemplate = (data) => {
-        return (
-            <React.Fragment>
-                <td colSpan="5">
-                    <div className="flex justify-content-end font-bold w-full">Total Customers: {calculateCustomerTotal(data.representative.name)}</div>
-                </td>
-            </React.Fragment>
-        );
-    };
+	const footerTemplate = (data) => {
+		return (
+			<React.Fragment>
+				<td colSpan="5">
+					<div className="flex justify-content-end font-bold w-full">
+						Total Customers: {calculateCustomerTotal(data.representative.name)}
+					</div>
+				</td>
+			</React.Fragment>
+		);
+	};
 
-    const countryBodyTemplate = (rowData) => {
-        return (
-            <div className="flex align-items-center gap-2">
-                <img alt={rowData.country.name} src="https://primefaces.org/cdn/primereact/images/flag/flag_placeholder.png" className={`flag flag-${rowData.country.code}`} style={{ width: '24px' }} />
-                <span>{rowData.country.name}</span>
-            </div>
-        );
-    };
+	const countryBodyTemplate = (rowData) => {
+		return (
+			<div className="flex align-items-center gap-2">
+				<img
+					alt={rowData.country.name}
+					src="https://primefaces.org/cdn/primereact/images/flag/flag_placeholder.png"
+					className={`flag flag-${rowData.country.code}`}
+					style={{ width: "24px" }}
+				/>
+				<span>{rowData.country.name}</span>
+			</div>
+		);
+	};
 
-    const statusBodyTemplate = (rowData) => {
-        return <Tag value={rowData.status} severity={getSeverity(rowData.status)} />;
-    };
+	const statusBodyTemplate = (rowData) => {
+		return (
+			<Tag value={rowData.status} severity={getSeverity(rowData.status)} />
+		);
+	};
 
-    const calculateCustomerTotal = (name) => {
-        let total = 0;
+	const calculateCustomerTotal = (name) => {
+		let total = 0;
 
-        if (customers) {
-            for (let customer of customers) {
-                if (customer.representative.name === name) {
-                    total++;
-                }
-            }
-        }
+		if (customers) {
+			for (const customer of customers) {
+				if (customer.representative.name === name) {
+					total++;
+				}
+			}
+		}
 
-        return total;
-    };
+		return total;
+	};
 
-    const getSeverity = (status) => {
-        switch (status) {
-            case 'unqualified':
-                return 'danger';
+	const getSeverity = (status) => {
+		switch (status) {
+			case "unqualified":
+				return "danger";
 
-            case 'qualified':
-                return 'success';
+			case "qualified":
+				return "success";
 
-            case 'new':
-                return 'info';
+			case "new":
+				return "info";
 
-            case 'negotiation':
-                return 'warning';
+			case "negotiation":
+				return "warning";
 
-            case 'renewal':
-                return null;
-        }
-    };
+			case "renewal":
+				return null;
+		}
+	};
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <DataTable value={customers} rowGroupMode="subheader" groupRowsBy="representative.name" sortMode="single" sortField="representative.name"
         sortOrder={1} scrollable scrollHeight="400px" rowGroupHeaderTemplate={headerTemplate} rowGroupFooterTemplate={footerTemplate} tableStyle={{ minWidth: '50rem' }}>
     <Column field="name" header="Name" style={{ minWidth: '200px' }}></Column>
@@ -90,7 +103,7 @@ export function SubHeaderRowGroupDoc(props) {
     <Column field="date" header="Date" style={{ minWidth: '200px' }}></Column>
 </DataTable>
         `,
-        javascript: `
+		javascript: `
 import React, { useState, useEffect, useRef } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -183,7 +196,7 @@ export default function SubHeaderRowGroupDemo() {
     );
 }
         `,
-        typescript: `
+		typescript: `
 import React, { useState, useEffect, useRef } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -299,7 +312,7 @@ export default function SubHeaderRowGroupDemo() {
     );
 }
         `,
-        data: `
+		data: `
 {
     id: 1000,
     name: 'James Butt',
@@ -319,41 +332,66 @@ export default function SubHeaderRowGroupDemo() {
     balance: 70663
 },
 ...
-       `
-    };
+       `,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}>
-                <p>
-                    Rows are grouped with the <i>groupRowsBy</i> property. When <i>rowGroupMode</i> is set as <i>subheader</i>, a header and footer can be displayed for each group. The content of a group header is provided with{' '}
-                    <i>rowGroupHeaderTemplate</i> and footer with <i>rowGroupFooterTemplate</i>.
-                </p>
-            </DocSectionText>
-            <DeferredDemo onLoad={loadDemoData}>
-                <div className="card">
-                    <DataTable
-                        value={customers}
-                        rowGroupMode="subheader"
-                        groupRowsBy="representative.name"
-                        sortMode="single"
-                        sortField="representative.name"
-                        sortOrder={1}
-                        scrollable
-                        scrollHeight="400px"
-                        rowGroupHeaderTemplate={headerTemplate}
-                        rowGroupFooterTemplate={footerTemplate}
-                        tableStyle={{ minWidth: '50rem' }}
-                    >
-                        <Column field="name" header="Name" style={{ minWidth: '200px' }}></Column>
-                        <Column field="country" header="Country" body={countryBodyTemplate} style={{ minWidth: '200px' }}></Column>
-                        <Column field="company" header="Company" style={{ minWidth: '200px' }}></Column>
-                        <Column field="status" header="Status" body={statusBodyTemplate} style={{ minWidth: '200px' }}></Column>
-                        <Column field="date" header="Date" style={{ minWidth: '200px' }}></Column>
-                    </DataTable>
-                </div>
-            </DeferredDemo>
-            <DocSectionCode code={code} service={['CustomerService']} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}>
+				<p>
+					Rows are grouped with the <i>groupRowsBy</i> property. When{" "}
+					<i>rowGroupMode</i> is set as <i>subheader</i>, a header and footer
+					can be displayed for each group. The content of a group header is
+					provided with <i>rowGroupHeaderTemplate</i> and footer with{" "}
+					<i>rowGroupFooterTemplate</i>.
+				</p>
+			</DocSectionText>
+			<DeferredDemo onLoad={loadDemoData}>
+				<div className="card">
+					<DataTable
+						value={customers}
+						rowGroupMode="subheader"
+						groupRowsBy="representative.name"
+						sortMode="single"
+						sortField="representative.name"
+						sortOrder={1}
+						scrollable
+						scrollHeight="400px"
+						rowGroupHeaderTemplate={headerTemplate}
+						rowGroupFooterTemplate={footerTemplate}
+						tableStyle={{ minWidth: "50rem" }}
+					>
+						<Column
+							field="name"
+							header="Name"
+							style={{ minWidth: "200px" }}
+						></Column>
+						<Column
+							field="country"
+							header="Country"
+							body={countryBodyTemplate}
+							style={{ minWidth: "200px" }}
+						></Column>
+						<Column
+							field="company"
+							header="Company"
+							style={{ minWidth: "200px" }}
+						></Column>
+						<Column
+							field="status"
+							header="Status"
+							body={statusBodyTemplate}
+							style={{ minWidth: "200px" }}
+						></Column>
+						<Column
+							field="date"
+							header="Date"
+							style={{ minWidth: "200px" }}
+						></Column>
+					</DataTable>
+				</div>
+			</DeferredDemo>
+			<DocSectionCode code={code} service={["CustomerService"]} />
+		</>
+	);
 }

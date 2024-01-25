@@ -1,13 +1,13 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Tag } from '@/components/lib/tag/Tag';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { Tag } from "@/components/lib/tag/Tag";
 
 export function BasicDoc(props) {
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <Tag value="New"></Tag>
         `,
-        javascript: `
+		javascript: `
 import React from 'react';
 import { Tag } from 'primereact/tag';
 
@@ -19,7 +19,7 @@ export default function BasicDemo() {
     );
 }
         `,
-        typescript: `
+		typescript: `
 import React from 'react';
 import { Tag } from 'primereact/tag';
 
@@ -30,20 +30,20 @@ export default function BasicDemo() {
         </div>
     );
 }
-        `
-    };
+        `,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}>
-                <p>
-                    Label of the tag is defined with the <i>value</i> property.
-                </p>
-            </DocSectionText>
-            <div className="card flex justify-content-center">
-                <Tag value="New"></Tag>
-            </div>
-            <DocSectionCode code={code} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}>
+				<p>
+					Label of the tag is defined with the <i>value</i> property.
+				</p>
+			</DocSectionText>
+			<div className="card flex justify-content-center">
+				<Tag value="New"></Tag>
+			</div>
+			<DocSectionCode code={code} />
+		</>
+	);
 }

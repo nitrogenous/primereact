@@ -1,13 +1,13 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { ColorPicker } from '@/components/lib/colorpicker/ColorPicker';
-import { useState } from 'react';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { ColorPicker } from "@/components/lib/colorpicker/ColorPicker";
+import { useState } from "react";
 
 export function PTDoc(props) {
-    const [color, setColor] = useState(null);
+	const [color, setColor] = useState(null);
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <ColorPicker
     value={color}
     onChange={(e) => setColor(e.value)}
@@ -18,7 +18,7 @@ export function PTDoc(props) {
 />
 
         `,
-        javascript: `
+		javascript: `
 import React, { useState } from "react";
 import { ColorPicker } from 'primereact/colorpicker';
 
@@ -39,7 +39,7 @@ export default function PTDemo() {
     )
 }
         `,
-        typescript: `
+		typescript: `
 import React, { useState } from "react";
 import { ColorPicker, ColorPickerChangeEvent } from 'primereact/colorpicker';
 
@@ -59,23 +59,23 @@ export default function PTDemo() {
         </div>
     )
 }
-        `
-    };
+        `,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}></DocSectionText>
-            <div className="card flex justify-content-center">
-                <ColorPicker
-                    value={color}
-                    onChange={(e) => setColor(e.value)}
-                    inline
-                    pt={{
-                        colorHandler: { className: 'w-1rem h-1rem' }
-                    }}
-                />
-            </div>
-            <DocSectionCode code={code} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}></DocSectionText>
+			<div className="card flex justify-content-center">
+				<ColorPicker
+					value={color}
+					onChange={(e) => setColor(e.value)}
+					inline
+					pt={{
+						colorHandler: { className: "w-1rem h-1rem" },
+					}}
+				/>
+			</div>
+			<DocSectionCode code={code} />
+		</>
+	);
 }

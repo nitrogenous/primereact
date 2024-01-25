@@ -1,13 +1,13 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Password } from '@/components/lib/password/Password';
-import { useState } from 'react';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { Password } from "@/components/lib/password/Password";
+import { useState } from "react";
 
 export function PTDoc(props) {
-    const [value, setValue] = useState('');
+	const [value, setValue] = useState("");
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <Password
     value={value}
     onChange={(e) => setValue(e.target.value)}
@@ -16,7 +16,7 @@ export function PTDoc(props) {
     }}
 />
         `,
-        javascript: `
+		javascript: `
 import React, { useState } from "react";
 import { Password } from 'primereact/password';
 
@@ -36,7 +36,7 @@ export default function PTDemo() {
     )
 }
         `,
-        typescript: `
+		typescript: `
 import React, { useState } from "react";
 import { Password } from 'primereact/password';
 
@@ -55,22 +55,22 @@ export default function PTDemo() {
         </div>
     )
 }
-        `
-    };
+        `,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}></DocSectionText>
-            <div className="card flex justify-content-center">
-                <Password
-                    value={value}
-                    onChange={(e) => setValue(e.target.value)}
-                    pt={{
-                        info: { className: 'font-bold' }
-                    }}
-                />
-            </div>
-            <DocSectionCode code={code} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}></DocSectionText>
+			<div className="card flex justify-content-center">
+				<Password
+					value={value}
+					onChange={(e) => setValue(e.target.value)}
+					pt={{
+						info: { className: "font-bold" },
+					}}
+				/>
+			</div>
+			<DocSectionCode code={code} />
+		</>
+	);
 }

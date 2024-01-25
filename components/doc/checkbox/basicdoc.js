@@ -1,16 +1,16 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Checkbox } from '@/components/lib/checkbox/Checkbox';
-import { useState } from 'react';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { Checkbox } from "@/components/lib/checkbox/Checkbox";
+import { useState } from "react";
 
 export function BasicDoc(props) {
-    const [checked, setChecked] = useState(false);
+	const [checked, setChecked] = useState(false);
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <Checkbox onChange={e => setChecked(e.checked)} checked={checked}></Checkbox>
         `,
-        javascript: `
+		javascript: `
 import React, { useState } from "react";
 import { Checkbox } from "primereact/checkbox";
 
@@ -24,7 +24,7 @@ export default function BasicDemo() {
     )
 }
         `,
-        typescript: `
+		typescript: `
 import React, { useState } from "react";
 import { Checkbox } from "primereact/checkbox";
 
@@ -37,20 +37,24 @@ export default function BasicDemo() {
         </div>
     )
 }
-        `
-    };
+        `,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}>
-                <p>
-                    Checkbox is used as a controlled input with <i>checked</i> and <i>onChange</i> properties.
-                </p>
-            </DocSectionText>
-            <div className="card flex justify-content-center">
-                <Checkbox onChange={(e) => setChecked(e.checked)} checked={checked}></Checkbox>
-            </div>
-            <DocSectionCode code={code} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}>
+				<p>
+					Checkbox is used as a controlled input with <i>checked</i> and{" "}
+					<i>onChange</i> properties.
+				</p>
+			</DocSectionText>
+			<div className="card flex justify-content-center">
+				<Checkbox
+					onChange={(e) => setChecked(e.checked)}
+					checked={checked}
+				></Checkbox>
+			</div>
+			<DocSectionCode code={code} />
+		</>
+	);
 }

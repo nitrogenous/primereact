@@ -1,15 +1,15 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Button } from '@/components/lib/button/Button';
-import { ConfirmPopup } from '@/components/lib/confirmpopup/ConfirmPopup';
-import { useRef, useState } from 'react';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { Button } from "@/components/lib/button/Button";
+import { ConfirmPopup } from "@/components/lib/confirmpopup/ConfirmPopup";
+import { useRef, useState } from "react";
 
 export function PTDoc(props) {
-    const [visible, setVisible] = useState(false);
-    const buttonEl = useRef(null);
+	const [visible, setVisible] = useState(false);
+	const buttonEl = useRef(null);
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <ConfirmPopup
     pt={{
         root: { className: 'surface-100' }
@@ -21,7 +21,7 @@ export function PTDoc(props) {
     icon="pi pi-exclamation-triangle"
 />
         `,
-        javascript: `
+		javascript: `
 import React, { useRef, useState } from 'react';
 import { Button } from 'primereact/button';
 import { ConfirmPopup } from 'primereact/confirmpopup';
@@ -49,7 +49,7 @@ export default function PTDemo() {
     )
 }
         `,
-        typescript: `
+		typescript: `
 import React, { useRef, useState } from 'react';
 import { Button } from 'primereact/button';
 import { ConfirmPopup } from 'primereact/confirmpopup';
@@ -76,28 +76,33 @@ export default function PTDemo() {
         </>
     )
 }
-        `
-    };
+        `,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}></DocSectionText>
-            <>
-                <ConfirmPopup
-                    pt={{
-                        root: { className: 'surface-100' }
-                    }}
-                    target={buttonEl.current}
-                    visible={visible}
-                    onHide={() => setVisible(false)}
-                    message="Are you sure you want to proceed?"
-                    icon="pi pi-exclamation-triangle"
-                />
-                <div className="card flex justify-content-center">
-                    <Button ref={buttonEl} onClick={() => setVisible(true)} icon="pi pi-check" label="Confirm" />
-                </div>
-            </>
-            <DocSectionCode code={code} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}></DocSectionText>
+			<>
+				<ConfirmPopup
+					pt={{
+						root: { className: "surface-100" },
+					}}
+					target={buttonEl.current}
+					visible={visible}
+					onHide={() => setVisible(false)}
+					message="Are you sure you want to proceed?"
+					icon="pi pi-exclamation-triangle"
+				/>
+				<div className="card flex justify-content-center">
+					<Button
+						ref={buttonEl}
+						onClick={() => setVisible(true)}
+						icon="pi pi-check"
+						label="Confirm"
+					/>
+				</div>
+			</>
+			<DocSectionCode code={code} />
+		</>
+	);
 }

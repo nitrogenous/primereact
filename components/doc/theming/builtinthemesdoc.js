@@ -1,9 +1,9 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
 
 export function BuiltInThemesDoc(props) {
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 primereact/resources/themes/bootstrap4-light-blue/theme.css
 primereact/resources/themes/bootstrap4-light-purple/theme.css
 primereact/resources/themes/bootstrap4-dark-blue/theme.css
@@ -44,21 +44,30 @@ primereact/resources/themes/arya-blue/theme.css
 primereact/resources/themes/arya-green/theme.css
 primereact/resources/themes/arya-orange/theme.css
 primereact/resources/themes/arya-purple/theme.css
-        `
-    };
+        `,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}>
-                <p>
-                    PrimeReact ships with various free themes to choose from. The list below states all the available themes in the npm distribution with import paths. For a live preview, use the configurator{' '}
-                    <span className="border-round inline-flex border-1 w-2rem h-2rem p-0 align-items-center justify-content-center bg-primary">
-                        <span className="pi pi-cog"></span>
-                    </span>{' '}
-                    at the topbar to switch themes.
-                </p>
-            </DocSectionText>
-            <DocSectionCode code={code} hideToggleCode import hideCodeSandbox hideStackBlitz codeClassName="h-20rem overflow-auto" />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}>
+				<p>
+					PrimeReact ships with various free themes to choose from. The list
+					below states all the available themes in the npm distribution with
+					import paths. For a live preview, use the configurator{" "}
+					<span className="border-round inline-flex border-1 w-2rem h-2rem p-0 align-items-center justify-content-center bg-primary">
+						<span className="pi pi-cog"></span>
+					</span>{" "}
+					at the topbar to switch themes.
+				</p>
+			</DocSectionText>
+			<DocSectionCode
+				code={code}
+				hideToggleCode
+				import
+				hideCodeSandbox
+				hideStackBlitz
+				codeClassName="h-20rem overflow-auto"
+			/>
+		</>
+	);
 }

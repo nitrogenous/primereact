@@ -1,20 +1,20 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Column } from '@/components/lib/column/Column';
-import { DataTable } from '@/components/lib/datatable/DataTable';
-import { useEffect, useState } from 'react';
-import { ProductService } from '../../../../service/ProductService';
-import DeferredDemo from '@/components/demo/DeferredDemo';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { Column } from "@/components/lib/column/Column";
+import { DataTable } from "@/components/lib/datatable/DataTable";
+import { useEffect, useState } from "react";
+import { ProductService } from "../../../../service/ProductService";
+import DeferredDemo from "@/components/demo/DeferredDemo";
 
 export function ExpandModeDoc(props) {
-    const [products, setProducts] = useState([]);
+	const [products, setProducts] = useState([]);
 
-    const loadDemoData = () => {
-        ProductService.getProductsMini().then((data) => setProducts(data));
-    };
+	const loadDemoData = () => {
+		ProductService.getProductsMini().then((data) => setProducts(data));
+	};
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <DataTable value={products} columnResizeMode="expand" resizableColumns showGridlines tableStyle={{ minWidth: '50rem' }}>
     <Column field="code" header="Code"></Column>
     <Column field="name" header="Name"></Column>
@@ -22,7 +22,7 @@ export function ExpandModeDoc(props) {
     <Column field="quantity" header="Quantity"></Column>
 </DataTable>
         `,
-        javascript: `
+		javascript: `
 import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -47,7 +47,7 @@ export default function ExpandModeDemo() {
     );
 }
         `,
-        typescript: `
+		typescript: `
 import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -85,7 +85,7 @@ export default function ExpandModeDemo() {
     );
 }
         `,
-        data: `
+		data: `
 {
     id: '1000',
     code: 'f230fh0g3',
@@ -99,27 +99,34 @@ export default function ExpandModeDemo() {
     rating: 5
 },
 ...
-        `
-    };
+        `,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}>
-                <p>
-                    Setting <i>columnResizeMode</i> as <i>expand</i> changes the table width as well.
-                </p>
-            </DocSectionText>
-            <DeferredDemo onLoad={loadDemoData}>
-                <div className="card">
-                    <DataTable value={products} columnResizeMode="expand" resizableColumns showGridlines tableStyle={{ minWidth: '50rem' }}>
-                        <Column field="code" header="Code"></Column>
-                        <Column field="name" header="Name"></Column>
-                        <Column field="category" header="Category"></Column>
-                        <Column field="quantity" header="Quantity"></Column>
-                    </DataTable>
-                </div>
-            </DeferredDemo>
-            <DocSectionCode code={code} service={['ProductService']} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}>
+				<p>
+					Setting <i>columnResizeMode</i> as <i>expand</i> changes the table
+					width as well.
+				</p>
+			</DocSectionText>
+			<DeferredDemo onLoad={loadDemoData}>
+				<div className="card">
+					<DataTable
+						value={products}
+						columnResizeMode="expand"
+						resizableColumns
+						showGridlines
+						tableStyle={{ minWidth: "50rem" }}
+					>
+						<Column field="code" header="Code"></Column>
+						<Column field="name" header="Name"></Column>
+						<Column field="category" header="Category"></Column>
+						<Column field="quantity" header="Quantity"></Column>
+					</DataTable>
+				</div>
+			</DeferredDemo>
+			<DocSectionCode code={code} service={["ProductService"]} />
+		</>
+	);
 }

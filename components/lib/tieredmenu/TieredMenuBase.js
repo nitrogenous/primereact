@@ -1,34 +1,46 @@
-import PrimeReact from '../api/Api';
-import { ComponentBase } from '../componentbase/ComponentBase';
-import { classNames } from '../utils/Utils';
+import PrimeReact from "../api/Api";
+import { ComponentBase } from "../componentbase/ComponentBase";
+import { classNames } from "../utils/Utils";
 
 const classes = {
-    root: ({ props, context }) =>
-        classNames(
-            'p-tieredmenu p-component',
-            {
-                'p-tieredmenu-overlay': props.popup,
-                'p-input-filled': (context && context.inputStyle === 'filled') || PrimeReact.inputStyle === 'filled',
-                'p-ripple-disabled': (context && context.ripple === false) || PrimeReact.ripple === false
-            },
-            props.className
-        ),
-    separator: 'p-menuitem-separator',
-    icon: ({ _icon }) => classNames('p-menuitem-icon', _icon),
-    content: 'p-menuitem-content',
-    label: 'p-menuitem-text',
-    submenuIcon: 'p-submenu-icon',
-    action: 'p-menuitem-link',
-    menuitem: ({ _className, active, focused, disabled }) => classNames('p-menuitem', { 'p-menuitem-active p-highlight': active, 'p-focus': focused, 'p-disabled': disabled }, _className),
-    menu: 'p-tieredmenu-root-list',
-    submenu: 'p-submenu-list',
-    transition: 'p-connected-overlay'
+	root: ({ props, context }) =>
+		classNames(
+			"p-tieredmenu p-component",
+			{
+				"p-tieredmenu-overlay": props.popup,
+				"p-input-filled":
+					(context && context.inputStyle === "filled") ||
+					PrimeReact.inputStyle === "filled",
+				"p-ripple-disabled":
+					(context && context.ripple === false) || PrimeReact.ripple === false,
+			},
+			props.className,
+		),
+	separator: "p-menuitem-separator",
+	icon: ({ _icon }) => classNames("p-menuitem-icon", _icon),
+	content: "p-menuitem-content",
+	label: "p-menuitem-text",
+	submenuIcon: "p-submenu-icon",
+	action: "p-menuitem-link",
+	menuitem: ({ _className, active, focused, disabled }) =>
+		classNames(
+			"p-menuitem",
+			{
+				"p-menuitem-active p-highlight": active,
+				"p-focus": focused,
+				"p-disabled": disabled,
+			},
+			_className,
+		),
+	menu: "p-tieredmenu-root-list",
+	submenu: "p-submenu-list",
+	transition: "p-connected-overlay",
 };
 
 const inlineStyles = {
-    submenu: ({ subProps: props }) => ({
-        display: !props.root && props.parentActive ? 'block' : 'none'
-    })
+	submenu: ({ subProps: props }) => ({
+		display: !props.root && props.parentActive ? "block" : "none",
+	}),
 };
 
 const styles = `
@@ -84,29 +96,29 @@ const styles = `
 `;
 
 export const TieredMenuBase = ComponentBase.extend({
-    defaultProps: {
-        __TYPE: 'TieredMenu',
-        id: null,
-        model: null,
-        popup: false,
-        style: null,
-        className: null,
-        autoZIndex: true,
-        baseZIndex: 0,
-        breakpoint: undefined,
-        scrollHeight: '400px',
-        appendTo: null,
-        transitionOptions: null,
-        onShow: null,
-        onFocus: null,
-        onBlur: null,
-        onHide: null,
-        submenuIcon: null,
-        children: undefined
-    },
-    css: {
-        classes,
-        styles,
-        inlineStyles
-    }
+	defaultProps: {
+		__TYPE: "TieredMenu",
+		id: null,
+		model: null,
+		popup: false,
+		style: null,
+		className: null,
+		autoZIndex: true,
+		baseZIndex: 0,
+		breakpoint: undefined,
+		scrollHeight: "400px",
+		appendTo: null,
+		transitionOptions: null,
+		onShow: null,
+		onFocus: null,
+		onBlur: null,
+		onHide: null,
+		submenuIcon: null,
+		children: undefined,
+	},
+	css: {
+		classes,
+		styles,
+		inlineStyles,
+	},
 });

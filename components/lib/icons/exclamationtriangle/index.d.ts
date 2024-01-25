@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { IconBaseProps } from '../../iconbase';
+import * as React from "react";
+import { IconBaseProps } from "../../iconbase";
 
 /**
  * Defines valid properties in ExclamationTriangleIcon component. In addition to these, all properties of SVGSVGElement can be used in this component.
@@ -16,4 +16,7 @@ export interface ExclamationTriangleIconProps extends IconBaseProps {}
  *
  * @group Component
  */
-export declare class ExclamationTriangleIcon extends React.Component<ExclamationTriangleIconProps, any> {}
+export declare class ExclamationTriangleIcon extends React.Component<
+	ExclamationTriangleIconProps,
+	any
+> {}

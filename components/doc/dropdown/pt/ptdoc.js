@@ -1,20 +1,20 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Dropdown } from '@/components/lib/dropdown/Dropdown';
-import { useState } from 'react';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { Dropdown } from "@/components/lib/dropdown/Dropdown";
+import { useState } from "react";
 
 export function PTDoc(props) {
-    const [selectedCity, setSelectedCity] = useState(null);
-    const cities = [
-        { name: 'New York', code: 'NY' },
-        { name: 'Rome', code: 'RM' },
-        { name: 'London', code: 'LDN' },
-        { name: 'Istanbul', code: 'IST' },
-        { name: 'Paris', code: 'PRS' }
-    ];
+	const [selectedCity, setSelectedCity] = useState(null);
+	const cities = [
+		{ name: "New York", code: "NY" },
+		{ name: "Rome", code: "RM" },
+		{ name: "London", code: "LDN" },
+		{ name: "Istanbul", code: "IST" },
+		{ name: "Paris", code: "PRS" },
+	];
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <Dropdown
     value={selectedCity}
     onChange={(e) => setSelectedCity(e.value)}
@@ -29,7 +29,7 @@ export function PTDoc(props) {
     }}
 />
         `,
-        javascript: `
+		javascript: `
 import React, { useState } from "react";
 import { Dropdown } from 'primereact/dropdown';
 
@@ -62,7 +62,7 @@ export default function PTDemo() {
     )
 }
         `,
-        typescript: `
+		typescript: `
 import React, { useState } from "react";
 import { Dropdown, DropdownChangeEvent } from 'primereact/dropdown';
 
@@ -99,28 +99,28 @@ export default function PTDemo() {
         </div>
     )
 }
-        `
-    };
+        `,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}></DocSectionText>
-            <div className="card flex justify-content-center">
-                <Dropdown
-                    value={selectedCity}
-                    onChange={(e) => setSelectedCity(e.value)}
-                    options={cities}
-                    optionLabel="name"
-                    placeholder="Select a City"
-                    pt={{
-                        root: { className: 'w-full md:w-14rem' },
-                        item: ({ context }) => ({
-                            className: context.selected ? 'bg-primary' : undefined
-                        })
-                    }}
-                />
-            </div>
-            <DocSectionCode code={code} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}></DocSectionText>
+			<div className="card flex justify-content-center">
+				<Dropdown
+					value={selectedCity}
+					onChange={(e) => setSelectedCity(e.value)}
+					options={cities}
+					optionLabel="name"
+					placeholder="Select a City"
+					pt={{
+						root: { className: "w-full md:w-14rem" },
+						item: ({ context }) => ({
+							className: context.selected ? "bg-primary" : undefined,
+						}),
+					}}
+				/>
+			</div>
+			<DocSectionCode code={code} />
+		</>
+	);
 }

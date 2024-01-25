@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { IconBaseProps } from '../../iconbase';
+import * as React from "react";
+import { IconBaseProps } from "../../iconbase";
 
 /**
  * Defines valid properties in WindowMinimizeIcon component. In addition to these, all properties of SVGSVGElement can be used in this component.
@@ -16,4 +16,7 @@ export interface WindowMinimizeIconProps extends IconBaseProps {}
  *
  * @group Component
  */
-export declare class WindowMinimizeIcon extends React.Component<WindowMinimizeIconProps, any> {}
+export declare class WindowMinimizeIcon extends React.Component<
+	WindowMinimizeIconProps,
+	any
+> {}

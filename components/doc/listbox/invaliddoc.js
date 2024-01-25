@@ -1,24 +1,24 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { ListBox } from '@/components/lib/listbox/ListBox';
-import { useState } from 'react';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { ListBox } from "@/components/lib/listbox/ListBox";
+import { useState } from "react";
 
 export function InvalidDoc(props) {
-    const [selectedCity, setSelectedCity] = useState(null);
-    const cities = [
-        { name: 'New York', code: 'NY' },
-        { name: 'Rome', code: 'RM' },
-        { name: 'London', code: 'LDN' },
-        { name: 'Istanbul', code: 'IST' },
-        { name: 'Paris', code: 'PRS' }
-    ];
+	const [selectedCity, setSelectedCity] = useState(null);
+	const cities = [
+		{ name: "New York", code: "NY" },
+		{ name: "Rome", code: "RM" },
+		{ name: "London", code: "LDN" },
+		{ name: "Istanbul", code: "IST" },
+		{ name: "Paris", code: "PRS" },
+	];
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <ListBox value={selectedCity} onChange={(e) => setSelectedCity(e.value)} options={cities} optionLabel="name" 
     className="w-full md:w-14rem p-invalid" />
         `,
-        javascript: `
+		javascript: `
 import React, { useState } from "react";
 import { ListBox } from 'primereact/listbox';
 
@@ -40,7 +40,7 @@ export default function InvalidDemo() {
     )
 }
         `,
-        typescript: `
+		typescript: `
 import React, { useState } from "react";
 import { ListBox, ListBoxChangeEvent } from 'primereact/listbox';
 
@@ -66,20 +66,27 @@ export default function InvalidDemo() {
         </div>
     )
 }
-        `
-    };
+        `,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}>
-                <p>
-                    Invalid state style is added using the <i>p-invalid</i> class to indicate a failed validation.
-                </p>
-            </DocSectionText>
-            <div className="card flex justify-content-center">
-                <ListBox value={selectedCity} onChange={(e) => setSelectedCity(e.value)} options={cities} optionLabel="name" className="w-full md:w-14rem p-invalid" />
-            </div>
-            <DocSectionCode code={code} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}>
+				<p>
+					Invalid state style is added using the <i>p-invalid</i> class to
+					indicate a failed validation.
+				</p>
+			</DocSectionText>
+			<div className="card flex justify-content-center">
+				<ListBox
+					value={selectedCity}
+					onChange={(e) => setSelectedCity(e.value)}
+					options={cities}
+					optionLabel="name"
+					className="w-full md:w-14rem p-invalid"
+				/>
+			</div>
+			<DocSectionCode code={code} />
+		</>
+	);
 }

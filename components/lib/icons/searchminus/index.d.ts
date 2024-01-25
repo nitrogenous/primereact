@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { IconBaseProps } from '../../iconbase';
+import * as React from "react";
+import { IconBaseProps } from "../../iconbase";
 
 /**
  * Defines valid properties in SearchMinusIcon component. In addition to these, all properties of SVGSVGElement can be used in this component.
@@ -16,4 +16,7 @@ export interface SearchMinusIconProps extends IconBaseProps {}
  *
  * @group Component
  */
-export declare class SearchMinusIcon extends React.Component<SearchMinusIconProps, any> {}
+export declare class SearchMinusIcon extends React.Component<
+	SearchMinusIconProps,
+	any
+> {}

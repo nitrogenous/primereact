@@ -17,7 +17,7 @@ export declare type AvatarGroupPassThroughType<T> = PassThroughType<T, AvatarGro
 /**
  * Custom passthrough(pt) option method.
  */
-export interface AvatarGroupPassThroughMethodOptions {}
+export type AvatarGroupPassThroughMethodOptions = object;
 
 /**
  * Custom passthrough(pt) options.

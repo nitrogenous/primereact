@@ -1,52 +1,52 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { useEventListener } from '@/components/lib/hooks/Hooks';
-import { classNames } from '@/components/lib/utils/Utils';
-import { useEffect, useState } from 'react';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { useEventListener } from "@/components/lib/hooks/Hooks";
+import { classNames } from "@/components/lib/utils/Utils";
+import { useEffect, useState } from "react";
 
 export function DocumentDoc(props) {
-    const [pressed, setPressed] = useState(false);
-    const [value, setValue] = useState('');
+	const [pressed, setPressed] = useState(false);
+	const [value, setValue] = useState("");
 
-    const onKeyDown = (e) => {
-        setPressed(true);
+	const onKeyDown = (e) => {
+		setPressed(true);
 
-        if (e.code === 'Space') {
-            e.preventDefault();
-            setValue('space');
+		if (e.code === "Space") {
+			e.preventDefault();
+			setValue("space");
 
-            return;
-        }
+			return;
+		}
 
-        setValue(e.key);
-    };
+		setValue(e.key);
+	};
 
-    const [bindKeyDown, unbindKeyDown] = useEventListener({
-        type: 'keydown',
-        listener: (e) => {
-            onKeyDown(e);
-        }
-    });
+	const [bindKeyDown, unbindKeyDown] = useEventListener({
+		type: "keydown",
+		listener: (e) => {
+			onKeyDown(e);
+		},
+	});
 
-    const [bindKeyUp, unbindKeyUp] = useEventListener({
-        type: 'keyup',
-        listener: (e) => {
-            setPressed(false);
-        }
-    });
+	const [bindKeyUp, unbindKeyUp] = useEventListener({
+		type: "keyup",
+		listener: (e) => {
+			setPressed(false);
+		},
+	});
 
-    useEffect(() => {
-        bindKeyDown();
-        bindKeyUp();
+	useEffect(() => {
+		bindKeyDown();
+		bindKeyUp();
 
-        return () => {
-            unbindKeyDown();
-            unbindKeyUp();
-        };
-    }, [bindKeyDown, bindKeyUp, unbindKeyDown, unbindKeyUp]);
+		return () => {
+			unbindKeyDown();
+			unbindKeyUp();
+		};
+	}, [bindKeyDown, bindKeyUp, unbindKeyDown, unbindKeyUp]);
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 const [bindKeyDown, unbindKeyDown] = useEventListener({
     type: 'keydown',
     listener: (e) => {
@@ -61,7 +61,7 @@ const [bindKeyUp, unbindKeyUp] = useEventListener({
     }
 });
         `,
-        javascript: `
+		javascript: `
 import React, { useState, useEffect } from 'react'; 
 import { classNames } from 'primereact/utils';
 import { useEventListener } from 'primereact/hooks';
@@ -120,7 +120,7 @@ export default function DocumentDemo() {
     )
 }
         `,
-        typescript: `
+		typescript: `
 import React, { useState, useEffect } from 'react'; 
 import { classNames } from 'primereact/utils';
 import { useEventListener } from 'primereact/hooks';
@@ -178,26 +178,30 @@ export default function DocumentDemo() {
         </div>
     )
 }
-        `
-    };
+        `,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}>
-                <p>Events are attached to the document itself by default.</p>
-            </DocSectionText>
-            <div className="card flex flex-column align-items-center gap-3">
-                <button
-                    className={classNames('card border-1 surface-border border-round-md py-3 px-4 text-color font-semibold text-lg transition-all transition-duration-150', { 'shadow-1': pressed, 'shadow-5': !pressed })}
-                    style={{
-                        background: '-webkit-linear-gradient(top, var(--surface-ground) 0%, var(--surface-card) 100%)',
-                        transform: pressed ? 'translateY(5px)' : 'translateY(0)'
-                    }}
-                >
-                    {value.toUpperCase() || 'Press a Key'}
-                </button>
-            </div>
-            <DocSectionCode code={code} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}>
+				<p>Events are attached to the document itself by default.</p>
+			</DocSectionText>
+			<div className="card flex flex-column align-items-center gap-3">
+				<button
+					className={classNames(
+						"card border-1 surface-border border-round-md py-3 px-4 text-color font-semibold text-lg transition-all transition-duration-150",
+						{ "shadow-1": pressed, "shadow-5": !pressed },
+					)}
+					style={{
+						background:
+							"-webkit-linear-gradient(top, var(--surface-ground) 0%, var(--surface-card) 100%)",
+						transform: pressed ? "translateY(5px)" : "translateY(0)",
+					}}
+				>
+					{value.toUpperCase() || "Press a Key"}
+				</button>
+			</div>
+			<DocSectionCode code={code} />
+		</>
+	);
 }

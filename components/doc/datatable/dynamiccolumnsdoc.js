@@ -1,33 +1,33 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Column } from '@/components/lib/column/Column';
-import { DataTable } from '@/components/lib/datatable/DataTable';
-import { useEffect, useState } from 'react';
-import { ProductService } from '../../../service/ProductService';
-import DeferredDemo from '@/components/demo/DeferredDemo';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { Column } from "@/components/lib/column/Column";
+import { DataTable } from "@/components/lib/datatable/DataTable";
+import { useEffect, useState } from "react";
+import { ProductService } from "../../../service/ProductService";
+import DeferredDemo from "@/components/demo/DeferredDemo";
 
 export function DynamicColumnsDoc(props) {
-    const [products, setProducts] = useState([]);
-    const columns = [
-        { field: 'code', header: 'Code' },
-        { field: 'name', header: 'Name' },
-        { field: 'category', header: 'Category' },
-        { field: 'quantity', header: 'Quantity' }
-    ];
+	const [products, setProducts] = useState([]);
+	const columns = [
+		{ field: "code", header: "Code" },
+		{ field: "name", header: "Name" },
+		{ field: "category", header: "Category" },
+		{ field: "quantity", header: "Quantity" },
+	];
 
-    const loadDemoData = () => {
-        ProductService.getProductsMini().then((data) => setProducts(data));
-    };
+	const loadDemoData = () => {
+		ProductService.getProductsMini().then((data) => setProducts(data));
+	};
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <DataTable value={products} tableStyle={{ minWidth: '50rem' }}>
     {columns.map((col, i) => (
         <Column key={col.field} field={col.field} header={col.header} />
     ))}
 </DataTable>
         `,
-        javascript: `
+		javascript: `
 import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -57,7 +57,7 @@ export default function DynamicColumnsDemo() {
     );
 }
         `,
-        typescript: `
+		typescript: `
 import React, { useState, useEffect } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -105,7 +105,7 @@ export default function DynamicColumnsDemo() {
     );
 }
         `,
-        data: `
+		data: `
 {
     id: '1000',
     code: 'f230fh0g3',
@@ -119,24 +119,24 @@ export default function DynamicColumnsDemo() {
     rating: 5
 },
 ...
-        `
-    };
+        `,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}>
-                <p>Columns can be created programmatically.</p>
-            </DocSectionText>
-            <DeferredDemo onLoad={loadDemoData}>
-                <div className="card">
-                    <DataTable value={products} tableStyle={{ minWidth: '50rem' }}>
-                        {columns.map((col, i) => (
-                            <Column key={col.field} field={col.field} header={col.header} />
-                        ))}
-                    </DataTable>
-                </div>
-            </DeferredDemo>
-            <DocSectionCode code={code} service={['ProductService']} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}>
+				<p>Columns can be created programmatically.</p>
+			</DocSectionText>
+			<DeferredDemo onLoad={loadDemoData}>
+				<div className="card">
+					<DataTable value={products} tableStyle={{ minWidth: "50rem" }}>
+						{columns.map((col, i) => (
+							<Column key={col.field} field={col.field} header={col.header} />
+						))}
+					</DataTable>
+				</div>
+			</DeferredDemo>
+			<DocSectionCode code={code} service={["ProductService"]} />
+		</>
+	);
 }

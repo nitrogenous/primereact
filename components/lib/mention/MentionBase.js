@@ -1,24 +1,25 @@
-import { ComponentBase } from '../componentbase/ComponentBase';
-import { classNames } from '../utils/Utils';
+import { ComponentBase } from "../componentbase/ComponentBase";
+import { classNames } from "../utils/Utils";
 
 const classes = {
-    item: ({ isSelected }) =>
-        classNames('p-mention-item', {
-            'p-highlight': isSelected
-        }),
-    items: 'p-mention-items',
-    panel: ({ props }) => classNames('p-mention-panel p-component', props.panelClassName),
-    input: ({ props }) => classNames('p-mention-input', props.inputClassName),
-    root: ({ props, isFilled, focusedState }) =>
-        classNames(
-            'p-mention p-component p-inputwrapper',
-            {
-                'p-inputwrapper-filled': isFilled,
-                'p-inputwrapper-focus': focusedState
-            },
-            props.className
-        ),
-    transition: 'p-connected-overlay'
+	item: ({ isSelected }) =>
+		classNames("p-mention-item", {
+			"p-highlight": isSelected,
+		}),
+	items: "p-mention-items",
+	panel: ({ props }) =>
+		classNames("p-mention-panel p-component", props.panelClassName),
+	input: ({ props }) => classNames("p-mention-input", props.inputClassName),
+	root: ({ props, isFilled, focusedState }) =>
+		classNames(
+			"p-mention p-component p-inputwrapper",
+			{
+				"p-inputwrapper-filled": isFilled,
+				"p-inputwrapper-focus": focusedState,
+			},
+			props.className,
+		),
+	transition: "p-connected-overlay",
 };
 
 const styles = `
@@ -65,39 +66,39 @@ const styles = `
 `;
 
 export const MentionBase = ComponentBase.extend({
-    defaultProps: {
-        __TYPE: 'Mention',
-        autoHighlight: true,
-        className: null,
-        delay: 0,
-        field: null,
-        footerTemplate: null,
-        headerTemplate: null,
-        id: null,
-        inputClassName: null,
-        inputId: null,
-        inputRef: null,
-        inputStyle: null,
-        itemTemplate: null,
-        panelClassName: null,
-        panelStyle: null,
-        scrollHeight: '200px',
-        style: null,
-        suggestions: null,
-        transitionOptions: null,
-        trigger: '@',
-        onBlur: null,
-        onChange: null,
-        onFocus: null,
-        onHide: null,
-        onInput: null,
-        onSearch: null,
-        onSelect: null,
-        onShow: null,
-        children: undefined
-    },
-    css: {
-        classes,
-        styles
-    }
+	defaultProps: {
+		__TYPE: "Mention",
+		autoHighlight: true,
+		className: null,
+		delay: 0,
+		field: null,
+		footerTemplate: null,
+		headerTemplate: null,
+		id: null,
+		inputClassName: null,
+		inputId: null,
+		inputRef: null,
+		inputStyle: null,
+		itemTemplate: null,
+		panelClassName: null,
+		panelStyle: null,
+		scrollHeight: "200px",
+		style: null,
+		suggestions: null,
+		transitionOptions: null,
+		trigger: "@",
+		onBlur: null,
+		onChange: null,
+		onFocus: null,
+		onHide: null,
+		onInput: null,
+		onSearch: null,
+		onSelect: null,
+		onShow: null,
+		children: undefined,
+	},
+	css: {
+		classes,
+		styles,
+	},
 });

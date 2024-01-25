@@ -1,13 +1,13 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Button } from '@/components/lib/button/Button';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { Button } from "@/components/lib/button/Button";
 
 export function DisabledDoc(props) {
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <Button label="Submit" disabled />
         `,
-        javascript: `
+		javascript: `
 import React from 'react'; 
 import { Button } from 'primereact/button';
 
@@ -19,7 +19,7 @@ export default function DisabledDemo() {
     )
 }
         `,
-        typescript: `
+		typescript: `
 import React from 'react'; 
 import { Button } from 'primereact/button';
 
@@ -30,20 +30,21 @@ export default function DisabledDemo() {
         </div>
     )
 }
-        `
-    };
+        `,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}>
-                <p>
-                    When <i>disabled</i> is present, the element cannot be edited and focused.
-                </p>
-            </DocSectionText>
-            <div className="card flex justify-content-center">
-                <Button label="Submit" disabled />
-            </div>
-            <DocSectionCode code={code} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}>
+				<p>
+					When <i>disabled</i> is present, the element cannot be edited and
+					focused.
+				</p>
+			</DocSectionText>
+			<div className="card flex justify-content-center">
+				<Button label="Submit" disabled />
+			</div>
+			<DocSectionCode code={code} />
+		</>
+	);
 }

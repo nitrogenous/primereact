@@ -1,45 +1,49 @@
-import PrimeReact from '../api/Api';
-import { ComponentBase } from '../componentbase/ComponentBase';
-import { classNames } from '../utils/Utils';
+import PrimeReact from "../api/Api";
+import { ComponentBase } from "../componentbase/ComponentBase";
+import { classNames } from "../utils/Utils";
 
 const classes = {
-    root: ({ props, focusedState, overlayVisibleState }) =>
-        classNames(
-            'p-cascadeselect p-component p-inputwrapper',
-            {
-                'p-disabled': props.disabled,
-                'p-focus': focusedState,
-                'p-inputwrapper-filled': props.value,
-                'p-inputwrapper-focus': focusedState || overlayVisibleState
-            },
-            props.className
-        ),
-    label: ({ props, label }) =>
-        classNames('p-cascadeselect-label ', {
-            'p-placeholder': label === props.placeholder,
-            'p-cascadeselect-label-empty': !props.value && label === 'p-emptylabel'
-        }),
-    list: ({ context }) =>
-        classNames('p-cascadeselect-panel p-cascadeselect-items', {
-            'p-input-filled': (context && context.inputStyle === 'filled') || PrimeReact.inputStyle === 'filled',
-            'p-ripple-disabled': (context && context.ripple === false) || PrimeReact.ripple === false
-        }),
-    sublist: 'p-cascadeselect-panel p-cascadeselect-items p-cascadeselect-sublist',
-    item: ({ option, isGroup, isSelected }) =>
-        classNames('p-cascadeselect-item', {
-            'p-cascadeselect-item-group': isGroup,
-            'p-cascadeselect-item-active p-highlight': isSelected
-        }),
-    dropdownIcon: 'p-cascadeselect-trigger-icon',
-    loadingIcon: 'p-cascadeselect-trigger-icon',
-    dropdownButton: 'p-cascadeselect-trigger',
-    loadingButton: 'p-cascadeselect-trigger',
-    wrapper: 'p-cascadeselect-items-wrapper',
-    panel: 'p-cascadeselect-panel p-component',
-    content: 'p-cascadeselect-item-content',
-    optionGroupIcon: 'p-cascadeselect-group-icon',
-    text: 'p-cascadeselect-item-text',
-    transition: 'p-connected-overlay'
+	root: ({ props, focusedState, overlayVisibleState }) =>
+		classNames(
+			"p-cascadeselect p-component p-inputwrapper",
+			{
+				"p-disabled": props.disabled,
+				"p-focus": focusedState,
+				"p-inputwrapper-filled": props.value,
+				"p-inputwrapper-focus": focusedState || overlayVisibleState,
+			},
+			props.className,
+		),
+	label: ({ props, label }) =>
+		classNames("p-cascadeselect-label ", {
+			"p-placeholder": label === props.placeholder,
+			"p-cascadeselect-label-empty": !props.value && label === "p-emptylabel",
+		}),
+	list: ({ context }) =>
+		classNames("p-cascadeselect-panel p-cascadeselect-items", {
+			"p-input-filled":
+				(context && context.inputStyle === "filled") ||
+				PrimeReact.inputStyle === "filled",
+			"p-ripple-disabled":
+				(context && context.ripple === false) || PrimeReact.ripple === false,
+		}),
+	sublist:
+		"p-cascadeselect-panel p-cascadeselect-items p-cascadeselect-sublist",
+	item: ({ option, isGroup, isSelected }) =>
+		classNames("p-cascadeselect-item", {
+			"p-cascadeselect-item-group": isGroup,
+			"p-cascadeselect-item-active p-highlight": isSelected,
+		}),
+	dropdownIcon: "p-cascadeselect-trigger-icon",
+	loadingIcon: "p-cascadeselect-trigger-icon",
+	dropdownButton: "p-cascadeselect-trigger",
+	loadingButton: "p-cascadeselect-trigger",
+	wrapper: "p-cascadeselect-items-wrapper",
+	panel: "p-cascadeselect-panel p-component",
+	content: "p-cascadeselect-item-content",
+	optionGroupIcon: "p-cascadeselect-group-icon",
+	text: "p-cascadeselect-item-text",
+	transition: "p-connected-overlay",
 };
 
 const styles = `
@@ -135,44 +139,44 @@ const styles = `
 `;
 
 export const CascadeSelectBase = ComponentBase.extend({
-    defaultProps: {
-        __TYPE: 'CascadeSelect',
-        appendTo: null,
-        ariaLabelledBy: null,
-        autoFocus: false,
-        breakpoint: undefined,
-        className: null,
-        dataKey: null,
-        disabled: false,
-        loadingIcon: null,
-        dropdownIcon: null,
-        id: null,
-        inputId: null,
-        inputRef: null,
-        itemTemplate: null,
-        name: null,
-        onBeforeHide: null,
-        onBeforeShow: null,
-        onChange: null,
-        onGroupChange: null,
-        onHide: null,
-        onShow: null,
-        optionGroupChildren: null,
-        optionGroupIcon: null,
-        optionGroupLabel: null,
-        optionLabel: null,
-        optionValue: null,
-        options: null,
-        placeholder: null,
-        scrollHeight: '400px',
-        style: null,
-        tabIndex: null,
-        transitionOptions: null,
-        value: null,
-        children: undefined
-    },
-    css: {
-        classes,
-        styles
-    }
+	defaultProps: {
+		__TYPE: "CascadeSelect",
+		appendTo: null,
+		ariaLabelledBy: null,
+		autoFocus: false,
+		breakpoint: undefined,
+		className: null,
+		dataKey: null,
+		disabled: false,
+		loadingIcon: null,
+		dropdownIcon: null,
+		id: null,
+		inputId: null,
+		inputRef: null,
+		itemTemplate: null,
+		name: null,
+		onBeforeHide: null,
+		onBeforeShow: null,
+		onChange: null,
+		onGroupChange: null,
+		onHide: null,
+		onShow: null,
+		optionGroupChildren: null,
+		optionGroupIcon: null,
+		optionGroupLabel: null,
+		optionLabel: null,
+		optionValue: null,
+		options: null,
+		placeholder: null,
+		scrollHeight: "400px",
+		style: null,
+		tabIndex: null,
+		transitionOptions: null,
+		value: null,
+		children: undefined,
+	},
+	css: {
+		classes,
+		styles,
+	},
 });

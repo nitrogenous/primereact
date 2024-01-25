@@ -1,34 +1,44 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Menu } from '@/components/lib/menu/Menu';
-import { Toast } from '@/components/lib/toast/Toast';
-import { useRef } from 'react';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { Menu } from "@/components/lib/menu/Menu";
+import { Toast } from "@/components/lib/toast/Toast";
+import { useRef } from "react";
 
 export function CommandDoc(props) {
-    const toast = useRef(null);
-    let items = [
-        {
-            label: 'New',
-            icon: 'pi pi-plus',
-            command: () => {
-                toast.current.show({ severity: 'success', summary: 'Success', detail: 'File created', life: 3000 });
-            }
-        },
-        {
-            label: 'Search',
-            icon: 'pi pi-search',
-            command: () => {
-                toast.current.show({ severity: 'warn', summary: 'Search Completed', detail: 'No results found', life: 3000 });
-            }
-        }
-    ];
+	const toast = useRef(null);
+	const items = [
+		{
+			label: "New",
+			icon: "pi pi-plus",
+			command: () => {
+				toast.current.show({
+					severity: "success",
+					summary: "Success",
+					detail: "File created",
+					life: 3000,
+				});
+			},
+		},
+		{
+			label: "Search",
+			icon: "pi pi-search",
+			command: () => {
+				toast.current.show({
+					severity: "warn",
+					summary: "Search Completed",
+					detail: "No results found",
+					life: 3000,
+				});
+			},
+		},
+	];
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <Menu model={items} />
 <Toast ref={toast} />
 `,
-        javascript: `
+		javascript: `
 import React, { useRef } from 'react'; 
 import { Menu } from 'primereact/menu';
 import { Toast } from 'primereact/toast';
@@ -58,7 +68,7 @@ export default function CommandDemo() {
     )
 }
         `,
-        typescript: `
+		typescript: `
 import React, { useRef } from 'react'; 
 import { Menu } from 'primereact/menu';
 import { MenuItem } from 'primereact/menuitem';
@@ -89,21 +99,22 @@ export default function CommandDemo() {
         <Toast ref={toast} />
     )
 }
-        `
-    };
+        `,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}>
-                <p>
-                    The <i>command</i> property defines the callback to run when an item is activated by click or a key event.
-                </p>
-            </DocSectionText>
-            <div className="card flex justify-content-center">
-                <Menu model={items} />
-                <Toast ref={toast} />
-            </div>
-            <DocSectionCode code={code} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}>
+				<p>
+					The <i>command</i> property defines the callback to run when an item
+					is activated by click or a key event.
+				</p>
+			</DocSectionText>
+			<div className="card flex justify-content-center">
+				<Menu model={items} />
+				<Toast ref={toast} />
+			</div>
+			<DocSectionCode code={code} />
+		</>
+	);
 }

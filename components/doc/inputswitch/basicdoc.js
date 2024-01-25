@@ -1,16 +1,16 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { InputSwitch } from '@/components/lib/inputswitch/InputSwitch';
-import { useState } from 'react';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { InputSwitch } from "@/components/lib/inputswitch/InputSwitch";
+import { useState } from "react";
 
 export function BasicDoc(props) {
-    const [checked, setChecked] = useState(false);
+	const [checked, setChecked] = useState(false);
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <InputSwitch checked={checked} onChange={(e) => setChecked(e.value)} />
         `,
-        javascript: `
+		javascript: `
 import React, { useState } from "react";
 import { InputSwitch } from "primereact/inputswitch";
 
@@ -24,7 +24,7 @@ export default function BasicDemo() {
     );
 }
         `,
-        typescript: `
+		typescript: `
 import React, { useState } from "react";
 import { InputSwitch, InputSwitchChangeEvent } from "primereact/inputswitch";
 
@@ -37,20 +37,21 @@ export default function BasicDemo() {
         </div>
     );
 }
-        `
-    };
+        `,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}>
-                <p>
-                    InputSwitch is used as a controlled input with <i>checked</i> and <i>onChange</i> properties.
-                </p>
-            </DocSectionText>
-            <div className="card flex justify-content-center">
-                <InputSwitch checked={checked} onChange={(e) => setChecked(e.value)} />
-            </div>
-            <DocSectionCode code={code} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}>
+				<p>
+					InputSwitch is used as a controlled input with <i>checked</i> and{" "}
+					<i>onChange</i> properties.
+				</p>
+			</DocSectionText>
+			<div className="card flex justify-content-center">
+				<InputSwitch checked={checked} onChange={(e) => setChecked(e.value)} />
+			</div>
+			<DocSectionCode code={code} />
+		</>
+	);
 }

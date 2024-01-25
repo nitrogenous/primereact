@@ -1,13 +1,18 @@
-import * as React from 'react';
-import { PrimeReactContext } from '../api/Api';
-import { useHandleStyle } from '../componentbase/ComponentBase';
-import { CSSTransition } from '../csstransition/CSSTransition';
-import { useMergeProps, useMountEffect } from '../hooks/Hooks';
-import { MinusIcon } from '../icons/minus';
-import { PlusIcon } from '../icons/plus';
-import { Ripple } from '../ripple/Ripple';
-import { IconUtils, ObjectUtils, UniqueComponentId, classNames } from '../utils/Utils';
-import { PanelBase } from './PanelBase';
+import * as React from "react";
+import { PrimeReactContext } from "../api/Api";
+import { useHandleStyle } from "../componentbase/ComponentBase";
+import { CSSTransition } from "../csstransition/CSSTransition";
+import { useMergeProps, useMountEffect } from "../hooks/Hooks";
+import { MinusIcon } from "../icons/minus";
+import { PlusIcon } from "../icons/plus";
+import { Ripple } from "../ripple/Ripple";
+import {
+    IconUtils,
+    ObjectUtils,
+    UniqueComponentId,
+    classNames,
+} from "../utils/Utils";
+import { PanelBase } from "./PanelBase";
 
 export const Panel = React.forwardRef((inProps, ref) => {
     const mergeProps = useMergeProps();
@@ -17,19 +22,23 @@ export const Panel = React.forwardRef((inProps, ref) => {
     const [collapsedState, setCollapsedState] = React.useState(props.collapsed);
     const elementRef = React.useRef(null);
     const contentRef = React.useRef(null);
-    const collapsed = props.toggleable ? (props.onToggle ? props.collapsed : collapsedState) : false;
-    const headerId = idState + '_header';
-    const contentId = idState + '_content';
+    const collapsed = props.toggleable
+        ? props.onToggle
+            ? props.collapsed
+            : collapsedState
+        : false;
+    const headerId = idState + "_header";
+    const contentId = idState + "_content";
 
     const { ptm, cx, isUnstyled } = PanelBase.setMetaData({
         props,
         state: {
             id: idState,
-            collapsed: collapsed
-        }
+            collapsed: collapsed,
+        },
     });
 
-    useHandleStyle(PanelBase.css.styles, isUnstyled, { name: 'panel' });
+    useHandleStyle(PanelBase.css.styles, isUnstyled, { name: "panel" });
 
     const toggle = (event) => {
         if (!props.toggleable) {
@@ -42,7 +51,7 @@ export const Panel = React.forwardRef((inProps, ref) => {
             if (props.onToggle) {
                 props.onToggle({
                     originalEvent: event,
-                    value: !collapsed
+                    value: !collapsed,
                 });
             }
 
@@ -72,7 +81,7 @@ export const Panel = React.forwardRef((inProps, ref) => {
         expand,
         collapse,
         getElement: () => elementRef.current,
-        getContent: () => contentRef.current
+        getContent: () => contentRef.current,
     }));
 
     useMountEffect(() => {
@@ -83,24 +92,29 @@ export const Panel = React.forwardRef((inProps, ref) => {
 
     const createToggleIcon = () => {
         if (props.toggleable) {
-            const buttonId = idState + '_label';
+            const buttonId = idState + "_label";
             const togglerProps = mergeProps(
                 {
-                    className: cx('toggler'),
+                    className: cx("toggler"),
                     onClick: toggle,
                     id: buttonId,
-                    'aria-controls': contentId,
-                    'aria-expanded': !collapsed,
-                    type: 'button',
-                    role: 'button',
-                    'aria-label': props.header
+                    "aria-controls": contentId,
+                    "aria-expanded": !collapsed,
+                    type: "button",
+                    role: "button",
+                    "aria-label": props.header,
                 },
-                ptm('toggler')
+                ptm("toggler"),
             );
-            const togglerIconProps = mergeProps(ptm('togglericon'));
+            const togglerIconProps = mergeProps(ptm("togglericon"));
 
-            const icon = collapsed ? props.expandIcon || <PlusIcon {...togglerIconProps} /> : props.collapseIcon || <MinusIcon {...togglerIconProps} />;
-            const toggleIcon = IconUtils.getJSXIcon(icon, togglerIconProps, { props, collapsed });
+            const icon = collapsed
+                ? props.expandIcon || <PlusIcon {...togglerIconProps} />
+                : props.collapseIcon || <MinusIcon {...togglerIconProps} />;
+            const toggleIcon = IconUtils.getJSXIcon(icon, togglerIconProps, {
+                props,
+                collapsed,
+            });
 
             return (
                 <button {...togglerProps}>
@@ -121,17 +135,17 @@ export const Panel = React.forwardRef((inProps, ref) => {
         const titleProps = mergeProps(
             {
                 id: headerId,
-                className: cx('title')
+                className: cx("title"),
             },
-            ptm('title')
+            ptm("title"),
         );
         const titleElement = <span {...titleProps}>{header}</span>;
 
         const iconsProps = mergeProps(
             {
-                className: cx('icons')
+                className: cx("icons"),
             },
-            ptm('icons')
+            ptm("icons"),
         );
         const iconsElement = (
             <div {...iconsProps}>
@@ -142,9 +156,9 @@ export const Panel = React.forwardRef((inProps, ref) => {
 
         const headerProps = mergeProps(
             {
-                className: cx('header')
+                className: cx("header"),
             },
-            ptm('header')
+            ptm("header"),
         );
         const content = (
             <div {...headerProps}>
@@ -155,21 +169,24 @@ export const Panel = React.forwardRef((inProps, ref) => {
 
         if (props.headerTemplate) {
             const defaultContentOptions = {
-                className: 'p-panel-header',
-                titleClassName: 'p-panel-title',
-                iconsClassName: 'p-panel-icons',
-                togglerClassName: 'p-panel-header-icon p-panel-toggler p-link',
+                className: "p-panel-header",
+                titleClassName: "p-panel-title",
+                iconsClassName: "p-panel-icons",
+                togglerClassName: "p-panel-header-icon p-panel-toggler p-link",
                 onTogglerClick: toggle,
                 titleElement,
                 iconsElement,
                 togglerElement,
                 element: content,
-                id: idState + '_header',
+                id: idState + "_header",
                 props,
-                collapsed
+                collapsed,
             };
 
-            return ObjectUtils.getJSXElement(props.headerTemplate, defaultContentOptions);
+            return ObjectUtils.getJSXElement(
+                props.headerTemplate,
+                defaultContentOptions,
+            );
         } else if (props.header || props.toggleable) {
             return content;
         }
@@ -182,21 +199,24 @@ export const Panel = React.forwardRef((inProps, ref) => {
 
         const footerProps = mergeProps(
             {
-                className: cx('footer')
+                className: cx("footer"),
             },
-            ptm('footer')
+            ptm("footer"),
         );
 
         const content = <div {...footerProps}>{footer}</div>;
 
         if (props.footerTemplate) {
             const defaultContentOptions = {
-                className: cx('footer'),
+                className: cx("footer"),
                 element: content,
-                props
+                props,
             };
 
-            return ObjectUtils.getJSXElement(props.footerTemplate, defaultContentOptions);
+            return ObjectUtils.getJSXElement(
+                props.footerTemplate,
+                defaultContentOptions,
+            );
         } else if (props.footer) {
             return content;
         }
@@ -208,30 +228,30 @@ export const Panel = React.forwardRef((inProps, ref) => {
         const toggleableContentProps = mergeProps(
             {
                 ref: contentRef,
-                className: cx('toggleableContent'),
-                'aria-hidden': collapsed,
-                role: 'region',
+                className: cx("toggleableContent"),
+                "aria-hidden": collapsed,
+                role: "region",
                 id: contentId,
-                'aria-labelledby': headerId
+                "aria-labelledby": headerId,
             },
-            ptm('toggleablecontent')
+            ptm("toggleablecontent"),
         );
         const contentProps = mergeProps(
             {
-                className: cx('content')
+                className: cx("content"),
             },
-            ptm('content')
+            ptm("content"),
         );
 
         const transitionProps = mergeProps(
             {
-                classNames: cx('transition'),
+                classNames: cx("transition"),
                 timeout: { enter: 1000, exit: 450 },
                 in: !collapsed,
                 unmountOnExit: true,
-                options: props.transitionOptions
+                options: props.transitionOptions,
             },
-            ptm('transition')
+            ptm("transition"),
         );
 
         return (
@@ -248,10 +268,10 @@ export const Panel = React.forwardRef((inProps, ref) => {
             id: idState,
             ref: elementRef,
             style: props.style,
-            className: classNames(props.className, cx('root'))
+            className: classNames(props.className, cx("root")),
         },
         PanelBase.getOtherProps(props),
-        ptm('root')
+        ptm("root"),
     );
     const header = createHeader();
     const content = createContent();
@@ -266,4 +286,4 @@ export const Panel = React.forwardRef((inProps, ref) => {
     );
 });
 
-Panel.displayName = 'Panel';
+Panel.displayName = "Panel";

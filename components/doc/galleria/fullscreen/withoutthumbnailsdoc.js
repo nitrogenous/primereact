@@ -1,34 +1,46 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Button } from '@/components/lib/button/Button';
-import { Galleria } from '@/components/lib/galleria/Galleria';
-import { useEffect, useRef, useState } from 'react';
-import { PhotoService } from '../../../../service/PhotoService';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { Button } from "@/components/lib/button/Button";
+import { Galleria } from "@/components/lib/galleria/Galleria";
+import { useEffect, useRef, useState } from "react";
+import { PhotoService } from "../../../../service/PhotoService";
 
 export function WithoutThumbnailsDoc(props) {
-    const [images, setImages] = useState(null);
-    const galleria = useRef(null);
+	const [images, setImages] = useState(null);
+	const galleria = useRef(null);
 
-    useEffect(() => {
-        PhotoService.getImages().then((data) => setImages(data));
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+	useEffect(() => {
+		PhotoService.getImages().then((data) => setImages(data));
+	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-    const itemTemplate = (item) => {
-        return <img src={item.itemImageSrc} alt={item.alt} style={{ width: '100%', display: 'block' }} />;
-    };
+	const itemTemplate = (item) => {
+		return (
+			<img
+				src={item.itemImageSrc}
+				alt={item.alt}
+				style={{ width: "100%", display: "block" }}
+			/>
+		);
+	};
 
-    const thumbnailTemplate = (item) => {
-        return <img src={item.thumbnailImageSrc} alt={item.alt} style={{ display: 'block' }} />;
-    };
+	const thumbnailTemplate = (item) => {
+		return (
+			<img
+				src={item.thumbnailImageSrc}
+				alt={item.alt}
+				style={{ display: "block" }}
+			/>
+		);
+	};
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <Galleria ref={galleria} value={images} numVisible={9} style={{ maxWidth: '50%' }} 
     circular fullScreen showItemNavigators showThumbnails={false} item={itemTemplate} thumbnail={thumbnailTemplate} />
 
 <Button label="Show" icon="pi pi-external-link" onClick={() => galleria.current.show()} />
         `,
-        javascript: `
+		javascript: `
 import React, { useState, useEffect, useRef } from 'react';
 import { Button } from 'primereact/button';
 import { Galleria } from 'primereact/galleria';
@@ -60,7 +72,7 @@ export default function WithoutThumbnailsDemo() {
     )
 }
         `,
-        typescript: `
+		typescript: `
 import React, { useState, useEffect, useRef } from 'react';
 import { Button } from 'primereact/button';
 import { Galleria } from 'primereact/galleria';
@@ -92,7 +104,7 @@ export default function WithoutThumbnailsDemo() {
     )
 }
         `,
-        data: `
+		data: `
 /* PhotoService */
 {
     itemImageSrc: 'https://primefaces.org/cdn/primereact/images/galleria/galleria1.jpg',
@@ -101,20 +113,35 @@ export default function WithoutThumbnailsDemo() {
     title: 'Title 1'
 },
 ...
-        `
-    };
+        `,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}>
-                <p>Thumbnails can also be hidden in full screen mode.</p>
-            </DocSectionText>
-            <div className="card flex justify-content-center">
-                <Galleria ref={galleria} value={images} numVisible={9} style={{ maxWidth: '50%' }} circular fullScreen showItemNavigators showThumbnails={false} item={itemTemplate} thumbnail={thumbnailTemplate} />
+	return (
+		<>
+			<DocSectionText {...props}>
+				<p>Thumbnails can also be hidden in full screen mode.</p>
+			</DocSectionText>
+			<div className="card flex justify-content-center">
+				<Galleria
+					ref={galleria}
+					value={images}
+					numVisible={9}
+					style={{ maxWidth: "50%" }}
+					circular
+					fullScreen
+					showItemNavigators
+					showThumbnails={false}
+					item={itemTemplate}
+					thumbnail={thumbnailTemplate}
+				/>
 
-                <Button label="Show" icon="pi pi-external-link" onClick={() => galleria.current.show()} />
-            </div>
-            <DocSectionCode code={code} service={['PhotoService']} />
-        </>
-    );
+				<Button
+					label="Show"
+					icon="pi pi-external-link"
+					onClick={() => galleria.current.show()}
+				/>
+			</div>
+			<DocSectionCode code={code} service={["PhotoService"]} />
+		</>
+	);
 }

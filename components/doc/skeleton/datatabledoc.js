@@ -1,14 +1,14 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Column } from '@/components/lib/column/Column';
-import { DataTable } from '@/components/lib/datatable/DataTable';
-import { Skeleton } from '@/components/lib/skeleton/Skeleton';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { Column } from "@/components/lib/column/Column";
+import { DataTable } from "@/components/lib/datatable/DataTable";
+import { Skeleton } from "@/components/lib/skeleton/Skeleton";
 
 export function DataTableDoc(props) {
-    const items = Array.from({ length: 5 }, (v, i) => i);
+	const items = Array.from({ length: 5 }, (v, i) => i);
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <DataTable value={items} className="p-datatable-striped">
     <Column field="code" header="Code" style={{ width: '25%' }} body={<Skeleton />}></Column>
     <Column field="name" header="Name" style={{ width: '25%' }} body={<Skeleton />}></Column>
@@ -16,7 +16,7 @@ export function DataTableDoc(props) {
     <Column field="quantity" header="Quantity" style={{ width: '25%' }} body={<Skeleton />}></Column>
 </DataTable>
         `,
-        javascript: `
+		javascript: `
 import React from 'react';
 import { Skeleton } from 'primereact/skeleton';
 import { DataTable } from 'primereact/datatable';
@@ -37,7 +37,7 @@ export default function DataTableDemo() {
     );
 }
         `,
-        typescript: `
+		typescript: `
 import React from 'react';
 import { Skeleton } from 'primereact/skeleton';
 import { DataTable } from 'primereact/datatable';
@@ -57,23 +57,46 @@ export default function DataTableDemo() {
         </div>
     );
 }
-        `
-    };
+        `,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}>
-                <p>Sample DataTable implementation using different Skeleton components and PrimeFlex CSS utilities.</p>
-            </DocSectionText>
-            <div className="card">
-                <DataTable value={items} className="p-datatable-striped">
-                    <Column field="code" header="Code" style={{ width: '25%' }} body={<Skeleton />}></Column>
-                    <Column field="name" header="Name" style={{ width: '25%' }} body={<Skeleton />}></Column>
-                    <Column field="category" header="Category" style={{ width: '25%' }} body={<Skeleton />}></Column>
-                    <Column field="quantity" header="Quantity" style={{ width: '25%' }} body={<Skeleton />}></Column>
-                </DataTable>
-            </div>
-            <DocSectionCode code={code} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}>
+				<p>
+					Sample DataTable implementation using different Skeleton components
+					and PrimeFlex CSS utilities.
+				</p>
+			</DocSectionText>
+			<div className="card">
+				<DataTable value={items} className="p-datatable-striped">
+					<Column
+						field="code"
+						header="Code"
+						style={{ width: "25%" }}
+						body={<Skeleton />}
+					></Column>
+					<Column
+						field="name"
+						header="Name"
+						style={{ width: "25%" }}
+						body={<Skeleton />}
+					></Column>
+					<Column
+						field="category"
+						header="Category"
+						style={{ width: "25%" }}
+						body={<Skeleton />}
+					></Column>
+					<Column
+						field="quantity"
+						header="Quantity"
+						style={{ width: "25%" }}
+						body={<Skeleton />}
+					></Column>
+				</DataTable>
+			</div>
+			<DocSectionCode code={code} />
+		</>
+	);
 }

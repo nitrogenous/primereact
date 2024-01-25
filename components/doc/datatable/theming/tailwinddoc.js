@@ -1,10 +1,10 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import Link from 'next/link';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import Link from "next/link";
 
 export function TailwindDoc(props) {
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 const TRANSITIONS = {
     overlay: {
         timeout: 150,
@@ -304,11 +304,11 @@ const Tailwind = {
         resizehelper: 'absolute hidden w-px z-10 bg-blue-500 dark:bg-blue-300'
     }
 }
-        `
-    };
+        `,
+	};
 
-    const code2 = {
-        javascript: `
+	const code2 = {
+		javascript: `
 import React, { useState, useEffect } from 'react';
 import { classNames } from 'primereact/utils';
 import { FilterMatchMode, FilterOperator } from 'primereact/api';
@@ -559,20 +559,30 @@ export default function UnstyledDemo() {
         </div>
     );
 }
-    `
-    };
+    `,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}>
-                <p>
-                    PrimeReact offers a built-in Tailwind theme to get you started quickly. The default values related to the component are displayed below. The component can easily be styled with your own design based on Tailwind utilities, see the{' '}
-                    <Link href="/tailwind">Tailwind Customization</Link> section for an example.
-                </p>
-                <DocSectionCode code={code} hideToggleCode import hideCodeSandbox hideStackBlitz />
-                <p>A playground sample with the pre-built Tailwind theme.</p>
-                <DocSectionCode code={code2} embedded service={['CustomerService']} />
-            </DocSectionText>
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}>
+				<p>
+					PrimeReact offers a built-in Tailwind theme to get you started
+					quickly. The default values related to the component are displayed
+					below. The component can easily be styled with your own design based
+					on Tailwind utilities, see the{" "}
+					<Link href="/tailwind">Tailwind Customization</Link> section for an
+					example.
+				</p>
+				<DocSectionCode
+					code={code}
+					hideToggleCode
+					import
+					hideCodeSandbox
+					hideStackBlitz
+				/>
+				<p>A playground sample with the pre-built Tailwind theme.</p>
+				<DocSectionCode code={code2} embedded service={["CustomerService"]} />
+			</DocSectionText>
+		</>
+	);
 }

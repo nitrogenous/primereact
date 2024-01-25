@@ -1,14 +1,14 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
 
 export function LifeCyleDoc(props) {
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <Panel header="Header" pt={panelPT}>
     Content
 </Panel>
         `,
-        javascript: `
+		javascript: `
 import React from 'react'; 
 import { Panel } from 'primereact/panel';
 
@@ -32,7 +32,7 @@ export default function LifeCyleDemo() {
     )
 }
         `,
-        typescript: `
+		typescript: `
 import React from 'react'; 
 import { Panel } from 'primereact/panel';
 
@@ -55,19 +55,22 @@ export default function LifeCyleDemo() {
         </div>
     )
 }
-        `
-    };
+        `,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}>
-                <p>
-                    Lifecycle hooks of components are exposed as pass through using the <i>hooks</i> property so that callback functions can be registered. Available callbacks are <i>useMountEffect</i>, <i>useUpdateEffect</i>, <i>useUnmountEffect</i>
-                    . Refer to the React.js documentation for detailed information about lifecycle hooks.
-                </p>
-            </DocSectionText>
+	return (
+		<>
+			<DocSectionText {...props}>
+				<p>
+					Lifecycle hooks of components are exposed as pass through using the{" "}
+					<i>hooks</i> property so that callback functions can be registered.
+					Available callbacks are <i>useMountEffect</i>, <i>useUpdateEffect</i>,{" "}
+					<i>useUnmountEffect</i>. Refer to the React.js documentation for
+					detailed information about lifecycle hooks.
+				</p>
+			</DocSectionText>
 
-            <DocSectionCode code={code} />
-        </>
-    );
+			<DocSectionCode code={code} />
+		</>
+	);
 }

@@ -1,15 +1,16 @@
-import { ComponentBase } from '../componentbase/ComponentBase';
-import { ObjectUtils, classNames } from '../utils/Utils';
+import { ComponentBase } from "../componentbase/ComponentBase";
+import { ObjectUtils, classNames } from "../utils/Utils";
 
 const classes = {
-    root: ({ props }) =>
-        classNames('p-badge p-component', {
-            'p-badge-no-gutter': ObjectUtils.isNotEmpty(props.value) && String(props.value).length === 1,
-            'p-badge-dot': ObjectUtils.isEmpty(props.value),
-            'p-badge-lg': props.size === 'large',
-            'p-badge-xl': props.size === 'xlarge',
-            [`p-badge-${props.severity}`]: props.severity !== null
-        })
+	root: ({ props }) =>
+		classNames("p-badge p-component", {
+			"p-badge-no-gutter":
+				ObjectUtils.isNotEmpty(props.value) && String(props.value).length === 1,
+			"p-badge-dot": ObjectUtils.isEmpty(props.value),
+			"p-badge-lg": props.size === "large",
+			"p-badge-xl": props.size === "xlarge",
+			[`p-badge-${props.severity}`]: props.severity !== null,
+		}),
 };
 
 const styles = `
@@ -50,18 +51,18 @@ const styles = `
 `;
 
 export const BadgeBase = ComponentBase.extend({
-    defaultProps: {
-        __TYPE: 'Badge',
-        __parentMetadata: null,
-        value: null,
-        severity: null,
-        size: null,
-        style: null,
-        className: null,
-        children: undefined
-    },
-    css: {
-        classes,
-        styles
-    }
+	defaultProps: {
+		__TYPE: "Badge",
+		__parentMetadata: null,
+		value: null,
+		severity: null,
+		size: null,
+		style: null,
+		className: null,
+		children: undefined,
+	},
+	css: {
+		classes,
+		styles,
+	},
 });

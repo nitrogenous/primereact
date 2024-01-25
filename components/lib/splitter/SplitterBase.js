@@ -1,13 +1,14 @@
-import { ComponentBase } from '../componentbase/ComponentBase';
-import { ObjectUtils, classNames } from '../utils/Utils';
+import { ComponentBase } from "../componentbase/ComponentBase";
+import { ObjectUtils, classNames } from "../utils/Utils";
 
 const classes = {
-    root: ({ props }) => classNames(`p-splitter p-component p-splitter-${props.layout}`),
-    gutter: 'p-splitter-gutter',
-    gutterHandler: 'p-splitter-gutter-handle',
-    panel: {
-        root: 'p-splitter-panel'
-    }
+	root: ({ props }) =>
+		classNames(`p-splitter p-component p-splitter-${props.layout}`),
+	gutter: "p-splitter-gutter",
+	gutterHandler: "p-splitter-gutter-handle",
+	panel: {
+		root: "p-splitter-panel",
+	},
 };
 
 const styles = `
@@ -75,35 +76,38 @@ const styles = `
 `;
 
 export const SplitterBase = ComponentBase.extend({
-    defaultProps: {
-        __TYPE: 'Splitter',
-        className: null,
-        gutterSize: 4,
-        id: null,
-        step: 5,
-        layout: 'horizontal',
-        onResizeEnd: null,
-        stateKey: null,
-        stateStorage: 'session',
-        style: null,
-        children: undefined
-    },
-    css: {
-        classes,
-        styles
-    }
+	defaultProps: {
+		__TYPE: "Splitter",
+		className: null,
+		gutterSize: 4,
+		id: null,
+		step: 5,
+		layout: "horizontal",
+		onResizeEnd: null,
+		stateKey: null,
+		stateStorage: "session",
+		style: null,
+		children: undefined,
+	},
+	css: {
+		classes,
+		styles,
+	},
 });
 
 export const SplitterPanelBase = ComponentBase.extend({
-    defaultProps: {
-        __TYPE: 'SplitterPanel',
-        className: null,
-        minSize: null,
-        size: null,
-        style: null,
-        children: undefined
-    },
-    getCProps: (panel) => ObjectUtils.getComponentProps(panel, SplitterPanelBase.defaultProps),
-    getCOtherProps: (panel) => ObjectUtils.getComponentDiffProps(panel, SplitterPanelBase.defaultProps),
-    getCProp: (panel, name) => ObjectUtils.getComponentProp(panel, name, SplitterPanelBase.defaultProps)
+	defaultProps: {
+		__TYPE: "SplitterPanel",
+		className: null,
+		minSize: null,
+		size: null,
+		style: null,
+		children: undefined,
+	},
+	getCProps: (panel) =>
+		ObjectUtils.getComponentProps(panel, SplitterPanelBase.defaultProps),
+	getCOtherProps: (panel) =>
+		ObjectUtils.getComponentDiffProps(panel, SplitterPanelBase.defaultProps),
+	getCProp: (panel, name) =>
+		ObjectUtils.getComponentProp(panel, name, SplitterPanelBase.defaultProps),
 });

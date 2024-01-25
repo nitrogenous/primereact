@@ -1,30 +1,38 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Column } from '@/components/lib/column/Column';
-import { Toast } from '@/components/lib/toast/Toast';
-import { TreeTable } from '@/components/lib/treetable/TreeTable';
-import { useEffect, useRef, useState } from 'react';
-import { NodeService } from '../../../../service/NodeService';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { Column } from "@/components/lib/column/Column";
+import { Toast } from "@/components/lib/toast/Toast";
+import { TreeTable } from "@/components/lib/treetable/TreeTable";
+import { useEffect, useRef, useState } from "react";
+import { NodeService } from "../../../../service/NodeService";
 
 export function RowSelectionEventsDoc(props) {
-    const [nodes, setNodes] = useState([]);
-    const [selectedNodeKey, setSelectedNodeKey] = useState(null);
-    const toast = useRef(null);
+	const [nodes, setNodes] = useState([]);
+	const [selectedNodeKey, setSelectedNodeKey] = useState(null);
+	const toast = useRef(null);
 
-    const onSelect = (event) => {
-        toast.current.show({ severity: 'info', summary: 'Node Selected', detail: event.node.data.name });
-    };
+	const onSelect = (event) => {
+		toast.current.show({
+			severity: "info",
+			summary: "Node Selected",
+			detail: event.node.data.name,
+		});
+	};
 
-    const onUnselect = (event) => {
-        toast.current.show({ severity: 'warn', summary: 'Node Unselected', detail: event.node.data.name });
-    };
+	const onUnselect = (event) => {
+		toast.current.show({
+			severity: "warn",
+			summary: "Node Unselected",
+			detail: event.node.data.name,
+		});
+	};
 
-    useEffect(() => {
-        NodeService.getTreeTableNodes().then((data) => setNodes(data));
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+	useEffect(() => {
+		NodeService.getTreeTableNodes().then((data) => setNodes(data));
+	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <TreeTable value={nodes} selectionMode="single" selectionKeys={selectedNodeKey}
         onSelectionChange={(e) => setSelectedNodeKey(e.value)} metaKeySelection={false}
         onSelect={onSelect} onUnselect={onUnselect} tableStyle={{ minWidth: '50rem' }}>
@@ -33,7 +41,7 @@ export function RowSelectionEventsDoc(props) {
     <Column field="type" header="Type"></Column>
 </TreeTable>
         `,
-        javascript: `
+		javascript: `
 import React, { useState, useRef, useEffect } from 'react';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
@@ -70,7 +78,7 @@ export default function SingleRowSelectionDemo() {
     )
 }
         `,
-        typescript: `
+		typescript: `
 import React, { useState, useRef, useEffect } from 'react';
 import { TreeTable, TreeTableSelectionEvent } from 'primereact/treetable';
 import { Column } from 'primereact/column';
@@ -108,7 +116,7 @@ export default function SingleRowSelectionDemo() {
     )
 }
         `,
-        data: `
+		data: `
 {
     key: '0',
     label: 'Documents',
@@ -135,34 +143,35 @@ export default function SingleRowSelectionDemo() {
     ]
 },
 ...
-`
-    };
+`,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}>
-                <p>
-                    TreeTable provides <i>onSelect</i> and <i>onUnselect</i> events to listen selection events.
-                </p>
-            </DocSectionText>
-            <div className="card">
-                <Toast ref={toast} />
-                <TreeTable
-                    value={nodes}
-                    selectionMode="single"
-                    selectionKeys={selectedNodeKey}
-                    onSelectionChange={(e) => setSelectedNodeKey(e.value)}
-                    metaKeySelection={false}
-                    onSelect={onSelect}
-                    onUnselect={onUnselect}
-                    tableStyle={{ minWidth: '50rem' }}
-                >
-                    <Column field="name" header="Name" expander></Column>
-                    <Column field="size" header="Size"></Column>
-                    <Column field="type" header="Type"></Column>
-                </TreeTable>
-            </div>
-            <DocSectionCode code={code} service={['NodeService']} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}>
+				<p>
+					TreeTable provides <i>onSelect</i> and <i>onUnselect</i> events to
+					listen selection events.
+				</p>
+			</DocSectionText>
+			<div className="card">
+				<Toast ref={toast} />
+				<TreeTable
+					value={nodes}
+					selectionMode="single"
+					selectionKeys={selectedNodeKey}
+					onSelectionChange={(e) => setSelectedNodeKey(e.value)}
+					metaKeySelection={false}
+					onSelect={onSelect}
+					onUnselect={onUnselect}
+					tableStyle={{ minWidth: "50rem" }}
+				>
+					<Column field="name" header="Name" expander></Column>
+					<Column field="size" header="Size"></Column>
+					<Column field="type" header="Type"></Column>
+				</TreeTable>
+			</div>
+			<DocSectionCode code={code} service={["NodeService"]} />
+		</>
+	);
 }

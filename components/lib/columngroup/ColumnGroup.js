@@ -1,3 +1,3 @@
 export const ColumnGroup = () => {};
 
-ColumnGroup.displayName = 'ColumnGroup';
+ColumnGroup.displayName = "ColumnGroup";

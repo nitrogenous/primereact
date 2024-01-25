@@ -1,42 +1,59 @@
-import PrimeReact from '../api/Api';
-import { ComponentBase } from '../componentbase/ComponentBase';
-import { classNames } from '../utils/Utils';
+import PrimeReact from "../api/Api";
+import { ComponentBase } from "../componentbase/ComponentBase";
+import { classNames } from "../utils/Utils";
 
 const classes = {
-    closeButtonIcon: 'p-dialog-header-close-icon',
-    closeButton: 'p-dialog-header-icon p-dialog-header-close p-link',
-    maximizableIcon: 'p-dialog-header-maximize-icon',
-    maximizableButton: 'p-dialog-header-icon p-dialog-header-maximize p-link',
-    header: ({ props }) => classNames('p-dialog-header', props.headerClassName),
-    headerTitle: 'p-dialog-title',
-    headerIcons: 'p-dialog-header-icons',
-    content: ({ props }) => classNames('p-dialog-content', props.contentClassName),
-    footer: ({ props }) => classNames('p-dialog-footer', props.footerClassName),
-    mask: ({ props, maskVisibleState }) => {
-        const positions = ['center', 'left', 'right', 'top', 'top-left', 'top-right', 'bottom', 'bottom-left', 'bottom-right'];
-        const pos = positions.find((item) => item === props.position || item.replace('-', '') === props.position);
+	closeButtonIcon: "p-dialog-header-close-icon",
+	closeButton: "p-dialog-header-icon p-dialog-header-close p-link",
+	maximizableIcon: "p-dialog-header-maximize-icon",
+	maximizableButton: "p-dialog-header-icon p-dialog-header-maximize p-link",
+	header: ({ props }) => classNames("p-dialog-header", props.headerClassName),
+	headerTitle: "p-dialog-title",
+	headerIcons: "p-dialog-header-icons",
+	content: ({ props }) =>
+		classNames("p-dialog-content", props.contentClassName),
+	footer: ({ props }) => classNames("p-dialog-footer", props.footerClassName),
+	mask: ({ props, maskVisibleState }) => {
+		const positions = [
+			"center",
+			"left",
+			"right",
+			"top",
+			"top-left",
+			"top-right",
+			"bottom",
+			"bottom-left",
+			"bottom-right",
+		];
+		const pos = positions.find(
+			(item) =>
+				item === props.position || item.replace("-", "") === props.position,
+		);
 
-        return classNames(
-            'p-dialog-mask',
-            pos ? `p-dialog-${pos}` : '',
-            {
-                'p-component-overlay p-component-overlay-enter': props.modal,
-                'p-dialog-visible': maskVisibleState,
-                'p-dialog-draggable': props.draggable,
-                'p-dialog-resizable': props.resizable
-            },
-            props.maskClassName
-        );
-    },
-    root: ({ props, maximized, context }) =>
-        classNames('p-dialog p-component', props.className, {
-            'p-dialog-rtl': props.rtl,
-            'p-dialog-maximized': maximized,
-            'p-dialog-default': !maximized,
-            'p-input-filled': (context && context.inputStyle === 'filled') || PrimeReact.inputStyle === 'filled',
-            'p-ripple-disabled': (context && context.ripple === false) || PrimeReact.ripple === false
-        }),
-    transition: 'p-dialog'
+		return classNames(
+			"p-dialog-mask",
+			pos ? `p-dialog-${pos}` : "",
+			{
+				"p-component-overlay p-component-overlay-enter": props.modal,
+				"p-dialog-visible": maskVisibleState,
+				"p-dialog-draggable": props.draggable,
+				"p-dialog-resizable": props.resizable,
+			},
+			props.maskClassName,
+		);
+	},
+	root: ({ props, maximized, context }) =>
+		classNames("p-dialog p-component", props.className, {
+			"p-dialog-rtl": props.rtl,
+			"p-dialog-maximized": maximized,
+			"p-dialog-default": !maximized,
+			"p-input-filled":
+				(context && context.inputStyle === "filled") ||
+				PrimeReact.inputStyle === "filled",
+			"p-ripple-disabled":
+				(context && context.ripple === false) || PrimeReact.ripple === false,
+		}),
+	transition: "p-dialog",
 };
 
 const styles = `
@@ -228,80 +245,96 @@ const styles = `
 `;
 
 const inlineStyles = {
-    mask: ({ props }) => ({
-        position: 'fixed',
-        height: '100%',
-        width: '100%',
-        left: 0,
-        top: 0,
-        display: 'flex',
-        justifyContent:
-            props.position === 'left' || props.position === 'top-left' || props.position === 'bottom-left' ? 'flex-start' : props.position === 'right' || props.position === 'top-right' || props.position === 'bottom-right' ? 'flex-end' : 'center',
-        alignItems:
-            props.position === 'top' || props.position === 'top-left' || props.position === 'top-right' ? 'flex-start' : props.position === 'bottom' || props.position === 'bottom-left' || props.position === 'bottom-right' ? 'flex-end' : 'center',
-        pointerEvents: !props.modal && 'none',
-        ...props.maskStyle
-    })
+	mask: ({ props }) => ({
+		position: "fixed",
+		height: "100%",
+		width: "100%",
+		left: 0,
+		top: 0,
+		display: "flex",
+		justifyContent:
+			props.position === "left" ||
+			props.position === "top-left" ||
+			props.position === "bottom-left"
+				? "flex-start"
+				: props.position === "right" ||
+					  props.position === "top-right" ||
+					  props.position === "bottom-right"
+				  ? "flex-end"
+				  : "center",
+		alignItems:
+			props.position === "top" ||
+			props.position === "top-left" ||
+			props.position === "top-right"
+				? "flex-start"
+				: props.position === "bottom" ||
+					  props.position === "bottom-left" ||
+					  props.position === "bottom-right"
+				  ? "flex-end"
+				  : "center",
+		pointerEvents: !props.modal && "none",
+		...props.maskStyle,
+	}),
 };
 
 export const DialogBase = ComponentBase.extend({
-    defaultProps: {
-        __TYPE: 'Dialog',
-        __parentMetadata: null,
-        appendTo: null,
-        ariaCloseIconLabel: null,
-        baseZIndex: 0,
-        blockScroll: false,
-        breakpoints: null,
-        className: null,
-        closable: true,
-        closeIcon: null,
-        closeOnEscape: true,
-        contentClassName: null,
-        contentStyle: null,
-        dismissableMask: false,
-        draggable: true,
-        focusOnShow: true,
-        footer: null,
-        footerClassName: null,
-        header: null,
-        headerClassName: null,
-        headerStyle: null,
-        icons: null,
-        id: null,
-        keepInViewport: true,
-        maskClassName: null,
-        maskStyle: null,
-        maximizable: false,
-        maximizeIcon: null,
-        maximized: false,
-        minX: 0,
-        minY: 0,
-        minimizeIcon: null,
-        modal: true,
-        onClick: null,
-        onDrag: null,
-        onDragEnd: null,
-        onDragStart: null,
-        onHide: null,
-        onMaskClick: null,
-        onMaximize: null,
-        onResize: null,
-        onResizeEnd: null,
-        onResizeStart: null,
-        onShow: null,
-        position: 'center',
-        resizable: true,
-        rtl: false,
-        showHeader: true,
-        style: null,
-        transitionOptions: null,
-        visible: false,
-        children: undefined
-    },
-    css: {
-        classes,
-        styles,
-        inlineStyles
-    }
+	defaultProps: {
+		__TYPE: "Dialog",
+		__parentMetadata: null,
+		appendTo: null,
+		ariaCloseIconLabel: null,
+		baseZIndex: 0,
+		blockScroll: false,
+		breakpoints: null,
+		className: null,
+		closable: true,
+		closeIcon: null,
+		closeOnEscape: true,
+		contentClassName: null,
+		contentStyle: null,
+		dismissableMask: false,
+		draggable: true,
+		focusOnShow: true,
+		footer: null,
+		footerClassName: null,
+		header: null,
+		headerClassName: null,
+		headerStyle: null,
+		icons: null,
+		id: null,
+		keepInViewport: true,
+		maskClassName: null,
+		maskStyle: null,
+		maximizable: false,
+		maximizeIcon: null,
+		maximized: false,
+		minX: 0,
+		minY: 0,
+		minimizeIcon: null,
+		modal: true,
+		onClick: null,
+		onDrag: null,
+		onDragEnd: null,
+		onDragStart: null,
+		onHide: null,
+		onMaskClick: null,
+		onMaximize: null,
+		onResize: null,
+		onResizeEnd: null,
+		onResizeStart: null,
+		onShow: null,
+		position: "center",
+		resizable: true,
+		rtl: false,
+		showHeader: true,
+		style: null,
+		transitionOptions: null,
+		visible: false,
+		children: undefined,
+	},
+	css: {
+		classes,
+		styles,
+		inlineStyles,
+	},
 });

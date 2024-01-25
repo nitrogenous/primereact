@@ -1,19 +1,19 @@
-import { DocSectionCode } from '@/components/doc/common/docsectioncode';
-import { DocSectionText } from '@/components/doc/common/docsectiontext';
-import { Column } from '@/components/lib/column/Column';
-import { TreeTable } from '@/components/lib/treetable/TreeTable';
-import { useEffect, useState } from 'react';
-import { NodeService } from '../../../../service/NodeService';
+import { DocSectionCode } from "@/components/doc/common/docsectioncode";
+import { DocSectionText } from "@/components/doc/common/docsectiontext";
+import { Column } from "@/components/lib/column/Column";
+import { TreeTable } from "@/components/lib/treetable/TreeTable";
+import { useEffect, useState } from "react";
+import { NodeService } from "../../../../service/NodeService";
 
 export function PTDoc(props) {
-    const [nodes, setNodes] = useState([]);
+	const [nodes, setNodes] = useState([]);
 
-    useEffect(() => {
-        NodeService.getTreeTableNodes().then((data) => setNodes(data));
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+	useEffect(() => {
+		NodeService.getTreeTableNodes().then((data) => setNodes(data));
+	}, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-    const code = {
-        basic: `
+	const code = {
+		basic: `
 <TreeTable sortMode="multiple" value={nodes} tableStyle={{ minWidth: '50rem' }}>
     <Column
         field="name"
@@ -42,7 +42,7 @@ export function PTDoc(props) {
     ></Column>
 </TreeTable>
         `,
-        javascript: `
+		javascript: `
 import React, { useState, useEffect } from 'react';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
@@ -88,7 +88,7 @@ export default function PTDemo() {
     );
 }
         `,
-        typescript: `
+		typescript: `
 import React, { useState, useEffect } from 'react';
 import { TreeTable } from 'primereact/treetable';
 import { Column } from 'primereact/column';
@@ -135,7 +135,7 @@ export default function PTDemo() {
     );
 }
         `,
-        data: `
+		data: `
 {
     key: '0',
     label: 'Documents',
@@ -162,42 +162,46 @@ export default function PTDemo() {
     ]
 },
 ...
-`
-    };
+`,
+	};
 
-    return (
-        <>
-            <DocSectionText {...props}></DocSectionText>
-            <div className="card">
-                <TreeTable sortMode="multiple" value={nodes} tableStyle={{ minWidth: '50rem' }}>
-                    <Column
-                        field="name"
-                        header="Name"
-                        sortable
-                        expander
-                        pt={{
-                            sortBadge: { className: 'text-orange-400' }
-                        }}
-                    ></Column>
-                    <Column
-                        field="size"
-                        header="Size"
-                        sortable
-                        pt={{
-                            sortBadge: { className: 'text-orange-400' }
-                        }}
-                    ></Column>
-                    <Column
-                        field="type"
-                        header="Type"
-                        sortable
-                        pt={{
-                            sortBadge: { className: 'text-orange-400' }
-                        }}
-                    ></Column>
-                </TreeTable>
-            </div>
-            <DocSectionCode code={code} service={['NodeService']} />
-        </>
-    );
+	return (
+		<>
+			<DocSectionText {...props}></DocSectionText>
+			<div className="card">
+				<TreeTable
+					sortMode="multiple"
+					value={nodes}
+					tableStyle={{ minWidth: "50rem" }}
+				>
+					<Column
+						field="name"
+						header="Name"
+						sortable
+						expander
+						pt={{
+							sortBadge: { className: "text-orange-400" },
+						}}
+					></Column>
+					<Column
+						field="size"
+						header="Size"
+						sortable
+						pt={{
+							sortBadge: { className: "text-orange-400" },
+						}}
+					></Column>
+					<Column
+						field="type"
+						header="Type"
+						sortable
+						pt={{
+							sortBadge: { className: "text-orange-400" },
+						}}
+					></Column>
+				</TreeTable>
+			</div>
+			<DocSectionCode code={code} service={["NodeService"]} />
+		</>
+	);
 }
