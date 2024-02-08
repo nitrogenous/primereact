@@ -7,7 +7,26 @@ import { PrimeIcons } from './PrimeIcons';
 import PrimeReact from './PrimeReact';
 import { SortOrder } from './SortOrder';
 import { PrimeReactContext, PrimeReactProvider } from './PrimeReactContext';
+import { InstanceContext, InstanceProvider } from './InstanceProvider';
 
 export default PrimeReact;
 
-export { locale, addLocale, ariaLabel, localeOption, localeOptions, updateLocaleOption, updateLocaleOptions, PrimeIcons, MessageSeverity, FilterMatchMode, FilterOperator, FilterService, SortOrder, PrimeReactProvider, PrimeReactContext };
+export {
+    locale,
+    addLocale,
+    ariaLabel,
+    localeOption,
+    localeOptions,
+    updateLocaleOption,
+    updateLocaleOptions,
+    PrimeIcons,
+    MessageSeverity,
+    FilterMatchMode,
+    FilterOperator,
+    FilterService,
+    SortOrder,
+    PrimeReactProvider,
+    PrimeReactContext,
+    InstanceContext,
+    InstanceProvider
+};

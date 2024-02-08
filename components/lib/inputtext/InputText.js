@@ -6,9 +6,11 @@ import { KeyFilter } from '../keyfilter/KeyFilter';
 import { Tooltip } from '../tooltip/Tooltip';
 import { DomHandler, ObjectUtils, classNames } from '../utils/Utils';
 import { InputTextBase } from './InputTextBase';
+import { InstanceContext, InstanceProvider } from '../api/InstanceProvider';
 
 export const InputText = React.memo(
     React.forwardRef((inProps, ref) => {
+        const { parent } = React.useContext(InstanceContext) || {};
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = InputTextBase.getProps(inProps, context);
@@ -18,6 +20,9 @@ export const InputText = React.memo(
             ...props.__parentMetadata,
             context: {
                 disabled: props.disabled
+            },
+            parent: {
+                instance: parent
             }
         });
 
@@ -83,8 +88,10 @@ export const InputText = React.memo(
 
         return (
             <>
-                <input ref={elementRef} {...rootProps} />
-                {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} {...props.tooltipOptions} pt={ptm('tooltip')} />}
+                <InstanceProvider>
+                    <input ref={elementRef} {...rootProps} />
+                    {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} {...props.tooltipOptions} pt={ptm('tooltip')} />}
+                </InstanceProvider>
             </>
         );
     })

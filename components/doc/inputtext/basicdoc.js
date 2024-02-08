@@ -1,6 +1,7 @@
 import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { InputText } from '@/components/lib/inputtext/InputText';
+import { Panel } from '@/components/lib/primereact.all';
 import { useState } from 'react';
 
 export function BasicDoc(props) {
@@ -48,7 +49,9 @@ export default function BasicDemo() {
                 </p>
             </DocSectionText>
             <div className="card flex justify-content-center">
-                <InputText value={value} onChange={(e) => setValue(e.target.value)} />
+                <Panel>
+                    <InputText value={value} onChange={(e) => setValue(e.target.value)} />
+                </Panel>
             </div>
             <DocSectionCode code={code} />
         </>

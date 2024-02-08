@@ -3,18 +3,19 @@ import Config from '@/components/layout/config';
 import Footer from '@/components/layout/footer';
 import Menu from '@/components/layout/menu';
 import Topbar from '@/components/layout/topbar';
-import { PrimeReactContext } from '@/components/lib/api/PrimeReactContext';
+import { PrimeReactContext, InstanceContext, InstanceProvider } from '@/components/lib/api/Api';
 import { DomHandler, classNames } from '@/components/lib/utils/Utils';
 import NewsSection from '@/components/news/newssection';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 
 export default function Layout({ children }) {
     const [sidebarActive, setSidebarActive] = useState(false);
     const [configActive, setConfigActive] = useState(false);
     const { ripple, inputStyle } = useContext(PrimeReactContext);
     const { theme, darkMode, newsActive, changeTheme } = useContext(AppContentContext);
+    const layoutRef = useRef(null);
     const router = useRouter();
 
     const wrapperClassName = classNames('layout-wrapper', {
@@ -56,7 +57,7 @@ export default function Layout({ children }) {
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
-        <div className={wrapperClassName} data-p-theme={theme}>
+        <div className={wrapperClassName} data-p-theme={theme} ref={layoutRef}>
             <Head>
                 <title>PrimeReact - React UI Component Library</title>
                 <meta charSet="UTF-8" />
@@ -80,8 +81,10 @@ export default function Layout({ children }) {
             <div className={classNames('layout-mask', { 'layout-mask-active': sidebarActive })} onClick={() => setSidebarActive(false)}></div>
             <Config active={configActive} onHide={() => setConfigActive(false)} onDarkSwitchClick={toggleDarkMode} />
             <div className="layout-content">
+                {/* <InstanceProvider instanceDetails={layoutRef.current}> */}
                 <Menu active={sidebarActive} />
                 <div className="layout-content-slot">{children}</div>
+                {/* </InstanceProvider> */}
             </div>
             <Footer />
         </div>

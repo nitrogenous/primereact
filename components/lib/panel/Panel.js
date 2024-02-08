@@ -8,6 +8,7 @@ import { PlusIcon } from '../icons/plus';
 import { Ripple } from '../ripple/Ripple';
 import { IconUtils, ObjectUtils, UniqueComponentId, classNames } from '../utils/Utils';
 import { PanelBase } from './PanelBase';
+import { InstanceProvider } from '../api/InstanceProvider';
 
 export const Panel = React.forwardRef((inProps, ref) => {
     const mergeProps = useMergeProps();
@@ -258,11 +259,13 @@ export const Panel = React.forwardRef((inProps, ref) => {
     const footer = createFooter();
 
     return (
-        <div {...rootProps}>
-            {header}
-            {content}
-            {footer}
-        </div>
+        <InstanceProvider instanceDetails={elementRef.current}>
+            <div {...rootProps}>
+                {header}
+                {content}
+                {footer}
+            </div>
+        </InstanceProvider>
     );
 });
 

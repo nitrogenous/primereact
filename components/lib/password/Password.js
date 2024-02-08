@@ -10,10 +10,12 @@ import { OverlayService } from '../overlayservice/OverlayService';
 import { Portal } from '../portal/Portal';
 import { DomHandler, IconUtils, ObjectUtils, ZIndexUtils, classNames } from '../utils/Utils';
 import { PasswordBase } from './PasswordBase';
+import { InstanceContext, InstanceProvider } from '../api/InstanceProvider';
 
 export const Password = React.memo(
     React.forwardRef((inProps, ref) => {
         const mergeProps = useMergeProps();
+        const passwordRef = React.useRef(ref);
         const context = React.useContext(PrimeReactContext);
         const props = PasswordBase.getProps(inProps, context);
 
@@ -41,7 +43,8 @@ export const Password = React.memo(
                 infoText: infoTextState,
                 focused: focusedState,
                 unmasked: unmaskedState
-            }
+            },
+            instance: passwordRef.current
         };
         const { ptm, cx, isUnstyled } = PasswordBase.setMetaData(metaData);
 
@@ -445,11 +448,13 @@ export const Password = React.memo(
         );
 
         return (
-            <div {...rootProps}>
-                <InputText {...inputTextProps} />
-                {icon}
-                {panel}
-            </div>
+            <InstanceProvider instanceDetails={passwordRef.current}>
+                <div {...rootProps} ref={passwordRef}>
+                    <InputText {...inputTextProps} />
+                    {icon}
+                    {panel}
+                </div>
+            </InstanceProvider>
         );
     })
 );
