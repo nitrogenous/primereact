@@ -208,8 +208,6 @@ export const MultiSelect = React.memo(
                     if (event.shiftKey) onOptionSelectRange(event, focusedOptionIndex);
                     else onOptionSelect(event, visibleOptions[focusedOptionIndex]);
                 }
-
-                hide();
             }
 
             event.preventDefault();
@@ -535,6 +533,10 @@ export const MultiSelect = React.memo(
             return list.findIndex((item) => value.some((val) => ObjectUtils.equals(val, getOptionValue(item), equalityKey)));
         };
 
+        const isEquals = (value1, value2) => {
+            return ObjectUtils.equals(value1, value2, equalityKey);
+        };
+
         const isSelected = (option) => {
             if (props.value) {
                 const optionValue = getOptionValue(option);
@@ -687,7 +689,16 @@ export const MultiSelect = React.memo(
         };
 
         const findSelectedOptionIndex = () => {
-            return hasSelectedOption ? visibleOptions?.findIndex((option) => isValidSelectedOption(option)) : -1;
+            if (hasSelectedOption()) {
+                for (let index = props.value.length - 1; index >= 0; index--) {
+                    const value = props.value[index];
+                    const matchedOptionIndex = visibleOptions.findIndex((option) => isValidSelectedOption(option) && isEquals(value, getOptionValue(option)));
+
+                    if (matchedOptionIndex > -1) return matchedOptionIndex;
+                }
+            }
+
+            return -1;
         };
 
         const findFirstFocusedOptionIndex = () => {
@@ -826,6 +837,12 @@ export const MultiSelect = React.memo(
                     const value = props.value.slice(0, props.maxSelectedLabels || props.value.length);
 
                     return value.map((val, i) => {
+                        const context = {
+                            context: {
+                                value: val,
+                                index: i
+                            }
+                        };
                         const label = getLabelByValue(val);
                         const iconProps = mergeProps(
                             {
@@ -833,7 +850,7 @@ export const MultiSelect = React.memo(
                                 className: cx('removeTokenIcon'),
                                 onClick: (e) => removeChip(e, val)
                             },
-                            ptm('removeTokenIcon')
+                            ptm('removeTokenIcon', context)
                         );
                         const icon = !props.disabled && (props.removeIcon ? IconUtils.getJSXIcon(props.removeIcon, { ...iconProps }, { props }) : <TimesCircleIcon {...iconProps} />);
 
@@ -841,7 +858,7 @@ export const MultiSelect = React.memo(
                             {
                                 className: cx('token')
                             },
-                            ptm('token')
+                            ptm('token', context)
                         );
 
                         const tokenLabelProps = mergeProps(
@@ -849,7 +866,7 @@ export const MultiSelect = React.memo(
                                 key: label + i,
                                 className: cx('tokenLabel')
                             },
-                            ptm('tokenLabel')
+                            ptm('tokenLabel', context)
                         );
 
                         return (
@@ -1115,7 +1132,7 @@ export const MultiSelect = React.memo(
                     />
                     <span {...lastHiddenElementProps}></span>
                 </div>
-                {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} {...props.tooltipOptions} pt={ptm('tooltip')} />}
+                {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
             </>
         );
     })

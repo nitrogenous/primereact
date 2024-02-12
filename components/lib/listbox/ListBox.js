@@ -558,7 +558,7 @@ export const ListBox = React.memo(
                 DomHandler.focus(firstHiddenFocusableElement.current);
             }
 
-            astHiddenFocusableElement.current.tabIndex = -1;
+            lastHiddenFocusableElement.current.tabIndex = -1;
         };
 
         const getOptionGroupRenderKey = (optionGroup) => {
@@ -853,7 +853,7 @@ export const ListBox = React.memo(
                     <div {...wrapperProps}>{list}</div>
                     <span {...hiddenLastElement}></span>
                 </div>
-                {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} {...props.tooltipOptions} pt={ptCallbacks.ptm('tooltip')} />}
+                {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptCallbacks.ptm('tooltip')} {...props.tooltipOptions} />}
             </>
         );
     })

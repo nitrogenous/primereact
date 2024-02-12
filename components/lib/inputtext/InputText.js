@@ -87,12 +87,10 @@ export const InputText = React.memo(
         );
 
         return (
-            <>
-                <InstanceProvider>
-                    <input ref={elementRef} {...rootProps} />
-                    {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} {...props.tooltipOptions} pt={ptm('tooltip')} />}
-                </InstanceProvider>
-            </>
+            <InstanceProvider>
+                <input ref={elementRef} {...rootProps} />
+                {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
+            </InstanceProvider>
         );
     })
 );
