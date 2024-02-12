@@ -8,7 +8,7 @@ import { PlusIcon } from '../icons/plus';
 import { Ripple } from '../ripple/Ripple';
 import { IconUtils, ObjectUtils, UniqueComponentId, classNames } from '../utils/Utils';
 import { PanelBase } from './PanelBase';
-import { InstanceProvider } from '../api/InstanceProvider';
+import { ComponentContext, ComponentProvider } from '../api/ComponentProvider';
 
 export const Panel = React.forwardRef((inProps, ref) => {
     const mergeProps = useMergeProps();
@@ -22,13 +22,19 @@ export const Panel = React.forwardRef((inProps, ref) => {
     const headerId = idState + '_header';
     const contentId = idState + '_content';
 
-    const { ptm, cx, isUnstyled } = PanelBase.setMetaData({
+    const { parent } = React.useContext(ComponentContext) || {};
+
+    const metaData = {
+        instance: elementRef.current,
         props,
         state: {
             id: idState,
             collapsed: collapsed
-        }
-    });
+        },
+        parent
+    };
+
+    const { ptm, cx, isUnstyled } = PanelBase.setMetaData(metaData);
 
     useHandleStyle(PanelBase.css.styles, isUnstyled, { name: 'panel' });
 
@@ -259,13 +265,13 @@ export const Panel = React.forwardRef((inProps, ref) => {
     const footer = createFooter();
 
     return (
-        <InstanceProvider instanceDetails={elementRef.current}>
+        <ComponentProvider componentDetails={metaData}>
             <div {...rootProps}>
                 {header}
                 {content}
                 {footer}
             </div>
-        </InstanceProvider>
+        </ComponentProvider>
     );
 });
 

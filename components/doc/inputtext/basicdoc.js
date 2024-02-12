@@ -2,7 +2,26 @@ import { DocSectionCode } from '@/components/doc/common/docsectioncode';
 import { DocSectionText } from '@/components/doc/common/docsectiontext';
 import { InputText } from '@/components/lib/inputtext/InputText';
 import { Panel } from '@/components/lib/primereact.all';
+import { classNames } from '@/components/lib/utils/ClassNames';
 import { useState } from 'react';
+
+const firstPanel = {
+    root: (details) => ({
+        className: classNames('bg-blue-500 p-3 m-2', details.instance && console.log('firstPanel: ', details))
+    })
+};
+
+const secondPanel = {
+    root: (details) => ({
+        className: classNames('bg-teal-500 p-3 m-2', details.instance && console.log('secondPanel: ', details))
+    })
+};
+
+const inputText = {
+    root: (details) => ({
+        className: classNames('p-3 m-2', details.instance && console.log('inputText: ', details))
+    })
+};
 
 export function BasicDoc(props) {
     const [value, setValue] = useState('');
@@ -49,8 +68,10 @@ export default function BasicDemo() {
                 </p>
             </DocSectionText>
             <div className="card flex justify-content-center">
-                <Panel>
-                    <InputText value={value} onChange={(e) => setValue(e.target.value)} />
+                <Panel pt={firstPanel}>
+                    <Panel pt={secondPanel}>
+                        <InputText value={value} onChange={(e) => setValue(e.target.value)} pt={inputText} />
+                    </Panel>
                 </Panel>
             </div>
             <DocSectionCode code={code} />

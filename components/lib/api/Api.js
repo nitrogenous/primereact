@@ -7,7 +7,7 @@ import { PrimeIcons } from './PrimeIcons';
 import PrimeReact from './PrimeReact';
 import { SortOrder } from './SortOrder';
 import { PrimeReactContext, PrimeReactProvider } from './PrimeReactContext';
-import { InstanceContext, InstanceProvider } from './InstanceProvider';
+import { ComponentContext, ComponentProvider } from './ComponentProvider';
 
 export default PrimeReact;
 
@@ -27,6 +27,6 @@ export {
     SortOrder,
     PrimeReactProvider,
     PrimeReactContext,
-    InstanceContext,
-    InstanceProvider
+    ComponentContext,
+    ComponentProvider
 };

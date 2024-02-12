@@ -52,7 +52,8 @@ export default function MyApp({ Component, pageProps }) {
     };
 
     const primereactConfig = {
-        ripple: true
+        ripple: true,
+        unstyled: true
     };
 
     return (

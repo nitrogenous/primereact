@@ -6,28 +6,29 @@ import { KeyFilter } from '../keyfilter/KeyFilter';
 import { Tooltip } from '../tooltip/Tooltip';
 import { DomHandler, ObjectUtils, classNames } from '../utils/Utils';
 import { InputTextBase } from './InputTextBase';
-import { InstanceContext, InstanceProvider } from '../api/InstanceProvider';
+import { ComponentContext, ComponentProvider } from '../api/ComponentProvider';
 
 export const InputText = React.memo(
     React.forwardRef((inProps, ref) => {
-        const { parent } = React.useContext(InstanceContext) || {};
+        const elementRef = React.useRef(ref);
+        const { parent } = React.useContext(ComponentContext) || {};
         const mergeProps = useMergeProps();
         const context = React.useContext(PrimeReactContext);
         const props = InputTextBase.getProps(inProps, context);
 
-        const { ptm, cx, isUnstyled } = InputTextBase.setMetaData({
+        const metaData = {
+            instance: elementRef.current,
             props,
             ...props.__parentMetadata,
             context: {
                 disabled: props.disabled
             },
-            parent: {
-                instance: parent
-            }
-        });
+            parent
+        };
+
+        const { ptm, cx, isUnstyled } = InputTextBase.setMetaData(metaData);
 
         useHandleStyle(InputTextBase.css.styles, isUnstyled, { name: 'inputtext', styled: true });
-        const elementRef = React.useRef(ref);
 
         const onKeyDown = (event) => {
             props.onKeyDown && props.onKeyDown(event);
@@ -87,10 +88,10 @@ export const InputText = React.memo(
         );
 
         return (
-            <InstanceProvider>
+            <ComponentProvider instanceDetails={metaData}>
                 <input ref={elementRef} {...rootProps} />
                 {hasTooltip && <Tooltip target={elementRef} content={props.tooltip} pt={ptm('tooltip')} {...props.tooltipOptions} />}
-            </InstanceProvider>
+            </ComponentProvider>
         );
     })
 );
