@@ -5,9 +5,9 @@ import { CSSTransition } from '../csstransition/CSSTransition';
 import { useMergeProps, useMountEffect } from '../hooks/Hooks';
 import { MinusIcon } from '../icons/minus';
 import { PlusIcon } from '../icons/plus';
-import { Ripple } from '../ripple/Ripple';
 import { IconUtils, ObjectUtils, UniqueComponentId, classNames } from '../utils/Utils';
 import { PanelBase } from './PanelBase';
+import { Button } from '../button/button';
 
 export const Panel = React.forwardRef((inProps, ref) => {
     const mergeProps = useMergeProps();
@@ -84,6 +84,10 @@ export const Panel = React.forwardRef((inProps, ref) => {
     const createToggleIcon = () => {
         if (props.toggleable) {
             const buttonId = idState + '_label';
+            const togglerIconProps = mergeProps(ptm('togglericon'));
+            const icon = collapsed ? props.expandIcon || <PlusIcon {...togglerIconProps} /> : props.collapseIcon || <MinusIcon {...togglerIconProps} />;
+            const toggleIcon = IconUtils.getJSXIcon(icon, togglerIconProps, { props, collapsed });
+
             const togglerProps = mergeProps(
                 {
                     className: cx('toggler'),
@@ -93,20 +97,14 @@ export const Panel = React.forwardRef((inProps, ref) => {
                     'aria-expanded': !collapsed,
                     type: 'button',
                     role: 'button',
-                    'aria-label': props.header
+                    'aria-label': props.header,
+                    icon: toggleIcon
                 },
                 ptm('toggler')
             );
-            const togglerIconProps = mergeProps(ptm('togglericon'));
-
-            const icon = collapsed ? props.expandIcon || <PlusIcon {...togglerIconProps} /> : props.collapseIcon || <MinusIcon {...togglerIconProps} />;
-            const toggleIcon = IconUtils.getJSXIcon(icon, togglerIconProps, { props, collapsed });
 
             return (
-                <button {...togglerProps}>
-                    {toggleIcon}
-                    <Ripple />
-                </button>
+                <Button {...togglerProps} />
             );
         }
 

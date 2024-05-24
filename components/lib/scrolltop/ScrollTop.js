@@ -4,9 +4,9 @@ import { useHandleStyle } from '../componentbase/ComponentBase';
 import { CSSTransition } from '../csstransition/CSSTransition';
 import { useEventListener, useMergeProps, useUnmountEffect } from '../hooks/Hooks';
 import { ChevronUpIcon } from '../icons/chevronup';
-import { Ripple } from '../ripple/Ripple';
 import { DomHandler, IconUtils, ZIndexUtils, classNames } from '../utils/Utils';
 import { ScrollTopBase } from './ScrollTopBase';
+import { Button } from '../button/Button';
 
 export const ScrollTop = React.memo(
     React.forwardRef((inProps, ref) => {
@@ -103,7 +103,8 @@ export const ScrollTop = React.memo(
                 className: classNames(props.className, cx('root')),
                 style: props.style,
                 onClick,
-                'aria-label': scrollTopAriaLabel
+                'aria-label': scrollTopAriaLabel,
+                icon: scrollIcon
             },
             ScrollTopBase.getOtherProps(props),
             ptm('root')
@@ -126,10 +127,7 @@ export const ScrollTop = React.memo(
         return (
             <>
                 <CSSTransition nodeRef={scrollElementRef} {...transitionProps}>
-                    <button {...rootProps}>
-                        {scrollIcon}
-                        <Ripple />
-                    </button>
+                    <Button {...rootProps} />
                 </CSSTransition>
                 {isTargetParent && <span ref={helperRef} className="p-scrolltop-helper" />}
             </>

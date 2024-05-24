@@ -6,9 +6,9 @@ import { ChevronDownIcon } from '../icons/chevrondown';
 import { ChevronLeftIcon } from '../icons/chevronleft';
 import { ChevronRightIcon } from '../icons/chevronright';
 import { ChevronUpIcon } from '../icons/chevronup';
-import { Ripple } from '../ripple/Ripple';
 import { DomHandler, IconUtils, ObjectUtils, UniqueComponentId, classNames } from '../utils/Utils';
 import { CarouselBase } from './CarouselBase';
+import { Button } from '../button/Button';
 
 const CarouselItem = React.memo((props) => {
     const mergeProps = useMergeProps();
@@ -673,16 +673,14 @@ export const Carousel = React.memo(
                         onClick: (e) => navBackward(e),
                         disabled: isDisabled,
                         'aria-label': localeOption('aria') ? localeOption('aria').previousPageLabel : undefined,
-                        'data-pc-group-section': 'navigator'
+                        'data-pc-group-section': 'navigator',
+                        icon: backwardNavigatorIcon
                     },
                     ptm('previousButton')
                 );
 
                 return (
-                    <button {...previousButtonProps}>
-                        {backwardNavigatorIcon}
-                        <Ripple />
-                    </button>
+                    <Button {...previousButtonProps} />
                 );
             }
 
@@ -707,16 +705,14 @@ export const Carousel = React.memo(
                         onClick: (e) => navForward(e),
                         disabled: isDisabled,
                         'aria-label': localeOption('aria') ? localeOption('aria').nextPageLabel : undefined,
-                        'data-pc-group-section': 'navigator'
+                        'data-pc-group-section': 'navigator',
+                        icon: forwardNavigatorIcon
                     },
                     ptm('nextButton')
                 );
 
                 return (
-                    <button {...nextButtonProps}>
-                        {forwardNavigatorIcon}
-                        <Ripple />
-                    </button>
+                    <Button {...nextButtonProps} />
                 );
             }
 
@@ -761,9 +757,7 @@ export const Carousel = React.memo(
 
             return (
                 <li {...indicatorProps}>
-                    <button {...indicatorButtonProps}>
-                        <Ripple />
-                    </button>
+                    <Button {...indicatorButtonProps} />
                 </li>
             );
         };

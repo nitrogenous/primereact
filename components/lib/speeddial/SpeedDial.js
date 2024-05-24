@@ -429,6 +429,7 @@ export const SpeedDial = React.memo(
                 },
                 ptm('actionIcon')
             );
+            const icon = IconUtils.getJSXIcon(_icon, { ...actionIconProps }, { props });
             const actionProps = mergeProps(
                 {
                     href: url || '#',
@@ -439,16 +440,13 @@ export const SpeedDial = React.memo(
                     target: target,
                     tabIndex: '-1',
                     'data-pr-tooltip': label,
-                    onClick: (e) => onItemClick(e, item)
+                    onClick: (e) => onItemClick(e, item),
+                    icon: icon
                 },
                 ptm('action')
             );
-            const icon = IconUtils.getJSXIcon(_icon, { ...actionIconProps }, { props });
             let content = (
-                <a {...actionProps}>
-                    {icon}
-                    <Ripple />
-                </a>
+                <Button {...actionProps} />
             );
 
             if (template) {

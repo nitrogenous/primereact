@@ -5,9 +5,9 @@ import { CSSTransition } from '../csstransition/CSSTransition';
 import { ESC_KEY_HANDLING_PRIORITIES, useDisplayOrder, useEventListener, useGlobalOnEscapeKey, useMergeProps, useMountEffect, useUnmountEffect, useUpdateEffect } from '../hooks/Hooks';
 import { TimesIcon } from '../icons/times';
 import { Portal } from '../portal/Portal';
-import { Ripple } from '../ripple/Ripple';
 import { DomHandler, IconUtils, ObjectUtils, ZIndexUtils, classNames } from '../utils/Utils';
 import { SidebarBase } from './SidebarBase';
+import { Button } from '../button/Button';
 
 export const Sidebar = React.forwardRef((inProps, ref) => {
     const mergeProps = useMergeProps();
@@ -161,17 +161,6 @@ export const Sidebar = React.forwardRef((inProps, ref) => {
 
     const createCloseIcon = () => {
         const ariaLabel = props.ariaCloseLabel || localeOption('close');
-        const closeButtonProps = mergeProps(
-            {
-                type: 'button',
-                ref: closeIconRef,
-                className: cx('closeButton'),
-                onClick: (e) => onClose(e),
-                'aria-label': ariaLabel
-            },
-            ptm('closeButton')
-        );
-
         const closeIconProps = mergeProps(
             {
                 className: cx('closeIcon')
@@ -182,12 +171,21 @@ export const Sidebar = React.forwardRef((inProps, ref) => {
         const icon = props.closeIcon || <TimesIcon {...closeIconProps} />;
         const closeIcon = IconUtils.getJSXIcon(icon, { ...closeIconProps }, { props });
 
+        const closeButtonProps = mergeProps(
+            {
+                type: 'button',
+                ref: closeIconRef,
+                className: cx('closeButton'),
+                onClick: (e) => onClose(e),
+                'aria-label': ariaLabel,
+                icon: closeIcon                
+            },
+            ptm('closeButton')
+        );
+
         if (props.showCloseIcon) {
             return (
-                <button {...closeButtonProps}>
-                    {closeIcon}
-                    <Ripple />
-                </button>
+                <Button {...closeButtonProps} />
             );
         }
 
