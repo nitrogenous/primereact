@@ -158,11 +158,11 @@ export const Fieldset = React.forwardRef((inProps, ref) => {
             const toggleIcon = createToggleIcon();
 
             return (
-                <a {...togglerProps}>
+                <button {...togglerProps}>
                     {toggleIcon}
                     <span {...legendTextProps}>{props.legend}</span>
                     <Ripple />
-                </a>
+                </button>
             );
         }
 
