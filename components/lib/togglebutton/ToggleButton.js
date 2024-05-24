@@ -114,7 +114,7 @@ export const ToggleButton = React.memo(
                 id: props.inputId,
                 className: cx('input'),
                 style: props.style,
-                onChange: toggle,
+                onClick: toggle,
                 onFocus: onFocus,
                 onBlur: onBlur,
                 onKeyDown: onKeyDown,
@@ -141,7 +141,7 @@ export const ToggleButton = React.memo(
         return (
             <>
                 <div {...rootProps}>
-                    <input {...inputProps} />
+                    <button {...inputProps} />
                     <div {...boxProps}>
                         {iconElement}
                         <span {...labelProps}>{label}</span>

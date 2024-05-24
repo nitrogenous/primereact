@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useMergeProps } from '../hooks/Hooks';
 import { Ripple } from '../ripple/Ripple';
 import { classNames, ObjectUtils } from '../utils/Utils';
+import { ToggleButton } from '../togglebutton/ToggleButton';
 
 export const SelectButtonItem = React.memo((props) => {
     const [focusedState, setFocusedState] = React.useState(false);
@@ -117,16 +118,19 @@ export const SelectButtonItem = React.memo((props) => {
             tabIndex: props.tabIndex,
             'aria-disabled': props.disabled,
             onFocus: onFocus,
-            onBlur: onBlur
+            onBlur: onBlur,
+            checked: props.selected,
+            offLabel: props.label,
+            onLabel: props.label
         },
         getPTOptions('button')
     );
 
     return (
-        <div {...buttonProps}>
+        <ToggleButton {...buttonProps}>
             {content}
             {!props.disabled && <Ripple />}
-        </div>
+        </ToggleButton>
     );
 });
 
