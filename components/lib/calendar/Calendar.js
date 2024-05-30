@@ -3135,16 +3135,14 @@ export const Calendar = React.memo(
                     type: 'button',
                     className: cx('previousButton'),
                     'aria-label': previousButtonLabel,
+                    icon: backwardNavigatorIcon,
                     ...navigatorProps
                 },
                 ptm('previousButton')
             );
 
             return (
-                <button ref={previousButton} {...previousButtonProps}>
-                    {backwardNavigatorIcon}
-                    <Ripple />
-                </button>
+                <Button ref={previousButton} {...previousButtonProps} />
             );
         };
 
@@ -3165,16 +3163,14 @@ export const Calendar = React.memo(
                     type: 'button',
                     className: cx('nextButton'),
                     'aria-label': nextButtonLabel,
+                    icon: forwardNavigatorIcon,
                     ...navigatorProps
                 },
                 ptm('nextButton')
             );
 
             return (
-                <button ref={nextButton} {...nextButtonProps}>
-                    {forwardNavigatorIcon}
-                    <Ripple />
-                </button>
+                <Button ref={nextButton} {...nextButtonProps} />
             );
         };
 
@@ -3734,7 +3730,8 @@ export const Calendar = React.memo(
                     onMouseUp: onTimePickerElementMouseUp,
                     onMouseLeave: onTimePickerElementMouseLeave,
                     onKeyDown: (e) => onPickerKeyDown(e, 0, 1),
-                    onKeyUp: onPickerKeyUp
+                    onKeyUp: onPickerKeyUp,
+                    icon: incrementIcon
                 },
                 ptm('incrementButton')
             );
@@ -3748,22 +3745,17 @@ export const Calendar = React.memo(
                     onMouseUp: onTimePickerElementMouseUp,
                     onMouseLeave: onTimePickerElementMouseLeave,
                     onKeyDown: (e) => onPickerKeyDown(e, 0, -1),
-                    onKeyUp: onPickerKeyUp
+                    onKeyUp: onPickerKeyUp,
+                    icon: decrementIcon
                 },
                 ptm('decrementButton')
             );
 
             return (
                 <div {...hourPickerProps}>
-                    <button {...incrementButtonProps}>
-                        {incrementIcon}
-                        <Ripple />
-                    </button>
+                    <Button {...incrementButtonProps} />
                     <span {...hourProps}>{hourDisplay}</span>
-                    <button {...decrementButtonProps}>
-                        {decrementIcon}
-                        <Ripple />
-                    </button>
+                    <Button {...decrementButtonProps} />
                 </div>
             );
         };
@@ -3792,7 +3784,8 @@ export const Calendar = React.memo(
                     onMouseUp: onTimePickerElementMouseUp,
                     onMouseLeave: onTimePickerElementMouseLeave,
                     onKeyDown: (e) => onPickerKeyDown(e, 1, 1),
-                    onKeyUp: onPickerKeyUp
+                    onKeyUp: onPickerKeyUp,
+                    icon: incrementIcon
                 },
                 ptm('incrementButton')
             );
@@ -3806,22 +3799,17 @@ export const Calendar = React.memo(
                     onMouseUp: onTimePickerElementMouseUp,
                     onMouseLeave: onTimePickerElementMouseLeave,
                     onKeyDown: (e) => onPickerKeyDown(e, 1, -1),
-                    onKeyUp: onPickerKeyUp
+                    onKeyUp: onPickerKeyUp,
+                    icon: decrementIcon
                 },
                 ptm('decrementButton')
             );
 
             return (
                 <div {...minutePickerProps}>
-                    <button {...incrementButtonProps}>
-                        {incrementIcon}
-                        <Ripple />
-                    </button>
+                    <Button {...incrementButtonProps} />
                     <span {...minuteProps}>{minuteDisplay}</span>
-                    <button {...decrementButtonProps}>
-                        {decrementIcon}
-                        <Ripple />
-                    </button>
+                    <Button {...decrementButtonProps} />
                 </div>
             );
         };
@@ -3849,7 +3837,8 @@ export const Calendar = React.memo(
                         onMouseUp: onTimePickerElementMouseUp,
                         onMouseLeave: onTimePickerElementMouseLeave,
                         onKeyDown: (e) => onPickerKeyDown(e, 2, 1),
-                        onKeyUp: onPickerKeyUp
+                        onKeyUp: onPickerKeyUp,
+                        icon: incrementIcon
                     },
                     ptm('incrementButton')
                 );
@@ -3863,22 +3852,17 @@ export const Calendar = React.memo(
                         onMouseUp: onTimePickerElementMouseUp,
                         onMouseLeave: onTimePickerElementMouseLeave,
                         onKeyDown: (e) => onPickerKeyDown(e, 2, -1),
-                        onKeyUp: onPickerKeyUp
+                        onKeyUp: onPickerKeyUp,
+                        icon: decrementIcon
                     },
                     ptm('decrementButton')
                 );
 
                 return (
                     <div {...secondPickerProps}>
-                        <button {...incrementButtonProps}>
-                            {incrementIcon}
-                            <Ripple />
-                        </button>
+                        <Button {...incrementButtonProps} />
                         <span {...secondProps}>{secondDisplay}</span>
-                        <button {...decrementButtonProps}>
-                            {decrementIcon}
-                            <Ripple />
-                        </button>
+                        <Button {...decrementButtonProps} />
                     </div>
                 );
             }
@@ -3909,7 +3893,8 @@ export const Calendar = React.memo(
                         onMouseUp: onTimePickerElementMouseUp,
                         onMouseLeave: onTimePickerElementMouseLeave,
                         onKeyDown: (e) => onPickerKeyDown(e, 3, 1),
-                        onKeyUp: onPickerKeyUp
+                        onKeyUp: onPickerKeyUp,
+                        icon: incrementIcon
                     },
                     ptm('incrementButton')
                 );
@@ -3923,22 +3908,17 @@ export const Calendar = React.memo(
                         onMouseUp: onTimePickerElementMouseUp,
                         onMouseLeave: onTimePickerElementMouseLeave,
                         onKeyDown: (e) => onPickerKeyDown(e, 3, -1),
-                        onKeyUp: onPickerKeyUp
+                        onKeyUp: onPickerKeyUp,
+                        icon: decrementIcon
                     },
                     ptm('decrementButton')
                 );
 
                 return (
                     <div {...millisecondPickerProps}>
-                        <button {...incrementButtonProps}>
-                            {incrementIcon}
-                            <Ripple />
-                        </button>
+                        <Button {...incrementButtonProps} />
                         <span {...millisecondProps}>{millisecondDisplay}</span>
-                        <button {...decrementButtonProps}>
-                            {decrementIcon}
-                            <Ripple />
-                        </button>
+                        <Button {...decrementButtonProps} />
                     </div>
                 );
             }
@@ -3982,15 +3962,9 @@ export const Calendar = React.memo(
 
                 return (
                     <div {...ampmPickerProps}>
-                        <button {...incrementButtonProps}>
-                            {incrementIcon}
-                            <Ripple />
-                        </button>
+                        <Button {...incrementButtonProps} />
                         <span {...ampmProps}>{display}</span>
-                        <button {...decrementButtonProps}>
-                            {decrementIcon}
-                            <Ripple />
-                        </button>
+                        <Button {...decrementButtonProps} />
                     </div>
                 );
             }
@@ -4083,22 +4057,38 @@ export const Calendar = React.memo(
 
         const createButton = () => {
             if (props.showIcon) {
-                return (
-                    <Button
-                        type="button"
-                        icon={props.icon || <CalendarIcon />}
-                        onClick={onButtonClick}
-                        tabIndex="-1"
-                        disabled={props.disabled}
-                        aria-haspopup="dialog"
-                        aria-label={localeOption('chooseDate', props.locale)}
-                        aria-expanded={overlayVisibleState}
-                        aria-controls={panelId}
-                        className={cx('dropdownButton')}
-                        pt={ptm('dropdownButton')}
-                        __parentMetadata={{ parent: metaData }}
-                    />
-                );
+                if (props.iconDisplay === 'button') {
+                    return (
+                        <button
+                            type="button"
+                            onClick={onButtonClick}
+                            tabIndex="-1"
+                            disabled={props.disabled}
+                            aria-haspopup="dialog"
+                            aria-label={localeOption('chooseDate', props.locale)}
+                            aria-expanded={overlayVisibleState}
+                            aria-controls={panelId}
+                            className={cx('dropdownButton')}
+                            pt={ptm('dropdownButton')}
+                            __parentMetadata={{ parent: metaData }}
+                        >
+                            {props.icon ?  <span className={props.icon} pt={ptm('dropdownIcon')}></span>  : <CalendarIcon pt={ptm('dropdownIcon')} />}
+                        </button>
+                    );
+                }
+                else if (props.iconDisplay === 'input') {
+                    return (
+                        <span
+                            onClick={onButtonClick}
+                            tabIndex="-1"
+                            className={cx('inputIconContainer')}
+                            pt={ptm('inputIconContainer')}
+                            __parentMetadata={{ parent: metaData }}
+                        >
+                            {props.icon ? IconUtils.getJSXIcon(props.icon) : <CalendarIcon className={cx('inputicon')} pt={ptm('inputicon')} />}
+                        </span>
+                    );
+                }
             }
 
             return null;

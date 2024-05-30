@@ -98,14 +98,14 @@ export default function IconDemo() {
                         Icon Display
                     </label>
 
-                    <Calendar value={date} onChange={(e) => setDate(e.value)} showIcon />
+                    <Calendar value={date} onChange={(e) => setDate(e.value)} showIcon iconDisplay='input'/>
                 </div>
                 <div className="flex-auto">
                     <label htmlFor="buttondisplay" className="font-bold block mb-2">
                         Icon Template
                     </label>
 
-                    <Calendar value={date} onChange={(e) => setDate(e.value)} showIcon timeOnly icon={() => <i className="pi pi-clock" />} />
+                    <Calendar value={date} onChange={(e) => setDate(e.value)} showIcon timeOnly icon={() => <i className="pi pi-clock" />} iconDisplay='input' />
                 </div>
             </div>
             <DocSectionCode code={code} />

@@ -304,6 +304,7 @@ export const CalendarBase = ComponentBase.extend({
         shortYearCutoff: '+10',
         showButtonBar: false,
         showIcon: false,
+        iconDisplay: 'button',
         showMillisec: false,
         showMinMaxRange: false,
         showOnFocus: true,
